@@ -1,0 +1,143 @@
+createdAt: "2018-05-10T08:48:02.411Z"
+updatedAt: "2018-05-10T09:11:29.225Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryUtilities"
+description: "JqueryUtilities"
+snippets: [
+  {
+    name: "extend.js"
+    mode: "JavaScript"
+    content: '''
+      # $.extend()
+      複数のオブジェクトをマージ
+      
+      
+      $(function() {
+      	var demo = 0;
+      
+      	var o1 = {name: "Mike", age: 18};
+      	var o2 = {height: 175, weight: 65};
+      	var o3 = {like: ["cat", "dog"]};
+      
+      	// o1にo2をマージ
+      	if (demo == 0) {
+      		$.extend(o1, o2);
+      		console.log("o1", o1);
+      		console.log("o2", o2);
+      	}
+      
+      	// o1とo2をマージした新オブジェクトを作成
+      	if (demo == 1) {
+      		var oNew = $.extend({}, o1, o2);
+      		console.log("oNew", oNew);
+      		console.log("o1", o1);
+      		console.log("o2", o2);
+      	}
+      
+      	// シャローコピー(参照をコピー)
+      	if (demo == 2) {
+      		var oNew = $.extend({}, o1, o3);
+      		o3.like[0] = "monkey";
+      		console.log("oNew", oNew);
+      		console.log("oNew.like", oNew.like);
+      		console.log("o3.like", o3.like);
+      	} 
+      
+      	// ディープコピー(値をコピー)
+      	if (demo == 3) {
+      		var oNew = $.extend(true, {}, o1, o3);
+      		o3.like[0] = "monkey";
+      		console.log("oNew", oNew);
+      		console.log("oNew.like", oNew.like);
+      		console.log("o3.like", o3.like);
+      	}
+      
+      	// 関数の引数のデフォルト値
+      	if (demo == 4) {
+      		var fnc = function(prms) {
+      			prms = $.extend(true, {name: "Mike", age: 18}, prms);
+      			console.log(prms);
+      		};
+      		fnc();
+      		fnc({name: "Bob"});
+      	}
+      });
+      
+    '''
+  }
+  {
+    name: "each_etc.js"
+    mode: "JavaScript"
+    content: '''
+      # $.each()
+      配列に対して全ての要素に対して処理を行うときに使う
+      $.each(配列, function(){})
+      配列だけではなく配列風のオブジェクトにも実行できる(arguments)
+      
+      
+      # $.map()
+      配列を元にそれぞれの要素に処理をした後に新しい配列を生成する
+      
+      objectを引数にして使用することもできる
+      その時のfunctionの引数は
+        第一引数がプロパティの値,
+        第二引数がプロパティ名
+      
+      インデックス番号と要素が入る順番がeachとことなるので注意
+      if (demo == 1) {
+        // xが配列の要素、 iはインデックス番号
+        var arr2 = $.map(arr, function(x, i) {
+          return x - 1;
+        });
+      
+      
+      # $.grep()
+      
+      
+      
+      
+      $(function() {
+      	var demo = 2;
+      
+      	var arr = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23];
+      	var obj = {name: "Mike", age: 18};
+      
+      	// $.each()
+      	if (demo == 0) {
+      		$.each(arr, function(i, x) {
+      			console.log("[" + i + "]", x);
+      		});
+      	}
+      
+      	// $.map()
+      	if (demo == 1) {
+          // xが配列の要素、 iはインデックス番号
+      		var arr2 = $.map(arr, function(x, i) {
+      			return x - 1;
+      		});
+      		console.log(arr2);
+      
+      		var arr3 = $.map(obj, function(val, key) {
+      			return key + "@" + val;
+      		});
+      		console.log(arr3);
+      	}
+      
+      	// $.grep()
+      	if (demo == 2) {
+      		var arr2 = $.grep(arr, function(x, i) {
+      			return x % 10 == 1;
+      		});
+      		console.log(arr2);
+      	}
+      });
+      
+    '''
+  }
+]
+tags: [
+  "extend"
+]
+isStarred: false
+isTrashed: false

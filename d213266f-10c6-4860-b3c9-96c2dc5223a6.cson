@@ -1,0 +1,208 @@
+createdAt: "2018-04-09T09:08:16.753Z"
+updatedAt: "2018-04-09T10:53:52.648Z"
+type: "SNIPPET_NOTE"
+folder: "a6d21478f5c795467587"
+title: "JavaScriptSystem"
+description: "JavaScriptSystem"
+snippets: [
+  {
+    name: "if.js"
+    mode: "JavaScript"
+    content: '''
+      var x = 30;
+      if (x >= 20)
+      {
+        print('変数はxは20以上です。');
+      }
+      else if (x >= 10)
+      {
+        print('変数は10以上です');
+      }
+      else
+      {
+        print('変数は10未満です');
+      }
+      
+      
+      # {}は省略もできる
+      if (x == 30) print("xは30です");
+    '''
+  }
+  {
+    name: "switch.js"
+    mode: "JavaScript"
+    content: '''
+      var rank = 'B';
+      switch (rank)
+      {
+        case 'A':
+          print("Aランクです");
+          break;
+        case 'B':
+          print("Bランクです");
+          break;
+        case 'C':
+          print("Cランクです");
+          break;
+        default:
+          print("ランク外です");
+          break;
+          
+      }
+      
+      
+      
+      "break"
+        現在のブロックから処理を脱出するための命令
+        breakがないと、そのcaseを抜けた後次に合致するcase文を探しに行く
+        
+      
+      "フォールスルー"
+      意図的にbreak滅入れを略記して複数のブロックを続けて実行する
+      
+    '''
+  }
+  {
+    name: "while.js"
+    mode: "JavaScript"
+    content: '''
+      # while(前置判定)
+      var x = 8;
+      while (x < 10)
+      {
+        print("xの値は" + x);
+        x++;
+      }
+      
+      
+      # do while (後置判定)
+      1回はかならずループする
+      var x = 8;
+      
+      do
+      {
+        print("xの値は" + x);
+        x++;
+      } while(x < 10);
+      
+    '''
+  }
+  {
+    name: "for.js"
+    mode: "JavaScript"
+    content: '''
+      for (var x = 8; x < 10; x++)
+      {
+        print("xの値は" , x);
+      }
+      
+      # 無限ループになる
+        for (;;){print("hoge");}
+        ;;は初期化式、ループ継続条件式、増減式が全て省略されたパターン
+    '''
+  }
+  {
+    name: "forin.js"
+    mode: "JavaScript"
+    content: '''
+      # 配列の場合
+      
+      var data = ['apple', 'orange' , 'banana'];
+      for (var key in data)   #keyにはインデックス番号が入る
+      {
+        print(data[key]);
+        print(key);
+      }
+      
+      
+      # 連想配列の場合
+      var data = {apple:150, orange: 100, banana: 120};
+      for (var key in data)    #keyには連想配列のkeyが入る
+      {
+        print(key , "=" , data[key]);
+      }
+      
+      
+      
+      
+    '''
+  }
+  {
+    name: "forof.js"
+    mode: "JavaScript"
+    content: '''
+      var data = ['apple', 'orange', 'banana'];
+      for (var value of data)
+      {
+        print(value);
+      }
+      
+      "値を列挙してくれる"
+      
+      
+    '''
+  }
+  {
+    name: "break_continue.js"
+    mode: "JavaScript"
+    content: '''
+      # break
+      ループを強制終了したい時の命令
+      
+      
+      # continue
+      ループをスキップする
+      
+      
+    '''
+  }
+  {
+    name: "error.js"
+    mode: "JavaScript"
+    content: '''
+      var x = 1;
+      var y = 0;
+      
+      try
+      {
+        if(y == 0 ) throw new Error('0で除算しようとしました');
+      
+        var z = x / y;
+      }
+      catch(e)
+      {
+        print(e.message);
+      }
+      
+      
+      EvalError : 不正なeval関数
+      RangeError : 指定された値が許容範囲を超えている
+      ReferenceError : 宣言されていない変数にアクセスした
+      SyntaxError : 文法エラー
+      TypeError : 指定された値が期待されたデータ型出ない
+      URIError : 不正なURI
+    '''
+  }
+]
+tags: [
+  "if"
+  "switch"
+  "break"
+  "フォールスルー"
+  "for"
+  "while"
+  "while_do"
+  "for_in"
+  "for_of"
+  "tyr"
+  "catch"
+  "Error"
+  "EvalError"
+  "RangeError"
+  "ReferenceError"
+  "SyntaxError"
+  "TypeError"
+  "URIError"
+]
+isStarred: false
+isTrashed: false

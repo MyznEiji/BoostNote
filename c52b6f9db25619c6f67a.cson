@@ -1,0 +1,38 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Physics"
+description: "Physics"
+snippets: [
+  {
+    name: "Physics.cs"
+    mode: "C#"
+    content: '''
+      //Physics.RayCast(Vector3 origin, 
+                        Vector3 direction, 
+                        float maxDistance = Mathf.Infinity, 
+                        int layerMask = DefaultRaycastLayers, 
+                        QueryTriggerInteraction queryTriggerInteraction =                        QueryTriggerInteraction.UseGlobal);
+      
+      origin	    ワールド座標でのレイの開始地点
+      direction	  レイの方向
+      maxDistance	レイが衝突を検知する最大距離
+      layerMask	  レイヤーマスクはレイキャストするときに選択的に衝突を
+                  無視するために使用します。
+      queryTriggerInteraction	トリガーに設定されているものも検索対象にするか
+      
+      
+      bool レイが任意のコライダーと交わる場合は true、それ以外は false
+      衝突情報を入れる時はout修飾子をつけるのを忘れずに。
+      ```
+      if(Physics.Raycast (transform.position, 
+                          player.transform.forward, 
+                          out hit)){}
+      ```
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-04T05:48:22.679Z"
+updatedAt: "2017-10-04T05:56:56.566Z"

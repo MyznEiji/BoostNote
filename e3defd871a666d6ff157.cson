@@ -1,0 +1,28 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonLogisticRegression"
+description: "PythonLogisticRegression"
+snippets: [
+  {
+    name: "PythonLogisticRegression.py"
+    mode: "Python"
+    content: '''
+      #ロジスティック回帰
+      発生確率 を予測する分析手法です。
+      予測結果が0から1の間をとるように数式や前提条件に改良が加えられています。
+      例えば明日の天気が「晴れ」なのか「雨」なのかの二値で予測するのではなく、
+      雨が降る発生確率である「降水確率」を用いて予測するのがロジスティック回帰です。
+      
+      
+      #線形分離可能
+      2次元の平面上にデータ点があると仮定すると、
+      そのデータ点を一本の直線で分割できることを表します。
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-24T12:03:04.105Z"
+updatedAt: "2017-12-11T09:59:17.845Z"

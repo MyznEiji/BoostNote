@@ -1,0 +1,134 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Transform"
+description: '''
+  Transform
+  
+'''
+snippets: [
+  {
+    name: "Transform.cs"
+    mode: "C#"
+    content: '''
+      //TransformDirection(new Vector3)
+      オブジェクトの座標をローカルからワールドに変換して、引数には動かす場所を定義する
+      void Update(){
+        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"));
+        moveDirection = transform.TransformDirection(moveDirection);
+        
+        CharacterController controller = GetComponent<Character Controller>().Move(moveDirection * Time.deltaTime);
+      }
+      ４行目でキーボードの入力値を受け取り、５行目でオブジェクトの座標をワールドに変換して、
+      引数に入力値を渡してあげることによって、オブジェクトの正面が定まり、オブジェクトからみて
+      右方向に移動することができる。
+      
+      
+      
+      //親オブジェクトを指定し、親子関係を設定
+      子オブジェクトのtransform.parentに親にしたいオブジェクトのtransformを代入します。
+      ```
+      Child.transform.parent = Parent.transform;
+      ```
+      
+      
+      //親オブジェクトを解除
+      子オブジェクトから親オブジェクトを解除するにはtransform.parentをnullにすることで親子関係を解除します。
+      ```
+      ChildObject.transform.parent = null;
+      ```
+      
+      
+      //親オブジェクトから子オブジェクトの全てを解除
+      DetachChildren()を使用すれば一括で解除できます。
+      ```
+      RootObject.transform.DetachChildren();
+      ```
+      
+      //Transform.IsChildOf(Transform parent)
+      parentの子かどうかを判定
+      Transform が渡した親の子であるかどうかを表す bool 値を返します。 
+      子である、さらに深い階層の子（つまり子の子）である、同じ 
+      Transform である場合は true を返し、そうでない場合は false を返します。
+      
+      例として、Parent1（子あり）とParentNoChild（子なし）のオブジェクトを作成します。
+      ```
+      using UnityEngine;
+      using System.Collections;
+      
+      public class ExistChildScript : MonoBehaviour {
+      
+          void Start () {
+              Debug.Log ("name:" + gameObject.name);
+      
+              if (GameObject.Find ("Child").transform.IsChildOf (transform)) {
+                  Debug.Log ("true");
+              } else {
+                  Debug.Log ("false");
+              }
+          }
+      }
+      ```
+      
+      
+      //子オブジェクトの数を取得する
+      childCountは子オブジェクトの数を取得することができます
+      ```
+      using UnityEngine;
+      using System.Collections;
+      
+      // 親オブジェクトにAddComponent
+      public class ChildCountScript : MonoBehaviour {
+      
+          void Start () {
+              int count = transform.childCount;
+              Debug.Log ("Count=" + count);
+          }
+      }
+      ```
+      
+      //Transform.GetChild()
+      子要素のtransformを取得する
+      Transform.GetChildを用いることで子要素のtransformを取得することができます。
+      Transform.GetChild(0)のように引数を与えることで0番目の要素(1つ目の子要素)の
+      transformを取得することができます。
+      
+      
+      //gameObjA.transform.LookAt(gameObjB.transform);
+      gameObjAの「前」が、gameObjBの方へ向きます
+      
+      
+      //Transform.englerAngles
+      オブジェクトの向きをオイラー角で設定したり、オブジェクトの回転量をオイラー角で取得する
+      
+      
+      //Transform.SetParent(gameObject.transform,bool 
+                            worldPositionStays(true))
+      第一引数の子オブジェクトにする。第二引数をfalseにすることで、
+      子要素が親要素のポジションを
+      追従してしまい思ったポジションに表示できないことを防ぎます。
+      
+      
+      //Transform.forward
+      ワールド空間における青い軸
+      
+      
+      //Transform.right
+      ワールド空間における赤い軸
+      
+      //Transform.up
+      ワールド空間における緑の軸
+      
+      
+      //Transform.SetAsFirstSibling()
+      Hierarchyビューでの順序を一番上にする
+      
+      //Transform.SetAsLastSibling()
+      Hierarchyビューでの順序を一番下にする
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-06T07:46:43.376Z"
+updatedAt: "2017-10-30T15:36:17.735Z"

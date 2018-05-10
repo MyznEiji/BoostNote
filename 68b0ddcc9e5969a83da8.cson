@@ -1,0 +1,31 @@
+createdAt: "2018-03-10T15:32:25.606Z"
+updatedAt: "2018-03-10T15:38:00.092Z"
+type: "SNIPPET_NOTE"
+folder: "ea77b093ffd39c8e29de"
+title: "DjangoSqlite3"
+description: '''
+  DjangoSqlite3
+  
+'''
+snippets: [
+  {
+    name: "DjangoSqlite3.py"
+    mode: "Python"
+    content: '''
+      # $ sqlite3 db.sqlite3
+      対話的にDBに接続できる
+      
+      
+      # .tables
+      テーブルを表示 
+      
+      # select * from posts_post;
+      postsのpostのデータテーブルからデータを取ってくる
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

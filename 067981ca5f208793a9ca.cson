@@ -1,0 +1,23 @@
+createdAt: "2018-02-06T05:14:49.817Z"
+updatedAt: "2018-02-06T05:16:37.145Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonGym"
+description: "PythonGym"
+snippets: [
+  {
+    name: "gym.py"
+    mode: "Python"
+    content: '''
+      # gym.make("FrozenLake-v0")
+      FrozenLake問題のモデル
+      
+      
+    '''
+  }
+]
+tags: [
+  "gym"
+]
+isStarred: false
+isTrashed: false

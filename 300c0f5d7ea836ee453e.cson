@@ -1,0 +1,44 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Collider"
+description: "Collider"
+snippets: [
+  {
+    name: "Collider.cs"
+    mode: "C#"
+    content: '''
+      //collide.bounds
+      3次元空間の範囲を表します。
+      
+      bounds.center ボックスの中心 
+      bounds.extents　箱の広さ。これは常にサイズの半分です。
+      bounds.max　箱の最大点。これは常にcenter + extentsと同じです。
+      bounds.min　ボックスの最小点。これは常に中央エクステントと同じです。
+      bounds.size	ボックスの合計サイズ。これは常にエクステントの2倍です。
+    '''
+  }
+  {
+    name: "WheelCollider.cs"
+    mode: "C#"
+    content: '''
+      //Wheel Collider
+      Wheel ColliderはWheelを再現することでき、Wheelの物理特性・摩擦などを設定することができます。
+      「Rigidbody」がアタッチされているオブジェクトの子要素になるとタイヤとして認識されます。
+      
+      
+      //WheelCollider.steerAngle
+      steerAngleはWheelColliderがアタッチされているオブジェクトに対して使用することができ、ローカル座標のY軸に対して角度を返すことができます。このメソッドを使うことによってWheelColliderの角度を変え、車のハンドリングを再現することができます。
+      
+      
+      //WheelCollider.motorTorque
+      motorTorqueはWheelColliderがアタッチされているオブジェクトに対して使用することができ、WheelColliderに回転の力[トルク]を与えることができます。
+      
+      //WheelCollider.GetWorldPose(out pos, out quat)
+      WheelCollider.GetWorldPoseはWheelColliderのステアリングの角度・回転の角度を取得し、引数に取ったVector3型の変数とQuaternion型の変数にステアリングの角度・回転の角度の情報を渡すことができます。
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-07-21T05:46:49.591Z"
+updatedAt: "2017-10-04T09:48:01.104Z"

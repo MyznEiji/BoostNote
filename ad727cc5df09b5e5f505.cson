@@ -1,0 +1,22 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "KeyCode"
+description: "KeyCode"
+snippets: [
+  {
+    name: "KeyCode.cs"
+    mode: "C#"
+    content: '''
+      //KeyCode
+      あらゆるキー入力の変数が定義されている
+      Backspace	backspace
+      Delete	Delete
+      など。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-06T07:10:00.618Z"
+updatedAt: "2017-10-06T07:16:44.427Z"

@@ -1,0 +1,26 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Math"
+description: "C#Math"
+snippets: [
+  {
+    name: "C#Math.cs"
+    mode: "C#"
+    content: '''
+      //Math.Pow(Double x,Double y)
+      xをy乗した値
+      
+      
+      //Math.Sin(Double)
+      指定された角度のサインを返します。
+      
+      //Math.Round(Double)
+      最も近い整数または指定した小数点以下の桁数に値を丸めます。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:11:00.310Z"
+updatedAt: "2017-11-02T14:11:11.229Z"

@@ -1,0 +1,497 @@
+createdAt: "2018-04-28T00:10:43.393Z"
+updatedAt: "2018-05-01T14:04:09.848Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "jquerySelector"
+description: "jquerySelector"
+snippets: [
+  {
+    name: "selectorPositon.js"
+    mode: "JavaScript"
+    content: '''
+      
+      # セレクタ
+      jqueryは操作対象をdomで指定する
+      配列風な形で帰ってくるが配列ではなく、jQueryオブジェクト。
+      .lengthで当てはまるセレクタの数を取得できる
+      $("a")
+      $("#myId")
+      $(".myClass")
+      
+      $("a").text("anchor");
+      この選択したa要素の中身の文字列をanchorにする
+      
+      "$('[属性="値"]')"
+      
+        $('[title = jquery]'); 
+        <a title = jquery></a>のような要素を取得できる
+        
+        $('[属性*="文字列"]')　属性の値に指定した文字列を含む要素を取得する
+        $('[属性~="値"]') スペース区切りされた属性の値の中に指定した値と一致するもの
+          を含む
+          <li class="project jquery"></li>
+      
+        $('[属性!="値"]') 指定した属性の値を含まない not([属性 = "値"])と等価
+        $('[属性$="文字列"]')　属性の値が指定した文字列で終わる
+        $('[属性^="文字列"]')　属性の値が指定した文字列で始まる
+            $('a[href^="https:"]') 
+      
+      
+      
+      
+      # $("p:eq(0)")
+      p要素全体の中で0番目の要素
+      
+      
+      
+      # $("p:gt(2)")
+      p要素全体の中で2番目より大きな要素
+      gt = greater than 
+      
+      
+      # $("p:lt(2)")
+      p要素全体の中で2番目より小さな要素
+      lt = less than
+      
+      
+      # $("p:even")
+      p要素全体の中で偶数(0,2,4...)の要素
+      
+      
+      # $("p:odd")
+      p要素全体の中で奇数(1,3,5...)の要素
+      
+      
+      
+      # $("p:first")
+      p要素全体の中で最初の要素
+      
+      
+      # $("p:first-child")
+      親が同一の要素の中で先頭がpの要素
+      先頭が指定した要素でなければ選択できない
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合はその４だけを取得する
+      
+      
+      # $("p:first-of-type")
+      親が同一の要素の中で最初に出てくるp要素
+      
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合はその１とその４を取得する
+      
+      
+      # $("p:last")
+      p要素全体の中で末尾の要素
+      
+      
+      
+      # $("p:last-child")
+      親が同一の要素の中で末尾がpの要素
+      末尾が指定した要素でなければ選択できない
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      上記の場合はその３だけが取得する
+      
+      
+      
+      
+      # $("p:last-of-type")
+      親が同一の要素の中で末尾に出てくるp要素
+      
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合はその3とその6を取得する
+      
+      
+      
+      
+      # $("p:nth-~")
+      という一連のセレクタ
+      css由来で1から数える。その他は0から数える
+      
+      
+      
+      
+      # $("p:nth-child(1)")
+      親が同一の要素の中で1番目がpの要素
+      child()の引数には
+        even 1から数えて偶数番目
+        odd  1から数えて奇数番目
+        式    3n+1 なら3の倍数+1
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合はその4のみ取得
+      
+      
+      
+      # $("p:nth-of-type(1)")
+      親が同一の要素の中で1番目に出てくるpの要素
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合はその4とその１を取得
+      
+      
+      
+      
+      # $("p:nth-last-child(1)")
+      親が同一の要素の中で末尾から1番目がpの要素
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合はその３のみを取得
+      
+      
+      
+      
+      
+      # $("p:nth-last-of-type(1)")
+      親が同一の要素の中で末尾から1番目に出てくるpの要素
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合はその３とその６を取得
+      
+      
+      
+      $(".sec1 + div")
+      同じ親要素でsec1クラスの直後にあるdiv
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合は[div class=sec2]の要素を取得
+      
+      
+      
+      
+      $(".sec1 ~ div")
+      同じ親要素でsec1クラスの後に続くdiv
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+        <div class="block sec3">
+        </div>
+      
+      上記の場合は[div class=sec2]と[div class=sec3]要素を取得
+      
+      
+      
+      
+      $("body div")
+      body要素の子孫全てのdiv
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合は[div class=sec2],[div class=sec1],[<div>補足</div>]の要素を取得
+      
+      
+      
+      
+      $("body > div")
+      body要素の子だけのdiv
+      
+        <div class="block sec1">
+          <h1>タイトル1</h1>
+          <p>その1</p>
+          <p>その2</p>
+          <p>その3</p>
+        </div>
+        <div class="block sec2">
+          <p>その4</p>
+          <p>その5</p>
+          <p>その6</p>
+          <div>補足</div>
+        </div>
+      
+      上記の場合は[div class=sec2],[div class=sec1]の要素を取得
+    '''
+  }
+  {
+    name: "selectorStatus.js"
+    mode: "JavaScript"
+    content: '''
+      # $(":text")
+      inputのtype="text"の要素を取得
+      $('input[type="text"]')という書き方を省略できる
+      
+      
+      # $(":file")
+      inputのtype="file"の要素を取得
+      $('input[type="file"]')という書き方を省略できる
+      
+      
+      # $(":password")
+      inputのtype="password"の要素を取得
+      $('input[type="password"]')という書き方を省略できる
+      
+      
+      # $(":checkbox")
+      inputのtype="checkbox"の要素を取得
+      $('input[type="checkbox"]')という書き方を省略できる
+      
+      
+      # $(":radio")
+      inputのtype="radio"の要素を取得
+      $('input[type="radio"]')という書き方を省略できる
+      
+      
+      # $(":button")
+      inputのtype="button"の要素を取得
+      $('input[type="button"]')という書き方を省略できる
+      
+      
+      # $(":image")
+      inputのtype="image"の要素を取得
+      $('input[type="image"]')という書き方を省略できる
+      
+      
+      
+      # $(":reset")
+      inputのtype="reset"の要素を取得
+      $('input[type="reset"]')という書き方を省略できる
+      
+      
+      # $(":selected")
+      選択状態のoption要素が選択される
+      
+      
+      
+      # $(":checked");
+      チェックされた要素が選択される
+      $(":checkbox:checked");  チェックボックスの中でチェックされているものだけを選択
+      $("input[name=group]:checked"); チェックされているラジオを選択
+      
+      
+      
+      # $(":focus")
+      フォーカスされた要素を選択する。マウスでフォーカスしているところ
+      setTimeout(function(){
+        console.log($(":focus"));
+      }, 2000);     
+      2秒後にフォーカスの当たっている要素を取得する
+      
+      
+      
+      # $(":visible")
+      表示状態の要素を取得
+      
+      # $(":hidden")
+      非表示状態の要素を取得
+      
+      
+      # $(":enabled");
+      有効な要素を取得する
+      
+      
+      # $(":disabled");
+      無効な要素を取得する
+      
+      
+      
+      # $(":empty")
+      中身が空の要素を取得する
+      $("select:empty"); 　セレクト要素の中で中身が空の要素を取得する
+      
+      
+      # $(":parent")
+      自身が親である中にテキストや他の要素がある要素を取得する
+      $("select:parent"); 　セレクト要素の中で自身が親である要素を取得する
+      
+      
+      # $(":contains(~)")
+      子孫の要素に指定(カッコ内の)の文字列を含む要素が取得される
+      $(":contains(1)"); 1という文字列を含む要素が選択される
+      
+      
+      # $(":has(~)")
+      子孫の要素に指定(カッコ内)の要素を含む要素が取得される
+      $(":has(input)");   input要素を含む要素が選択される
+      
+      
+      
+      # $(":not(~)");
+      ~ではない要素
+      $("body :not(input)"); input以外の要素が選択される
+      $("body :not(input):empty"); input以外で中身が空の要素が選択される
+      
+      
+      
+      # $(":header")
+      h1,h2などのh数字という要素を取得する
+      $(":header").each(function()
+      {
+        console.log($(this).text());
+      });
+      で、目次となるh要素を取得できる
+      
+    '''
+  }
+]
+tags: [
+  "selector"
+  "eq"
+  "gt"
+  "lt"
+  "even"
+  "odd"
+  "first"
+  "first-child"
+  "first-of-type"
+  "last"
+  "last-child"
+  "last-of-type"
+  "nth-child"
+  "nth-of-type"
+  "nth-last-child"
+  "nth-last-of-type"
+  ":text"
+  ":file"
+  ":password"
+  ":checkbox"
+  ":radio"
+  ":button"
+  ":image"
+  ":reset"
+  ":selected"
+  ":checked"
+  ":focus"
+  ":visible"
+  ":hidden"
+  ":enabled"
+  ":disabled"
+  ":empty"
+  ":parent"
+  ":contains"
+  ":has"
+  ":not"
+  ":header"
+]
+isStarred: false
+isTrashed: false

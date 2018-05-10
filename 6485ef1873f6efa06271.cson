@@ -1,0 +1,36 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Audio"
+description: "Audio"
+snippets: [
+  {
+    name: "Audio.cs"
+    mode: "C#"
+    content: '''
+      //AudioListener
+      サウンドを聞くのに必要ななコンポーネント
+      通常はデフォルトでMainCameraの中に入っている。
+      このコンポーネントがない場合や複数のオブジェクトに設定されている場合はエラーになる
+      
+      
+      //AudioSource
+      
+      Play On Awake : 再生と同時に再生
+      
+      //AudioSourceの3D Sound Settings
+      LogarithmicRolloff : 曲線グラフ
+      LinerRolloff : 直線グラフ
+      
+      
+      
+      //SEがBGMにかき消されてしまう場合は
+      audioSource.PlayOneShot(audioSource.clip);
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-23T08:39:13.904Z"
+updatedAt: "2017-09-23T08:59:23.981Z"

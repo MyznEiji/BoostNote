@@ -1,0 +1,96 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "MV(R)P"
+description: "MV(R)P"
+snippets: [
+  {
+    name: "MV(R)P.cs"
+    mode: "C#"
+    content: '''
+      //UnityにおけるM-V-〇〇
+      ModelとViewをどう繋げてModel→View、View→Modelのデータのやり取りを
+      行いGUIを構成するかといったデザインパターン
+      「〇〇」には、C(Controller)やVM(ViewModel)やRP(Reactive Presenter)と
+      いったものが入ります。
+      
+      
+      //Model
+      Modelとは、ゲームを構成するデータや数値を管理する役割のことです。
+      主に、データの書き換えを行うメソッドを保持しています。
+      
+      
+      //View
+      ViewとはUnityのGameビューやSceneビューのようなユーザーに見えるもの(画面)を
+      指します。
+      主に、画面を更新するメソッドを保持しています。
+      
+      
+      //Model-View-ViewModel(MVVM)
+      Model / View / ViewModelの３つの責務にGUIアプリケーションを分割し、
+      双方向データバインディング(データをViewに結びつける)という形でView(UI)と
+      ViewModelとを結びつけるような設計のことを指します。
+      
+      MVVMはModelの変更を直接View(UI)に反映させるのではなく、
+      ViewModel(Viewを抽象化したもの)を挟むことによってModelの変更をView(UI)に
+      反映させることができます。
+      
+      双方向データバインディングによってView-ViewModel間のデータは密に
+      結びついているため、ViewModelからの変更はView(UI)に適応されるのはもちろん、
+      View(UI)からの変更もViewModelに適応されます。
+      
+      MVVMには様々な問題点
+      ・View-Model間にViewModelをはさみ込むことにとってView-Model間は疎になったが、
+        View-ViewModel間・ViewModel-Model間は密な関係になってしまい変更に
+        弱くなっている。
+      
+      ・そもそもUnityにデータバインディングの機能は存在しない。
+      
+      それを解決するのがMV(R)Pパターンです。
+      
+      
+      //MV(R)P(Model-View-(Reactive)Presenter)パターン
+      UnityにおけるUIの設計思想の１つで、M(モデル)とV(ビュー)をP(プレゼンター)を
+      挟みそれらをUniRxで繋ぐことでMとVの依存関係を弱めることができます。
+      
+      "MV(R)Pパターンの流れ"
+      1: ユーザーからのUIの変更をUnityEventsを使ってuser eventとしてPresenterに
+          配信する
+      2: user eventを受け取ったPresenterがModelをUpdateする
+      3: Model(ReactiveProperty)がUpdateされたのでPresenterに対して
+          ReactivePropertyのイベントストリームを使いstate-change eventを発行する
+      4: state-change eventを受け取ったPresenterがViewを更新する
+      
+      ```
+          　→1.user.event→   　→→→        →2.Model Update→
+      View                 Presenter                           Model
+            ←4.View Update←    ←←←     ←3.State-change events←
+      ```
+      
+      
+      //(Reactive)Presenter
+      ModelとViewとをUniRxで繋ぐ役割を持つものです。
+      ・Modelからの変更は、ReactivePropertyを介してPresenterにメッセージとして渡され、
+        それをPresenterがViewに適応する
+        
+      ・Viewからの変更はUnityEvent.AsObservableでストリームし、Presenterがその
+        ストリームをReactivePropertyに変換することでModelに適応させることができます。
+      
+      基本的にPresenterは１つのシーンに１つ存在し、MV(R)Pパターンの機能はPresenterに
+      集約されるためPresenterを見ることでMV(R)P間でデータがどのような動きをしているか
+      把握することができます。
+      
+      Unityではデータバインディングは使うことができないのでMVVMにおける
+      ViewModelのようなViewを操作できるような役割が必要になってきます。
+      その役割を担うのが(Reactive)Presenterです。
+      
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-30T04:33:20.933Z"
+updatedAt: "2017-10-30T04:48:43.983Z"

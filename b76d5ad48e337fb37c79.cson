@@ -1,0 +1,28 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "AnimationState"
+description: "AnimationState"
+snippets: [
+  {
+    name: "AnimationState.cs"
+    mode: "C#"
+    content: '''
+      //AnimationStateInfo.normalizedTime
+      アニメーション開始時を0・再生後を1とするようにアニメーションの長さを正規化したもの
+      アニメーションの再生状態はnormalizedTimeが0からスタートし、最終的には1になる
+      つまり、アニメーションが再生完了している状態はnormalizedTimeが1以上になります。
+      この部分を利用して、アニメーションの再生終了を知ります。
+      
+      
+      //AnimationStateInfo.length
+      stateの長さ(秒)
+      秒数をスタートして0からアニメーションが終わるまでの長さを返してくれる
+      スタートに戻ると値も0に戻る
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-04T04:57:12.552Z"
+updatedAt: "2017-10-04T05:13:41.253Z"

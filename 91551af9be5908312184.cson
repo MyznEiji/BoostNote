@@ -1,0 +1,120 @@
+createdAt: "2018-03-04T04:48:57.699Z"
+updatedAt: "2018-03-14T06:00:16.187Z"
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsMechanize"
+description: "RailsMechanize"
+snippets: [
+  {
+    name: "Mechanize.rb"
+    mode: "Ruby"
+    content: '''
+      # agent = Mechanize.new
+      Mechanizeクラスのインスタンスを生成
+      
+      
+      # getメソッド
+      getメソッドはMechanizeクラスのインスタンスメソッドです。
+      get("スクレイピングしたいウェブサイトのURL")と引数にURLの文字列を指定することで、
+      そのURLのウェブサイトのHTMLを取得します
+      
+        page = agent.get("http://review-movie.herokuapp.com/") 
+      
+      
+      
+      # searchメソッド
+      searchメソッドはgetメソッドで取得したページの情報が入ったオブジェクトに対して使用します。
+      これを使うと取得したウェブサイトのHTML情報の中から指定したHTML要素の内容を検索できます
+      
+      該当するHTMLのタグ要素が1つでも、返り値は配列の形式で返ってきます。
+      
+         elements = Mechanize::Pageオブジェクト.search('セレクタ')
+      
+      
+      # inner_textメソッド
+      searchメソッドで得られたHTML情報のテキストを取得したい場合、
+      inner_textメソッドを使います。
+      
+        agent = Mechanize.new
+        page = agent.get("http://review-movie.herokuapp.com/")
+        elements = page.search('h2 a') # h2要素の下のa要素を検索
+      
+        elements.each do |ele|
+          puts ele.inner_text
+        end
+      
+      
+      
+      #get_attributeメソッド
+      aタグ要素のHTMLはリンク先のURLを値とする属性hrefを持っています。
+      このようなHTMLの属性の値を取得したい場合、get_attributeメソッドを使います。
+      
+          puts ele.get_attribute('href') # puts ele[:href]としても良い
+      
+      
+      
+      # sample 
+      require 'mechanize'
+      
+      
+      agent = Mechanize.new
+      page = agent.get("http://review-movie.herokuapp.com/")
+      elements = page.search("h2 a")
+      
+      elements.each do |ele|
+        puts ele.get_attribute("href")
+      end
+      
+    '''
+  }
+  {
+    name: "sample.rb"
+    mode: "Ruby"
+    content: '''
+      class Scraping
+       def self.movie_urls
+         agent = Mechanize.new
+         links = []
+         next_url = ""
+      
+         while true
+           current_page = agent.get("http://review-movie.herokuapp.com/" + next_url)
+           elements = current_page.search('.entry-title a')
+           elements.each do |ele|
+             links << ele.get_attribute('href')
+           end
+      
+           next_link = current_page.at('.next a')
+           break unless next_link
+           next_url = next_link.get_attribute('href')
+      
+         end
+         links.each do |link|
+           get_product('http://review-movie.herokuapp.com' + link)
+         end
+       end
+      
+       def self.get_product(link)
+         agent = Mechanize.new
+         page = agent.get(link)
+         title = page.at('.entry-title').inner_text if page.at('.entry-title')
+      
+         image_url = page.at('.entry-content img')[:src] if page.at('.entry-content img')
+         director = page.at('.director span').inner_text if page.at('.director span')
+         detail = page.at('.entry-content p').inner_text if page.at('.entry-content p')
+         open_date = page.at('.date span').inner_text if page.at('.date span')
+      
+         product = Product.where(title: title).first_or_initialize
+         product.image_url = image_url
+         product.director = director
+         product.detail = detail
+         product.open_date = open_date
+         product.save
+       end
+      end
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

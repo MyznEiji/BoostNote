@@ -1,0 +1,338 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonSystem"
+description: "PythonSystem"
+snippets: [
+  {
+    name: "PythonSystem.py"
+    mode: "Python"
+    content: '''
+      #Generator
+      イテレーターの要素
+      反復処理をする時に一要素を取り出して、それを生成していく
+      
+      def greeting():
+          yield "Good morning"
+          for i in range(10): #次のジェネレーター処理をする前にfor文が処理される
+              print(i)
+          yield "Good afternoon"
+          for i in range(10, 20): #次のジェネレーター処理をする前にfor文が処理される
+              print(i)
+          yield "Good night"
+      
+      def coounter(num=10):
+          for _ in range(num):
+              yield 'run'
+      
+      c = coounter()
+      g = greeting()
+      
+      print(next(g))
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print("hoge")
+      print(next(g))
+      print("hoge")
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print(next(g))
+      
+      
+      
+      # リスト内包表記
+      リストに入っているものを別の配列に入れる時のfor文を使わない書き方
+      t = (1, 2, 3, 4, 5)
+      r = [i for i in t if i % 2 == 0]
+      
+      "for文を使う場合"
+      
+      r = []
+      for i in t:
+          if i % 2 == 0:
+              r.append(i)
+          
+          
+      # 辞書包括表記
+      ２つの配列に入ってる値を辞書で管理したい場合for文を使わない書き方
+      w = ['mon', 'tue', 'wed']
+      f = ['coffee', 'milk', 'water']
+      
+      d = {x: y for x, y in zip(w, f)}
+      
+      
+      "for文を使う書き方"
+      d = {}
+      for x, y in zip(w, f):
+          d[x] = y
+      
+      
+      
+      
+      # 集合内包表記
+      配列の値を集合に追加していく場合にfor文を使わない書き方
+      s = set()
+      
+      s = {i for i in range(10) if i % 2 == 0}
+      
+      "for文を使う書き方"
+      for i in range(10):
+          if i % 2 == 0:
+              s.add(i)
+      
+      
+      
+    '''
+  }
+  {
+    name: "PythonLogicalOperators.py"
+    mode: "Python"
+    content: '''
+      
+      #and
+      a == b and c == d
+      aとb,cとd両方が同じな時
+      
+      
+      #or
+      a == b or c == d
+      aとb,cとdのどっちかが同じな時
+      
+      
+      #not
+      a = not a == 5
+      aが5じゃない時
+      
+      if not a == b:
+        print(True)
+      aがbじゃない時True
+      
+      
+      #in
+      if x in y:
+        print(in)
+      xがyの配列に入っていればTrueである
+      
+      
+      #not in 
+      if x not in y:
+        print(not in)
+      xがyの配列に入っていない場合True
+      
+      
+      
+      # is
+      オブジェクトが一致する場合にTrueを返す
+      値がNoneかどうか確かめるときによく使う
+      if a is None:
+        print("None")
+        
+      1 == True # trueが返る
+      1 is True　# Falseが返る
+      True is True # Falseが返る
+      
+    '''
+  }
+  {
+    name: "PythonFor.py"
+    mode: "Python"
+    content: '''
+      
+      #for文
+        リストオブジェクトに対してfor文を実行すると、リストに含まれる要素を順に取り出して
+        繰り返し処理が行われます。すなわち、リストの要素の数だけ処理が行われます。
+        animals = ["dog", "cat", "rat"]
+        for animal in animals:
+            print(animal)
+      
+        for _ in range(10):
+        #_は配列のの要素を使わずにただ単純に10回Helloを出力することを明示する為のも
+          print("Hello")
+      
+        
+      #リスト内包表記
+        "data配列の中身を2倍にする"
+        newData = [d * 2 for d in data]
+        
+        
+        
+      "range関数"
+        for i in range(0,6):
+          print i #0 ~ 5まで出力される
+      
+      
+        for x in range(10):
+          if(x is 1):
+            continne #これ以下の処理は行わず(printをしない)次のループに移る
+          if(x > 5):
+            break
+        print x　#結果02345
+      
+        for i in range(0, 10, 3)　#0から10まで3個飛ばしの配列
+          print(i) 
+          
+        for _ in range(10): #for文内の変数を使わないこと明示的に示す場合_を使う
+          print("hello")
+        
+      
+      
+      "文字列でも使える"
+        for s in 'abcde':
+          print(s) #a,b,c,d,eが出力される
+        
+        
+      "配列をそのまま渡せる"
+        for word in ['My', 'name', 'is', 'Mike']:
+            if word == name:
+              continue #continueは次の要素に行く
+            print(word)
+      
+            
+      "else文"
+        for n in [1,2,3,4,5]:
+          print(n)
+        else: # for文の全部終わった後に実行される
+          print(end)
+            
+            
+      "enumerate関数"
+        enumerate関数はfor文と一緒に使用する事で、配列が繰り返されている番号を数字で
+        取得することが出来る関数です。
+        for i, fruit in enumerate(['apple','banana','orange'])
+          print(i,fruit)
+        
+        
+      "zip関数"
+        わざわざインデックスを使わなくても、複数の配列の同じインデックスの要素を取り出せる
+        days = ["Mon", "Tue", "Wed"]
+        fruits = ["apple", "banana", "orange"]
+        drinks = ["coffee", "tea", "beer"]
+      
+        for day, fruit, drink in zip(days,fruits,drinks):
+          print(day,fruit,drink) #インデック0から出力されて行く
+      
+          
+      "辞書でのfor文"
+        d = {'x' : 100, 'y' : 200}
+        for k, v in d.items():
+          print(k, ':', v)
+      
+        
+      #combinations関数
+        組み合わせを求める為のメソッド。第一引数に組み合わせを検討する配列、
+        第二引数に配列の中から幾つの要素を残すかを指定します。
+        要素の中身が同じであれば、同じ組み合わせです。 例えば、a,b,cから2つを選らんだ場合の
+        組み合わせは、3通りで、(a,b)と(b, a)は同じ組み合わせです。
+        ```
+        list = {"a","b","c"}
+        for patern in combinatioons(list,2):
+          print(patern)
+      
+          (a,b)
+          (a,c)
+          (b,c)
+        ```
+        
+        
+      
+      # for文の進捗チェック
+      
+        import time
+      
+        for i in range(100):
+            if i % 10 == 0:
+                print('now =', i)
+            time.sleep(0.02)
+    '''
+  }
+  {
+    name: "PythonWhile.py"
+    mode: "Python"
+    content: '''
+      
+      #while文
+        while（ホワイル）文は繰り返し処理を行う文法の１つです。
+        whileは以下のような文法で繰り返し処理を行います。
+          sum = 0
+          number = 1
+          while number <= 10:
+              sum += number
+              print(sum)
+              number += 1
+      
+      
+        #while: else:
+        elseはwhile文から抜けた後に処理が行われる      
+      
+      
+      "ループ文"
+        while True:
+          word = input('enter:')
+          if word == 'OK'
+            break
+          print('next')
+        
+        
+        
+      # exit関数
+        exit(エクジット)関数はプログラムの処理を強制的に終了させる関数です。言うならば、
+        実行中のプログラムを強制終了するコマンド「control + c」と同じ役割を持つ関数です。
+          while True:
+              exit()  # ここでプログラムが終わる
+              print("Hello World") # この行は呼ばれない
+      
+      
+      
+      
+    '''
+  }
+  {
+    name: "PythonIf.py"
+    mode: "Python"
+    content: '''
+      #if文
+      
+        value = int(input())
+        if value > 0:
+            print("値は正です")
+        elif value < 0:
+            print("値は負です")
+        else:
+            print("値は0です")
+      
+        #pass文
+        Pythonではクラスや、メソッドの内部には確実に何らかの処理を書き込む必要があり、
+        何も書き込まないとエラーになってしまいます。「条件分岐のときに何も実行しないとき」や、
+        「どんな処理をするか決まっていない時」は処理を何も記述したくありません。
+        そんな時はpass文を使用してエラーが発生しないようにします。
+      
+      
+    '''
+  }
+]
+tags: [
+  "enumerate"
+  "combinations"
+  "and"
+  "in"
+  "not_in"
+  "if"
+  "pass"
+  "while"
+  "else"
+  "exit"
+  "for"
+  "range"
+  "zip"
+  "Generator"
+  "リスト内包表記"
+  "for文の進捗チェック"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-21T09:44:30.143Z"
+updatedAt: "2018-03-28T08:49:15.708Z"

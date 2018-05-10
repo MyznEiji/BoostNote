@@ -1,0 +1,151 @@
+createdAt: "2018-05-06T08:02:23.903Z"
+updatedAt: "2018-05-06T08:41:35.221Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryCss"
+description: "JqueryCss"
+snippets: [
+  {
+    name: "css.js"
+    mode: "JavaScript"
+    content: '''
+      # .css()
+      cssの値を変更できる
+      
+      $(function() {
+      	// ボタン クリック時の処理
+      	$("#btn").click(function() {
+      		var $text = $("#text");
+      
+      		// 値を取得
+      		console.log($text.css("color"));　rgbの配列で返ってくる
+      		console.log($text.css(["color", "font-weight"]));
+      
+      		// 値を設定 ハイフンが入ってるものは""でくくる
+      		$text.css("background", "blue");
+      		$text.css({
+      			width: "300px",
+      			height: "100px",
+      			fontSize: "200%",
+      			"font-style": "italic"
+      		});
+      
+      		// 値を設定（関数） 関数でtrueになるものがcss適用される
+      		$(".sub").css("font-size", function(i) {
+      			return (i + 2) + "em";
+      		});
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "pos.js"
+    mode: "JavaScript"
+    content: '''
+      # .offset()
+      document基準にした位置
+      webページの左上を基準にした位置
+      
+      $(function() {
+      	// ボタン1 クリック時の処理
+      	$("#btn1").click(function() {
+          //p1,p2の左上からを基準にポジションが出力
+      		console.log("p1", $("#p1").offset());
+      		console.log("p2", $("#p2").offset());
+      	});
+      
+      	// ボタン2 クリック時の処理
+      	$("#btn2").click(function() {
+      		$("#p1").offset({top: 20, left: 20});
+      		$("#p2").offset(function(i, coords) {
+      			return {top: coords.top + 10,
+      					left: coords.left + 10};
+      		});
+      	});
+      });
+      
+      
+      
+      
+      # .position()
+      オフセット要素基準　
+      先祖要素でスタイルでポジション指定されているもの
+      positionがrelativeやabsoluteやfixedの場合
+      $(function() {
+      	// ボタン1 クリック時の処理
+      	$("#btn1").click(function() {
+          先祖要素を基準としたポジションを出力
+          console.log("p1", $("#p1").position());
+      		console.log("p2", $("#p2").position());
+      
+      		});
+      	});
+      });
+      
+      
+      
+    '''
+  }
+  {
+    name: "scroll.js"
+    mode: "JavaScript"
+    content: '''
+      # scrollイベントはたくさん発生する
+      
+      # .scrollLeft
+      スクロールの位置を取得する
+      $(function() {
+      	var $win = $(window), id = null;
+      	$win.scroll(function() {
+      		if (id != null) clearTimeout(id);	// 100msec 以内のイベントはキャンセル
+      		id = setTimeout(function() {
+      			id = null;
+      
+      			// 位置を出力
+      			console.log($win.scrollLeft(), $win.scrollTop());
+      
+      			// 位置を戻す
+      			setTimeout(function() {
+      				$win.scrollLeft(0).scrollTop(0);
+      			}, 2000);
+      		}, 100);
+      	});
+      });
+      
+      
+      
+      
+      
+      # .scrollTop
+      スクロースの位置を取得する
+      $(function() {
+      	var $win = $(window), id = null;
+      	$win.scroll(function() {
+      		if (id != null) clearTimeout(id);	// 100msec 以内のイベントはキャンセル
+      		id = setTimeout(function() {
+      			id = null;
+      
+      			// 位置を出力
+      			console.log($win.scrollLeft(), $win.scrollTop());
+      
+      			// 位置を戻す
+      			setTimeout(function() {
+      				$win.scrollLeft(0).scrollTop(0);
+      			}, 2000);
+      		}, 100);
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "css"
+  "offset"
+  "position"
+  "scrollLeft"
+  "scrollTop"
+]
+isStarred: false
+isTrashed: false

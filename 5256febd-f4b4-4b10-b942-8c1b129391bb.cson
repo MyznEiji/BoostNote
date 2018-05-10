@@ -1,0 +1,30 @@
+createdAt: "2018-03-15T13:48:55.927Z"
+updatedAt: "2018-03-15T13:50:31.838Z"
+type: "SNIPPET_NOTE"
+folder: "23c3444a116c8ee65d2b"
+title: "How to Jpegoptim"
+description: "How to Jpegoptim"
+snippets: [
+  {
+    name: "jpegoptim.py"
+    mode: "Python"
+    content: '''
+      jpegoptimはJPEG画像の最適化や画像サイズの圧縮を行ってくれるツールです。
+      
+      # JPEG画像の持っているExifやコメントなどのデータを削除するのは次のコマンドです。
+      jpegoptim --strip-all ファイル名
+      
+      
+      # 指定した圧縮率で圧縮を行う場合は-Tオプションをつけます。圧縮率は1-99で指定します。
+      jpegoptim -T圧縮率 ファイル名
+      
+      
+      # 同名のファイルがあれば上書きする場合は-oオプションをつけます。
+      jpegoptim -o ファイル名
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,44 @@
+createdAt: "2018-03-12T04:38:01.559Z"
+updatedAt: "2018-03-12T04:51:56.972Z"
+type: "SNIPPET_NOTE"
+folder: "dd7ebbf65d4795ac0281"
+title: "PostgresCommand"
+description: "PostgresCommand"
+snippets: [
+  {
+    name: "postgresCommand.py"
+    mode: "Python"
+    content: '''
+      # sudo -u postgres psql
+      postgresにログインする
+      
+      # \\q
+      ログアウト
+      
+      
+      # create database Name;
+      Nameというテーブルを作成する
+      
+      # create user UserName with password 'Password';
+      UserNameというuserを作成し、
+      そのユーザーのパスワードを設定する
+      
+      
+      # ALTER ROLE UserName SET client_encoding TO 'utf8';
+      日本語が使えるようにする
+      
+      
+      # ALTER ROLE mybloguser Set timezone To 'UTC+9';
+      タイムゾーンを世界標準に合わせる
+      
+      
+      # GRANT ALL PRIVILEGES ON DATABASE DatabaseName TO UserName;
+      UserNameがDatabaseNameにアクセスできるように権限をつける
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

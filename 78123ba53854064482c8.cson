@@ -1,0 +1,72 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "UI"
+description: "UI"
+snippets: [
+  {
+    name: "UI.cs"
+    mode: "C#"
+    content: '''
+      void OnGUI(){
+        GUIStyle guiStyle = new GUIStyle();
+        GUIStyleState styleState = new GUIStyleState();
+        
+        //GUIStyleStateで背景やテキストの色を変える
+        styleState.textColor = Color.black;
+      
+        //GUIStyleだけだと色を変えられないから、GUIStyleStateを利用してnormalの値を変更
+        guiStyle.normal = styleState;
+        guiStyle.fontSize = 120;
+      
+        GUI.Label(new Rect(10,10,300,100),"Game Over!!",guiStyle);
+      }
+    '''
+  }
+  {
+    name: "mome.cs"
+    mode: "C#"
+    content: '''
+      GUIStyle:GUI要素のスタイル情報,ほとんどの GUI 関数はデフォルトのスタイルを上書きするオプションの GUIStyle パラメーターを受け入れます。色、フォントやその他の詳細を変更していろいろな状態に切り替えます
+      
+      GUIStyleState:GUIStyleオブジェクトの状態を表すために特化された値です。GUIStyleは GUI 要素を表示するために必要なすべての値が含まれています。
+    '''
+  }
+  {
+    name: "Canvas.cs"
+    mode: "C#"
+    content: '''
+      //スクリーンサイズが異なっても比率を保つようにする
+      CanvasScalerScriptのUiScaleModeをScaleWithScreenSizeに変更し、
+      ReferenceResolutionのxを1920、yを1080に変更
+    '''
+  }
+  {
+    name: "Text.cs"
+    mode: "C#"
+    content: '''
+      string.Format("{引数番号:書式} / {引数番号:書式}",1つ目の引数、２つ目の引数);
+      
+      
+      //色の数値設定
+      Text.color = new Color(1.0f,1.0f,0.5f,0.5f);
+      Color内の４つの要素はそれぞれR,G,Bとアルファ値です。値は0~1の間のfloat型で指定する
+      アルファ値は省略でき、省略した場合は1(不透明)の値が入ります 
+      メンバ変数でpublic Color myWhite;
+      とすれば、InspectorViewで自分好みの色に変更できる
+    '''
+  }
+  {
+    name: "Image.cs"
+    mode: "C#"
+    content: '''
+      //３次元空間位置情報をスクリーンに表示する方法
+      WorldToScreenPointでターゲットのワールド空間における3次元の位置をカメラに
+      写っている2次元の位置に変換する
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-07-20T07:10:17.858Z"
+updatedAt: "2017-09-22T08:10:01.334Z"

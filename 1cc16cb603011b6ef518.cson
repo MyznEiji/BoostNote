@@ -1,0 +1,88 @@
+createdAt: "2018-03-06T10:42:56.460Z"
+updatedAt: "2018-03-06T11:12:39.148Z"
+type: "SNIPPET_NOTE"
+folder: "ae869880fb7248601fce"
+title: "mysqlMethod"
+description: "mysqlMethod"
+snippets: [
+  {
+    name: "mysqlMethod.rb"
+    mode: "Ruby"
+    content: '''
+      # CONCAT関数
+      CONCAT関数は複数の文字列を連結させることが出来る関数です。
+      
+      CONCAT(文字列1, 文字列2, ……)
+      
+      SELECT CONCAT(family_name, first_name)
+      FROM users
+      
+      
+      # AS句
+      SELECT句でデータを取得するとき、AS句を併用すると、そのカラムに別名を付けることが出来ます。
+      
+      SELECT 取得するデータ AS 別名
+      
+      
+      # DISTINCTキーワード
+      DISTINCTキーワードを使用すると、指定したカラムの値が重複する行を除外して
+      データを取得することが出来ます。
+      
+      SELECT DISTINCT カラム名
+      
+      SELECT DISTINCT user_id
+      FROM shifts
+      WHERE date = "2015-07-01"
+      
+      
+      #  GROUP BY句
+      GROUP BY句を使用すると、指定したカラムが同じ値を持つデータを1つのグループ
+      としてまとめることが出来ます。
+      
+      GROUP BY カラム名
+      
+      SELECT user_id
+      FROM shifts
+      WHERE date = "2015-07-01"
+      GROUP BY user_id
+      
+      
+      # COUNT関数
+      COUNT関数はグループ化されたデータに対して使用することが出来る集計関数の一つです。
+      COUNT関数はカラムを指定して使用することで、そのカラムの値がNULLでないデータの行数を
+      取得することが出来ます。
+      
+      SELECT COUNT(カラム名)
+      
+      SELECT user_id, COUNT(*)
+      FROM shifts
+      WHERE date = "2015-07-01"
+      GROUP BY user_id
+      
+      
+      
+      # JOIN
+      JOINを使用すると、指定したそれぞれのテーブルの、カラムの値が一致するデータを結合
+      することが出来ます。
+      
+      JOIN句はFROM句のあとに記述し、結合の対象となるテーブルを指定します。
+      そしてそれぞれのテーブルの結合するカラムをONの後に=（イコール）を用いて指定します。
+      
+      FROM テーブル名1
+      JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2
+      
+      
+      FROM shifts
+      JOIN users ON shifts.user_id = users.id
+      このSQL文は、
+      
+      "shifts"テーブルに"users"テーブルを結合させます。
+      "shifts"テーブルの各行には、その行の"user_id"が"users"テーブルの
+      "id"と一致する行を結合させます。
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

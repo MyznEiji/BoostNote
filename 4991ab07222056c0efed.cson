@@ -1,0 +1,119 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Generic"
+description: "C#Generic"
+snippets: [
+  {
+    name: "C#Generic.cs"
+    mode: "C#"
+    content: '''
+      //Generic
+      さまざまな型に対応するために、型を変数として与え、その型に対応したクラスや関数を
+      生成する機能。
+      
+      
+      //ジェネリックメソッド
+      アクセスレベル 戻り値の型 メソッド名<型引数>(引数リスト) 
+          where 型引数中の型が満たすべき条件
+      {
+        メソッド定義
+      }
+      
+      ```
+      private T Max<T>(T x , T y) where T : IComparable
+      {
+          if (x.CompareTo(y) > 0) {
+              return x;
+          } else {
+              return y;
+          }
+      }
+      ```
+      
+      "whereを使うことで、型に制約条件をつけることが出来ます。"
+      
+      where T : struct	型Tは「値型」である
+      where T : class	型Tは「参照型」である
+      where T : new()	引数なしのコンストラクタを持つ。他の制約条件と同時に課す場合には、
+                一番最後に指定する必要がある。
+      where T : [base class]	型Tは[base class]で指定された型を継承する。
+      where T : [interface]	型Tは[interface]で指定されたインターフェースを実装する。
+      
+      
+      
+      
+      
+      //ジェネリッククラス
+      class クラス名<型引数>
+        where 型引数中の型が満たすべき条件
+      {
+        クラス定義
+      }
+      
+      ```
+      public class Mystack<T> {
+          private int _top;
+          private readonly T[] _mystack;
+      
+          public Mystack(int max)
+          {
+              _mystack = new T[max];
+              this._top = 0;
+          }
+      
+          public void Push(T x){
+              this._mystack[this._top++] = x;
+          }
+      
+          public T Pop(){
+              return this._mystack[--this._top];
+          }
+      
+          public void ShowStack(){
+              for (var i = 0; i < _top; i++) {
+                  Debug.Log (_mystack [i]);
+              }
+          }
+      }
+      ```
+    '''
+  }
+  {
+    name: "C#Dictionary.cs"
+    mode: "C#"
+    content: '''
+      //Dictionary
+      その名の通り、辞書系と呼ばれるキーによってコレクション内の要素にアクセスできる
+      コレクションで、ハッシュテーブルや連想配列と呼ばれるものに相当します。
+      
+      コレクション内の要素数を自動的に増減できる点はListと同じですが、Dictionaryは常に
+      キーとそれに対応する値の対（ペア）を格納します。格納した値にアクセスする場合は、
+      インデックスの代わりにキーを指定します。
+      
+      Dictionary<string, int> dict; //キーがstring、値がintのDictionary
+      
+    '''
+  }
+  {
+    name: "C#KeyValuePair.cs"
+    mode: "C#"
+    content: '''
+      //KeyValuePair
+      
+      これもその名の通り、設定または取得できる、キー/値ペアを定義できます。
+      Directoryの内部では、キーと値の組み合わせはKeyValuePairで管理されています。
+      
+      
+      foreach( KeyValuePair<string, string> kvp in openWith )
+      {
+          Console.WriteLine("Key = {0}, Value = {1}", 
+              kvp.Key, kvp.Value);
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-08T09:25:36.934Z"
+updatedAt: "2017-11-08T11:15:16.855Z"

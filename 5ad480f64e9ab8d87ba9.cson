@@ -1,0 +1,22 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonRandom"
+description: "PythonRandom"
+snippets: [
+  {
+    name: "PythonRandom.py"
+    mode: "Python"
+    content: '''
+      #random.randint()
+      引数として渡した2つの整数の間のランダムな値を返す
+      
+      #random.random()
+      乱数、0から1までのランダムな浮動小数点数を返す
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-18T08:50:32.600Z"
+updatedAt: "2017-10-18T08:55:23.446Z"

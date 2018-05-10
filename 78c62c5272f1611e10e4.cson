@@ -1,0 +1,26 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "GameObject"
+description: "GameObject"
+snippets: [
+  {
+    name: "GameObject.cs"
+    mode: "C#"
+    content: '''
+      //GameObject.AddComponent(string className)
+      ゲームオブジェクトに className という名のコンポーネントクラスを追加します
+      この関数を使用してその場でオブジェクトの動作を変更します。 
+      またスクリプトクラス名を渡すことでスクリプトを追加することも出来ます。
+      
+      
+      //Script上でGameObjectを生成して、Scriptをアタッチする
+      GameObject go = new GameObject("GameObjectName")
+      hoge = go.AddComponent<ComponentName>();
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-04T06:31:14.240Z"
+updatedAt: "2017-11-02T12:41:57.516Z"

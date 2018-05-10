@@ -1,0 +1,27 @@
+createdAt: "2018-03-16T08:41:22.401Z"
+updatedAt: "2018-03-16T08:42:01.233Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelSystem"
+description: "LaravelSystem"
+snippets: [
+  {
+    name: "LaravelSystem.py"
+    mode: "Python"
+    content: '''
+      # @foreachメソッド
+      Lesson2 PHPでアプリケーションをつくる2でforeach構文を学習したと思います。
+      Laravelのbladeファイル上でこの foreach構文を使うには @foreach(添字配列 as $変数)とします。
+      基本的にはLesson2で学習とした foreach と違いはありませんが、繰り返される範囲が { から } までに対して、@foreachメソッドでは @foreach() から @endforeach までになります。
+      
+      @section('content')
+      @foreach($tweets as $tweet)
+        <p>{{ $tweet->text  }}</p>
+      @endforeach
+      @endsection
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,28 @@
+createdAt: "2018-02-25T11:30:21.654Z"
+updatedAt: "2018-02-25T11:31:35.460Z"
+type: "SNIPPET_NOTE"
+folder: "d155fa926dc4390a93fa"
+title: "BootStrap"
+description: "BootStrap"
+snippets: [
+  {
+    name: "bootStrap.html"
+    mode: "HTML"
+    content: '''
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>ご利用アンケート</h1>
+        </div>
+        <div class="col-sm-6">
+          <a href="/">Homeへ戻る</a>
+        </div>
+      </div>
+      
+      col-sm-は計12になるように設定して
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

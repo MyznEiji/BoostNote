@@ -1,0 +1,59 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonDatetime"
+description: "PythonDatetime"
+snippets: [
+  {
+    name: "PythonDatetime.py"
+    mode: "Python"
+    content: '''
+      from datetime import datetime
+      
+      #datetime.now()
+        現在の生年月日時間を出力する
+      
+      # 現在時刻の表示を変更できる
+      datetime.now().strftime("%d/%m /%y - %H:%M:%S.%f")
+      
+      # 今日の日付を表示する
+      datetime.date.today()
+      
+      datetime.date.today.strftime("%d/%m/%y")で
+      表示を変更できる
+      
+      
+      #指定した時間を表示
+      t = datetime.time(hour=1, minute=10, second=5, microsecond=100)
+      print(t)
+      print(t.strftime("%H:%M:%S.%f")) #表示を変更する
+      
+      
+      # 指定した時間前の日付などを表示する
+      d = datetime.timedelta(weeks=1)
+      d = datetime.timedelta(days=1)
+      d = datetime.timedelta(hours=1)
+      d = datetime.timedelta(minutes=1)
+      d = datetime.timedelta(seconds=1)
+      d = datetime.timedelta(microseconds=1)
+      print(datetime.now()-d)
+      
+      
+        
+      # import time
+      
+      # 時間差をつけて処理を実行する
+      print("###")
+      time.sleep(1)
+      print("###")
+      
+    '''
+  }
+]
+tags: [
+  "datetime"
+  "time"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-12-06T08:57:27.503Z"
+updatedAt: "2018-02-05T06:29:37.258Z"

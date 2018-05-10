@@ -1,0 +1,27 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Event"
+description: "C#Event"
+snippets: [
+  {
+    name: "C#Event.cs"
+    mode: "C#"
+    content: '''
+      //イベント
+      
+      「オブジェクトに何かが起きたら」
+      「他のオブジェクトに通知し、なんらかの行動をする」
+      というときの、「何かが起きたら」をイベントといいます。
+      イベントが発生した際に、そのイベントに関連する一連の処理を実行するものを
+      "イベントハンドラ"と呼びます。
+      
+      event データ型 イベントの名前;
+      と定義する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-07T12:01:53.804Z"
+updatedAt: "2017-11-07T12:02:50.253Z"

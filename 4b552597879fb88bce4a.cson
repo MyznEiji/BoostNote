@@ -1,0 +1,73 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonAlgorithm"
+description: "PythonAlgorithm"
+snippets: [
+  {
+    name: "characterCount.py"
+    mode: "Python"
+    content: '''
+      import pprint
+      
+      message = 'It was a bright cold day in April, and the clocks were striking thirteen.'
+      count = {}
+      
+      for character in message:
+        count.setdefault(character,0)
+        count[character] = count[character] + 1
+        
+      pprint.pprint(count)
+    '''
+  }
+  {
+    name: "ticTicToe.py"
+    mode: "Python"
+    content: '''
+      
+      
+      
+      the_board =\\
+      {
+          'top-L' : '' , 'top-M' : '' , 'top-R' : '',
+          'mid-L' : '' , 'mid-M' : '' , 'mid-R' : '',
+          'low-L' : '' , 'low-M' : '' , 'low-R' : ''
+      }
+      
+      def print_board(board):
+          print(board['top-L'] + '|' + board['top-M'] + '|' + board['top-R'])
+          print('-+-+-')
+          print(board['mid-L'] + '|' + board['mid-M'] + '|' + board['mid-R'])
+          print('-+-+-')
+          print(board['low-L'] + '|' + board['low-M'] + '|' + board['low-R'])
+      
+      turn = 'X'
+      for i in range(9):
+          print_board(the_board)
+          print(turn +'の番です。どこに打つ?' )
+          move = input()
+          the_board[move] = turn
+          if turn == 'X':
+              turn = '0'
+          else:
+              turn = 'X'
+      
+      print_board(the_board)
+      
+    '''
+  }
+  {
+    name: "tmp.py"
+    mode: "Python"
+    content: '''
+      tmp = i
+      i = j
+      j = tmp
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-19T10:24:26.740Z"
+updatedAt: "2018-03-24T14:03:49.472Z"

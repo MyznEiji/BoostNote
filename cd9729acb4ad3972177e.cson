@@ -1,0 +1,15 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Error"
+description: "Error"
+snippets: [
+  {
+    name: ""
+    mode: "text"
+    content: "UnassignedReferenceException:　GameObjectなどをアタッチし忘れている"
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-06-15T09:24:56.644Z"
+updatedAt: "2017-06-15T09:26:30.049Z"

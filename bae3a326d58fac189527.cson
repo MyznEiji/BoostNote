@@ -1,0 +1,24 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonCollections"
+description: "PythonCollections"
+snippets: [
+  {
+    name: "PythonCollections.py"
+    mode: "Python"
+    content: '''
+      #Collections.Counter(data, coloum)
+      dataの総量をcoloumずつ分けるかつnullも表示する
+      
+      Counter(titanic_df.Embarked)
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-12-05T10:45:06.373Z"
+updatedAt: "2017-12-06T06:36:45.173Z"

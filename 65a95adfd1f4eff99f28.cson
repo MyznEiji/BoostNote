@@ -1,0 +1,25 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonCopy"
+description: "PythonCopy"
+snippets: [
+  {
+    name: "PythonCopy.py"
+    mode: "Python"
+    content: '''
+      #copy.copy()
+      リストや辞書などの複製を作るのに使われる
+      import copy
+      spam = [1,2,3,4]
+      cheese = copy.copy(spam)
+      sheese[1] = 42
+      spam #[1,2,3,4]
+      cheese #[1,42,3,4] spamとcheeseで参照ID番号は同じではない
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-19T09:43:09.554Z"
+updatedAt: "2017-10-19T09:45:36.941Z"

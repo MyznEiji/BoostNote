@@ -1,0 +1,52 @@
+createdAt: "2018-03-09T14:23:44.895Z"
+updatedAt: "2018-03-12T06:12:22.442Z"
+type: "SNIPPET_NOTE"
+folder: "ea77b093ffd39c8e29de"
+title: "DjangoGeneral"
+description: "DjangoGeneral"
+snippets: [
+  {
+    name: "djangoGeneral.py"
+    mode: "Python"
+    content: '''
+      # $ django-admin startproject hoge
+      プロジェクトを作る
+      
+      
+      # $ python manage.py runserver
+      サーバーを起動する
+      http://127.0.0.1:8000/
+      でwebブラウザに繋がる
+      
+      python3 manage.py  runserver 0.0.0.0:8000
+      リモートで設定してるサーバに繋げる
+      
+      
+      # $ python manage.py migrate
+      データベースの作成、更新
+      
+      
+      # $ python manage.py startapp hoges
+      アプリケーションの追加
+      
+      
+      # テンプレートの作成
+      1 アプリケーションフォルダーの中にtemplatesフォルダーを作る
+      2 その中にアプリケーションと同じ名前のフォルダーを作成する
+      
+      # $ python manage.py makemigrations
+      新しい定義ファイルがあった場合に、それをDBに投入するためのファイルを自動生成する
+      
+      
+      # $ sqlite3 db.sqlite3
+      対話的にDBに接続できる
+      
+      
+      # $ python manage.py createsuperuser
+      管理画面をログインをするためのユーザー作成
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

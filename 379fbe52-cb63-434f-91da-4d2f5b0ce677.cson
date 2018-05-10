@@ -1,0 +1,22 @@
+createdAt: "2018-03-21T09:34:12.720Z"
+updatedAt: "2018-03-21T09:35:19.717Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelDatabase"
+description: "LaravelDatabase"
+snippets: [
+  {
+    name: "LaravelDatabase.py"
+    mode: "Python"
+    content: '''
+      # mysqlでデータベースを作った後
+      .envの設定で作ったデータベースの名前,ユーザーネーム,パスワードを指定する
+      DB_DATABASE=bookapp_development_php
+      DB_USERNAME=root
+      DB_PASSWORD=
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

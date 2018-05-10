@@ -1,0 +1,19 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Int32"
+description: "C#Int32"
+snippets: [
+  {
+    name: "C#Int32.cs"
+    mode: "C#"
+    content: '''
+      //Int32.Parse(String)
+      数値の文字列形式を、それと等価な 32 ビット符号付き整数に変換します
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:12:05.394Z"
+updatedAt: "2017-11-02T14:12:19.364Z"

@@ -1,0 +1,19 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Field"
+description: "C#Field"
+snippets: [
+  {
+    name: "C#Math.cs"
+    mode: "C#"
+    content: '''
+      //Math.PI
+      定数 π によって示される、円の直径に対する円周の割合を表します。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-28T12:49:16.654Z"
+updatedAt: "2017-09-28T12:51:00.277Z"

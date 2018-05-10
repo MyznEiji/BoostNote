@@ -1,0 +1,131 @@
+type: "SNIPPET_NOTE"
+folder: "8f41a1c53d82040dd608"
+title: "Algorithm"
+description: "Algorithm"
+snippets: [
+  {
+    name: "review.App.rb"
+    mode: "Ruby"
+    content: '''
+      def post_review(a_posts)
+        post = {}
+        puts "ジャンルを入力してください:"
+        post[:genre] =gets.chomp
+        puts "タイトルを入力してください:"
+        post[:title] =gets.chomp
+        puts "感想を入力してください:"
+        post[:review] =gets.chomp
+        line ="---------------------------"
+      
+        puts "ジャンル : #{post[:genre]}\\n#{line}"
+        puts "タイトル : #{post[:title]}\\n#{line}"
+        puts "感想 : #{post[:review]}\\n#{line}"
+      
+        a_posts << post
+      
+        return a_posts
+      end
+      
+      def read_reviews(a_posts)
+      
+        number = 0
+        a_posts.each do |post|
+          puts "[#{number}] : #{post[:title]}のレビュー"
+          number += 1
+        end
+        puts "見たいレビューの番号を入力してください : "
+        input = gets.to_i
+      
+        post = a_posts[input]
+      
+        line   = "---------------------------"
+        puts "ジャンル : #{post[:genre]}\\n#{line}"
+        puts "タイトル : #{post[:title]}\\n#{line}"
+        puts "感想 :\\n#{post[:review]}\\n#{line}"
+      end
+      
+      def end_program
+        exit
+      end
+      
+      def exception
+        puts "入力された値は無効です"
+      end
+      
+      a_posts = []
+      
+      while true do
+        puts "レビュー数：#{a_posts.length}"
+        puts "[0]レビューを書く"
+        puts "[1]レビューを読む"
+        puts "[2]アプリを終了する"
+        input = gets.to_i
+      
+      
+        if input== 0 then
+          post_review(a_posts)
+        elsif input == 1 then
+          read_reviews(a_posts)
+        elsif input == 2 then
+          end_program
+        else
+          exception
+        end
+      end
+      
+    '''
+  }
+  {
+    name: "review.Class.rb"
+    mode: "Ruby"
+    content: '''
+      class Review
+        @@review_count = 0
+        def self.get_review_count
+          return @@review_count
+        end
+      
+        def initialize
+          puts "タイトルを入力してください"
+          @title = gets.chomp
+          puts "ジャンルを入力してください"
+          @genre = gets.chomp
+          puts "感想を入力してください"
+          @impression = gets.chomp
+          @@review_count = @@review_count + 1
+        end
+      
+        def show_review
+          line = "---------------------------"
+          puts "ジャンル : #{@genre}\\n#{line}\\n"
+          puts "タイトル : #{@title}\\n#{line}\\n"
+          puts "感想 :\\n#{@impression}\\n#{line}\\n"
+        end
+      
+      end
+      
+      while true do
+        puts "書いたレビューの数：#{Review.get_review_count}"
+        puts "[0]レビューを書"
+        puts "[1]アプリを終了"
+      
+        input = gets.to_i
+      
+        if input == 0
+          review = Revew.new
+          review.show_review
+        elsif input == 1
+          exit
+        else
+          puts "入力された値は無効です"
+        end
+      end
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-13T02:40:27.871Z"
+updatedAt: "2017-08-13T02:40:27.871Z"

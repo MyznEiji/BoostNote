@@ -1,0 +1,690 @@
+createdAt: "2018-05-03T13:22:22.912Z"
+updatedAt: "2018-05-05T09:42:50.086Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryEvent"
+description: "JqueryEvent"
+snippets: [
+  {
+    name: "event.js"
+    mode: "JavaScript"
+    content: '''
+      # $('~').メソッド(function(){});
+      # $('~').メソッド();
+      
+      
+      
+      # $('~').click(function(){});
+      クリックしたときのメソッドを設定する
+      
+      
+      # $(document).ready(function(){});
+      domの準備ができたらfunctionの処理をする
+      $(function()
+      {
+        console.log("準備ok, 200");
+      });
+      上記の書き方でも大丈夫
+      
+      
+      # .click(function(){});
+      クリックされた時の処理
+      $(function(){
+        $("h1").click(function(){console.log("クリック")})
+      });
+      
+      $(function() {
+      	// クリック時の処理
+      	$("*").click(function() {
+      		var tag = this.tagName;
+      		var id = this.id;
+      		console.log("click", tag, id);
+          return false;
+      	});
+      });
+      
+      
+      
+      
+      # .dblclick(function(){});
+      ダブルクリックされた時の処理
+      $(function(){
+        $("h1").dblclick(function(){console.log("クリック")})
+      });
+      
+      
+      
+      # .change(function(){});
+      指定した要素が変更されたときのメソッド
+      
+      "ラジオボタン"
+      $(function(){
+      	$(":radio").change(function() {
+      		var name = $(this).attr("name");
+      		var val = $(this).val();
+      		console.log(name, val);
+      	});  
+      });
+      
+      
+      
+      "チェックボックス"
+      $(function(){
+      	$(":checkbox").change(function() {
+      		var name = $(this).attr("name");
+      		var isChecked = $(this).prop("checked");
+      		console.log(name, isChecked);
+      	});  
+      });
+      
+      
+      
+      
+      "入力欄"
+      $(function(){
+      	$(":text").change(function() {
+      		var name = $(this).attr("name");
+      		var val = $(this).val();
+      		console.log(name, val);
+      	});  
+      });
+      
+      
+      
+      "submit"
+      $(function(){
+        $("#f").submit(function() {
+      		console.log(this);
+      
+      		// フォームデータのシリアライズ
+      		console.log($(this).serialize()); # フォームの文字列が返る
+      		console.log($(this).serializeArray()); # フォームの値が配列で返る
+      
+      		// イベントを停止
+      		return false;
+      	});  
+      });
+      
+      
+      
+      # ウィンドウサイズが変更された時の処理
+      $(function(){
+      	$(window).resize(function() {
+      		var w = $(window).width();
+      		var h = $(window).height();
+      		console.log(w, h);
+      	});  
+      });
+      
+      
+      
+      # スクロールの時の処理
+      $(function(){ 
+      	// スクロールの処理
+      	$(window).scroll(function() {
+      		var top = $(window).scrollTop(); #現在のスクロールの縦位置を取得する
+      		console.log(top + "px");
+      	});  
+      });
+      
+      
+      
+      # .focus();
+      対象要素がフォーカスされた時の処理
+      $(function(){
+      	// フォーカス
+      	$("#out, #text2").focus(function() {
+      		var id = $(this).attr("id");
+      		console.log("focus", id);
+      	});
+      });
+      
+      
+      
+      # .blur()
+      対象要素のフォーカスが外れた時の処理
+      $(function(){
+      	// ブラー
+      	$("#out, #text2").blur(function() {
+      		var id = $(this).attr("id");
+      		console.log("blur", id);
+      	});  
+      });
+      
+      
+      
+      # .focusin();
+      対象要素(子要素も対象)がフォーカスされた時
+      $(function(){
+      	// フォーカス イン（子要素も対象）
+      	$("#out, #text2").focusin(function(e) {
+      		var id = $(this).attr("id");
+      		var idTrgt = $(e.target).attr("id");
+      		console.log("focusin", id, idTrgt);
+      	});  
+      });
+      
+      
+      # .focusout();
+      対象要素(子要素も対象)のフォーカスが外れた時
+      $(function(){
+      	// フォーカス アウト（子要素も対象）
+      	$("#out, #text2").focusout(function(e) {
+      		var id = $(this).attr("id");
+      		var idTrgt = $(e.target).attr("id");
+      		console.log("focusout", id, idTrgt);
+      	});  
+      });
+      
+    '''
+  }
+  {
+    name: "key.js"
+    mode: "JavaScript"
+    content: '''
+      function(e)
+      {
+        e.which # eはイベントオブジェクト。whichでキーの値を取得できる(キーコード)
+      }
+      
+      
+      function(e)
+      {
+        e.altKey
+        e.ctrlKey
+        e.shiftKey
+        # true or falseで値を取得できる
+      }
+      
+      # .keydown()
+      キーをダウンした時のイベント
+      e.which はキーコード
+      ブラウザによっては日本語入力の値が取れない
+      $(function(){
+        $("#text").keydown(function(e) {
+          var c = String.fromCharCode(e.which)
+          console.log("keydown", e.which, c);
+        });  
+      });
+      
+      
+      
+      
+      
+      #.keypress
+      キーが押された時のイベント
+      e.which はASCIIコード
+      日本語入力だと値が取れない
+      $(function(){
+        		// キー プレス
+      		$("#text").keypress(function(e) {
+      			var c = String.fromCharCode(e.which)
+      			console.log("keypress", e.which, c);
+      		});
+      });
+      
+      
+      
+      
+      #.keyup
+      キーがアップした時のイベント
+      e.which はキーコード
+      $(function()
+      {
+        // キー アップ
+        $("#text").keyup(function(e) {
+          var c = String.fromCharCode(e.which)
+          console.log("keyup", e.which, c);
+        });
+      });
+      
+      $(function(){
+        $("#text").keyup(function(e) {
+          var c = String.fromCharCode(e.which)
+          console.log(
+            "alt:"   + (e.altKey   ? "o" : "x"),
+            "ctrl:"  + (e.ctrlKey  ? "o" : "x"),
+            "shift:" + (e.shiftKey ? "o" : "x"),
+            c);
+        });  
+      });
+      
+      $(function(){
+          // キー アップ
+      		var tOld = "";
+      		$("#text").keyup(function(e) {
+      			var tNow = $(this).val();
+      			if (tOld != tNow) {
+      				console.log(tNow);
+      				tOld = tNow;
+      			}
+      		});
+      });
+      
+    '''
+  }
+  {
+    name: "hover.js"
+    mode: "JavaScript"
+    content: '''
+      # .hover
+      マウスがホバーした時の処理
+      引数を２つとり、ホバーした時の処理と、離れた時の処理
+      $(function() {
+      	// ホバー
+      	$("#text").hover(function() {
+      		$(this).css("background", "#fdd").val("ホバー"); #ホバーした時
+      	}, function() {
+      		$(this).css("background", "").val(""); #離れた時の処理
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "mouse.js"
+    mode: "JavaScript"
+    content: '''
+      # .mousedown()
+      要素内でのマウスのボタンをdownした時
+      $(function(){
+          $("#out, #text2").mousedown(function(e) {
+      			console.log("mousedown", e.which);
+      			//console.log(e);
+      		});
+      });
+      
+      
+      # .mouseup()
+      要素内でのマウスのボタンをアップした時
+      $(function(){
+          // マウス アップ
+      		$("#out, #text2").mouseup(function(e) {
+      			console.log("mouseup", e.which, e.target.id);
+      		});
+      });
+      
+      
+      # .mouseenter()
+      対象要素内にマウスカーソルが入った時
+      $(function(){
+          // 対象要素のみ
+      		$("#out, #text2")
+      		.mouseenter(function(e) {	// 対象要素のみ
+      			console.log(e.target.id, "mouseenter");
+      		})
+      });
+      
+      
+      # .mouseleave()
+      対象要素内にマウスカーソルが離れた時
+      $(function(){
+          .mouseleave(function(e) {	// 対象要素のみ
+      			console.log(e.target.id, "mouseleave");
+      		})
+      });
+      
+      
+      # .mouseover()
+      要素内(子要素も対象)にマウスカーソルが入った時
+      $(function(){
+      		.mouseover(function(e) {	// 子要素も対象
+      			console.log(e.target.id, "mouseover");
+      		})  
+      });
+      
+      
+      # .mouseout()
+      要素内(子要素も対象)にマウスカーソルが離れた時
+      $(function(){
+          .mouseout(function(e) {		// 子要素も対象
+      			console.log(e.target.id, "mouseout");
+      		});
+      });
+      
+      
+      # .mousemove()
+      要素内でのマウスの移動した時
+      $(function(){
+          $("#out, #text2").mousemove(function(e) {
+      			var x = e.pageX;
+      			var y = e.pageY;
+      			console.log("mousemove", x, y);
+      		});
+      });
+    '''
+  }
+  {
+    name: "GeneralPurpose.js"
+    mode: "JavaScript"
+    content: '''
+      # .on
+      汎用的にイベントを処理するメソッド
+      $(function(){
+        // liのクリックに処理を設定
+        $("li").click(function() {
+          console.log("click", this);
+        });
+        $("li").on("click", function() {
+          console.log("on1", this);
+        });
+      
+        上記は同じこと
+      
+          $("body").on("click", "li", function() {
+            console.log("on3", this);
+          });
+        
+      });
+      とやっておくとliが新たに追加されるときに、そのliを監視することができる
+      途中で項目が増える要素にイベントを登録するには、その上の階層にイベントを登録しておく
+      
+      
+      # .off
+      イベントを取り除く
+      $(function(){
+        $("#btnDelAll").click(function() {
+          $("#btnExec").off("click");
+        });
+      
+      
+        // 「特定イベント削除」ボタンの処理
+        $("#btnDelUnq").click(function() {
+          $("#btnExec").off("click.myEvnt");
+        });  
+      });
+      
+      
+      
+      #.one
+      一回だけ実行したいイベントを登録する
+      $(function() {
+      	// ボタンの処理
+      	$(":button").one("click", function() {
+      		var text = $(this).text();
+      		console.log("click", text);
+      	});
+      });
+      
+      
+      
+      # .trigger
+      特定の要素に対し、特定のイベントを発生させる
+      	
+      // 「trigger」ボタンの処理
+      	$("#btnTrgr").click(function() {
+      		$("#btn1").trigger("click");
+      	});
+      
+      
+      
+      # .triggerHandler
+      	// 「triggerHandler」ボタンの処理
+      	// ・登録したイベントのみ実行
+      	// ・選択した要素の最初のみ
+      	// ・イベントがDOMツリーに遡ることはない
+      	$("#btnTrgrHndlr").click(function() {
+      		$("#btn1").triggerHandler("click");
+      	});
+    '''
+  }
+  {
+    name: "eventObject.js"
+    mode: "JavaScript"
+    content: '''
+      # イベントオブジェクトの情報を取得
+      $(function() {
+      	// ボタンの処理
+      	$("#btn").click(function(e) {
+      		console.log(e);
+      	});
+      });
+      
+      
+      
+      # .target
+      イベントの発生源の要素
+      $("#btnOut").click(function(e) {
+        // イベント発生源の要素
+        console.log("target", e.target);
+      
+      });
+      
+      
+      
+      # .currentTarget
+      処理されているイベントを指す
+      $("#btnOut").click(function(e) {
+        // 現在のイベントで対象になっている要素（this）
+        console.log("currentTarget", e.currentTarget);
+      });
+      
+      
+      
+      # .delegateTarget
+      イベントが設定された要素を指す
+      $("body").on("click", "#btnOut", function(e) {
+        // イベントハンドラーが指定されていた要素
+        console.log("delegateTarget", e.delegateTarget);
+      });
+      
+      
+      # .relatedTarget
+      関係する要素を取得する
+      $("#btn").mouseout(function(e) {
+        // 関係する要素
+        // （マウスが外れた後、マウスが入った要素）
+        console.log("relatedTarget", e.relatedTarget);
+      });
+    '''
+  }
+  {
+    name: "info.js"
+    mode: "JavaScript"
+    content: '''
+      # イベントオブジェクトに格納された情報
+      
+      
+      
+      # .type
+      イベントの種類を表す
+      $(function() {
+      	// ボタンの処理
+      	$("#btn").click(function(e) {
+      		// イベントの種類
+      		console.log("type", e.type);
+      	});
+      });
+      
+      
+      # .pageX
+      ページ内のマウスの位置のX座標を取得
+      $(function() {
+      	// ボタンの処理
+      	$("#btn").click(function(e) {
+      		// ページ内のマウスのX,y座標
+      		console.log("pageX", e.pageX);
+      	});
+      });
+      
+      
+      
+      # .pageY
+      ページ内のマウスの位置のY座標を取得
+      $(function() {
+      	// ボタンの処理
+      	$("#btn").click(function(e) {
+      		console.log("pageY", e.pageY);
+      	});
+      });
+      
+      
+      
+      # .which
+      キーコードを取得する
+      $(function() {
+      	// ボタンの処理
+      	$("#btn").click(function(e) {
+      		// ボタンに紐付けられたキーコード
+      		console.log("which", e.which);
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "stop.js"
+    mode: "JavaScript"
+    content: '''
+      # イベントの様々な停止方法
+      
+      
+      # .preventDefault()
+      処理を停止する
+      $(function() {
+      	$("#lnkOut").click(function(e) {
+      		console.log(this.id);
+      	});
+      
+      	$("a").click(function(e) {
+      		console.log(this.id, 1);
+      
+      		#通常実行される処理を阻止
+      		e.preventDefault();
+      	});
+      	$("a").click(function(e) {
+      		console.log(this.id, 2);
+      	});
+      });
+      
+      
+      
+      
+      # .stopPropagation()
+      親要素のイベント処理を停止する
+      
+      $(function() {
+      	$("#lnkOut").click(function(e) {
+      		console.log(this.id);
+      	});
+      
+      	$("a").click(function(e) {
+      		console.log(this.id, 1);
+      		#バブリングを阻止
+      		e.stopPropagation();
+      
+      	});
+      	$("a").click(function(e) {
+      		console.log(this.id, 2);
+      	});
+      });
+      
+      
+      
+      # .stopImmediatePropagation()
+        バブリングを阻止して、それ以下の登録された同じ要素のイベントを打ち切る
+      		
+      $(function() {
+      	$("#lnkOut").click(function(e) {
+      		console.log(this.id);
+      	});
+      
+      	$("a").click(function(e) {
+      		console.log(this.id, 1);
+      
+      		#バブリングを阻止＆
+      		#以降のイベントハンドラーを阻止
+      		e.stopImmediatePropagation();
+      	});
+      	$("a").click(function(e) {
+      		console.log(this.id, 2);
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "reveive.js"
+    mode: "JavaScript"
+    content: '''
+      # イベント情報を通しての受け取り
+      
+      
+      # .data
+      {dt: 1}とデータを渡すことによって処理内でe.dataとして扱うことができる
+      
+      $(function() {
+      	// data と result の挙動
+      	$("#btn").click({dt: 1}, function(e) {
+      		console.log(this.id, e.data, e.result);
+      		return "send 1";
+      	});
+      	$("#btn").click({dt: 2}, function(e) {
+      		console.log(this.id, e.data, e.result);
+      		return "send 2";
+      	});
+      });
+      
+      
+      
+      
+      # .result
+      retrun で値を渡すと、同じ要素の処理をしているイベントのresultに値を渡すことができる
+      Domツリーの伝播した先、バブリング先にはresultの値を渡せない
+      $(function() {
+      	// data と result の挙動
+      	$("#btn").click({dt: 1}, function(e) {
+      		console.log(this.id, e.data, e.result);
+      		return "send 1";
+      	});
+      	$("#btn").click({dt: 2}, function(e) {
+      		console.log(this.id, e.data, e.result);
+      		return "send 2";
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "click"
+  "ready"
+  "dblclick"
+  "change"
+  "submit"
+  "resize"
+  "scroll"
+  "focus"
+  "blur"
+  "focusin"
+  "focusout"
+  "keydown"
+  "keypress"
+  "keyup"
+  "mousedown"
+  "mouseup"
+  "mouseenter"
+  "mouseleave"
+  "mouseover"
+  "mouseout"
+  "mousemove"
+  "on"
+  "off"
+  "one"
+  "trigger"
+  "target"
+  "currentTarget"
+  "delegateTarget"
+  "relatedTarget"
+  "type"
+  "pageX"
+  "pageY"
+  "which"
+  "preventDefault"
+  "stopPropagatiion"
+  "stopImmediatePropagation"
+  "data"
+  "result"
+]
+isStarred: false
+isTrashed: false

@@ -1,0 +1,54 @@
+createdAt: "2018-02-25T05:48:02.566Z"
+updatedAt: "2018-02-27T08:17:12.253Z"
+type: "SNIPPET_NOTE"
+folder: "d155fa926dc4390a93fa"
+title: "CSS"
+description: "CSS"
+snippets: [
+  {
+    name: "css.css"
+    mode: "CSS"
+    content: '''
+      @import url(sanitize.css);
+      とするとsanitize.cssを読み込むことができる
+      
+      
+      font-size
+        emは一つ上の要素のfont-sizeが1emとして相対的な大きさ
+        remはrootの要素のfont-sizeが1emとして相対的な大きさ
+      
+      
+      
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+        1 : x座標の位置
+        2 : y座標の位置
+        3 : ボカシ具合
+        4 : 色
+      
+      
+      list-style: decimal outside; 
+      1 : リストの黒丸とかを変更できる
+      2 : outsideは本文を中心に insideは黒丸を中心に
+      
+      
+      レスポンシブWeb(スマホ対応)
+      @media only screen and (max-width: 992px){
+        radio-inline
+        {
+          display: block;
+          margin:0;
+        }
+      }
+      
+      
+      headerなどのポジションが固定なものは
+        position: fixed;
+        top: 0;
+        z-index: 100;
+      という処理をする
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

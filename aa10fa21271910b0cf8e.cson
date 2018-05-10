@@ -1,0 +1,138 @@
+createdAt: "2018-01-15T01:09:22.365Z"
+updatedAt: "2018-03-29T13:54:02.671Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonFile"
+description: "PythonFile"
+snippets: [
+  {
+    name: "pythonFile.py"
+    mode: "Python"
+    content: '''
+      # ファイルの作成
+        f = open("text.txt", "w")
+        f.write("test")
+        print("My","name","is","Mike", sep="#", end="!", file=f)
+        f.close()
+        
+        # text.txtを作成し、testと書き込む
+        # printを使っても書き込める
+        # ファイルを開くとメモリを使ってしまうので、必ず終わったらcloseする
+        
+        
+      # ファイルに文字列を追加
+        f = open("text.txt", "a")
+        f.write("test")
+        f.close()
+        
+        # text.txtにtestという文字列を追加
+        
+        
+      # withステートメント
+      with open("text.txt", "a") as f:
+          f.write("Test\\n")
+          
+        # closeなしでオープン可能
+        
+        
+      # ファイルの読み込み
+      with open("text.txt", "r") as f:
+          print(f.read())
+        # text.txtにある文字列全てをprintしてる
+        
+        #一行ずつ読み込む
+        with open("text.txt", "r") as f:
+          while True:
+              line = f.readline()
+              print(line, end="")
+              if not line:
+                  break
+                  
+        # 指定の文字数分読み込む
+        with open("text.txt", "r") as f:
+          chunk = 2
+          while True:
+              line = f.read(chunk)
+              print(line)
+              if not line:
+                  break
+        
+        # 文字の位置を指定して出力する
+        with open("text.txt", "r") as f:
+          print(f.tell())
+          print(f.read(1))
+          f.seek(5)
+          print(f.read(1))
+          f.seek(14)
+          print(f.read(1))
+          
+        f.tell()で今の位置が出力されて
+        f.seek(num)で始めの位置からnumぶん移動する。改行も含まれる
+        
+        
+      # 読み込み書き込みファイル
+      
+        with open("text.txt", "w+") as f:
+          f.write(s)
+          f.seek(0)
+          print(f.read())
+        
+          # 読み込んでから書き込むので、事前にtext.txtが無いとエラーが起こる
+        with open("text.txt", "r+") as f:
+          print(f.read())
+          f.seek(0)
+          f.write(s)
+          
+          
+      # テンプレート
+        import string
+      
+        with open("design/email_template.txt") as f:
+            t = string.Template(f.read())
+      
+        contents = t.substitute(name="Mike", contents="How are you?")
+        print(contents)
+      
+          # stringをインポートして
+          # string.Template()の引数に文字列
+          # t.substituteでその文字列の$変数の値を引数で渡す
+      
+      
+      
+          
+      # csvファイルの書き込み,読み込み
+      import csv
+      with open("test.csv", "w") as csv_file:
+          fieldnames = ["Name", "Count"]
+          writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+          writer.writeheader()
+          writer.writerow({"Name": "A", "Count": 1})
+          writer.writerow({"Name": "B", "Count": 2})
+      
+        #csvをimportして
+        #csvファイルをopenしてカラムの配列を作る。
+        #csvのDictWriter()で書き込むファイルとカラムの配列を引数で渡す
+        #writeheader()で書き込む
+        #追記はwriterrow()に辞書型でカラムのキーを指定して値を渡す
+        
+        
+      with open("test.csv", "r") as csv_file:
+          reader = csv.DictReader(csv_file)
+          for row in reader:
+              print(row["Name"], row["Count"])
+        
+        #csvをimportして
+        #csvファイルをopenする
+        #csvのDictReaderでcsv_fileを読み込む
+      
+        
+    '''
+  }
+]
+tags: [
+  "csv"
+  "file"
+  "open"
+]
+isStarred: false
+isTrashed: false

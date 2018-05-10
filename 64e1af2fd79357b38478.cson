@@ -1,0 +1,161 @@
+type: "SNIPPET_NOTE"
+folder: "ae869880fb7248601fce"
+title: "mysqlCommand"
+description: "mysqlCommand"
+snippets: [
+  {
+    name: "mysqlCommand.cs"
+    mode: "C#"
+    content: '''
+      //mysql -u root
+      mysqlにユーザー名がrootで接続する
+      exitで抜け出す
+      
+      mysql --pager='less -S' -u root
+      
+      
+      
+      //SHOW DATABASES文
+      SHOW DATABASES文はデータベースを一覧で表示するSQL文です。
+      
+      SHOW DATABASES;
+      
+      
+      
+      //CREATE DATABASE文
+      SQLの中で、データベースやテーブルを作成する際はCREATE命令を使用します。
+      
+      CREATE DATABASE文を実行すると、指定した名前のデータベースが作成されます。
+      実行時には以下のようにデータベース名を指定する必要があります。
+      
+      CREATE DATABASE データベース名;
+      
+      
+      
+      //USE文
+      USE文はデータベースを選択するSQL文です。
+      実行時には以下のようにデータベース名を指定する必要があります。
+      
+      USE データベース名;
+      
+      
+      
+      //SHOW TABLES文
+      SHOW TABLES文は、選択したデータベースに存在するテーブルを一覧で表示するSQL文です。
+      SHOW TABLES;
+      
+      
+      //CREATE TABLE文
+      データベースの作成のときと同様に、テーブルを作成する際はCREATE命令を使用します。
+      
+      CREATE TABLE文はテーブルを作成するためのSQL文です。
+      実行時には以下のようにテーブル名を指定する必要があります。
+      また、そのテーブルに作成するカラムの名前とそのカラムの型を指定することが出来ます。
+      
+      CREATE TABLE テーブル名 (カラム名 カラム名の型, ……);
+      
+      
+      型名	       保存できる値
+      INT	        数字
+      VARCHAR(M)	最大M文字の文字列
+      
+      
+      CREATE TABLE goods (id INT, name VARCHAR(255));
+      
+      
+      //テーブル構造を確認するためには以下のようなSQL文を記述します。
+      SHOW columns FROM テーブル名;
+      
+      SHOW columns FROM goods;
+      
+      
+      
+      //ALTER TABLE文
+      カラムの追加・修正・削除はすべてテーブル構造の変更です。
+      そのためSQL文は共通して、ALTER命令を用いたALTER TABLE文を使用します。
+      
+      実行時は以下のような文法で使用します。
+      
+      ・カラムを1つだけ追加する場合
+      ALTER TABLE テーブル名 ADD カラム名 カラムの型;
+      
+      ・カラムを複数追加する場合
+      ALTER TABLE テーブル名 ADD (カラム名 カラムの型, ……);
+      
+      
+      
+      //カラムの修正
+      カラムの修正は先ほど同様ALTER TABLE文を使用し、以下のような文法でSQL文を記述します。
+      
+      ALTER TABLE テーブル名 CHANGE 古いカラム名 新しいカラム名 新しいカラムの型:
+      ALTER TABLE goods CHANGE zaiko stock int;
+      
+      
+      //カラムの削除
+      カラムの削除にもALTER TABLE文を使用し、以下のようにSQL文を記述します。
+      ALTER TABLE テーブル名 DROP カラム名;
+      
+      ALTER TABLE goods DROP stock;
+      
+      
+      
+      //FROM句
+      検索するテーブルを指定する際は以下のように、FROM句でテーブル名を指定します。
+      
+      FROM テーブル名
+      ここはただテーブル名を指定するだけで、特に難しいことはありません。
+      
+      
+      //SELECT句
+      取得するカラムを指定する際は以下のように、SELECT句でカラム名を指定します。
+      
+      SELECT カラム名
+      
+      
+      // WHERE句
+      取得するレコードを制限する際はWHERE句を使用します。
+      WHERE句では取得するレコードの条件を指定し、その条件が正のレコードを取得します。
+      
+      WHERE 条件
+      
+      
+      //tweetsテーブルのデータを見る
+      select * from tweets
+      
+      
+      // uriageテーブルのidカラムの値が10のデータのpriceカラムの値を1000に設定する
+        UPDATE uriage SET price = 1000 WHERE id = 10;
+      
+      //行を削除する
+      delete FROM tweets WHERE id = 5;
+      
+      
+      
+      // 各レコードごと縦表示する
+      select * from table_name\\G;
+      
+      
+      
+      //ログインの際にページングオプションを指定する
+      mysql --pager='less -S' -u user -ppassword -h host
+      mysql --pager='less -S' -u root
+      ページングオプションをログインの際に指定することで、カラムにどんな長い文字列入っていても
+      改行されずに、１レコード１行で表示されます
+      
+      
+      
+      // データベースの削除
+      
+      mysql> drop database 削除したいデータベース名;
+      
+      
+      // レコードを追加
+      insert into tweets(text) values("hogehoge");  
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-17T12:47:57.440Z"
+updatedAt: "2018-04-06T04:11:18.168Z"

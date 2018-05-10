@@ -1,0 +1,85 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Console"
+description: "C#Console"
+snippets: [
+  {
+    name: "C#Console.cs"
+    mode: "C#"
+    content: '''
+      //Console.Write
+      画面に文字列を表示する。改行なし
+      {n}をフォーマット指定子を使うことができる
+      ```
+      Console.Write("フォーマット文字列{0}{1}{n}", 引数0,引数1...引数n);
+      ```
+      なお、フォーマット指定子を{0,5}と定義すると、引数0の値を5つ分のスペースを確保して表示する
+      ```
+      Console.Write("{0,5}","hoge");
+      ```
+      
+      
+      
+      //Console.WriteLine
+      画面に文字列を表示する。改行あり
+      {n}をフォーマット指定子を使うことができる
+      ```
+      Console.WriteLine("フォーマット文字列{0}{1}{n}", 引数0,引数1...引数n);
+      ```
+      なお、フォーマット指定子を{0,5}と定義すると、引数0の値を5つ分のスペースを確保して表示する
+      ```
+      Console.WriteLine("{0,5}","hoge");
+      ```
+      
+        
+      //標準書式指定文字
+      主に数値の書式を指定する時に使います。
+      ・代表的な書式指定文字
+      
+      c　通貨 123,456 → ¥123,456
+      d　整数の10進表示　
+      e　浮動小数点の指数表示
+      f　標準の浮動小数点表示
+      g　eまたはfの短い表示
+      n　桁で区切られた浮動小数点表示　1234,4568 → 1,234.456
+      p　パーセント表示 0.05 → 5,00%
+      x　整数の16進表示
+      
+      
+      
+      //カスタム書式指定文字
+      小数点などの組み合わせをカスタムする
+      ```
+      Console.WriteLine("{0,10:0000.00}",1.2); → 0001.20
+      Console.WriteLine("{0,10:####.##}",1.2); → 1.2
+      Console.WriteLine("{0:(000)###-####}", 1132104566); → (011)3210-4566
+      ```
+      
+        
+        
+      //Console.ReadLine
+      コンソールで開業が入力されるまでの内容を文字列として返します。
+      ```
+      string name;
+      Console.Write("あなたの名前を入力してください");
+      name = Console.ReadLine();
+      Console.WriteLine("あなたのおなまえは{0}さんです",name);
+      ```
+      
+      
+      //Console.WriteLine("sbyte: {0} ~ {1}",sbyte.MinValue,sbyte.MaxValue);
+      sbyteの範囲を出力
+      データ型.MaxValue 、データ型.MinValueで、データ型それぞれの範囲がわかる
+      
+      
+      //Console.ReadKey()
+      ユーザーによって押された次の文字キーまたはファンクションキーを取得する
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:09:28.390Z"
+updatedAt: "2017-11-02T14:09:42.180Z"

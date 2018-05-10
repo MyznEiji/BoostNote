@@ -1,0 +1,58 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#RX"
+description: "C#RX"
+snippets: [
+  {
+    name: "C#RX.cs"
+    mode: "C#"
+    content: '''
+      //Rx(Reactive Extensions)
+      Observerパターンを元に作られた監視可能なコレクションとLINQスタイルの
+      オペレーションを使用して非同期とイベントベースのプログラムを合成するライブラリ
+      
+      値群を時間軸に乗ったシーケンスとして捉えることにより、時間・イベント・非同期処理を
+      LINQで記述することができるようになります。
+      
+      
+      //IObserver
+      IObserverは後述するIObservableから状態変更を通知してもらうためのメソッド
+      (OnNext(T value)、OnCompleted()、OnError(Exception ex))を持ってる
+      インターフェースです。
+      NET framework4.0ではIObserverというインターフェースをつかえるようになったため、
+      IObserverを実装するだけでObserverとすることができるようになりました。
+      
+      IObserverインターフェースには下記の3つのメソッドが定義されています。
+      ・void OnNext(T value) :状態が変化したことを通知する。
+      ・void OnCompleted :状態変化の通知が完了したことを通知する。
+      ・void OnError(Exception ex):エラーが発生したことを通知する。
+      
+      
+      //IObservable
+      状態変化を通知するためのクラスをSubjectからObservableとすることができます。
+      Observerパターンの時のSubjectとは違ってIObservableにはObserverに
+      登録するためのメソッドであるSubscribeというメソッドのみ規定されています。
+      
+      
+      //Observer.Clear
+      Observer.Clear(target)メソッドは対象のObserverコレクションから
+      引数に渡したtargetを削除することができます。
+      
+      
+      //Subjectクラス
+      RxではSubjectクラスというIObservableとIObserverを実装しているクラスが
+      用意されています。
+      Subjectクラスは先ほど長々と実装したIObservableとIObserverの両方を
+      実装しているため、Subjectクラスを使うだけでIObservableを実装したクラスと
+      IObserverを実装したクラスが不要になります。
+      さらにSubjectクラスは自身がObservableでありObserverであるので自身に
+      Observerを登録し自身に登録されているObserverに通知を送ることが可能になるため、
+        単体のクラスでObserverパターンを実現することが可能になります。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-29T09:16:34.195Z"
+updatedAt: "2017-10-29T09:16:50.695Z"

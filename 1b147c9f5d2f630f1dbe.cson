@@ -1,0 +1,25 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Debug"
+description: "Debug"
+snippets: [
+  {
+    name: "Debug.cs"
+    mode: "C#"
+    content: '''
+      //Debug.DrawLine(Vector3 start, Vector3 end, Color color = Color.white,
+                      float duration = 0.0f, bool depthTest = true);
+      ・start	線が始まるべき世界の空間を指す。
+      ・end	線が終わるべき世界空間を指す。
+      ・color	ラインの色。
+      ・duration	ラインをどのくらい見えるようにするか。
+      ・depthTest	ラインがカメラに近いオブジェクトによって隠されるべきか？
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-04T05:21:14.517Z"
+updatedAt: "2017-10-04T05:23:09.059Z"

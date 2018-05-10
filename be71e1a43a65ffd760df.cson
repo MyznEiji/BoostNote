@@ -1,0 +1,76 @@
+createdAt: "2018-03-06T05:03:05.667Z"
+updatedAt: "2018-03-14T06:00:02.130Z"
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsPaperClip"
+description: "RailsPaperClip"
+snippets: [
+  {
+    name: "PaperClip.rb"
+    mode: "Ruby"
+    content: '''
+      # paperclipを使うにはImageMagickという画像変換ツールをパソコン内に
+      インストールする必要がある
+      
+      
+      
+      # ImageMagick
+      ImageMagickは、コマンドラインから簡単に画像の保存形式の変更などが行えるツールです。
+      1 brew install imagemagick
+      2 gem 'paperclip'
+      3 $ bundle install
+      4 $ rails g paperclip user avatar ($ rails g paperclip モデル名 カラム名)
+      5 $ bundle exec rake db:migrate
+      6 userモデルにpaperclipの設定を追記する
+      
+      
+      # has_attached_file
+      has_attached_fileでは画像用のカラムのサイズやデフォルト画像、
+      画像ファイルの保存先を設定できます。今回はサイズをだけ指定します。
+      
+      has_attached_file :カラム名,
+                          styles:  { medium: "画像サイズ", thumb: "画像サイズ" }
+      has_attached_file :avatar,
+                          styles:  { medium: "画像サイズ", thumb: "画像サイズ" }
+      
+      
+      指定方法	 備考
+      100×100	  横100px、縦100pxの画像(アスペクト比を保つ)
+      100×100!	アスペクト比を無視
+      100×100>	一番長い辺を100pxにするようにリサイズ(アスペクト比を保つ)
+      100×100^	一番短い辺を100pxにするようにリサイズ(アスペクト比を保つ)
+      100×100#	アスペクト比を保ち一番短い辺を100pxにするようにリサイズし、
+                画像を中央によせ、はみ出た部分は切り取る
+      
+      
+      # validates_attachment_content_type
+      validates_attachment_content_typeは画像のバリデーションを設定します。
+      サイズや画像の種類でバリデーションが可能です。今回は画像の種類だけ指定します。
+      
+      validates_attachment_content_type :カラム名,
+                                          content_type: ["画像の種類"]
+      
+      validates_attachment_content_type :avatar,
+                                          content_type: ["画像の種類"]
+      
+      指定方法	    備考
+      image/jpg	  jpgファイル
+      image/jpeg	jpegファイル
+      image/png	  pngファイル
+      image/gif	  gifファイル
+      
+      
+      jpegとpngを許可する場合
+      class モデル < ActiveRecord::Base
+      
+        validates_attachment_content_type :カラム名,
+                                  content_type: ["image/jpeg", "image/png"]
+        
+        
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

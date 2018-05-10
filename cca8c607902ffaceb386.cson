@@ -1,0 +1,152 @@
+createdAt: "2018-01-15T09:20:56.801Z"
+updatedAt: "2018-03-29T10:15:28.945Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonCodeStyle"
+description: "PythonCodeStyle"
+snippets: [
+  {
+    name: "pythonCodeStyle.py"
+    mode: "Python"
+    content: '''
+      # ;はいらない 
+        x = 1;
+        y = 2;
+      
+      # 横の長さは80文字以下にする。80文字以上長くなるなら改行する
+        def test_func(x,y,z,
+                      dlksdflksjdlkflaskdflsdflksldfjlsamdflsdmflk="")
+      
+        # urlは改行しなくてもいい
+      
+        
+      # 無駄な()は使わない
+        if (x):
+          print("x")
+          # python的には動くが、無駄な()は省く
+        
+        
+      # スペース
+        オペレータの演算子の時はスペース１つ開ける
+          x = 1 + 2
+        関数の引数の時はスペースを開けない
+          def hoge(x=hoge, y=fuga):
+        
+        
+      # 改行
+        クラスの宣言は2つ改行を開ける
+        関数の宣言は1つ改行を開ける
+        importと普通のコードの間は２つ改行
+        
+        
+      # 文字列の連結
+        word = "hello"
+        word2 = "!"
+      
+        # 連結する文字の間やその後に既存の文字列がある場合はformatを使う
+        new_word = "{} ##### {} !!!!!!!!".format(word,word2)
+      
+        # 連結する文字列以外に文字列がない場合は+で連結させる
+        new_word = word + word2
+        
+        
+        # 文字列をfor文で連結する場合はリストに追加して行ってjoinで文字列を連結する
+        long_word = ""
+        for ward in ["fdas", "dlfsjaldkf", "dlajsdlkmfasld"]:
+          long_word += "{}ddfmalsjelfj".format(word)
+      
+        上記はダメな例
+        下記はいい例
+        
+        long_word = []
+        for ward in ["fdas", "dlfsjaldkf", "dlajsdlkmfasld"]:
+          long_word.append("{}dflkasjdlfjs".format(word))
+        new_long_word = "".join(long_word)
+        
+        
+      # 基本的には'を使用する。
+        その意図は基本的に’にしていれば”だった時に文字列に’が入っているとわかりやすい
+      
+        
+      # ＃の後はスペース1つ開ける
+      
+      
+      # TODOコメントはemailの@マークの前半をつけて、誰が書いたのかわかるようにする
+        # TODO(em711th) 今度変更したいことを書き溜めておく
+        
+      
+      # クラスの時は頭文字を大文字にして、次の単語の頭文字も大文字にする(キャメルケース)
+        class Hoge(object):
+      
+        
+      # 関数、変数の時は最初小文字で_で単語をつなげる(スネークケース)
+        def hoge(self):
+      
+        
+      # グローバル変数は全て大文字で単語を_で連結する
+      
+      
+      #importの書き方、順番
+        (上からアルファベット順番)
+        標準ライブラリ
+      
+        サードパーティライブラリ
+      
+        自分たちのパッケージ
+      
+        ローカルのファイル
+      
+        というように分けて見やすくする
+      
+      
+      # keyがあるかを確かめる方法
+        d = {"key1": "value1", "key2": "value2"}
+        in "key1" in d:
+          print("test")
+      
+          
+      # for文とかで一文字の変数を使う場合は合計2行くらいの場合がいい　
+        長いfor文になる場合はi,jではなく、わかりやすい単語を使う
+      
+      
+      # デフォルト引数のところリストを初期化しない
+        def hoge(not_list=[]):
+        
+        上記はダメな例
+        下記がいい例
+        
+        def hoge(not_list=None):
+          if not_list is None:
+              not_list = []
+              
+              
+      # 一番上にどんなことをしてるファイルなのかをコメントする
+        """ 説明 """
+      
+        # 関数の説明もする
+          def hoge(self):
+            """
+            説明
+            
+            (引数の説明)
+            Args:
+              not_list (list) : Excludes the name on the list.
+            
+            (戻り値の節目い)
+            Returns:
+              str: Returns the data of the top most ranking
+            """
+      
+        # クラスの説明もする
+          class Hoge(object):
+            """
+            説明
+            """
+    '''
+  }
+]
+tags: [
+  "import"
+]
+isStarred: false
+isTrashed: false

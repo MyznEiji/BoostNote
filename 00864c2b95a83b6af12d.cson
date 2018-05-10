@@ -1,0 +1,110 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Memo"
+description: "Memo"
+snippets: [
+  {
+    name: "Memo.cs"
+    mode: "C#"
+    content: '''
+      //他のScriptからpublic変数を参照方法1(Inspectorでアタッチ)
+      ```
+      public GameManager gameManager;
+      public GUIStyle guiStyle;
+      
+      void OnGUI(){
+        GUI.Label(new Rect(10,10,200,40),gameManager.score.ToString(),guiStyle);
+      }
+      ```
+      
+      
+      //他のScriptからpublic変数を参照方法2(同じObjectにScriptをアタッチ)
+      ```
+      PlayerMotion playerMotionScript;
+      void Start(){
+        playerMotionScript = GetComponent<PlayerMotion>();
+      }
+      void Update(){
+        //[PlayerMotion]ScriptのAttackメソッドを呼び込む
+        playerMotionScript.Attack();
+      }
+      ```
+      
+      
+      //オブジェクト上同士での他のScript(TargetController)からpublicな関数(Damage)を参照する場合
+      HogeScript.cs
+      
+      TargetController targetController;
+      void Start(){
+        targetController = GetComponent<TargetController>();
+      }
+      void Update(){
+        targetController.Damage();
+      }
+      
+      //publicなmethodを他のスクリプトから参照する方法
+      scriptAでpublic void hoge とmethodを定義して,
+      scriptBでscriptA scriptSample = new scriptA;
+      とscriptAのインスタンスを生成すれば、メソッド参照可能になる
+      
+      
+      
+      //Occlusion Culling
+      Unityでは、カメラに写っていなくてもオブジェクトが存在するだけで、
+      そのオブジェクトを描画してしまいます。その為、広いステージを作成した場合に、
+      全てのオブジェクトを描画してしまい処理が重くなってしまいます。
+      それを避ける為の、カメラに写っているオブジェクトだけ描画をするという機能が
+      「Occulusion Culling」です。
+      void HowToOcclusionCulling(){
+        1:静的なObject達をStaticに設定
+        2:WindowタブからOcclusionCullingを選択する
+        3:InspectorビューにOcclusionが現れ、Visualizationを選択する
+        4:Bakeをクリックする。
+      }
+      
+      
+      //Playerを追従するカメラ
+      FreeLookCameraRig
+      void HowToFreeLookCameraRig(){
+        1:mainCameraをDelete
+        2:Assets→Import Package→Camerasでインポート
+        3:Standard Assets->Cameras->Prefabs->FreeLookCameraRigでカメラを配置
+        4:PlayerのタグをPlayerにする
+      }
+      
+      
+      //Resources.Load(ProjectビューにあるResourcesフォルダのEffectsフォルダ内にあるプレハブ(ItemEffect)を呼び出す事ができる)
+      ```
+      GameObject effectObj = Resources.Load<GameObject> ("Effects/ItemEffect");
+      ```
+      
+      
+      //Hierarchy上のオブジェクトを名前(hoge)で検索
+      ```
+      GameObject.Find("hoge");
+      ```
+      
+      
+      //Enum(列挙型)
+      列挙型は定数のリストを定義することができます
+      ```
+      enum 型名 {
+          メンバ名1 = 値1,
+          メンバ名2 = 値2,
+          メンバ名3 = 値3
+      }
+      ```
+      
+      //複数の階層を持つゲームオブジェクトのプレハブ化時の注意
+      複数の階層を持つゲームオブジェクトをプレハブ化すると最も上の階層及び２番目の階層のゲームオブジェクトしかProjectビューにしか表示されない仕組みになっているので注意しましょう。
+      
+      
+      //Methodでのエラー
+      if文内にreturnを定義するとエラーが起こる。
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-07-20T07:06:34.050Z"
+updatedAt: "2017-09-18T08:48:31.785Z"

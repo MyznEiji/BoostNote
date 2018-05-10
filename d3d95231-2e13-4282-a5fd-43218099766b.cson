@@ -1,0 +1,35 @@
+createdAt: "2018-04-02T08:56:28.750Z"
+updatedAt: "2018-04-19T11:42:28.523Z"
+type: "SNIPPET_NOTE"
+folder: "6f295f041a8bd962125f"
+title: "SqliteCommand"
+description: "SqliteCommand"
+snippets: [
+  {
+    name: "sqliteCommand.py"
+    mode: "Python"
+    content: '''
+      #sqlite3 ファイル名
+      sqliteの対話モードに入る
+      
+      
+      # .tables
+      テーブルを表示
+      
+      
+      # select * from テーブル名;
+      テーブルのデータを表示する
+      
+      
+      # .quit
+      sqlite終了
+      
+      
+      # PRAGMA table_info(column_name);
+      カラムの取得
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

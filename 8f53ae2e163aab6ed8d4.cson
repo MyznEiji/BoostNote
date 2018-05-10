@@ -1,0 +1,27 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Debug"
+description: "C#Debug"
+snippets: [
+  {
+    name: "C#Debug.cs"
+    mode: "C#"
+    content: '''
+      //Debug.LogFormat("あ{0}う","い");
+      文字列の書式を表示
+      
+      
+      //Debug.LogWarning(string)
+      警告を表示
+      
+      
+      //Debug.Error(string)
+      エラーを表示
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:13:12.810Z"
+updatedAt: "2017-11-02T14:13:22.537Z"

@@ -1,0 +1,63 @@
+createdAt: "2018-01-12T06:20:42.910Z"
+updatedAt: "2018-03-27T13:16:04.326Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonOS"
+description: "PythonOS"
+snippets: [
+  {
+    name: "pythonOs.py"
+    mode: "Python"
+    content: '''
+      #import os
+      
+      #os.environ["環境変数"]
+      環境変数を参照する
+      
+      # os.path.exists("text.txt")
+      引数のファイルがあるかないか(True or False)
+      
+      
+      # os.path.isfile("text.txt")
+      引数のファイルかどうか(True or False)
+      
+      
+      # os.path.isdir("design")
+      引数がディレクトリかどうか
+      
+      # os.path.abspath(__file__)
+      スクリプトの絶対パス
+      
+      # os.path.dirname(__file__)
+      スクリプトあるディレクトリ名
+      
+      # os.path.join(baseDir, "templates")
+      baseDir/templatesというふうに結合する
+      
+      
+      # os.rename("text.txt", "renamed.txt")
+      第一引数のファイルの名前を第二引数のファイル名に変更する
+      
+      # os.symlink("renamed.txt", "symlink.txt")
+      第一引数のシンボリックリンクを作成する
+      
+      # os.mkdir("testDir")
+      ディレクトリを作成する
+      
+      # os.rmdir("testDir")
+      空のディレクトリを削除する
+      
+      # os.remove("empty.txt")
+      引数のファイルを削除する
+      
+      # os.listdir("test_dir")
+      引数のディレクトリのlistを出力する
+      
+      # os.getcwd()
+      現在のファイルのディレクトリを出力する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

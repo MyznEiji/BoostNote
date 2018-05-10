@@ -1,0 +1,202 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonList"
+description: "PythonList"
+snippets: [
+  {
+    name: "PythonList.py"
+    mode: "Python"
+    content: '''
+      #リスト(配列)
+      リストの生成
+      
+      """
+      リストのコピー時の注意
+      
+      i = [1,2,3,4,5,6]
+      j = i
+      
+      j[0] = 100
+      print('j =', j)
+      print('i =', i)
+      
+      でiもjもどちらも同じ値になる(参照渡し)
+      
+      この時はcopy()を使う
+      
+      x = [1,2,3,4,5]
+      y = x.copy()
+      y[0] = 100
+      print("y = ", y)
+      print("x = ", x)
+      
+      y = x[:]でも可能
+      
+      
+      """
+      
+      リストオブジェクト = []
+        pencil_case = ['pen', 'eracer', 'compass']
+        print(pencil_case)
+        print(pencil_case[0]) #0番目の要素にアクセス
+      b = 2012
+      c = [b,2013,20.1,"Hello"]
+      print c[1:4] #１番目の要素から４番目の要素にアクセスする
+      
+      "for文を用いる時"
+      for i in range(len(リスト)):
+      これでリストの数だけfor文が回る
+      
+      "負のインデックス"
+      pencil_case[-1] #compassにアクセスする
+      
+      "スライス"
+      pencil_case[:1] # eracer,penにアクセス、後ろから2番目の要素からアクセス
+      pencil_case[0:] # pen,eracer,compassにアクセス,前から0番目の要素からアクセス
+      
+      "飛ばし飛ばしに参照"
+      l = [1,2,3,4,5,6,7,8,9]
+      l[::2] # 2こ飛ばしに参照する
+      
+      
+      #リストの連結
+      [1,2,3] + [4,5,6]
+      [1,2,3,4,5,6]
+      [1,2,3] * 3
+      [1,2,3,1,2,3,1,2,3]
+      
+      #リストから値を削除
+      del文を用いてリストの要素を削除
+      spam = [1,2,3,4,5]
+      del spam[2] # [1,2,4,5]
+      
+      #多重リスト
+      多次元配列を宣言できる。
+      ベクトル、テンソルなどで使う
+      a =[[12,13,14],[15,16,17]]
+      b = a[1][0]
+      
+      a.append([18,19])
+      
+      a[2].append(20)
+      
+      
+      
+      
+      #appendメソッド
+      生成したリストオブジェクトに新しい要素を追加したいときがあります。
+      そのときはappendメソッドを使って、以下のように追加ができます。
+      
+      "リストオブジェクト.append(追加する要素)" 
+        
+        
+      #inとnot in演算子
+      spam =  ['hello','hi','howby',] 
+      'howby' in spam #True
+      'cat' in spam #False
+      'cat' not in spam # True
+      
+        
+      #複数代入法
+      複数の変数をリストを用いて異形で代入する方法
+      変数の数とリストの長さは一致している必要がある
+      cat = ['fat','black','loud']
+      size = cat[0]
+      color = cat[1]
+      disposition = cat[2]
+      
+      ↓   ↓   ↓　　↓
+      
+      cat = ['fat','black','loud']
+      size,color,disposition = cat
+      
+      
+      
+      #list.index()
+      値を渡すとリストの中を探して、インデックスを返す
+      値がなければ、ValueError例外を発生させる
+      リストの中に値が複数存在している場合は最初の出現した方のインデックスを返す
+      
+      
+      #list.append()
+      引数に渡された値をリストの末尾に追加する
+      spam = [6,1,4]
+      spam.append(1993) #[6,1,4,1993]
+      
+      #list.insert(index,value)
+      リストの任意の場所に挿入することができる
+      spam = [6,1,4]
+      spam.insert(1,1993) #[6,1993,1,4]
+      
+      #list.remove()
+      spam = [6,1,4]
+      spam.remove(4) #[6,1]
+      
+      #list.sort()
+      ASCIIコード順でソートされる。つまり大文字は小文字より前にくる
+      引数に(reverse = True)とすると逆順にソートする
+      通常のアルファベット順にしたいときは
+      引数に(key=str.lower)とする
+      
+      #list.reverse()
+      リストを逆順にソートする
+      
+      #string.join(list)
+      区切られたlistをstringで連結して文字列にしてくれる
+      
+      #list("abcdef")
+      一文字ごとに区切ったリストが作成される
+      
+      #list[::int]
+      intおきに取得する
+      ```
+      a = [1,2,3,4,5,6,7,8,9,10]
+      a[::2] #2つ置きに数字を取りだす
+      
+      ```
+      
+      
+      #リストの中身を削除する
+      a = [1,2,3,4,5,6,7,8]
+      a[2:5] = [] # a = [1,2,6,7,8]
+      
+      
+      #list.insert(index,value)
+      list[index]のところにvalueを追加する
+      
+      
+      # del list[index]
+      list[index]のvalueを削除する
+      
+      #del list
+      list自体を削除する
+      
+      #list1 += list2
+      list1の中身にlist2が入る
+      
+      # list.extend(list2)
+      listをlist2分拡張する
+      
+      
+      # list.copy()
+      listのコピーを作る
+      
+    '''
+  }
+]
+tags: [
+  "append()"
+  "insert()"
+  "del"
+  "remove()"
+  "extend()"
+  "index()"
+  "sort()"
+  "reverse()"
+  "join()"
+  "copy()"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-19T07:55:58.596Z"
+updatedAt: "2018-03-24T11:49:27.949Z"

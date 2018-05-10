@@ -1,0 +1,57 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonException"
+description: "PythonException"
+snippets: [
+  {
+    name: "PythonException.py"
+    mode: "Python"
+    content: '''
+      # 例外
+      例外が出ることを見込んで書くプログラム
+      例外の種類の詳細はpythonのException hierarchyで見れる
+      
+      l = [1, 2, 3]
+      i = 5
+      
+      try:　#実行しようとする処理
+          l[i]
+      except IndexError as ex: #インデックスエラーが起きたらexにエラー内容を返す
+          print("Don't worry", ex)
+      except Exception as ex: #その他のエラーが起きたらexにエラー内容を返す
+          print(ex)
+      else: #try処理が行われたら処理される
+          print("done")
+      finally: #エラーが起きても起きなくても処理される
+          print("clean up")
+      print("last")        
+      
+      
+      
+      #独自例外
+      raise 例外内容(string)
+      raise IndexError('test error')
+      例外文を吐き出すことができる
+      
+      
+      
+      #新しいパッケージと古いパッケージのどっちであっても大丈夫なように準備する
+      try:
+        from lesson_package import utils
+      except: ImportError:
+        from lesson_package.tools import utils
+      utils.say_twice("hoge")
+    '''
+  }
+]
+tags: [
+  "try"
+  "except"
+  "finally"
+  "例外"
+  "独自例外"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-25T08:58:14.606Z"
+updatedAt: "2018-03-29T06:40:22.791Z"

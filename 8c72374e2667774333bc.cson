@@ -1,0 +1,159 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonBuiltins"
+description: "PythonBuiltins"
+snippets: [
+  {
+    name: "PythonBuiltins.py"
+    mode: "Python"
+    content: '''
+      # pythonのメソッドはbuiltinsのライブラリの中に入っている
+      # 組み込み関数
+      
+      #何のメソッドが入っているか確認ができる
+      import builtins
+      print(help(builtins))
+      
+      
+      #len()
+      len()関数は文字列が利用できる関数で、文字列の文字の数を数えてくれます。
+      print(len("Hello World")) # 文字列の文字数を返す
+      
+      lenメソッドはそのリストの中にある要素の数を返してくれる関数です
+      len(リストオブジェクト)
+      
+      
+      #str()
+      数値の関数です。()の中に変換したい数値を入れることで文字列に変換してくれます。
+      
+      
+      #type()
+      type()関数は()の中に文字列や数値を渡すことで、変数の型を出力することができます。
+      
+      
+      #round(3.1414141414, 2)
+      第一引数の値を小数点2から２桁まで省略する
+      
+      
+      #input()
+      input()はユーザーからターミナルへ入力できるようにする関数です。
+      ユーザーが入力した値をプログラムに渡します。(返り値はユーザーが入力した値)
+      input()が呼ばれるとターミナル画面は入力待ちの状態になります。
+      そこでキーボードから値を入力してエンターを押すと、input()は入力した文字をプログラムに返します。
+      
+      
+      #print(val1, val2, sep='x', end='\\n')
+      sep='x'はval1とval2の間にxを挟んでくれる
+      end='\\n'とやると出力時に改行を行う
+      
+      "string.format()"
+      print("a is {}".format("a"))
+      print("a is {} {} {}".format(1, 2, 3))
+      print("a is {0} {1} {2}".format(1, 2, 3))
+      print("a is {2} {1} {0}".format(1, 2, 3))
+      print("My name is {name} {family}".format(name="Jun", family="Sakai"))
+      print("{0:.20f}".format(0.33))
+      
+      
+      """ \\で'を出力できるようにする"""
+      print("I don't know")
+      print('I don\\'t know')
+      
+      
+      """\\n"""
+      改行
+      
+      
+      """
+      改行出力が可能
+      """
+      
+      
+      """print(id(object))"""
+      オブジェクトのメモリのアドレスを出力する
+      
+      
+      
+      
+      #all()
+      
+      
+      #chr()
+      
+      
+      #globals()
+      グローバル変数の値を確認できる
+      
+      globals()['hoge'] = "hoge"
+      これでhoge変数としてが"hoge"の値が入ったのを定義できる
+      
+      #locals()
+      ローカル変数の値を確認できる
+      
+      
+      #min()
+      最小値を返す
+      
+      #max()
+      最大値を返す
+      
+      #next()
+      
+      
+      #pow()
+      
+      
+      #reversed()
+      
+      
+      #sum()
+      
+      
+      #help()
+      
+      
+      #sorted()
+      並び替えるメソッド
+      辞書にも使える
+      sorted(dictionary, key=dictionary.get, reverse=True)
+      第一引数で辞書を選択していて、第二引数でdictionaryのValueを選択していて、
+      第三引数で順番を逆にしている
+      
+      
+      #round()
+      引数に渡した数字の桁までを四捨五入した値で取得する
+      
+      
+      #setdefault()
+      for c in "dkjfsdklfmaoeifo;jef":
+        d.setdefault(c, 0)
+        
+      文字列をfor文で回して一文字ずつ検証し、その文字のkeyがdという
+      ディクショナリーになかったらその文字のkeyでバリューに0を代入する
+      
+      
+      
+    '''
+  }
+]
+tags: [
+  "len()"
+  "str()"
+  "type()"
+  "input()"
+  "print()"
+  "all()"
+  "chr()"
+  "globals()"
+  "locals()"
+  "min()"
+  "max()"
+  "reversed()"
+  "sum()"
+  "help()"
+  "print"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-25T13:19:50.331Z"
+updatedAt: "2018-03-24T11:43:20.065Z"

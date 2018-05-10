@@ -1,0 +1,26 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PhythonPylab"
+description: "PhythonPylab"
+snippets: [
+  {
+    name: "PhythonPylab.py"
+    mode: "Python"
+    content: '''
+      #from pylab import randn
+      pylabの導入。生菌分布に従った乱数を得ることができる。
+      この場合の標準偏差は1になる　
+      
+      
+      #randn(500)
+      乱数を500個作る
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-14T05:13:28.719Z"
+updatedAt: "2017-10-14T05:21:48.624Z"

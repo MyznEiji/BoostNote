@@ -1,0 +1,22 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Don't know"
+description: "Don't know"
+snippets: [
+  {
+    name: "DontKnow.cs"
+    mode: "C#"
+    content: '''
+      
+      
+      Transform.eulerAngles
+      
+      UI Imageのpivotの設定について
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-06-15T04:36:30.727Z"
+updatedAt: "2017-09-06T10:26:25.125Z"

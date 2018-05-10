@@ -1,0 +1,23 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonArrays"
+description: "PythonArrays"
+snippets: [
+  {
+    name: "PythonArrays.py"
+    mode: "Python"
+    content: '''
+      #DataFrame['coloum','coloum']
+      任意のカラムを呼ぶ
+      #DataFrame[0:10] 
+      0から10までを呼ぶ
+      #DaraFrame.columns = ['Cabin']
+      DataFrameのカラムを追加できる
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-12-05T08:07:29.425Z"
+updatedAt: "2017-12-05T10:12:30.436Z"

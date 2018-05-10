@@ -1,0 +1,22 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Quaternion"
+description: "Quaternion"
+snippets: [
+  {
+    name: "Quaternion.cs"
+    mode: "C#"
+    content: '''
+      //Quaternion.LookRotation(ベクトルA - ベクトルB);
+      で、ベクトルBの地点から見て、ベクトルAの方向を取得することができる。
+      
+      //Quaternion.Euler
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-07T08:09:24.765Z"
+updatedAt: "2017-09-08T11:20:40.661Z"

@@ -1,0 +1,181 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "MasterData"
+description: "MasterData"
+snippets: [
+  {
+    name: "Json.cs"
+    mode: "C#"
+    content: '''
+      //Json
+      テキストファイルの一種で拡張子は「.json」です。
+      オブジェクトをファイルに変換することをシリアライズといいます。
+      逆にファイルをオブジェクトに変換することをデシリアライズといいます。
+      
+      "
+      [
+          {"名前":"山田", "住所":"東京", "年齢":34, "性別":"男性"}
+          ,
+          {"名前":"佐藤", "住所":"埼玉", "年齢":26, "性別":"女性"}
+          ,
+          {"名前":"鈴木", "住所":"神奈", "年齢":18, "性別":"女性"}
+          ,
+          {"名前":"加藤", "住所":"千葉", "年齢":53, "性別":"男性"}
+      ]
+      "
+        
+      //JsonUtility
+      JsonUtilityとはUnity上でJSON形式のファイルを扱うためのAPIです。
+      JsonUtilityを使う事でオブジェクトを JSON 形式にシリアライズしたり、
+      元の形式に戻したりすることができます。
+      JsonUtilityを使うクラスはSerializable属性で定義する必要がある
+      MonoBehaviourクラスの継承を外す必要がある
+      
+      
+      //JsonUtility.ToJson()メソッド
+      このメソッドでオブジェクトをJSON形式にシリアライズする事ができます。
+      第一引数:変換したいオグジェクト
+      第二引数:bool型の値
+      第二引数がtrueの場合読みやすく整形された状態でJSON形式に変換されます。
+      falseの場合、サイズを小さくする事を優先して読みやすさは失われます。
+      
+      
+      //JsonUtility.FromJson＜T＞()メソッド
+      このメソッドでJSON形式の情報をオブジェクトにシリアライズする事ができます。
+      第一引数:変換したいJSONの情報
+      パラメータT:何クラスのオブジェクトに変換するか
+      
+      
+      //JsonUtility.FromJsonOverwrite()メソッド
+      このメソッドでオブジェクトの中身をJSON形式の情報で上書きする事ができます。
+      第一引数:JSON形式の情報
+      第二引数:上書きしたいオブジェクト
+      ※文字列は" "(ダブルクォーテーション)で囲むというルールがありますが、
+      「"」自体を文字列として記述したい場合には「\\"」のように、「"」の前に「\\」(バックスラッシュ)を
+      記述すれば文字として記述できます。
+      
+      
+      
+      
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      
+      public class JSONPrinter : MonoBehaviour {
+      	JsonSampleClass smpl = new JsonSampleClass();
+      	// Use this for initialization
+      	void Start () {
+      		smpl.name = "Yamada";
+      		smpl.age = 34;
+      		smpl.level = 1;
+      
+      		string smplJson = JsonUtility.ToJson(smpl);
+      		print(smplJson);
+      		smplJson = JsonUtility.ToJson(smpl,true);
+      		print(smplJson);
+      
+      		JsonSampleClass newSample = JsonUtility.FromJson<JsonSampleClass>(smplJson);
+      		print("name:" + newSample.name);
+      		print("age:" + newSample.age);
+      		print("level:" + newSample.level);
+      
+      		string overwrite = "{\\"age\\":50}";
+      		JsonUtility.FromJsonOverwrite(overwrite,newSample);
+      		print("name:" + newSample.name);
+      		print("age:" + newSample.age);
+      		print("level:" + newSample.level);
+      	}
+      	
+      	// Update is called once per frame
+      	void Update () {
+      		
+      	}
+      }
+      
+      
+      
+    '''
+  }
+  {
+    name: "CSV.cs"
+    mode: "C#"
+    content: '''
+      //CSV
+      ファイル形式の一種で、データが特定の文字で区切られているテキストデータのことをいいます。
+      この特定の文字のことをデリミタといい一般的には「,」(カンマ)が用いられます。
+      
+      
+      //TextAssetクラス
+      テキストファイルのデータをこのクラスを通して取得することができます。
+      
+      
+      //TextAsset.text
+      text 変数にファイル内のテキストが格納されます。
+      
+      
+      //StringReader
+      文字列を読み込む際に便利なメソッドがまとめられたクラスです。インスタンス生成時の括弧（）に、
+      引数として読み込みたい文字列を含むStringを指定します。
+      
+      
+      //StringReader.ReadLineメソッド
+      文字列から1行だけを読み取り、文字列としてデータを返すメソッドです。
+      
+      
+      //String.Splitメソッド
+      引数に指定した文字で分割し、小分けになった文字列を要素とする文字列配列を返すメソッドです。
+      
+      
+      //StringReader.Peekメソッド
+      次に読み込む文字がある場合は0以上の数を返し、使用できる文字がない場合は-1を返すメソッドです
+      
+      
+      
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      using System.IO;
+      
+      public class CSVPrinter : MonoBehaviour {
+          TextAsset csv;
+          StringReader reader;
+          int lineNum = 0;
+          public List<string[]> csvDatas;
+          // Use this for initialization
+          void Start () {
+              csv = Resources.Load("CSVData") as TextAsset;
+              reader = new StringReader(csv.text);
+              csvDatas = new List<string[]>();
+              while (reader.Peek() > -1) {
+                  string line = reader.ReadLine();
+                  print(line);
+                  csvDatas.Add(line.Split(','));
+                  lineNum++;
+              }
+      
+      			string description = null;
+      			for (int i = 0; i < csvDatas [0].Length; i++) {
+      			    description += csvDatas[0][i];
+      
+      			    if(i != csvDatas [0].Length - 1){
+      			        description += "、";
+      			    }
+      			}
+              description += "のデータが";
+              description += ((lineNum-1) + "人分あります。");
+      
+              print (description);
+              print(csvDatas[1][0]);
+              print(csvDatas[0][0]);
+          }
+      
+      }
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-18T07:51:06.776Z"
+updatedAt: "2017-09-18T10:04:02.616Z"

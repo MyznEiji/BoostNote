@@ -1,0 +1,21 @@
+createdAt: "2018-01-15T06:18:29.874Z"
+updatedAt: "2018-01-15T06:22:16.426Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonGlob"
+description: "PythonGlob"
+snippets: [
+  {
+    name: "pythonGlob.py"
+    mode: "Python"
+    content: '''
+      # import glob
+      
+      # glob.glob("test_dir/test_dir2/*")
+      *のディレクトリに入っているlistを表示する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

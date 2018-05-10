@@ -1,0 +1,38 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "MeshRenderer"
+description: "MeshRenderer"
+snippets: [
+  {
+    name: "MeshRenderer.cs"
+    mode: "C#"
+    content: '''
+      ##パラメーター()
+      
+      //CastShadows
+      :投影するライトがメッシュを照らしたとき、メッシュは影を生成します。その影に対するオプションを設定できます。Onにすると影が表示されて、Offにすると影が表示されなくなります。
+      
+      //TwoSided
+      :メッシュのどちら側からでもライトが当たっているならば、影を表示してくれるようになります。ShadowsOnlyはメッシュは表示されなくなってそのメッシュの影だけが表示されるようになります。
+      
+      //MotionVectors
+      :有効にすると、メッシュはCameraのモーションベクターテクスチャにオブジェクトごとのモーションベクターをレンダリングします。
+      
+      //Materials
+      :これを設定することによって、粘土でつくった人形みたいだったモデルに色や模様などを描画できるようになります。
+      
+      //LightProbes
+      :プローブに基づいたライティングの補完モード。
+      
+      //ReflectionProbe
+      :これが有効でリフレクションプローブがシーンに存在するとき、reflectionテクスチャがこのオブジェクトに選択され、ビルトインシェーダーの統一変数として設定されます。
+      
+      //AnchorOverride
+      :ライトプローブやReflectionプローブのシステムを使用するときに、補完する位置を決めるためのTransformを設定します。
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-07-27T12:10:24.715Z"
+updatedAt: "2017-07-29T14:06:27.092Z"

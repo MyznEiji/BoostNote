@@ -1,0 +1,298 @@
+createdAt: "2018-04-08T08:57:59.771Z"
+updatedAt: "2018-04-26T08:03:55.792Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonNetwork"
+description: "PythonNetwork"
+snippets: [
+  {
+    name: "xml.py"
+    mode: "Python"
+    content: '''
+      """xml 
+      
+      <? xml version="1.0" encoding="utf-8" ?>
+      <root>
+          <employee>
+              <employ>
+                  <id>111</id>
+                  <name>Mike</name>
+              </employ>
+          </employee>
+          <employee>
+              <employ>
+                  <id>222</id>
+                  <name>Nancy</name>
+              </employ>
+          </employee>
+      </root>
+      
+      """
+      
+      
+      
+      import xml.etree.ElementTree as ET
+      
+      
+      # root = ET.Element('root')
+        ルートを追加する
+      
+      
+      # tree = ET.ElementTree(element=root)
+        xmlの形を作り、要素を付け加えて行くことが可能になる
+      
+      
+      # employee = ET.SubElement(root, 'employee')
+        rootの中にemployeeを追加する
+      
+      
+      # employ_id = ET.SubElement(employ, 'id')
+      # employ_id.text = "111"
+        idを追加して、その要素のテキストを111に設定する
+      
+      
+      
+      # tree.write('test.xml', encoding="utf-8", xml_declaration=True)
+        test.xmlに書き込む
+          "xml_declaration=True"
+            <?xml version='1.0' encoding='utf-8'?>のような情報を付け加えてくれる
+      
+      
+      # tree = ET.ElementTree(file='test.xml')
+        ファイルのtest.xmlを追加する
+      
+      
+      # root = tree.getroot()
+        ルートを取得する
+      
+        "取得したルートをfor文でデータ取得する"
+        for employee in root:
+            for employ in employee:
+                for person in employ:
+                    print(person.tag, person.text)
+      
+                  
+                  
+                  
+    '''
+  }
+  {
+    name: "json.py"
+    mode: "Python"
+    content: '''
+      
+      """ json
+      {
+          "employee":
+              [
+                  {"id" : 111, "name": "Mike"},
+                  {"id" : 222, "name" : "Nancy"}
+              ]
+      }
+      """
+      
+      import json
+      
+      
+      """
+      j =\\
+      {
+          "employee":
+              [
+                  {"id" : 111, "name": "Mike"},
+                  {"id" : 222, "name" : "Nancy"}
+              ]
+      }
+      """
+      
+      
+      # a = json.dumps(j)
+        jsonに保存したjsonデータを正しいjsonデータの形にする(Pythonデータ → jsonデータ)
+        ""で囲まれる
+      
+      # print(json.loads(j))
+        jsonに入っているjsonデータをPythonのディクショナリー型に変換する出力する
+        
+      
+      # jsonファイルに書き込む
+      with open('test.json', 'w') as f:
+          json.dump(j, f) #　書き込む時はdump()
+          
+          
+          
+      # jsonファイルを読み込む
+      with open('test.json', 'r') as f:
+          print(json.load(f)) # 読み込む時はload()
+      
+    '''
+  }
+  {
+    name: "urllib.request.py"
+    mode: "Python"
+    content: '''
+      """
+      REST
+      
+      HTTPメソッド、クライアントが行いたい処理をサーバーに伝える
+      
+      GET データの参照
+      POST データの新規登録
+      PUT データの更新
+      DELETE　データの削除
+      """
+      
+      
+      import urllib.request
+      import json
+      
+      
+      # getでパラメータを送る場合は?を挟んであげる
+        payload = {'key1': 'value1', 'key2': 'value2'}
+        url = 'http://httpbin.org/get' + '?' + urllib.parse.urlencode(payload)
+        print(url)
+      
+      # urlで送られてきたjsonデータをpythonで見る
+        with urllib.request.urlopen(url) as f:
+            r = json.loads(f.read().decode('utf-8'))
+            print(type(r))
+      
+          
+      # postでデータを送る時はPythonデータからjsonデータにしてからpostする
+        payload = json.dumps(payload).encode('utf-8')
+        req = urllib.request.Request(
+            'http://httpbin.org/post', data=payload, method='POST')
+        with urllib.request.urlopen(req) as f:
+            print(json.loads(f.read().decode('utf-8')))
+      
+            
+      # putでデータを上書きするとき      
+        req = urllib.request.Request(
+            'http://httpbin.org/put', data=payload, method='PUT')
+        with urllib.request.urlopen(req) as f:
+            print(json.loads(f.read().decode('utf-8')))
+      
+            
+      # deleteをする時      
+        req = urllib.request.Request(
+            'http://httpbin.org/delete', data=payload, method='DELETE')
+        with urllib.request.urlopen(req) as f:
+            print(json.loads(f.read().decode('utf-8')))
+      
+    '''
+  }
+  {
+    name: "requests.py"
+    mode: "Python"
+    content: '''
+      """
+      直感的にわかりやすい
+      エンコードしたりデコードしたりurlを書き換えたりするのが簡単
+      
+      """
+      
+      　
+        
+      import requests
+      
+      # HTTPメソッドをrequestを送ることができる
+        payload = {'key1': 'value1', 'key2': 'value2'}
+        r = requests.get( 'http://httpbin.org/get' , params=payload)
+        r = requests.post( 'http://httpbin.org/post' , params=payload)
+        r = requests.put( 'http://httpbin.org/put' , params=payload)
+        r = requests.delete( 'http://httpbin.org/delete' , params=payload)
+      
+        r = requests.get('http://httpbin.org/get' , params=payload, timeout=0.001)
+        "0.001秒以上かかったらエラーがでるようになる"
+      
+      # ステータスコードを出力
+      print(r.status_code)
+      
+      # textデータで表示
+      print(r.text)
+      
+      # jsonで表示
+      print(r.json())
+      
+    '''
+  }
+  {
+    name: "socket.py"
+    mode: "Python"
+    content: '''
+      """
+      TCP/IPの場合
+      """
+        socket.SOCK_STREAMでTCP/IPをしよう
+        
+        import socket
+      
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind(('127.0.0.1', 50007)) #ポート番号を指定
+            s.listen(1) #接続する
+            while True: # 接続待ちする
+                conn, addr = s.accept() #接続してくたらコネクションとアドレスを代入する
+                with conn:
+                    while True:
+                        data = conn.recv(1024) #1024のチャンクを受け取る
+                        if not data:
+                            break
+                        print('data: {}, addr: {}'.format(data, addr))
+                        conn.sendall(b'Received: ' + data) #バイトじゃないと送れない
+      
+      
+        "クライアント"
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.connect(('127.0.0.1', 50007)) #ソケットにコネクション
+            s.sendall(b'Hello') # 接続したコネクションにバイトデータでhelloを送信
+            data = s.recv(1024) #ネットワークのバッファサイズは1024を指定
+            print(repr(data)) 
+            
+            
+            
+            
+      
+      """
+      UDPの場合
+      クライアントが投げたらそれを確かめないから以上に簡単なネットワーク通信
+      """
+      
+        socket.SOCK_DGRAMはUDPの指定
+      
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.bind(('127.0.0.1', 50007)) #ポートを指定
+            while True:
+                data, addr = s.recvfrom(1024) #バッファを指定
+                print("data: {}. addr: {}".format(data, addr))
+      
+      
+        "クライアント"
+      
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.sendto(b'Hello UDP', ('127.0.0.1', 50007))# ポートの指定
+      
+            
+            
+      
+    '''
+  }
+  {
+    name: "server.py"
+    mode: "Python"
+    content: '''
+      # pythonを使ってサーバーを起動
+      python -m http.server
+    '''
+  }
+]
+tags: [
+  "xml"
+  "json"
+  "urllib"
+  "requests"
+  "socket"
+  "udp"
+  "tcp/ip"
+  "server"
+]
+isStarred: false
+isTrashed: false

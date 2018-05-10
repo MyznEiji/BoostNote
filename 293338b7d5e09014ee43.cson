@@ -1,0 +1,531 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Algorithm"
+description: "C#Algorithm"
+snippets: [
+  {
+    name: "RemainingMoney.cs"
+    mode: "C#"
+    content: '''
+      using System;
+      
+      class RemainingMoney 
+      {
+        public static void Main()
+        {
+          Console.Write("所持金はいくらですか？");
+          String stShojikin = Console.ReadLine();
+          int nShojikin = Int32.Parse(stShojikin);
+          
+          Console.Write("単価はいくらですか？");
+          String stTanka = Console.ReadLine();
+          int nTanka = Int32.Parse(stTanka);
+          
+          Console.Write("何個買いますか？");
+          String stKosu = Console.ReadLine();
+          int nkosu = Inst32.Parse(stKosu);
+          
+          int nSogaku = nTanka * nKosu;
+          
+          if(nShojikin < nSogaku)
+          {
+            Console.WriteLine("所持金が足りません");
+          }
+          else
+          {
+            int nOturi = nShojikin - nSogaku;
+            Console.WriteLine("所持金は" + nOturi + "円残ってます");
+          }
+        }  
+      }
+    '''
+  }
+  {
+    name: "Bmi.cs"
+    mode: "C#"
+    content: '''
+      using System;
+      
+      class Bmi
+      {
+        public static void Main
+        {
+          Console.Write("身長(cm)");
+          string stBl = Console.ReadLine();
+          double bl = Convert.ToDouble(stBl);
+          
+          Console.Write("体重(kg)");
+          string stBw = Console.ReadLine();
+          double bw = Convert.ToDouble(stBw);    
+          
+          double bmi = bw / Math.Pow((b1 / 100.0), 2.0);
+          Console.WriteLine("BMI = {0:##.#}",bmi);
+          
+          if(bmi < 18.5)
+          {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(bmi + "やせすぎ");
+          }else if(bmi >= 18.5 && bmi < 25.0) 
+          {
+            Console.WriteLine(bmi + "適正体重");
+          }else if(bmi >= 25.0 && bmi < 30.0)
+          {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine(bmi + "第１度肥満");     
+          }else if(bmi >= 30.0 && bmi < 35.0)
+          {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(bmi + "第2度肥満");      
+          }else if(bmi >= 35.0 && bmi < 40.0)
+          {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(bmi + "第3度肥満");    
+          }else
+          {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(bmi + "第４度肥満");
+          }
+        }
+      }
+    '''
+  }
+  {
+    name: "Choise.cs"
+    mode: "C#"
+    content: '''
+      using System;
+      
+      class Choise
+      {
+        public static void Main()
+        {
+          Console.WriteLine("-----------Manu-----------");
+          Console.WriteLine("1:ファイル");
+          Console.WriteLine("2:編集");
+          Console.WriteLine("3:表示");
+          Console.WriteLine("0:終了");
+          Console.WriteLine("------------------");
+          
+          Console.WriteLine("¥n選択")
+          string strAns = Console.ReadLine();
+          
+          switch(strAns)
+          {
+            case "1":
+              Console.WriteLine("ファイルが選択されました");
+              break;
+            case "2":
+              Console.WriteLine("編集が選択されました");
+              break;        
+            case "3":
+              Console.WriteLine("表示が選択されました");
+              break;        
+            case "0":
+              Console.WriteLine("終了が選択されました");
+              break;        
+            default:
+              Console.WriteLine("入力エラー");
+              break;        
+          }
+        }
+      }
+    '''
+  }
+  {
+    name: "Kuku.cs"
+    mode: "C#"
+    content: '''
+      using System;
+      
+      class Kuku
+      {
+        public static void Main()
+        {
+          int i,j;
+          
+          for (i = 1; i <= 9; i++)
+          {
+            for(j = 1; j <= 9; J++)
+            {
+              Console.WriteLine("{0} * {1} = {2},i,j,i*j");
+            }
+            Console.WriteLine("-----------------");
+          }
+        }
+      }
+    '''
+  }
+  {
+    name: "Sin.cs"
+    mode: "C#"
+    content: '''
+      using System;
+      
+      class Sin
+      {
+        public static void Main()
+        {
+          double s;
+          
+          //角度aはラジアン単位
+          //Πラジアンは180度
+          
+          for(double a = 0.0; a<= Math.PI; a += Math.PI / 45.0/*4度ずつ*/)
+          {
+            s = Math.Sin(a);
+            Console.Write("{0,7:#.#####}:",s);
+            for(int i = 1; i <= Math.Round(s * 50); i++)
+            {
+              Console.Write("*");
+            }
+            Console.WriteLine();
+          }
+        }
+      }
+    '''
+  }
+  {
+    name: "MultipleOf2.cs"
+    mode: "C#"
+    content: '''
+      
+      //2の倍数の合計を求める
+      using System;
+      
+      class MultipleOf2
+      {
+        public static void Main()
+        {
+          int sum = 0;
+          for(int i = 0; i < 100; i++)
+          {
+            if(i % 2 == 0)
+            {
+              sum += 1;
+            }else
+            {
+              continue;//奇数じゃない場合したの処理は飛ばされる
+            }
+            
+            Console.WriteLine("i = {0,2},sum ={1,4}",i,sum);
+          }
+          Console.WiteLine("合計は{0}です",sum};
+        }
+      }
+    '''
+  }
+  {
+    name: "Override.cs"
+    mode: "C#"
+    content: '''
+      //多様性
+      
+      using System;
+      class Mamma1
+      {
+        protected const int legNo = 4;
+        protected string koe;
+        
+        public virtual string Nakigoe()
+        {
+          koe = "";
+          return koe;
+        }
+        public int Leg()
+        {
+          return legNo;
+        }
+      }
+      
+      class Cat : Mamma1
+      {
+        public override string Nakigoe()
+        {
+          koe = "にゃーにゃー";
+          return koe;
+        }
+      }
+      
+      class Dog : Mamma1
+      {
+        public override string Nakigoe()
+        {
+          koe = "わんわん";
+          return koe;
+        }
+      }
+      
+      class Override02
+      {
+        public static void Main()
+        {
+          Mamma1 m;
+          Cat cat = new Cat();
+          Dog dog = new Dog();
+          
+          m = cat;
+          Console.WriteLine
+            (
+              "猫の脚は{0}本で鳴き声は[{1}]です",
+              m.Leg(),
+              m.Nakigoe()
+            )
+            
+          m = dog;
+          Console.WriteLine
+            (
+              "犬の脚は{0}本で鳴き声は[{1}]です",
+              m.Leg(),
+              m.Nakigoe()
+            )
+        }
+      }
+      
+      
+      //プロパティのオーバーライド
+      
+      using System;
+      class Mammal
+      {
+        protected const int legNo = 4;
+        public virtual string Nakigoe 
+        {
+          get
+          {
+            return "...";
+          }
+        }
+        
+        public int Leg()
+        {
+          return legNo;
+        }
+      }
+      
+      class Cat : Mammal
+      {
+        public override string Nakigoe
+        {
+          get
+          {
+            return "にゃーにゃー" ;
+          }
+        }
+      }
+      
+      class Dog : Mammal
+      {
+        public override string Nakigoe
+        {
+          get 
+          {
+            return "ワンワン";
+          }
+        }
+      }
+      
+      class Overrride03
+      {
+        public static void Main()
+        {
+          Mamal m;
+          Cat cat = new Cat();
+          Dog dog = new Dog();
+          
+          m = cat;
+          Console.WriteLine
+          (
+            "猫の脚の数は{0}本で、鳴き声は[{1}]です",
+            m.Leg(),
+            m.Nakigoe
+          );
+          
+          m = dog;
+          Console.WriteLine
+          (
+            "犬の脚の数は{0}本で、鳴き声は[{1}]です",
+            m.Leg(),
+            m.Nakigoe
+          );
+        }
+      }
+      
+      
+      
+      //インデクサのオーバーライド
+      using System;
+      
+      class Mammal
+      {
+        protected const int legNo = 4;
+        protected string tail, gei,food,koe;
+        
+        public virtual string this[string index]
+        {
+          get
+          {
+            return "...";
+          }
+        }
+        
+        public int Leg()
+        {
+          return legNo;
+        }
+      }
+      
+      class Cat : Mammal
+      {
+        public override string this[string index]
+        {
+          get
+          {
+            switch(index)
+            {
+              case "尾":
+                tail = "1本";
+                return tail;
+              case "芸":
+                gei = "できない";
+                return gei;
+              case "鳴き声":
+                koe = "ニャーニャー";
+                retrn koe;
+              case "食べ物":
+                food = "キャットフード;
+                return food;
+              default:
+                return "":
+            }
+          }
+        }
+      }
+      
+      
+      class Dog : Mammal
+      {
+        public override string this[string index]
+        {
+          get
+          {
+      switch(index)
+            {
+              case "尾":
+                tail = "1本";
+                return tail;
+              case "芸":
+                gei = "できる";
+                return gei;
+              case "鳴き声":
+                koe = "わんわん";
+                retrn koe;
+              case "食べ物":
+                food = "ドッグフード;
+                return food;
+              default:
+                return "":
+            }
+          }
+        }
+      }
+      
+      
+      class Override04
+      {
+        public static void Main()
+        {
+          Mammal m;
+          
+          Cat cat = new Cat();
+          Dog dog = new Dog();
+          
+          m = Cat;
+          Console.WriteLine
+          (
+            "猫の足は{0}本です。尻尾は{1}です。芸は{2}。食べ物は{3}。",
+            m.Leg(),m["尾"],m["芸"],m["食べ物"]
+          );
+          
+          m = Dog;
+          Console.WriteLine
+          (
+            "犬の足は{0}本です。尻尾は{1}です。芸は{2}。食べ物は{3}。",
+            m.Leg(),m["尾"],m["芸"],m["食べ物"]
+          );
+        }
+      }
+    '''
+  }
+  {
+    name: "KeyAdd.cs"
+    mode: "C#"
+    content: '''
+      using System;
+      
+      delegate void Handler(char ch);
+      
+      class EventClass
+      {
+        public event Hnadler KeyHit;
+        public void OnKeyHit(char ch)
+        {
+          if(KeyHit != null)
+            KeyHit(ch);
+        }
+      }
+      
+      
+      class Show
+      {
+        int sum = 0;
+        
+        public void KeyShow(char ch)
+        {
+          if(Char.IsDigit(ch))//与えられた文字が数値ならsumに加えられる
+          {
+            int a = (int)char.GetNumericValue(ch);
+            sum += a;
+            Console.WriteLine(" + {0}",a);
+            Console.WriteLine("= {0}",sum);
+          }
+          else if(ch == "c")
+          {
+            sum = 0;
+            Console.WriteLine("合計がクリアされました");
+          }
+          else return;
+        }
+      }
+      
+      class Event02
+      {
+        public static void Main()
+        {
+          ConsoleKeyInfo cki;
+      
+          EventClass ec = new EventClass();
+          Show s = new Show();
+      
+          ec.KeyHit += new Hnadler(s.KeyShow);
+      
+          while(true)
+          {
+            if(Console.KeyAvailable)//キーが押されている場合
+            {
+              cki = Console.ReadKey(true); //押されたキーが取得
+              if(cki.KeyChar 00 'x') //押されたキーが'x'の場合
+                break;
+              else
+                ec.OnKeyHit(cki.KeyChar);
+            }
+          }
+        }
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-28T11:56:33.042Z"
+updatedAt: "2017-10-02T10:19:18.227Z"

@@ -1,0 +1,68 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Component"
+description: '''
+  Component
+  
+'''
+snippets: [
+  {
+    name: "CharacterController.cs"
+    mode: "C#"
+    content: '''
+      //CharacterController 
+      Rigidbdy による処理を持たなくてもコリジョンによって簡単に動きの制限を行うことが可能です。 
+      CharacterController は力には影響されず、Move 関数を呼び出した時のみ移動します。 
+      その時に移動を行いますがコリジョンによって制限されます。
+      rigidbodyなしでcollsionがあるイメージでいいとのことです
+      
+      //parameter
+      Slope Limit 移動可能な傾斜の限界値(角度)を設定する
+      Step Offset 移動可能な段差の限界値(高さ)を設定する
+      Skin Width コライダーどうしが接触してめり込める幅の限界値を設定する
+      Min Move Distance 移動を行う最小値を設定する
+      Center 当たり判定の中心位置を設定する
+      Radius 当たり判定の半径を設定する
+      Height あたり判定の高さを設定する
+      
+      
+      //CharacterController.isGrounded	
+      CharacterController が最新の移動中に地面に接地しているかどうかの判断
+      
+      //Move(Vector3 motion);
+      CharacterControllerを移動する
+      重力をつけてくれない。自分で記述する必要がある。
+      
+      
+      //SimpleMove(Vector3 speed)
+      CharacterControllerを移動する
+      重力を自動でつけてくれる。単位はメートル毎秒。
+      
+    '''
+  }
+  {
+    name: "Trail Renderer.cs"
+    mode: "C#"
+    content: '''
+      //弾ををビーム形状にする
+      0弾にこのComponentをアタッチして
+      1Materials内のElement0にSimpleParticlePackAssetのMaterialsのFlame02を適用する
+      2パラメータのTime,EndWidthの値を0.5にする
+      3弾のMeshRendererのチェックを外す
+    '''
+  }
+  {
+    name: "Component.cs"
+    mode: "C#"
+    content: '''
+      //Component.GetComponentsInChildren<Collider>
+      子要素から指定したコンポーネントを返す。
+      var 変数名 = と代入すると配列になり
+      子の子なども含まれる
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-06-15T03:57:16.005Z"
+updatedAt: "2017-10-06T05:37:14.807Z"

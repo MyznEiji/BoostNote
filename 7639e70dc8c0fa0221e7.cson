@@ -1,0 +1,28 @@
+createdAt: "2018-01-15T06:41:12.131Z"
+updatedAt: "2018-01-15T07:00:27.617Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonTar"
+description: "PythonTar"
+snippets: [
+  {
+    name: "pythonTar.py"
+    mode: "Python"
+    content: '''
+      #import tarfile
+      
+      #ディレクトリをtarファイルに圧縮する
+      with tarfile.open("test.tar.gz", "w:gz") as tr:
+          tr.add("testTar_dir")
+      
+          
+      #tarディレクリを  
+      with tarfile.open("test.tar.gz", "r:gz") as tr:
+          tr.extractall(path="test_tar")
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

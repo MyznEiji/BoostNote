@@ -1,0 +1,22 @@
+createdAt: "2018-03-16T12:35:11.813Z"
+updatedAt: "2018-03-16T12:35:59.942Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelPaginate"
+description: "LaravelPaginate"
+snippets: [
+  {
+    name: "LaravelPaginate.py"
+    mode: "Python"
+    content: '''
+      # ページネーション
+      ページネーションとは長い文章を複数のページに分割して、各ページへのリンクを並べアクセスしやすくすることです。検索サイトのGoogleなども検索結果の表示にはページネーションを使用しています。
+      
+      # paginateメソッド
+      paginateメソッドはテーブルから引数に指定した数だけレコードを取得し、1ページにその数だけ表示します。取得するところまでしてくれるのでgetメソッドは不要です。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

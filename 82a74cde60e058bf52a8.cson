@@ -1,0 +1,233 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonSeaborn"
+description: "PythonSeaborn"
+snippets: [
+  {
+    name: "PythonSeaborn.py"
+    mode: "Python"
+    content: '''
+      #seaborn.set_style(style)
+        plotしたグラフのスタイルを変えられる
+      
+        ・darkgrid：背景暗、グリッドあり。デフォルト。
+        ・dark：背景暗、グリッドなし。
+        ・whitegrid：背景白、グリッドあり。
+        ・white：背景白、グリッドなし。
+        ・ticks：背景白、軸にのみグリッドあり。
+      
+      #seaborn.jointplot(配列、配列)
+        同時分布、結合分布を描画する
+        二つのヒストグラムを表示し、真ん中に散布図を描画する
+        kind="hex"で散布図のデータが６角形で表示される
+      
+        pearsonrは相関係数
+        (正確には、ピアソン積率相関係数）ですが、0.52と正に相関していることを
+         示しています。
+         https://ja.wikipedia.org/wiki/%E7%9B%B8%E9%96%A2%E4%BF%82%E6%95%B0
+      
+      #seaborn.rugplot(array)
+        データがあるところに線が描画される 
+      
+      
+      #seaborn.kdeplot(dataset)
+        カーネル密度推定をしたグラフを描画することができる
+        引数bw(第二引数)でfloat型の値を指定すると正規分布の幅を設定できる
+      
+        for bw in np.arange(0.5, 2, 0.25):
+            sns.kdeplot(dataset, bw=bw, label=bw)
+      
+        カーネル密度推定をする上で
+        カーネル関数: 各標本点の影響度の広がり方
+        バンド幅: カーネル関数の広がりの幅  
+      
+        "軸を入れ替えることもできます。"
+        sns.kdeplot(dataset,vertical=True)
+      
+        kernel=にカーネル法を代入する
+      
+        shade=Trueで領域に色を塗る
+      
+      
+      #seaborn.distplot(dataset,bins=25)
+        データの分布を可視化する。
+        データのヒストグラムとカーネル密度推定を描画する
+      
+        引数でrug=True, hist=Falseで
+        ラグプロットを描画することもできる
+      
+        "辞書型でグラフごとの色を変更できる"
+      
+        sns.distplot(dataset, bins=25,
+                     kde_kws={'color': 'indianred', 'label': 'KDE PLOT'},
+                     hist_kws={
+                        'color': 'blue', 
+                        'edgecolor': 'k', 
+                        'label': "HISTOGRAM"})
+      
+      
+         "quantile(0.05)"
+         ヒストグラムの初めから５％をを取得
+      
+      #seaborn.boxplot(data=data)
+        ボックスプトットを描画する
+        真ん中の線が中央値の線で、真ん中の箱が50％(25% ~ 75%)で残りが25%
+        外れ値は外の点で描画される
+      
+        "基本的には外れ値を含まない%で表示されるが外れ値を含ませるには"
+        whis=np.infを引数に渡してあげる
+      
+        "横に並べる時は"
+         orient = 'h'を引数に渡してあげる。'v'で縦方向に描画する
+      
+        
+      
+      
+      #seaborn.violinplot(data=data1)
+        カーネル密度推定の手法で作られるグラフを描画できる
+        bw=float　でバンド幅もしていできる
+      
+      
+      #seaborn.lmplot(x,y,data)
+        散布図を描画するのと同時に、回帰直線を描画する
+      
+        "order=4"　
+        ４次関数を指定できる
+        "fit_reg=False"
+        回帰直線を描画しなくできる
+      
+        "散布図の設定は引数に下記のように渡す"
+        scatter_kws={'marker': 'o', 'color': 'indianred', 's': 10}
+      
+        "会期直線の設定は引数に下記のように渡す"
+        line_kws={'linewidth': 1, 'color': 'blue'}}
+      
+        "x_jitter=0.2"
+        xの値が離散的でデータが見えない時に少し広がり持たせるように描画できる
+      
+        "x_estimator=np.mean"
+        estimatorには関数を与えることができる。上記の例は平均値の関数を与えている
+      
+        "hue=data, markers=[x,o]"
+        データを分けてくれる。
+        例えば人間のデータの散布図でそのデータを男と女に分別してマーカを変えて
+        可視化してくれる
+      
+        "lowess=True"
+        回帰直線をなめらかにする
+      
+      
+      
+      
+      #seaborn.heatmap(data)
+        ヒートマップが描画できる
+      
+        "annot=True, fmt='d'"
+        ヒートマップに数字が上書きされて、色によってその文字の色が変化してくれる
+      
+      
+        "center=行列"
+        指定した値が色の中心になるように描画してくれる
+        flight_dframe.loc['January', 1955]
+      
+      
+      
+      #seaborn.clustermap(data)
+        ヒートマップをクラスタリングして同じ色が集まったヒートマップを描画する
+      
+      
+      
+      #seaborn.countplot("coloumn", data)
+        データと列の名前を引数に渡すと列の種類によってグラフを描画する
+      
+        sns.countplot("Pclass", data=titanic_df, hue="person")
+        "hue=coloum"
+        その列の指定したcoloum別でグラフを描画する
+      
+        sns.countplot(
+          "Cabin", 
+          data=cabin_df, 
+          palette="winter_d",
+          order=sorted(set(levels))
+          )
+        
+        "order"
+        order=sorted(set(array))
+        並び順をarrayの要素の種類別で並べてくれる
+      
+        "palette"
+        色合いを変更できる
+        _dをつけると少し暗めになる
+        palette="winter_d",
+      
+        
+      #seaborn.FacetGrid()
+        複数のカーネル密度推定のグラフを1つのプロットに描くことができます。
+        seaborn.FacetGrid(titanic_df, hue="Sex", aspect=4)
+        性別で層別化して、グラフを少し横長に設定します。
+        "aspect"
+        値を渡してあげると横長のグラフができあがる
+      
+        "mapメソッドと使う"
+        mapを使って、性別ごとにkdeplotを描くようにします。
+        fig.map(sns.kdeplot,'Age',shade= True)
+      
+      #seaborn.set(xlim=(min, max), ylim=(min, max))
+        グラフの描画する領域を決める
+        seaborn.set(xlim=(0, oldest))
+      
+        
+      #seaborn.factorplot("data1", "data2", order=[1,2,3])
+        data1とdata2の平均を点にとって棒グラフで描画することができる
+        "order"
+        値が1,2,3とソートされるようになる
+        
+        sns.factorplot("Pclass",
+                     "Survived",
+                     hue="person",
+                     data=titanic_df,
+                     order=[1, 2, 3],
+                     aspect=2)
+      
+        "hue_order"
+        hueで設定した順に並び替える
+        
+        "x_bins"
+        これ指定すると散布されるデータが縦棒で標準偏差がプロットされる 
+        sns.lmplot("Age", 
+                 "Survived", 
+                 data=titanic_df, 
+                 hue="Pclass", 
+                 palette="winter",
+                 hue_order=[1, 2, 3],
+                 x_bins=[10,20,40,60,80])
+        
+        
+      #seaborn.pairplot(複数のデータ)
+         複数のデータを一遍に相関する図をプロットする
+      
+         sns.pairplot(tech_rets.dropna())
+      
+         
+      #seaborn.pairgrid(data)
+        データ分の空の描画する
+        pairplotのデータが描画されない状態
+        自分でカスタマイズしていく
+        returns_fig = sns.PairGrid(tech_rets.dropna())
+        returns_fig.map_upper(plt.scatter, color="purple", edgecolor="k")
+        returns_fig.map_lower(sns.kdeplot, color='cold_d')
+        returns_fig.map_diag(plt.hist, bins=20, edgecolor="k")
+         
+        "相関を数字絵見たい場合はヒートマップを使う"
+        seaborn.heatmap(tech_rets.corr(), annot=True)
+      
+         
+         
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-12-03T07:12:25.449Z"
+updatedAt: "2017-12-08T06:47:03.650Z"

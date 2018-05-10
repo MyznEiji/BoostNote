@@ -1,0 +1,21 @@
+createdAt: "2018-01-15T06:06:37.696Z"
+updatedAt: "2018-01-15T06:08:55.978Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonPathlib"
+description: "PythonPathlib"
+snippets: [
+  {
+    name: "pythonPathlib.py"
+    mode: "Python"
+    content: '''
+      # import pathlib
+      
+      # pathlib.Path("empty.txt").touch()
+      空のファイルを作成する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

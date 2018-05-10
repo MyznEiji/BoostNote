@@ -1,0 +1,48 @@
+createdAt: "2018-01-12T08:45:28.034Z"
+updatedAt: "2018-03-14T06:00:34.764Z"
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsKaminari"
+description: "RailsKaminari"
+snippets: [
+  {
+    name: "railsKaminari.rb"
+    mode: "Ruby"
+    content: '''
+      #ページネーション
+      ページネーションとは長い文章を複数のページに分割して、
+      各ページへのリンクを並べアクセスしやすくすることです
+      
+      
+      #kaminari
+      kaminariはRubyのGemの一種です。このGemをインストールすることによって、
+      簡単にページネーションを実装することができます。
+      
+      
+      
+      #kaminari:pageメソッド
+      kaminariを導入すると、モデルクラスにpageメソッドが定義されます。
+      このメソッドは、ページネーションにおけるページ数を指定します。
+      ビューのリクエストの際paramsの中にpageというキーが追加されて、
+      その値がビューで指定したページ番号となります。なので、pageの引数はparams[:page]となります。
+      
+      
+      #kaminari:perメソッド
+      perメソッドもpageメソッドと同様、kaminariというgemをインストールすることで利用できる
+      メソッドです。1ページあたりに表示する件数を指定します。perメソッドに引数として渡した数字が、
+      ページネーションが実装されたビューで1ページあたりに表示する件数になります。
+      "
+      変数名 = クラスを利用して取得したレコードのインスタンス.page(params[:page]).per(ここに1ページで表示したい件数を入力)
+      "
+      
+      
+      #kaminari:paginateメソッド
+      ページネーションのリンクを表示したいときに使用するメソッドです。
+      kaminariをインストールすると利用できます。paginateメソッドの引数は、
+      コントローラで定義した変数を指定します。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

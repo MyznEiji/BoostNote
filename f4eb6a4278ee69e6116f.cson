@@ -1,0 +1,37 @@
+createdAt: "2018-01-15T07:29:59.697Z"
+updatedAt: "2018-01-15T07:45:00.655Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonTempfile"
+description: "PythonTempfile"
+snippets: [
+  {
+    name: "pythonTempfile.py"
+    mode: "Python"
+    content: '''
+      # import tempfile
+      
+      #一時的ファイルを作成、書き込み、読み込み
+      with tempfile.TemporaryFile(mode="w+") as t:
+          t.write("hello")
+          t.seek(0)
+          print(t.read())
+          
+      #tempfileを実際に作って欲しい時
+      with tempfile.NamedTemporaryFile(delete=False) as t:
+          print(t.name)
+          with open(t.name, "w+") as f:
+              f.write("test\\n")
+              f.seek(0)
+              print(f.read())
+      
+              
+      #tempfileがどこのディレクトリに作られたかを見る
+      with tempfile.NamedTemporaryFile(delete=False) as t:
+          print(t.name)
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

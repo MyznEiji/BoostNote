@@ -1,0 +1,23 @@
+createdAt: "2018-02-27T09:40:51.903Z"
+updatedAt: "2018-02-27T10:16:10.220Z"
+type: "SNIPPET_NOTE"
+folder: "d155fa926dc4390a93fa"
+title: "Ajax"
+description: "Ajax"
+snippets: [
+  {
+    name: "ajax.html"
+    mode: "HTML"
+    content: '''
+      0 UNSENT インスタンスができた
+      1 OPENED openメソッドを利用した
+      2 HEADERS_RECEIVED ヘッダーが受信できた
+      3 LOADING データを受信中である
+      4 DONE 通信が終了した
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

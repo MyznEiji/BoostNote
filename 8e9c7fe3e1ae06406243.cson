@@ -1,0 +1,26 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Observer"
+description: "Observer"
+snippets: [
+  {
+    name: "Observer.cs"
+    mode: "C#"
+    content: '''
+      //Observerパターンとは
+      Observerパターンとは、あるクラスの値が変更された時に、
+      別のクラスでその変更を認識したい時に用いるデザインパターンです。
+      
+      
+      //Observerパターンの仕組み
+      Observerパターンは「オブジェクトの状態を通知する側(Subject)」、
+      「通知を受け取る側(Observer)」と見なしてSubjectにObserverを登録し、
+      登録されたObserverすべてに対して変更を通知します。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-19T10:53:23.263Z"
+updatedAt: "2017-09-19T10:54:27.982Z"

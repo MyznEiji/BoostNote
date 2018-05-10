@@ -1,0 +1,40 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonPandas"
+description: "PythonPandas"
+snippets: [
+  {
+    name: "PythonPandas.py"
+    mode: "Python"
+    content: '''
+      データ解析を支援するライブラリ
+      pandasを使うことで、目的の属性のベクトルを取り出すことができます。
+      そして、値の予想を行うことができます。
+      多変量解析で扱うことができるようになります
+      
+      
+      #import pandas as pd
+      パンダズをインポート
+      
+      #pd.read_excel('Excel')
+      エクセルデータを読む
+      
+      #pd.head()
+      先頭の行の表示を行う
+      
+      
+      #pd.Categorical()
+      テキストベースのカテゴリデータ（Model）を
+      順序を表す整数に変更することができます。
+      
+      
+      #pd.groupby(data,data).mean()
+      値によりグループ化し平均を取る
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-17T09:17:25.467Z"
+updatedAt: "2018-03-26T08:25:23.492Z"

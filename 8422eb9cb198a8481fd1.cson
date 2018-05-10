@@ -1,0 +1,30 @@
+createdAt: "2018-03-10T15:47:19.584Z"
+updatedAt: "2018-03-11T11:26:03.267Z"
+type: "SNIPPET_NOTE"
+folder: "ea77b093ffd39c8e29de"
+title: "DjangoModel"
+description: "DjangoModel"
+snippets: [
+  {
+    name: "DjangoModel.py"
+    mode: "Python"
+    content: '''
+      class Post(models.Model):
+          title = models.CharField(max_length=100)
+          published = models.DateTimeField()
+          image = models.ImageField(upload_to='media/')
+          body = models.TextField()
+      
+          def __str__(self):
+              return self.title
+            
+            
+      このモデルのインスタンスを生成する時のひな形作成
+      
+      __str__のreturnには一覧の時の文字列を返すのを設定する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

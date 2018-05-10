@@ -1,0 +1,44 @@
+createdAt: "2018-04-24T22:26:28.147Z"
+updatedAt: "2018-05-06T08:35:57.259Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "jqueryGeneral"
+description: "jqueryGeneral"
+snippets: [
+  {
+    name: "jqueryGeneral.js"
+    mode: "JavaScript"
+    content: '''
+      #バージョンについて
+      2.x系はIE6,7,8をサポートしないので、そのバージョンで使用する場合は1.x系を使う
+      
+      
+      # 読み込み方
+        1ダウンロードしておいたファイルで読み込む
+          jqueryのサイトからファイルをダウンロード
+          <script src="js/jquery.min.js"></script>で読み込む
+        2CDN(contents delivery network)
+          <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+          で読み込む
+          
+          
+          
+          
+          
+      # Google chrome のconsoleでJqueryを使えるようにする方法
+      var script = document.createElement("script");
+        script.setAttribute("src", "http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js");
+        script.addEventListener('load', function() {
+          var script = document.createElement("script");
+          document.body.appendChild(script);
+        }, false);
+        document.body.appendChild(script);
+      を入力する
+      
+          
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

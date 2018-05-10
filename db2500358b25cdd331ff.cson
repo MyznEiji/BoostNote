@@ -1,0 +1,137 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonString"
+description: "PythonString"
+snippets: [
+  {
+    name: "PythonString.py"
+    mode: "Python"
+    content: '''
+      #エスケープ文字
+      文字列に追加したい文字をバックスラッシュをに続けて書くというもの
+      \\'　シングルクォート
+      \\"　ダブルクォート
+      \\t　タブ
+      \\n　改行
+      \\\\　バックスラッシュ
+      print("Hello there!\\nHow are you?\\nI\\'m doing fine.")
+      
+      #raw文字列
+      クォートの前につけると文字列の中のエスケープ文字を無視してバックスラッシュを
+      バックスラッシュとして扱います。
+      print(r'That is Carol\\'s cat.') #That is Carol\\'s cat.
+      
+      
+      #三連クォートによる複数行文字列
+      複数行文字列は３個の新グルクォートかダブルクォートでくくって書くと、
+      三連クォートの間のタブや改行やクォートは、文字列の一部として解釈される
+      print(\'''Dear Alice,
+      Eve's cat has been arrested for catnapping, cat burglary, and extorition.
+      Sincerely,
+      Bob \''')
+      
+      
+      #複数行コメント
+      """これはテスト
+      です
+      """
+      
+      #文字列のインデックスとスライス
+      Spam = 'Hello world!'
+      fizz = spam[0:5] #Hello
+      
+      
+      #文字列に対するinとnot in演算子
+      inとnot in演算子も文字列に適用することができる。
+      'Hello' in 'Hello world' #True
+      
+      
+      #string.upper()
+      元の文字列のすべての文字をそれぞれ大文字にする
+      元の文字列を変更せずに新しい文字列を返す点に注意
+      spam = 'Hello world'
+      spam = spam.upper() #HELLO WORLD
+      
+      #string.lower()
+      元の文字列のすべての文字をそれぞれ小文字にする
+      元の文字列を変更せずに新しい文字列を返す点に注意
+      spam = spam.lower() #hello world
+      
+      #string.isupper()
+      １文字以上のすべての英文字が大文字ならTrue。違ったらFalse
+      spam.isupper() #False
+      
+      #string.islower()
+      １文字以上のすべての英文字が小文字ならTrue。違ったらFalse
+      spam.islower() #False
+      
+      
+      #string.isalpha()
+      １文字以上の英文字だけから文字列が構成されている場合にTrue
+      
+      #string.isalnum()
+      １文字以上の英文字か数字から構成されている場合にTrue
+      
+      #string.isdecimal()
+      １文字上の数字だけから構成されている場合にTrue
+      
+      #string.isspace()
+      文字列がスペースかタブか改行だけで構成されている場合にTrue
+      
+      #string.istitle()
+      大文字から始まり残りがすべて小文字の英単語から構成されている場合にTrue
+      
+      #string.starswith(string)
+      対象の文字列がメソッドに渡された文字列から始まっていればTrue
+      'Hello world'.startswith('Hello')
+      
+      #string.endswith(string)
+      対象の文字列がメソッドに渡された文字列から終わっていればTrue
+      'Hello world'.endswith('world')
+      
+      #string.join()
+      文字列のリストを１つの文字列に連結する
+      ','.join(['cats','rats','bats'])#cats,rats,bats
+      
+      #string.split()
+      文字列に対して呼び出すと分割して文字列のリストを返す。
+      'My name is Simon'.split() #['My','name','is','Simon']
+      
+      #string.rjust()
+      対象の文字列にスペースを挿入して右揃えにする
+      'Hello'.rjust(10,'*')#'*****Hello'
+      
+      #string.ljust()
+      対象の文字列にスペースを挿入して左揃えにする
+      'Hello'.ljust(10,'*')#'Hello*****'
+      
+      #string.center()
+      対象の文字列にスペースを挿入して中央揃えにする
+      'Hello'.center(10,'-')#'--Hello---'
+      
+      #string.strip()
+      文字列の冒頭と末尾の空白文字を除去する
+      spam = '  Hello  ' 
+      spam.strip() #'Hello'
+      除去すべき文字を文字列の引数として渡すこともできる
+      spam = 'SpamSpamBaconSpamEggsSpamSpam'
+      spam.strip('ampS') #BaconSpamEggs
+      
+      #string.rstrip()
+      文字列の末尾の空白文字を除去する
+      spam.rstrip() #'  Hello'
+      
+      #string.lstrip()
+      文字列の冒頭の空白文字を除去する
+      spam.lstrip() "Hello  '
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-20T05:55:19.567Z"
+updatedAt: "2018-03-26T08:25:26.754Z"

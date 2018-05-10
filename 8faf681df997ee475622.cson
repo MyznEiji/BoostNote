@@ -1,0 +1,137 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Array"
+description: "C#Array"
+snippets: [
+  {
+    name: "C#Array.cs"
+    mode: "C#"
+    content: '''
+      //Array
+      
+      //配列(Arrayクラス)
+      データ型[] 配列名 = new データ型[要素数]{初期値1,初期値2,・・・};
+      int[] myArray = new int[3]{1};
+      
+      "アクセス方法"
+      配列名[添え字]
+      
+      
+      //2次元配列
+      特定の要素を2つの添字の組み合わせで表現すると便利な場合がある。
+      例えば、ある学年のは4クラスあって、各クラスの出席番号でその生徒の使命を特定したい場合
+      各1次元要素の2次元要素数が一緒の時に使う
+      
+      
+      データ型[,]配列名=new データ型[要素数1、要素数2]{{要素数1,要素数2},{要素数1...}};
+      int[,] myArray = new int[2,3]{{4,5,6},{7,8,9}}
+      // new int[2,3]のところで一次元要素数は2つあり、各2次元要素数は3つと限定
+      
+      "アクセス方法"
+      配列名[添え字1,添え字2]
+      
+      
+      ```
+      int[,] myArray = new int[,]{{1,2,3},{4,5,6}}
+      
+      for(int i = 0; i< 2; i++)
+        for(int j = 0; j < 3; j++)
+            Console.WriteLine
+            (
+              "myArray[{0},{1} = {2}",
+              i,
+              j,
+              myArray[i,j]
+            );
+          
+                              
+      ```
+      
+      
+      
+      //ジャグ配列
+      行によって要素数がバラバラの配列が作れるようになる
+      
+      ```
+      int [][] ar;
+      ar = new int[2][];
+      
+      ar[0] = new int[3];
+      ar[1] = new int[3];
+      
+      for(int i = 0; i < 2; i++)
+        for(int j = 0; j < 3; j++)
+          ar[i][j] = (i + 1) * (j + 1;)
+          Console.WriteLine("ar[{0},{1}] = {2}",i,j,ar[i][j]);
+      ```
+      
+      
+      //暗黙の型指定がなされた配列
+      var x = new[]{....};
+      
+      ```
+      var name = new []{"Taro","Jiro","Saburo","Shiro"};
+      var f = new[] {0.5,0.9,1.5,2.3};
+      ```
+      
+      
+      //Params
+      可変長引数。paramsキーワードを用いることでメソッドの引数の数を可変することができる
+      "定義"
+      int Sum(params int[] args){・・・}
+      "利用"
+      Sum(1,2,3,4,5) (= Sum(new int[]{1,2,3,4,5})と同じ)
+        
+      
+      
+      
+      -------------------Method---------------------
+      
+      //ArrayName.Length
+      配列の要素数を取得する。
+      
+      
+      
+      //ArrayName.Rank
+      配列の次元を取得する
+      
+      
+      //Array.sort(ArrayName);
+      アルファベット順にソートされる
+      
+      
+      //Array.Reverse(ArrayName);
+      アルファベット順と逆にソートされる
+      
+      
+      //System.Array.IndexOf(Array,Something)
+      要素の位置を調べる。
+      ある場合配列の添え字を返す。ない場合は-1を返す
+      
+      
+      //(System.Collections.Generic.IList<ArrayType>Array).Contains(Something)
+      somethingが配列の要素に入っているか調べる
+      
+      
+      //using System.Linq;
+      //Array.Contains(something,StringComparer.OrdinalIgnoreCase)
+      大文字と小文字を区別しない検索を行い、True Falseで返す
+      arraySample.Contains("Aaaaa",StringComparer.OrdinalIgnoreCase)
+      
+      
+      
+      //Array.Any()
+      要素の条件をTrue Falseで返す
+      arySample.Any(s => s.Length == 1);
+    '''
+  }
+]
+tags: [
+  "Params"
+  "IndexOf"
+  "Contains"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-27T09:11:42.212Z"
+updatedAt: "2017-11-03T05:35:01.510Z"

@@ -1,0 +1,157 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Singleton"
+description: "C#Singleton"
+snippets: [
+  {
+    name: "c#Singleton.cs"
+    mode: "C#"
+    content: '''
+      //Singletonパターン
+      あるインスタンスが唯一であることを保証するときに効果的なデザインパターンです。
+      
+      
+      //private コンストラクタ
+      明示的にprivateで引数無しコンストラクタを定義することにより、
+      インスタンスが複数されないようにデザイン出来る。
+      Singletonのデザインパターンの実装をする時によくやる技
+      newすると、コンパイルレベルで怒られる。
+    '''
+  }
+  {
+    name: "SingletonSample.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      
+      public class SingletonSample
+      {
+      	private static SingletonSample instance = new SingletonSample();
+      	private SingletonSample()
+      	{
+      		Debug.Log("Create SingletonSample instance.");
+      	}
+      
+      	public static SingletonSample GetInstance
+      	{
+      		get
+      		{
+      			if(instance == null)
+      			{
+      				instance = new SingletonSample();
+      			}
+      			return instance;
+      		}
+      	}
+      
+      	public int testNum = 10;
+      	public void setNum(int num)
+      	{
+      		testNum = num;
+      	}
+      }
+      
+    '''
+  }
+  {
+    name: "SingletonSampleGameObject.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      
+      public class SingletonSampleObject : MonoBehaviour {
+      	private static SingletonSampleObject mInterface;
+      	private SingletonSampleObject()
+      	{
+      		Debug.Log("Create SampleSingleton GameObject instance.");
+      	}
+      	public static SingletonSampleObject GetInstance
+      	{
+      		get
+      		{
+      			if(mInterface == null)
+      			{
+      				GameObject go = new GameObject("SingletonSample");
+      				mInterface = go.AddComponent<SingletonSampleObject>();
+      			}
+      			return mInterface;
+      		}
+      	}
+      }
+      
+    '''
+  }
+  {
+    name: "SingletonePattern.cs"
+    mode: "C#"
+    content: '''
+      // Singletonパターン
+      public sealed class SingletonClass
+      {
+          private static SingletonClass _singleInstance = new SingletonClass();
+      
+          public static SingletonClass GetInstance()
+          {
+              return _singleInstance;
+          }
+      
+          private SingletonClass()
+          {
+              //TODO: initialization
+          }
+      }
+    '''
+  }
+  {
+    name: "SingletonMonoBehaviour.cs"
+    mode: "C#"
+    content: '''
+      using UnityEngine;
+      using System.Collections;
+       
+      public class SingletonMonoBehaviour<T> 
+      : MonoBehaviour where T : SingletonMonoBehaviour<T> {
+       
+          protected static T Instance;
+          public static T instance {
+              get {
+                  if (Instance == null) {
+                      Instance = (T)FindObjectOfType (typeof(T));
+       
+                      if (Instance == null) {
+                          Debug.LogWarning (typeof(T) + " is nothing");
+                      }
+                  }
+                  return Instance;
+              }
+          }
+       
+          protected void Awake () {
+              CheckInstance();
+          }
+       
+          protected bool CheckInstance () {
+              if (Instance == null) {
+                  Instance = (T)this;
+                  return true;
+              } 
+              else if (instance == this) {
+                  return true;
+              }
+       
+              Destroy(this);
+              return false;
+          }
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T10:22:33.799Z"
+updatedAt: "2017-11-07T12:48:56.623Z"

@@ -1,0 +1,41 @@
+createdAt: "2018-03-23T07:32:00.448Z"
+updatedAt: "2018-03-23T08:25:37.559Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "Laravel_Intervention/image"
+description: "Laravel_Intervention/image"
+snippets: [
+  {
+    name: "Intervention/image.py"
+    mode: "Python"
+    content: '''
+      # インストール
+      $ composer require intervention/image
+      
+      
+      # config/app.phpの編集
+      
+      'providers' => [
+              Intervention\\Image\\ImageServiceProvider::class,    // 追加
+      ],
+      
+      'aliases' => [
+              'Image'     => Intervention\\Image\\Facades\\Image::class,    // 追加
+      ]
+      
+      # intervention/imageがあれば正常にインストールされています。
+          "intervention/image": "^2.4"
+      
+          
+          
+      # getClientOriginalNameメソッド
+      getClientOriginalNameメソッドはアップロードしたファイルのオリジナル名を取得します。
+      
+      $data['avatar']->getClientOriginalName()
+      => "kyoto-newone-01.png"
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

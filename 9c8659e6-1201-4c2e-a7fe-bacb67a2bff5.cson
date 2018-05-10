@@ -1,0 +1,22 @@
+createdAt: "2018-03-19T13:01:27.180Z"
+updatedAt: "2018-03-19T13:04:15.978Z"
+type: "SNIPPET_NOTE"
+folder: "cc1259c329b67ab436bd"
+title: "PhpArray"
+description: "PhpArray"
+snippets: [
+  {
+    name: "phpArray.py"
+    mode: "Python"
+    content: '''
+      # 配列の生成
+      $dog = ["shiba", "chiwa", "poodle"];
+      
+      # 辞書生成
+      $dog = array("height"=>180, "weight"=>70, "name"=>"Hiroki", );
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

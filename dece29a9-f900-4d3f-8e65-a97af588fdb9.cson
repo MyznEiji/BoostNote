@@ -1,0 +1,35 @@
+createdAt: "2018-03-17T15:26:14.031Z"
+updatedAt: "2018-03-19T08:44:42.913Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelResource"
+description: "LaravelResource"
+snippets: [
+  {
+    name: "laravelResource.py"
+    mode: "Python"
+    content: '''
+      # resourceメソッド
+      Laravelの基本となるコントローラーの7つのアクションで記載した7つのアクション名に
+      対してのルーティングを自動で生成するメソッドです。
+      
+      tweetsテーブルにとっての1ツイート、usersテーブルにとっての1ユーザー、つまり、
+      テーブルに保存されるレコード1つの情報のことをリソースと呼びます。
+      
+      以下の例のような記述では、bookというリソースに対して、基本となる7つのアクションを
+      リクエストするルーティングが設定されます。
+      
+      Route::resources('book', 'BooksController');
+      Route::resource('users', 'UsersController', ['only' => 'show']);
+      
+          
+      # resourceメソッドのネスト
+      resourceメソッドのネストは以下のように.(ドット)で繋ぐことで定義できます。
+      
+      Route::resource('products.reviews', 'ReviewsController');
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

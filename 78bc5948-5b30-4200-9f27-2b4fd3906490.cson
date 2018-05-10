@@ -1,0 +1,31 @@
+createdAt: "2018-04-08T11:48:41.454Z"
+updatedAt: "2018-04-08T15:39:35.140Z"
+type: "SNIPPET_NOTE"
+folder: "a6d21478f5c795467587"
+title: "JavaScriptTmpl"
+description: "JavaScriptTmpl"
+snippets: [
+  {
+    name: "Tmpl.js"
+    mode: "JavaScript"
+    content: '''
+      # テンプレート文字列
+      
+      ``(バッククォート)で文字列をくくると文字列への変数の埋め込み
+      let name = '鈴木 ';
+      let str  = `こんにちは、${name}さん。
+      今日もいい天気ですね！`;
+      
+      print(str);
+      
+      
+      # 条件演算子
+      var x = 80;
+      print((x > 70) ? '合格' : '不合格');
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,100 @@
+createdAt: "2018-03-16T08:28:39.894Z"
+updatedAt: "2018-03-23T07:20:24.799Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelController"
+description: "LaravelController"
+snippets: [
+  {
+    name: "laravelController.py"
+    mode: "Python"
+    content: '''
+      # withメソッド
+      Laravelでビュー対してデータを渡すにはwithメソッドを使います。
+      第一引数にビュー上で使う変数名、第二引数に値を指定します。
+      今回はindex.blade.php内で、コントローラーで定義した$tweet を使いたいので
+      with('tweet', $tweet) としました。
+      これによりindex.blade.php内で、プログラミングなう という文字列が設定された
+      $tweetという変数を利用することができるようになりました。
+      
+      
+      class TweetsController extends Controller
+      {
+          public function index()
+          {
+              $tweet = "プログラミングなう";
+      
+              return view('tweets.index')->with('tweet', $tweet);
+          }
+      }
+      
+      
+      
+      
+      # use
+      コントローラー上でDBからデータを取得するには、DBのテーブルに対応するモデルを読み込む
+      必要があります。今回はtweetsテーブルからデータを取得したいので、
+      Tweetクラスを読み込みます。クラスを読み込むには use を使います。
+      8行目の use App\\Tweet; は App ディレクトリの中の Tweet.php ファイルの 
+      Tweetクラスを利用できるようにするという意味になります。
+      
+      use App\\Http\\Requests;
+      use App\\Tweet;
+      
+      
+      
+      # __construct()メソッド
+      あるコントローラのすべてのアクションで実行の前に共通の処理を行いたいときがあります。
+      construct()メソッドを使用すると全てのアクションが実行される前にconstruct()メソッド内
+      に記述した内容を実行することができるようになります。
+      
+      class コントローラ名 extends Controller
+      {
+          public function __construct()
+          {
+              // 処理
+          }
+      }
+      
+      
+      
+      # View::shareメソッド
+      View::shareメソッドはViewファサードに定義されているメソッドで、
+      全てのビューで共通のデータを共有することが出来ます。以下のようにビューにデータを渡します。
+      
+      View::share('ビュー内で使う変数名', ビューに渡すデータ)
+          
+      use View;
+      
+      class RankingController extends Controller
+      {
+          public $layout = "layouts.review_site";
+      
+          public function __construct()
+          {
+              $productRanks = Product::take(5)->get();
+      
+              View::share('ranking', $productRanks);
+          }
+      }
+      
+      
+      #  parentキーワード
+      parentキーワードは親クラスを表すキーワードです。以下の例のようにparent::メソッド名と
+      することで親クラスのメソッドを呼び出すことができます。
+      
+      以下は小クラスのコンストラクタで親クラスのコンストラクタを呼び出しています。
+      
+      class ProductsController extends RankingController
+      {
+          public function __construct()
+          {
+              parent::__construct();
+          }
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

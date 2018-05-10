@@ -1,0 +1,445 @@
+createdAt: "2018-05-08T08:11:28.274Z"
+updatedAt: "2018-05-09T07:41:23.614Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryEffect"
+description: "JqueryEffect"
+snippets: [
+  {
+    name: "show_hide.js"
+    mode: "JavaScript"
+    content: '''
+      # .show()
+      要素を表示する
+      $(function() {
+        // btnShow クリック時の処理
+      	$("#btnShow").click(function() {
+      		$("div").show();
+      	});
+      });
+      
+      
+      
+      # .hide()
+      要素を隠す
+      $(function() {
+      	// btnHide クリック時の処理
+      	$("#btnHide").click(function() {
+      		$("div").hide();
+      	});
+      });
+      
+      
+      
+      # .toggle()
+      要素の表示隠蔽を切り替える
+      $(function() {
+        // btnToggle クリック時の処理
+      	$("#btnToggle").click(function() {
+      		$("div").toggle();
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "duration.js"
+    mode: "JavaScript"
+    content: '''
+      # エフェクト系のメソッドには任意に設定できる引数がある　
+      .hide([Duration][,Easing][,Callback]);
+      
+      
+      # Duration
+      継続時間
+      ""400msec(default)
+      "fast"200msec
+      "slow"600msec
+      
+      $(function() {
+      	// btnDuration クリック時の処理
+      	$("#btnDuration").click(function() {
+      		$("div").hide("");	// (default) 400msec
+      		$("div").hide("fast");	// "fast" 200msec
+      		$("div").hide("slow");	// "slow" 600msec
+      		$("div").hide(1000);	// msec指定
+      	});
+      });
+      　
+      
+      
+      
+      # Easing 
+      緩和
+      linear
+      swing 
+      がデフォルトで用意されていて、そのほかはプラグインで増やせる
+      jQuery UI
+      
+      $(function() {
+      	// btnEasing クリック時の処理
+      	$("#btnEasing").click(function() {
+      		$("div").hide(2000, "easeInElastic");
+      	});
+      });
+      　
+      
+      
+      # Callback
+      処理終了時に実行する関数
+      
+      
+      $(function() {
+      	// btnCallback クリック時の処理
+      	$("#btnCallback").click(function() {
+      		$("div").hide(1000, function() {
+      			console.log("end");
+      		});
+      	});
+      });
+      　
+    '''
+  }
+  {
+    name: "fade.js"
+    mode: "JavaScript"
+    content: '''
+      # .fadeIn()
+      フェードインする
+      $(function() {
+      	// btnFadeIn クリック時の処理
+      	$("#btnFadeIn").click(function() {
+      		$("div").fadeIn();
+      	});
+      });
+      
+      
+      
+      # .fadeOut()
+      フェードアウトする
+      $(function() {
+      	// btnFadeOut クリック時の処理
+      	$("#btnFadeOut").click(function() {
+      		$("div").fadeOut();
+      	});
+      });
+      
+      
+      # .fadeTo()
+      opacityを変化させる
+      $(function() {
+      	// btnFadeTo クリック時の処理
+      	$("#btnFadeTo").click(function() {
+      		$("div").fadeTo("slow", 0.5);
+      	});
+      });
+      
+      
+      # .fadeToggle()
+      fadeinとfadeoutを切り替える
+      $(function() {
+      	// btnFadeToggle クリック時の処理
+      	$("#btnFadeToggle").click(function() {
+      		$("div").fadeToggle();
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "slide.js"
+    mode: "JavaScript"
+    content: '''
+      # .slideDown()
+      要素がスライドダウンして現れる
+      
+      
+      # .slideUp()
+      要素がスライドアップして隠れる
+      
+      
+      
+      # .slideToggle()
+      slideUpとslideDownを交互に実行する
+    '''
+  }
+  {
+    name: "animate.js"
+    mode: "JavaScript"
+    content: '''
+      # .animate()
+      単純な数字を指定するcssの設定のみ
+      複雑なものを変化させるにはプラグインが必要　
+      
+      $(function() {
+      	// btnAnm1 クリック時の処理
+      	$("#btnAnm1").click(function() {
+      		$("div").animate({width: "150px", height: "200px"});
+      	});
+      
+      	// btnAnm2 クリック時の処理
+      	$("#btnAnm2").click(function() {
+      		$("div").animate(
+      			{width: "150px", height: "200px"},
+      			2000, "easeInElastic", function() {
+      				console.log("end");
+      			}
+      		);
+      	});
+      
+      	// btnAnm3 クリック時の処理
+      	$("#btnAnm3").click(function() {
+      		$("div").animate(
+      			{width: "150px", height: "200px"},
+      			{duration: 2000, easing: "easeInElastic",
+      			 complete: function() {
+      				console.log("end");
+      			}}
+      		);
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "jquery UI.js"
+    mode: "JavaScript"
+    content: '''
+      # jQuery UIを用意する
+      
+      <!-- jQuery UI -->
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    '''
+  }
+  {
+    name: "chain.js"
+    mode: "JavaScript"
+    content: '''
+      #　メソッドチェーン
+      メソッドを繋げることによって複数のメソッドを繋げることができる
+      $(function() {
+      	// btn クリック時の処理
+      	$("#btn").click(function() {
+      		$("div").fadeOut().fadeIn().slideUp().slideDown();
+      	});
+      });
+      
+      
+      
+      # .delay()
+      メソッドを遅延させる
+      $(function() {
+      	// btn クリック時の処理
+      	$("#btn").click(function() {
+      		$("div").slideUp().delay(1000).slideDown();
+      	});
+      });
+      
+      
+      
+      # .finish()
+      現実実行中のアニメーションと全てのアニメーションキューを停止し、
+      cssプロパティは目的の値にセット
+      
+      $(function() {
+      	// btnAnm クリック時の処理
+        //ポジションを移動させるには要素にposition属性の設定をする
+      	$("#btnAnm").click(function() {
+      		$("div")
+      		.animate({left: "100px"}, 2000)
+      		.animate({top:  "100px"}, 500)
+      		.animate({left: 0}, 500)
+      		.animate({top:  0}, 500, function() {
+      			console.log("end");
+      		});
+      	});
+      
+      	// btnFinish クリック時の処理
+      	$("#btnFinish").click(function() {
+      		$("div").finish();
+      	});
+      });
+      
+      
+      
+      
+      # .stop([clearQueue][,jumpToEnd])
+      現在進行中のアニメーションを中止する
+      キューアニメーションを削除するか現アニメーションを即座に完了するか
+      $(function() {
+      	// btnAnm クリック時の処理
+        //ポジションを移動させるには要素にposition属性の設定をする
+      	$("#btnAnm").click(function() {
+      		$("div")
+      		.animate({left: "100px"}, 2000)
+      		.animate({top:  "100px"}, 500)
+      		.animate({left: 0}, 500)
+      		.animate({top:  0}, 500, function() {
+      			console.log("end");
+      		});
+      	});
+      
+      	// btnStop1 クリック時の処理
+      	$("#btnStop1").click(function() {
+      		$("div").stop();
+      	});
+      
+      	// btnStop2 クリック時の処理
+      	$("#btnStop2").click(function() {
+      		$("div").stop(true, true);
+      	});
+      });
+      
+      
+      
+      # .queue()
+      $(function() {
+      	// btnQ1 クリック時の処理
+      	$("#btnQ1").click(function() {
+      		$("div").slideUp().slideDown().slideUp();
+      
+      		// キューの数 エフェクトの数
+      		console.log(
+      			$("div").queue().length,
+            //fxはデフォルトの名前なので省略可能
+      			$("div").queue("fx").length
+      		);
+      	});
+      });
+      
+      
+      
+      
+      # .dequeue()
+      
+      $(function() {
+      	// btnQ1 クリック時の処理
+      	$("#btnQ1").click(function() {
+      		$("div").slideUp().slideDown().slideUp();
+      
+      	// btnQ2 クリック時の処理
+      	$("#btnQ2").click(function() {
+      		$("div")
+      		.slideUp(function() {
+      			console.log("100", $(this).queue().length);
+      		})
+          //アニメーションが発生しないキューを作成できる。
+          //queueメソッドを追加した時はdequeueで次のエフェクトに移る。
+      		.queue(function() {
+      			console.log("200", $(this).queue().length);
+      			$(this).dequeue();
+      		})
+          .slideDown()
+      		.queue(function(next) {
+      			console.log("300", $(this).queue().length);
+      			next();
+      		})
+      		.slideUp(function() {
+      			console.log("400", $(this).queue().length);
+      		})
+      		.queue(function() {
+      			console.log("500", $(this).queue().length);
+      		});
+      });
+      
+      
+          
+          
+      
+      # .clearQueue()
+      
+      $(function() {
+      	// btnQ1 クリック時の処理
+      	$("#btnQ1").click(function() {
+      		$("div").slideUp().slideDown().slideUp();
+      
+      		// キューの数
+      		console.log(
+      			$("div").queue().length,
+      			$("div").queue("fx").length
+      		);
+      	});
+      
+      	// btnQ2 クリック時の処理
+      	$("#btnQ2").click(function() {
+      		$("div")
+      		.slideUp(function() {
+      			console.log("100", $(this).queue().length);
+      		})
+      		.queue(function() {
+      			console.log("200", $(this).queue().length);
+      			$(this).dequeue();
+      		})
+      		.slideDown()
+      		.queue(function(next) {
+      			console.log("300", $(this).queue().length);
+      			next();
+      		})
+      		.slideUp(function() {
+      			console.log("400", $(this).queue().length);
+      		})
+      		.queue(function() {
+      			console.log("500", $(this).queue().length);
+      		});
+      	});
+      
+      	// btnClearQ クリック時の処理
+      	$("#btnClearQ").click(function() {
+      		$("div").clearQueue();
+      	});
+      });
+      
+          
+          
+      # $.fx.interval
+      コマ間の時間
+      $(function() {
+      	// btn1 クリック時の処理
+      	$("#btn1").click(function() {
+      		console.log($.fx.interval);
+      
+      		$.fx.interval = 500;
+      		$("div").slideUp(2000).slideDown(2000);
+      	});
+      });
+      
+          
+          
+      # $.fx.off
+      無効
+      $(function() {
+      	// btn2 クリック時の処理
+      	$("#btn2").click(function() {
+      		console.log($.fx.off);
+      
+      		$.fx.off = true;
+      		$("div").slideUp(2000).slideDown(2000);
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "show"
+  "hide"
+  "toggle"
+  "Duration"
+  "Easing"
+  "Callback"
+  "fadeIn"
+  "fadeOut"
+  "fadeTo"
+  "fadeToggle"
+  "slideDown"
+  "slideUp"
+  "slideToggle"
+  "animate"
+  "jqueryUI"
+  "delay"
+  "finish"
+  "stop"
+]
+isStarred: false
+isTrashed: false

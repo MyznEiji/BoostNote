@@ -1,0 +1,22 @@
+createdAt: "2018-03-15T13:51:08.611Z"
+updatedAt: "2018-03-15T13:51:48.224Z"
+type: "SNIPPET_NOTE"
+folder: "3931f2cf92b761b0fca3"
+title: "How to OptiPNG"
+description: "How to OptiPNG"
+snippets: [
+  {
+    name: "optiPNG.py"
+    mode: "Python"
+    content: '''
+      OptiPNG Home PageはPNG画像の最適化を行うツールです。
+      
+      # ロスなしで圧縮する手順です。
+      optipng ファイル名
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

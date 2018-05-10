@@ -1,0 +1,581 @@
+createdAt: "2018-04-02T08:29:38.416Z"
+updatedAt: "2018-04-07T10:39:45.471Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonDataBase"
+description: "PythonDataBase"
+snippets: [
+  {
+    name: "SQLite.py"
+    mode: "Python"
+    content: '''
+      # import sqlite3
+      
+      # sqlite3.connect('test_sqlite.db')
+        conn = sqlite3.connect('test_sqlite.db')
+        DBを作成する
+      
+        "sqlite3.connect(':memory')"
+        とするといちいちデータベースをクリエイトしないまま検証ができる
+        
+        
+        
+      # conn.close()
+        終了するときに使う
+      
+      
+      # conn.cursor()
+        データベースをいじるときに使うメソッド
+        curs = conn.cursor()
+      
+        "curs.close()"
+        cursor()を使ったらclose()で閉じる
+      
+      
+      # conn.execute('CREATE TABLE persons(id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING)')
+        データベースを作成
+        "PRIMARY KEY AUTOINCREMENT"
+        今後データが増えてったときに自動でIDを生成する
+      
+        'INSERT INTO'
+        データの追加
+        curs.execute('INSERT INTO persons(name) values("Mike")')
+      
+        
+        'UPDATE'
+        書き換えて上書きをする
+        curs.execute('UPDATE persons set name = "Michel" WHERE name = "Mike" ')
+      
+      
+        'DELETE'
+        データを削除する
+        curs.execute('DELETE FROM persons WHERE name = "Michel" ')
+      
+        
+      # スクリプト内でデータの内容を見るとき
+        curs.execute('select * from persons')
+        print(curs.fetchall())
+      
+      
+      
+        
+    '''
+  }
+  {
+    name: "Mysql.py"
+    mode: "Python"
+    content: '''
+      import mysql.connector
+      
+      
+      # mysql.connector.connect(host='127.0.0.1', user='root', password="")
+      ローカルのコネクションオブジェクトを作成
+      conn = mysql.connector.connect(host='127.0.0.1', user='root', password="")
+      
+      
+        "既存のデータベースにコネクト"
+        mysql.connector.connect(
+          host='127.0.0.1',
+          user="root",
+          password="",
+          database='udemy_python_test_mysql_database')
+      
+      
+      
+      
+      # conn.cursor()
+      データベースを操作する時のメソッド 
+      cursor = conn.cursor()
+      
+      
+      # cursor.execute(
+          'CREATE DATABASE udemy_python_test_mysql_database')
+        
+        
+        "PRIMARY KEY AUTOINCREMENT"
+        今後データが増えてったときに自動でIDを生成する
+      
+        'INSERT INTO'
+        データの追加
+        curors.execute('INSERT INTO persons(name) values("Mike")')
+      
+        
+        'UPDATE'
+        書き換えて上書きをする
+        curors.execute('UPDATE persons set name = "Michel" WHERE name = "Mike" ')
+      
+      
+        'DELETE'
+        データを削除する
+        curors.execute('DELETE FROM persons WHERE name = "Michel" ')
+      
+        
+      # conn.close()
+        終了するときに使う
+      
+    '''
+  }
+  {
+    name: "SQLAlchemy.py"
+    mode: "Python"
+    content: '''
+      リネーショナルDBにアクセスするためのwrapperみたいなもの
+      オブジェクト指向的にDBにアクセスできる
+      
+      
+      import sqlalchemy
+      import sqlalchemy.ext.declarative
+      import sqlalchemy.orm
+      
+      
+      # sqlalchemy.create_engine('sqlite:///:memory:', echo=True) 
+        エンジンを定義
+        sqliteのメモリーを使用する
+        engine = sqlalchemy.create_engine('sqlite:///:memory:')
+      
+        "echo=True"
+        どのようにsqlを発行したか見ることができる
+        
+        "'mysql+pymysql:///udemy_python_test_mysql_database2', echo=True"
+        mysqlにアクセスする
+        
+        "'sqlite:///test_sqlite2', echo=True"
+        sqlliteのファイルに書き込む　
+      
+      
+      # sqlalchemy.ext.declarative.declarative_base()
+      baseのクラスを作成する
+      そのあとに作ったクラスを継承させたクラスを作成する
+      そのクラスの中にどういったテーブルにするかを記述していく 
+      
+      Base = sqlalchemy.ext.declarative.declarative_base()
+      
+      class Person(Base):
+          __tablename__ = 'persons'
+          id = sqlalchemy.Column(
+              sqlalchemy.Integer, primary_key=True, autoincrement=True
+          )
+          name = sqlalchemy.Column(sqlalchemy.String(14))
+      
+          
+          
+          
+      # Base.metadata.create_all(engine)
+      engineを使ってBaseのクラスに定義したテーブルのデータを書き込む
+      
+      
+      
+      # sqlalchemy.orm.sessionmaker(bind=engine)
+      データベースにアクセスするためにセッションを作成する
+      Session = sqlalchemy.orm.sessionmaker(bind=engine)
+      session = Session()
+      
+      
+      # 新しいデータを書き込む
+      データのインスタンスを作ってaddする
+      コミットで更新する
+      p1 = Person(name="Mike")
+      session.add(p1)
+      session.commit()
+      
+      
+      #テーブルのデータを読み込む
+      persons = session.query(Person).all()
+      persons = session.query(Person).all()
+      for person in persons:
+          print(person.idm person.name)
+      
+      # テーブルのデータを更新する
+      Mikeというnameの最初に取得したデータのnameをMichelに変更する
+      p4 = session.query(Person).filter_by(name='Mike').first()
+      p4.name = 'Michel'
+      session.add(p4)
+      session.commit()
+      
+      
+      # データをデリートする
+      p5 = session.query(Person).filter_by(name='Nancy').first()
+      session.delete(p5)
+      session.commit()
+      
+      
+      
+    '''
+  }
+  {
+    name: "dbm.py"
+    mode: "Python"
+    content: '''
+      # 標準のデータベースライブラリ　素早く読み込んだり書き込みたいときに使う
+      
+      import dbm
+      
+      # データを追加する。integer型は追加できない
+      with dbm.open('cache', "c") as db:
+          db['key1'] = 'value1'
+          db['key2'] = 'value2'
+          db['key3'] = 1
+          
+          
+      # データを読み込む
+      with dbm.open('cache', 'r') as db:
+          print(db.get('key1'))
+          
+    '''
+  }
+  {
+    name: "memcached.py"
+    mode: "Python"
+    content: '''
+      # データとオブジェクトをメモリー内にキャッシュさせて、データベースからの呼び出しの回数を
+      # 減少させてデータベースを用いたウェブサイトによく用いられる
+      import memcache
+      
+      
+      # ターミナルでmemcached -vvで
+      sqlの発行を可視化できる
+      
+      
+      
+      #memcache.Client(['127.0.0.1:11211'])
+        IPにアクセスする
+        db = memcache.Client(['127.0.0.1:11211'])
+      
+      
+      # db.set('web_page', 'value1', time=3)
+        データを入れる
+        "timeはキャッシュの継続時間"
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      import sqlite3
+      import time
+      
+      import memcache
+      
+      db = memcache.Client(['127.0.0.1:11211'])
+      db.set('web_page', 'value1', time=3)
+      time.sleep(1)
+      print(db.get('web_page'))
+      
+      
+      conn = sqlite3.connect('test_sqlite3.db')
+      curs = conn.cursor()
+      curs.execute(
+          'CREATE TABLE persons('
+          'empty_id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING)')
+      
+      curs.execute('INSERT INTO persons(name) values("Mike")')
+      conn.commit()
+      # conn.close()
+      
+      
+      def get_employ_id(name):
+          """
+          社員の名前を元に社員のIDを取得する
+          """
+      
+          employ_id = db.get(name)
+          if employ_id:
+              return employ_id
+          curs.execute(
+              'SELECT * FROM persons WHERE name = "{}"'.format(name)
+          )
+      
+          person = curs.fetchone()
+          if not person:
+              raise Exception('No employ')
+      
+          employ_id, name= person
+          db.set(name, employ_id, time=60)
+          return employ_id
+      
+      
+      print(get_employ_id("Mike"))
+      # 60秒経つとキャッシュが消える
+      
+        
+        
+        
+    '''
+  }
+  {
+    name: "pickle.py"
+    mode: "Python"
+    content: '''
+      Pythonのデータをそのままの形で保存する
+      
+      import pickle
+      
+      
+      class T():
+          def __init__(self, name):
+              self.name = name
+      
+      
+      data = {
+          'a': [1, 2, 3],
+          'b': ('test', 'test'),
+          'c': {'key': 'value'},
+          'd': T('test')
+      }
+      
+      
+      
+      # データを書き込む
+      with open('data.pickle', 'wb') as f:
+          pickle.dump(data, f)
+      
+          
+      # データを読み込む
+      with open('data.pickle', 'rb') as f:
+          data_loaded = pickle.load(f)
+          print(type(data_loaded['a']))
+          print(type(data_loaded['b']))
+          print(type(data_loaded['c']))
+          print(type(data_loaded['d']))
+      
+    '''
+  }
+  {
+    name: "mongoDB.py"
+    mode: "Python"
+    content: '''
+      # ドキュメント指向データベース
+      # json形式で記述してデータベースに保存できる
+      # だからnon SQL
+      
+      # ログとかを大量に入れて読み取りで使う
+      
+      #json形式のデータを大量に入れる際に使う
+      
+      
+      # サーバーを立ち上げる
+      mongod --dbpath ./data/db/
+      mongod --dbpath <ディレクトリ>
+      サーバーを立ち上げるとディレクトリやファイルが作成される
+      
+      
+      
+      from pymongo import MongoClient
+      import pymongo
+      
+      
+      # client = MongoClient('mongodb://localhost:27017/')
+      クライアントを作成する
+      
+      
+      # db = client['test_database']
+      テーブルみたいなのを作成する
+      
+      
+      # このようにjsonデータでデータを入れていく
+      stack1 =\\
+      {
+          'name': 'customer1',
+          'pip': ['python', 'java', 'go'],
+          'info': {'os': 'mac'},
+          'data': datetime.datetime.utcnow()
+      }
+      
+      
+      
+      
+      
+      # db_stacks = db.stacks
+      テーブルを作っているイメージ
+      
+      
+      # stack_id = db_stacks.insert_one(stack1).inserted_id
+      stack1のデータを入れて、idを返すようにする
+      
+      
+      # db_stacks.find_one({'_id': stack_id})
+      db_stacksの中に何が入っているかを検索する
+      idで検索する場合は_idのkeyを渡す
+      
+      "他の検索の仕方"
+      from bson.objectid import ObjectId
+      print(db_stacks.find_one({'_id': ObjectId(str_stack_id)}))
+      
+      print(db_stacks.find_one({'name' : 'customer1'}))
+      
+      
+      
+      # 新たにdb_stacksにデータを入れた場合はにはfor文で表示する
+      for stack in db_stacks.find():
+          print(stack)
+      
+          
+      
+      
+      
+      # db_stacks.find_one_and_update(
+          {'name': 'customer1'},
+          {'$set': {'name': 'YYY'}})
+      
+      nameを書き換える時。$setで書き換えるカラムを選択してあげる
+      
+      
+      
+      # db_stacks.delete_one({'name' : 'YYY'})
+      nameがYYYのものを削除する
+      
+      
+      
+      
+    '''
+  }
+  {
+    name: "hBase.py"
+    mode: "Python"
+    content: '''
+      # start-hbase.sh
+      hBaseを起動させる
+      
+      
+      #$ hbase shell
+      シェルを使ってデータ入れたりテーブルを作れる
+      
+      #$ create 'sns', 'blog'
+      snsというテーブルにブログというカラムを作る
+      
+      #$ put 'sns', 'user1', 'blog:bitcoin', 'blog1'
+      snsのテーブルにuser1というレコードのblog:bitcoinというカラムにblog1を追加する
+        
+        
+      #$ scan 'sns'
+      snsのテーブルを見る
+      "scan 'sns', {COLUMNS => ['blog::soccer']}"
+      指定したカラムに値が入ってるレコードのみ取得
+      
+      #$get 'sns', 'user1'
+      snsテーブルのuser1に関するデータを取得する
+      
+      
+      
+      #$ disable 'sns'
+      データベースのアクセスを終了する
+      
+      
+      #$ drop 'sns'
+      snsテーブルを削除する
+      
+      
+      #$  stop-hbase.sh
+      hbaseの起動をストップする
+      
+      
+      
+      """
+      
+      python でhBaseを扱う場合
+      
+      """
+      
+      # $ hbase thrift start
+      外部からhBaseを扱う場合にターミナルで起動させる
+      
+      
+      import happybase
+      
+      # connection = happybase.Connection('localhost')
+      # connection.open()
+      
+      hBaseのコネクションをオープンする
+      
+      
+      # connection.create_table(b 'sns', {'blog': dict()})
+      バイトデータでsnsというテーブルを作成する
+      
+      
+      # table = connection.table(b'sns')
+      テーブルにコネクションする
+      
+      
+      """ データを追加する
+      table.put(
+          b'suer1', {
+              b'blog:bitcoin': b'user1 about bitcoin',
+              b'blog:soccer' : b'user1 about soccer',
+          }
+      )
+      """
+      
+      
+      # print(list(table.scan()))
+      テーブルのデータを取得する
+      
+      
+      # print(list(table.scan(row_prefix=b'user1')))
+      任意のレコードを取得する
+      
+      
+      # print(list(table.scan(columns=[b'blog:soccer'])))
+      任意のカラムのデータを取得する
+      
+      
+      
+      # connection.disable_table(b'sns')
+      コネクションを終了する
+      
+      
+      # connection.delete_table(b'sns')
+      テーブルを削除する
+    '''
+  }
+  {
+    name: "neo4j.py"
+    mode: "Python"
+    content: '''
+      # create(jun:Person {name:"Jun"})
+      # return jun
+      
+      junはクラスオブジェクトの変数名.
+      PersonクラスのnameはJunというふうに引数を渡している
+      return でjunという変数を返している
+      
+      
+      
+      # Match (jun:Person{name:"Jun"})
+      # create(jun)-[like:LIKE]->(python:Language {name:"Python"})
+      # return jun, like, python
+      
+      Match でPersonクラスのnameがJunのオブジェクトを持ってきてjunに代入している
+      Languageクラスのnameがpythonのオブジェクトをpythonに代入して,junとlikeで繋がっている
+      
+      
+      """
+      Pythonでアクセスする
+      """
+      
+      
+    '''
+  }
+]
+tags: [
+  "SQLite"
+  "Database"
+  "connect()"
+  "cursor()"
+  "execute()"
+  "PRIMARY_KEY_AUTOINCREMENT"
+  "INSERT_INTO"
+  "UPDATE"
+  "DELETE"
+  "fetchall()"
+  "pickle"
+  "memcached"
+  "sqlalchemy"
+  "mongoDB"
+  "hBase"
+]
+isStarred: false
+isTrashed: false

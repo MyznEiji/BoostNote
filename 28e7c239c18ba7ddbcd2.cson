@@ -1,0 +1,29 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Camera"
+description: "Camera"
+snippets: [
+  {
+    name: "CameraMethod.cs"
+    mode: "C#"
+    content: '''
+      //Camera.fieldOfViewメソッド
+      カメラの視野をfloat型で指定することができます。値が小さいほど視野が狭く（ズーム）になります。
+      onSnipingがfalseの時（通常モード時）には25、onSnipingがtrueの時（スナイパモード時）には
+      60を代入することで、ズームの切り替えを行なっています。
+      
+      
+      //ゲームビューに別のカメラの窓を追加する
+      MainCameraとCameraを用意して、
+      MainCamera : Viewport Rect x 0 ,y 0, w 1, h 1 
+                    Dipth -1
+      Camera     : Viewport Rect x 0.1, y 0,6, w 0.3, h 0.3
+                    Dipth 0
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-18T12:42:04.999Z"
+updatedAt: "2017-11-12T05:26:30.988Z"

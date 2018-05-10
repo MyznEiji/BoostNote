@@ -1,0 +1,49 @@
+createdAt: "2018-04-07T12:44:09.045Z"
+updatedAt: "2018-04-09T09:16:40.819Z"
+type: "SNIPPET_NOTE"
+folder: "a6d21478f5c795467587"
+title: "JavaScriptHtml"
+description: "JavaScriptHtml"
+snippets: [
+  {
+    name: "html.js"
+    mode: "JavaScript"
+    content: '''
+      # <script type="text/javascript"></script>
+        HTML内でjavascriptを実行する
+        type属性は省略できる
+        
+        "要素を記述する場所"
+        1.body要素の配下
+        2.body要素の配下(閉じタグの直前)
+        3.head要素の配下
+      
+      
+      # 外部のスクリプトをインポートする
+        <script type="text/javascript" src="path" [charset="encoding"]></script>
+        path : スクリプトファイルへのパス
+        encoding : スクリプトファイルで利用している文字コード
+        
+        "コードを再利用しやすい"
+        "htmlの見通しがよくなる"
+      
+      
+      
+      # <noscript>
+        Javascriptが利用できない場合表示する
+        JavaScriptを有効にした上でアクセスしてほしい旨か、
+        代替するページのリンクを表示するにも利用できる.
+        
+        "JavaScript擬似プロトコル"
+        <a href="JavaScript:window.alert('Hello world');">ダイアログを表示</a>
+        でクリックした時にjavascriptを適用できる
+        
+    '''
+  }
+]
+tags: [
+  "script"
+  "noscript"
+]
+isStarred: false
+isTrashed: false

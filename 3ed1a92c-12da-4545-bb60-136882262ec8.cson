@@ -1,0 +1,384 @@
+createdAt: "2018-05-10T07:44:59.948Z"
+updatedAt: "2018-05-10T08:48:34.753Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryDeferred"
+description: "JqueryDeferred"
+snippets: [
+  {
+    name: "Deferred.js"
+    mode: "JavaScript"
+    content: '''
+      # なぜDeferredが必要なのか
+      Jqueryは非同期の処理が多くコールバックを多用することになる
+      
+      file1を取得
+      ↓
+      file2を取得
+      ↓
+      file3を取得
+      
+      file1を取得,function(){
+        file2を取得,function(){
+          file3を取得,function(){}
+        }
+      }
+      とネストが深くなっていくので、そのコールバック地獄を避けるためにDeferredを使う
+      メソッドチェーンを使って非同期の処理を行う
+      
+      
+      
+      # deferred
+      var d = $.Deferred();
+      
+      "d.promise();"   処理を予約 promiseオブジェクト
+        あとで処理をすると約束をして実際に作業の完了を待たずに次の処理をメソッドチェーンで
+        記述していく
+        
+        (function(){
+          var d = $.Deferred()
+          return d.promise()
+        })()
+        .done(function(){})
+              
+      
+      "d.resolve();"   処理を解決　実行、成功の場合promiseに続くdoneメソッドが処理される
+      
+        (function(){
+          var d = $.Deferred()
+          処理待ち→d.resolve(); //このメソッドが実行されたタイミングでdoneメソッドが実行
+          return d.promise()
+        })()
+        .done(function(){})
+              
+      
+      "d.reject();"    処理を棄却 棄却、失敗の場合 promiseに続くfail()全て実行される
+      
+        (function(){
+          var d = $.Deferred()
+          処理待ち→d.reject(); //このメソッドが実行されたタイミングでfailメソッドが実行
+          return d.promise()
+        })()
+        .done(function(){
+        })
+        .fail(function(){})
+      
+      
+      
+      #.done()
+      解決時の処理
+      
+      
+      
+      #.fail()
+      棄却時の処理
+      
+      
+      
+      # .always()
+      棄却、解決時どっちも実行されるメソッド
+      
+      
+      # setTimeout(function(){処理}, 500)；
+      0.5秒待った後に関数が実行される
+      
+      
+      
+      
+      $(function() {
+      	// 待機用関数
+      	var wait = function() {
+      		var d = $.Deferred();
+      
+      		// 500msec 待つ
+      		setTimeout(function() {
+      			d.resolve();
+      		}, 500);
+      
+      		return d.promise();
+      	};
+      
+      	// ajax
+      	$("#btnAjax").click(function() {
+      		// text1.txt を読み込み
+      		$.ajax({url: "./text1.txt"})
+      		.then(function(data) {
+      			$("<div>").text(data).appendTo("#target");
+      		})
+      		.then(wait)
+      		.then(function() {
+      			// text2.txt を読み込み
+      			return $.ajax({url: "./text2.txt"});
+      		})
+      		.then(function(data) {
+      			$("<div>").text(data).appendTo("#target");
+      		})
+      		.then(wait)
+      		.then(function() {
+      			// text3.txt を読み込み
+      			return $.ajax({url: "./text3.txt"});
+      		})
+      		.then(function(data) {
+      			$("<div>").text(data).appendTo("#target");
+      		});
+      	});
+      });
+      
+      
+      
+      
+      Promise ---resolve--done
+              |
+              ---reject---fail
+              
+              
+              
+      # 下記の場合は並列で処理をした方がいい($.when)
+        Promise ---resolve--        ---resolve--
+                |          |--then--|          |--then
+                ---reject---        ---reject---
+      
+        複数のファイルを読み込み、全て終わったら処理
+      
+      
+      
+      
+        
+      # arguments
+        ajax関数の戻り値を配列で取得できる(ajax関数の結果)
+              for (var i = 0; i < arguments.length; i++) {
+                var data = arguments[i][0]; [0]の要素が返り値になっている
+              
+      
+        "並列処理"        
+        $(function() {
+          // ajax
+          $("#btnAjax").click(function() {
+            var arr = [
+              $.ajax({url: "./text1.txt"}),
+              $.ajax({url: "./text2.txt"}),
+              $.ajax({url: "./text3.txt"})
+            ];
+      
+            $.when.apply($, arr)
+            .done(function() {
+              // 引数を1つずつ取り出し、順番は保証されている
+              for (var i = 0; i < arguments.length; i++) {
+                var data = arguments[i][0];
+      
+                // 時間差で処理するので、値をfunctionでローカル化
+                // して保持可能にする
+                (function(i, data) {
+                  setTimeout(function() {
+                    // 1つずつ時間差で表示
+                    $("<div>").text(data).appendTo("#target");
+                  }, i * 500);
+                })(i, data);
+              }
+            });
+          });
+        });
+      　
+                
+                
+    '''
+  }
+  {
+    name: "basic.js"
+    mode: "JavaScript"
+    content: '''
+      $(function() {
+      	// Deferred を利用した非同期の関数
+      	var fnc = function(type) {
+      		var d = $.Deferred();
+      
+      		setTimeout(function() {
+      			console.log("#" + type);
+      			if (type == "resolve") d.resolve("o");
+      			if (type == "reject")  d.reject("x");
+      		}, 1000);
+      
+      		console.log("#promise");
+      		return d.promise();
+      	};
+      
+      	// btn クリック時の処理
+      	$("#btn").click(function() {
+      		// resolve 時に全ての done を処理
+      		// reject  時に全ての fail を処理
+      		// どちらでも、全ての always を処理
+      		fnc("reject")
+      		.done(  function(r) {console.log(r, "done1"); return "oo"})
+      		.fail(  function(r) {console.log(r, "fail1")})
+      		.always(function(r) {console.log(r, "always1")})
+      		.done(  function(r) {console.log(r, "done2")})
+      		.fail(  function(r) {console.log(r, "fail2")})
+      		.always(function(r) {console.log(r, "always2")});
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "then.js"
+    mode: "JavaScript"
+    content: '''
+      
+      #  .then()
+      処理を直列に繋げることができる
+      解決、棄却時の処理、さらに処理を連結、メソッドを連結して処理を行うことができる
+      
+      第一引数 : resolveの場合の処理
+      第二引数 : rejectの場合の処理
+      
+      promiseオブジェクトをreturnする
+      Done,fail,alwaysのメソッドが一旦終了して次のpromiseの処理が始まる
+      
+      $(function() {
+      	// Deferred を利用した非同期の関数
+      	var fnc = function(type) {
+      		var d = $.Deferred();
+      
+      		setTimeout(function() {
+      			console.log("#" + type);
+      			if (type == "resolve") d.resolve("o");
+      			if (type == "reject")  d.reject("x");
+      		}, 1000);
+      
+      		console.log("#promise");
+      		return d.promise();
+      	};
+      
+      	// btn クリック時の処理
+      	$("#btn").click(function() {
+      		fnc("resolve")
+      		.done(  function(r) {console.log(r, "done1")})
+      		.fail(  function(r) {console.log(r, "fail1")})
+      		.always(function(r) {console.log(r, "always1")})
+      		.then(
+      			function(r) {console.log(r, "--done--"); return fnc("reject")},
+      		 	function(r) {console.log(r, "--fail--")}
+      		)
+      		.done(  function(r) {console.log(r, "done2")})
+      		.fail(  function(r) {console.log(r, "fail2")})
+      		.always(function(r) {console.log(r, "always2")})
+      		.then(
+      			function(r) {console.log(r, "--done--")},
+      		 	function(r) {console.log(r, "--fail--")}
+      		);
+      	});
+      });
+      
+      
+    '''
+  }
+  {
+    name: "when.js"
+    mode: "JavaScript"
+    content: '''
+      # $.when()
+      P = Promiseを戻す関数
+      ファイルなどを読み込むのは並列処理のほうがいいので有効
+      
+      $.when(P1, P2, P3)
+      .done(function(){
+        
+      })
+      whenの引数のpromiseオブジェクトが全て終わったらdoneメソッドが呼ばれる
+      
+      プロミスを戻す複数の処理を引数に取る
+      全ての処理が解決or棄却
+      その後done,failメソッドが実行される
+      
+      $.when(f, f2, ...)
+            .done(function()
+            {
+                全ての処理が解決した時に処理する
+            });
+      
+        "引数の数が未定の場合は"
+        $.when.apply($, 配列) 
+        引数の数が未定の時の処理
+      
+        
+        
+        
+      $(function() {
+      	// Deferred を利用した非同期の関数
+      	var fnc = function(msec) {
+      		var d = $.Deferred();
+      
+      		setTimeout(function() {
+      			console.log("#resolve" + msec);
+      			d.resolve("wait" + msec);
+      		}, msec);
+      
+      		console.log("#promise" + msec);
+      		return d.promise();
+      	};
+      
+      	// btn1 クリック時の処理
+      	$("#btn1").click(function() {
+      		$.when(fnc(1000), fnc(2000), fnc(3000))
+      		.done(function(r1, r2, r3) {
+      			console.log(r1, r2, r3);
+      			console.log(arguments);
+      		})
+      	});
+      
+      	// btn2 クリック時の処理
+      	$("#btn2").click(function() {
+      		var fncs = [fnc(1000), fnc(2000), fnc(3000)];
+      		$.when.apply($, fncs)
+      		.done(function() {
+      			console.log(arguments);
+      		})
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "ajaxAndDeferrd.js"
+    mode: "JavaScript"
+    content: '''
+      $(function() {
+      	var url = "http://api.flickr.com/services/feeds/"
+      			+ "photos_public.gne?jsoncallback=?"
+      	var data1 = {tags: "cat", tagmode: "any", format: "json"};
+      	var data2 = {tags: "dog", tagmode: "any", format: "json"};
+      
+      	// btn クリック時の処理
+      	$("#btn").click(function() {
+      		$.when(
+      			$.getJSON(url, data1),
+      			$.getJSON(url, data2)
+      		)
+      		.done(function() {
+      			$.each(arguments, function(i, arg) {
+      				$.each(arg[0].items, function(i, itm) {
+      					$("<img>").attr("src", itm.media.m).appendTo("body");
+      				});
+      			});
+      		})
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "deferred"
+  "promise"
+  "resolve"
+  "reject"
+  "done"
+  "fail"
+  "then"
+  "always"
+  "setTimeout"
+  "when"
+  "arguments"
+]
+isStarred: false
+isTrashed: false

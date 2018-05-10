@@ -1,0 +1,309 @@
+createdAt: "2018-05-08T05:11:17.530Z"
+updatedAt: "2018-05-08T08:11:49.343Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryManipulation"
+description: "JqueryManipulation"
+snippets: [
+  {
+    name: "append_prepend.js"
+    mode: "JavaScript"
+    content: '''
+      # .append()
+      末尾に追加
+      $(function(){
+      	// btnAppend クリック時の処理
+      	$("#btnAppend").click(function() {
+      		var li = $("<li>").text("末尾に追加");
+      		$("ul").append(li);
+      	});  
+      });
+      
+      
+      
+      # .prepend()
+      先頭に追加
+      $(function(){
+      	// btnPrepend クリック時の処理
+      	$("#btnPrepend").click(function() {
+      		var li = $("<li>").text("先頭に追加");
+      		$("ul").prepend(li);
+      	});  
+      });
+      
+      "functionで要素を追加もできる"
+      $(function(){
+      	// btnFnc クリック時の処理
+      	$("#btnFnc").click(function() {
+      		$("li").prepend(function(i) {
+      			return "<b>" + i + "</b> ";
+      		});
+      	});  
+      });
+      
+      
+      
+      # .appendTo()
+      末尾に追加
+      $(function(){
+      	// btnAppendTo クリック時の処理
+      	$("#btnAppendTo").click(function() {
+      		$("<li>").text("末尾に追加").appendTo("ul");
+      	});  
+      });
+      
+      
+      # .prependTo()
+      先頭に追加
+      $(function(){
+      	// btnPrependTo クリック時の処理
+      	$("#btnPrependTo").click(function() {
+      		$("<li>").text("先頭に追加").prependTo("ul");
+      	});  
+      });
+      
+      
+      
+    '''
+  }
+  {
+    name: "html.text.js"
+    mode: "JavaScript"
+    content: '''
+      # .html()
+      html要素を追加する
+      $(function() {
+      	// btnHtml クリック時の処理
+      	$("#btnHtml").click(function() {
+      		console.log($("body").html());
+      		$("#trgt").html("<b>text</b>");
+      	});
+      });
+      
+      
+      
+      # .text()
+      文字列を追加する
+      $(function() {
+      	// btnText クリック時の処理
+      	$("#btnText").click(function() {
+      		console.log($("body").text());
+      		$("#trgt").text("<b>text</b>");
+      	});
+      });
+      
+      
+      
+      # .empty
+      空にする
+      $(function() {
+      	// btnEmpty クリック時の処理
+      	$("#btnEmpty").click(function() {
+      		$("#trgt").empty();
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "after_before.js"
+    mode: "JavaScript"
+    content: '''
+      # .after()
+      要素をターゲットの後に追加
+      $(function() {
+      	// btnAfter クリック時の処理
+      	$("#btnAfter").click(function() {
+      		var li = $("<li>").text("後に追加");
+      		$("#trgt").after(li);
+      	});
+      });
+      
+      
+      
+      # .before()
+      要素をターゲットの前に追加
+      $(function() {
+      	// btnBefore クリック時の処理
+      	$("#btnBefore").click(function() {
+      		var li = $("<li>").text("前に追加");
+      		$("#trgt").before(li);
+      	});
+      });
+      
+      
+      
+      # .insertAfter()
+      要素をターゲットの後に追加
+      $(function() {
+      	// btnInsAfter クリック時の処理
+      	$("#btnInsAfter").click(function() {
+      		$("<li>").text("後に追加").insertAfter("#trgt");
+      	});
+      });
+      
+      
+      
+      # .insertBefore()
+      要素をターゲットの前に追加
+      $(function() {
+      	// btnInsBefore クリック時の処理
+      	$("#btnInsBefore").click(function() {
+      		$("<li>").text("前に追加").insertBefore("#trgt");
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "remove.js"
+    mode: "JavaScript"
+    content: '''
+      # .remove()
+      要素を削除する
+      $(function() {
+      	// btnRemove クリック時の処理
+      	$("#btnRemove").click(function() {
+          # イベントの情報も削除する
+      		$("li:eq(0)").remove().appendTo("ul:eq(1)");
+      	});
+      });
+      
+      
+      
+      # .detach()
+      $(function() {
+      	// btnDetach クリック時の処理
+      	// （イベントなどのjQueryの情報は保持）
+      	$("#btnDetach").click(function() {
+          # イベントの情報を保持したまま削除する
+      		$("li:eq(0)").detach().appendTo("ul:eq(1)");
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "clone.js"
+    mode: "JavaScript"
+    content: '''
+      # .clone()
+      要素を複製する
+      
+      $(function() {	
+      	// btnClone クリック時の処理
+      	$("#btnClone").click(function() {
+      		var li = $("li").clone();
+      		$("ul").append(li);
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "replace.js"
+    mode: "JavaScript"
+    content: '''
+      # .replaceWith()
+      $(function() {
+      	// btnRepWith クリック時の処理
+      	$("#btnRepWith").click(function() {
+      		$("span").replaceWith("<b>置換</b>");
+      	});
+      
+        
+        既存の要素を置換要素にする場合は既存の要素が削除される
+      	// btnRepWith2 クリック時の処理
+      	$("#btnRepWith2").click(function() {
+      		$("span").replaceWith($("div"));
+      	});
+      });
+      
+      
+      
+      # .replaceAll()
+      $(function() {
+      	// btnRepAll クリック時の処理
+      	$("#btnRepAll").click(function() {
+      		$("<b>置換</b>").replaceAll("span");
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "wrap.js"
+    mode: "JavaScript"
+    content: '''
+      # .wrap()
+      要素を要素で包む
+      $(function() {
+      	// btnWrap クリック時の処理（要素を包む）
+      	$("#btnWrap").click(function() {
+      		$(".brdrR").wrap('<div class="brdrG"></div>');
+      	});
+      });
+      
+      
+      
+      
+      # .unwrap()
+      包んでる要素を解除する
+      $(function() {
+      	// btnUnwrap クリック時の処理（親を削除）
+      	$("#btnUnwrap").click(function() {
+      		$(".brdrR").unwrap();
+      	});
+      });
+      
+      
+      
+      
+      # .wrapInner()
+      指定した要素の内部に要素を包む要素を生成
+      $(function() {
+      	// btnWrapInner クリック時の処理（要素の内側を包む）
+      	$("#btnWrapInner").click(function() {
+      		$(".brdrR").wrapInner('<div class="brdrG"></div>');
+      	});
+      });
+      
+      
+      
+      # .wrapAll()
+      対象の要素を全てを包括するように囲む要素を生成
+      $(function() {
+      
+      	// btnWrapAll クリック時の処理（要素をまとめて包む）
+      	$("#btnWrapAll").click(function() {
+      		$(".brdrR").wrapAll('<div class="brdrG"></div>');
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "append"
+  "prepend"
+  "appendTo"
+  "prependTo"
+  "html"
+  "text"
+  "empty"
+  "after"
+  "before"
+  "insertAfter"
+  "insertBefore"
+  "remove"
+  "detach"
+  "clone"
+  "replaceWith"
+  "replaceAll"
+  "wrap"
+  "unwrap"
+  "wrapInner"
+  "wrapAll"
+]
+isStarred: false
+isTrashed: false

@@ -1,0 +1,100 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Input"
+description: "Input"
+snippets: [
+  {
+    name: "Input.cs"
+    mode: "C#"
+    content: '''
+      //Inputはさまざまな入力を取得することができるクラス
+      キーの指定には文字列表記かKeyCodeクラスの定数を使う。
+      
+      if (Input.GetKey(KeyCode.Space)) {
+          transform.position = new Vector3(0f, transform.position.y + 0.1f, 0f);
+      } else {
+          transform.position = new Vector3(0f, transform.position.y - 0.1f, 0f);
+      }
+      
+      
+      (Functions)
+      
+      KeyCode.Space	      スペース
+      KeyCode.Return	    リターンキー
+      KeyCode.UpArrow	    上向き矢印
+      KeyCode.A	          a
+      KeyCode.LeftControl	左側のコントロールキー
+      
+      Jump	スペースキー
+      Fire1	左Ctrl 左クリック
+      Fire2	左Alt 右クリック
+      Fire3	左Cmd 中央クリック
+      
+      Input.GetKey	      キーを押している間は常に(連射状態)
+      Input.GetKeyDown	  キーを押していない状態から押した時
+      InputGetKeyUp	      キーを押している状態から話した時
+      
+      Input.GetButton	    ボタンを押している間は常に(連射状態)
+      Input.GetButtonDown	ボタンを押していない状態から押した時
+      InputGetButtonUp	  ボタンを押している状態から話した時
+      
+      Input.GetAxis	      入力された軸に補正をかけて-1から1までの数値で返す。
+      Input.GetAxisRaw	  入力された軸に補正をかけずに-1から1までの数値で返す。
+      
+      
+      (Variables)
+      Input.mousePosition	現在のマウスの位置のピクセル座標（読み取り専用）
+      
+      Input.GetAxis:返される値が-1 ~ 1の範囲内になります
+      
+      Input.GetAxisRaw:返される値が-1,0,1のどれかになります
+      
+      
+      
+      //Input.touches
+      最後のフレーム間ですべてのタッチ情報のオブジェクトリストを返します
+      タッチの配列
+      ```
+      foreach(var t in Input.touches)
+      {
+        
+      }
+      ```
+      
+      //Input.touchCount
+      タッチ数
+      
+      
+      //Input.anyKey
+      何かのボタンが押されたら
+      
+      
+      //Input.GetMouseButton(int)
+      マウスボタンが押されているかどうかを返します
+      
+      //Input.GetMouseButtonDown(int)
+      ユーザーがマウスボタンを押したフレームの間だけ true を返します
+      
+      //Input.GetMouseButtonUp(int)
+      マウスボタンを離したフレームの間だけ true を返します
+      
+      
+      
+      
+      
+      
+      
+      //Input.Managerの使い方
+      Sensitivity : 操作感を重くしたい場合
+      Gravity : キーを話した時に値をゆっくり戻す場合
+      snap : チェックを入れるとキー入力とは逆のキーを入力された
+              時にすぐに反転する。もし入っていなければ、慣性エネルギーを保ちつつ
+              数値を変えていく
+      Dead : ある程度の中立に近い数値は切り捨てて0にする
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-05-29T09:48:46.224Z"
+updatedAt: "2017-11-18T06:55:57.327Z"

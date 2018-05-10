@@ -1,0 +1,525 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#ClassAndMethod"
+description: "C#ClassAndMethod"
+snippets: [
+  {
+    name: "C#ClassAndMethod.cs"
+    mode: "C#"
+    content: '''
+      //ClassAndMethod
+      
+      //再帰呼び出し
+      メソッドの中から自分自身を呼び出すこと
+      public int Method()
+      {
+        Method();
+      }
+      
+      
+      ```
+      //階乗の計算
+      public long CalcFact(int n){
+        long fact;
+      
+        if(n == 0)
+        {
+          fact = 1;
+        }else
+        {
+          fact = n * CalcFact(n-1);
+        }
+        return fact;
+      }
+      // nが6で呼び出されたとします。すると、
+      // fact = 6 * CalcFact(5);
+      // と処理されます。次にCalcFact(5)が処理され、
+      // fact = 6 * 5 * CalcFact(4);
+      // となります。これを繰り返し、
+      // 6! 
+      // = 6 * CalcFact(5);
+      // = 6 * 5 * CalcFact(4);
+      // = 6 * 5 * 4 * CalcFact(3);
+      // = 6 * 5 * 4 * 3 * CalcFact(2);
+      // = 6 * 5 * 4 * 3 * 2 * CalcFact(1);
+      // = 6 * 5 * 4 * 3 * 2 * 1;
+      // = 720; 
+      // となります。
+      ```
+      ```
+      //フィボナッチ数列
+      public long CalcFibo(int n){
+      long fb;
+      if(n == 1 || n ==2){
+        fb =1;
+      }else{
+        fb = CalcFibo(n-1) + CalcFibo(n-2);
+      }
+      return fb;
+      }
+      
+      
+      // nが5で呼び出されたとすると、
+      // fb = CalcFibo(4) + CalcFibo(3);
+      // つまり4項目と3項目の和になります。ここで、
+      // CalcFibo(4) = CalcFibo(3) + CalcFibo(2);
+      // CaclFibo(3) = CalcFibo(2) + CalcFino(1);
+      // となります。
+      // CalcFibo(1) = CalcFibo(2) = 1 
+      // より、
+      // CalcFibo(3) = 1 + 1 = 2
+      // CalcFibo(4) = 2 + 1 = 3
+      // となり、
+      // CalcFibo(5) = 3 + 2 = 5;
+      // となります。
+      ```
+      
+      
+      //refキーワード
+      変数に値を代入した状態で"refキーワード"をつけることで参照による呼び出しが行える
+      呼び出し先で値を変えて、呼び出し元にも影響を与える
+      
+      ```
+      using System;
+      
+      class MyClass
+      {
+        private int temp;
+        
+        public void Swap(ref int x, ref int y)
+        {
+          temp = x;
+          x = y;
+          y = temp;
+        }
+      }
+      
+      class Swap01
+      {
+        public static void Main()
+        {
+          MyClass s = new MyClass();
+          int x = 10, y = 20;
+          s.Swap(ref x,ref y);
+          Console.WriteLine("x = {0},y = {1}",x,y);
+        }
+      }  
+      
+      [Console]
+      x = 20,y = 10
+      ```
+      
+      
+      //値渡し
+      メソッドを呼び出す際に値のコピーを渡すことを言います。
+      C#では普通にメソッドを定義すると、その引数は値渡しになります
+      
+      
+      
+      //参照渡し
+      メソッドを呼び出す際に値の参照情報を渡すことを言います。C＃では、
+      メソッドの引数にrefキーワードをつけることでその変数は参照渡しになります。
+      
+      
+      
+      //outキーワード
+      変数に値を代入せずに"outキーワード"をつけることで参照による呼び出しが行える
+      
+      ```
+      using System;
+      
+      class MyClass
+      {
+        public void Square(double x, double y, out double s)
+        {
+          s = x * y;
+        }
+      }
+      
+      class OutKeyword01
+      {
+        public static void Main()
+        {
+          double a = 125.3, b = 16.25, c;
+          MyClass mc = new MyClass();
+          
+          //cには値を代入していない
+          mc.Square(a,b,out c);
+          
+          Console.WriteLine
+          (
+            "縦{0}m,横{1}mの長方形の面積は{2}平方メートル",
+            a,
+            b,
+            c
+          )
+        }
+      }
+      ```
+      
+      
+      //引数が可変個のメソッド
+      呼び出す側で、メソッドの引数の個数が変えられると便利です。
+      先程のオーバーロードを使用して
+      引数の数が異なるメソッドを何個も用意するのは得策ではありません。
+      そこで用いられるのが、"paramsキーワード"です。
+      ```
+      戻り値の型 メソッド名(params 型[] 引数名);
+      ```
+      呼び出し側で指定した0個以上の引数が配列に格納されます。
+      
+      ```
+      Class MyClass
+      {
+        public void Show(params string[] animal)
+        {
+          if(animal.Length == 0) return
+          for(int i = 0; i < animal.Length; i++)
+            Console.WriteLine("{0}さんがいます",animal[i]);      
+        }
+      }
+      Class Params01
+      {
+        public static void Main()
+        {
+          MyClass mc = new MyClass();
+          mc.Show();
+          mc.Show("きりん","ぞう","かば");
+        }
+      }
+      ```
+      
+      //静的メンバ
+      staticの付いたメンバのことを"静的メンバ"
+      クラスのメンバに"staticキーワード"が付けられているものには
+      クラス名.メンバ名で直接アクセスできます。
+      静的メンバはインスタンスではなく、クラスそのものに属している。
+      
+      ```
+      public static int x;
+      ```
+      
+      
+      
+      
+      //インスタンスメンバ
+      staticのつかない普通のメンバのこと
+      
+      
+      
+      
+      //静的クラス
+      ```
+      static class MyClass
+      {
+        public static int x;
+        public static void Show()
+        {
+          //処理
+        }
+      }
+      ```
+      このように宣言されたクラスは静的クラスと呼ばれる
+      メンバは全て静的ではなくてはいけない。
+      
+      
+      //静的メソッド
+      ```
+      string name;
+      public static void Show()
+      {
+        //処理
+      }
+      
+      ```
+      このように宣言されたクラスを静的メソッドと呼ばれる
+      静的メソッドはインスタンス変数にはアクセスできない。
+      インスタンスメソッドも呼び出すことはできない。
+      これらのインスタンスメンバは生成された各インスタンス固有のものだから。
+      同様に"this"も使うことはできない
+      
+      
+      
+      //プロパティ
+      プロパティはクラス内部から見ると、"メソッドのように振る舞い"ますが、
+      クラスの利用側から見ると"メンバー変数のように振る舞い"ます。
+      ユーザーが変数に値を格納する場合、制限を加えたいことがあります。
+      例えば、身長などでは、負の値を取ることがないので、
+      負の値を入れることを防ぎたい場合などです。
+      これは変数に値を設定するメソッドを作れば解決はできますが、
+      "プロパティ"を使うことでより簡単に解決できます。
+      
+      アクセス修飾子 データ型 プロパティ名｛
+        get{
+          return XXX;
+        }
+        set{
+          XXX = value;
+        }
+      ｝
+      
+      
+      
+      
+      //アクセッサ
+      プロパティは"get"と"set"という"アクセッサ"を持っています。
+      必ず両方が必要なわけではなく、"片方のみでも大丈夫"です。
+      ユーザーが値を知ろうとするときは"getアクセッサ"、
+      値を代入しようとするときは"setアクセッサ"が自動的に呼び出されます。
+      
+      
+      
+      //setアクセッサ
+      "value"という変数はユーザーが入力した値を表します。
+      プロパティそのものに値を格納することはできないので、別に変数(XXX)を
+      用意する必要があります。その変数にvalueを格納し、
+      
+      
+      //getアクセッサ
+      setアクセッサで定義した変数を"return"で返します。
+      
+      
+      ```
+      using UnityEngine;
+      public class Property : MonoBehaviour
+      {
+          private float h;
+      
+          public float height
+          {
+              get 
+              { 
+                return h; 
+              }
+              set
+              {
+                  if (value <= 0)
+                  {
+                      Debug.Log("不正な値です。");
+                  }
+                  else{
+                      h = value;
+                  }
+              }
+          }
+      }
+      
+      
+      using UnityEngine;
+      
+      public class TestProperty : MonoBehaviour {
+      
+          // Use this for initialization
+          void Start () {
+              Property property = new Property();
+              property.height = -3;
+              property.height = 170;
+              Debug.Log(property.hight);
+          }
+      }
+      
+      
+      以上のように、プロパティは"メンバ変数"のように振る舞います。
+      「-3」を代入したときは、"setアクセッサ"において、エラーメッセージが表示されます。
+      「170」が代入されたときは、"setアクセッサ"において、hight変数に値が格納され、
+      出力する際は、getアクセッサが動き、格納されている「170」が出力されます。
+      
+      
+      
+      
+      //インデクサ
+      クラスのインスタンスを配列のように扱いたいときにインデクサを用います。
+      インデクサの作り方はプロパティと似ていて、次のように定義します。
+      
+      配列の要素の型 this[インデックスの型 インデックス]｛
+         get,setアクセッサ
+      ｝
+      
+      インデックスの型はほとんどの場合はint型ですが、他の型でも可能。
+      get,setは必ず必要なわけではない。
+      
+      ```
+      using System;
+      
+      class MyIndexer
+      {
+        int[] array;
+        int nMax;//配列の要素数
+        
+        public int this[int n]
+        {
+          get
+          {
+            if(n < nMax) return array[n]; //インデックスのnをチェック
+            else return 0;
+          }
+          set
+          {
+            if(n < nMax) array[n] = value; //インデックスのnをチェック
+          }
+        }
+        
+        public MyIndexer(int i) //コンストラクタ
+        {
+          array = new int[i]; //要素数iの配列を追加
+          nMax = i;　//配列の要素数を設定
+        }
+      }
+      
+      class Indexer02
+      {
+        public static void Main()
+        {
+          MyIndexer mi = new MyIndexer(20);
+          
+          for(int i = 0; i< 20; i++)
+            mi[i] = i * i;
+          
+          for(int i = 0; i < 20; i++)
+            Console.WriteLine("{0} * {0} = {1}",i,mi[i]);
+          
+          //わざと配列の範囲を超える
+          mi[30] = 30;
+          Console.WriteLine("mi[30] = {0}",mi[30]);   
+        }
+      }
+      ```
+      
+      ```
+      //文字列をインデックスとするインデクサ
+      using System;
+      
+      class MyIndexer
+      {
+        string[] mon =
+        {
+          "Jan","Feb","Mar","Apr","May","Jun",
+          "Jul","Aug","Sep","Oct","Nov","Dec"
+        };
+        public int this [string monthName]
+        {
+          get
+          {
+            for(int i = 0; i < 12; i++)
+            {
+              if(monthName == mon[i]) return i + 1;
+            }
+          }
+          return 0;
+        }
+      }
+      
+      class Indexer03
+      {
+        public static void Main()
+        {
+          MyIndexer mi = new MyIndexer();
+          Console.WriteLine("Mayは{0}番目の月です",mi["May"]);
+          Console.WriteLine("Decは{0}番目の月です",mi["Dec"]);
+          Console.WriteLine("xは{0}番目の月です",mi["x"]);
+        }
+      }
+      ```
+      
+      //多次元インデクサ
+      要素のデータ型 this[データ型 インデックス, データ型 インデックス...]
+      {
+        get,setアクセッサ
+      }
+      ```
+      using System;
+      
+      class MyClass
+      {
+        string[,] name;
+        
+        public string this[int i, int j]
+        {
+          get
+          {
+            return name [i,j];
+          }
+        }
+        
+        public MyClass()
+        {
+          name = new string[,]
+          {
+            {"Tanaka","Sato","Yoshida","Kato","Jyoi"},
+            {"Kudo","Takenaka","Saito","Oota","Sugimoto"}
+          };
+        }
+      }
+      
+      
+      
+      class Indexer04
+      {
+        public static void Main()
+        {
+          for(int i = 0; i < 2; i++)
+            for(int j = 0; i < 5; i++)
+              Console.WriteLine("{0}組{1}番--{2}",i+1,j+1,mc[i,j]);
+        }
+      }
+      ```
+      
+      
+      
+      
+      //インデクサのオーバーロード
+      インデクサのシグニテャはインデックスとそのデータ型です。
+      シグニチャが異なればインデクサをオーバーロードできる
+      
+      ```
+      using System;
+      
+      class MyOverLoad
+      {
+        int[] a = new int[3]{1,2,3};
+        int[,]b = new int[2,2]{{100,200},{300,400}};
+        
+        //インデックスが1次元のインデクサ
+        public int this[int i]
+        {
+          get{
+            return a[i];
+          }
+        }
+        
+        //インデックスが2次元のインデクサ
+        public int this[int i,int j]
+        {
+          get
+          {
+            return b[i,j];
+          }
+        }
+      }
+      
+      class Indexer05
+      {
+        public static void Main()
+        {
+          MyOverLoad mo = new MyOverLoad();
+          
+          for(int i = 0; i < 3; i++)
+            Console.WriteLine("mo[{i}] = {1}",i,mo[i]);
+          
+          for(int i = 0; i < 2; i++)
+            for(int j = 0; j < 2; j++)
+              Console.WriteLine("mo[{0},{1}] = {2}, i,j,mo[i,j]");
+        }
+      }
+      ```
+    '''
+  }
+]
+tags: [
+  "out"
+  "ref"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-27T09:15:48.619Z"
+updatedAt: "2018-01-25T09:52:26.208Z"

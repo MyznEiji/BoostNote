@@ -1,0 +1,33 @@
+createdAt: "2018-04-02T09:13:52.432Z"
+updatedAt: "2018-04-02T09:48:17.166Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonMysql"
+description: "PythonMysql"
+snippets: [
+  {
+    name: "Mysql.py"
+    mode: "Python"
+    content: '''
+      import mysql.connector
+      
+      
+      # mysql.connector.connect(host='127.0.0.1', user='root', password="")
+      ローカルのコネクションオブジェクトを作成
+      conn = mysql.connector.connect(host='127.0.0.1', user='root', password="")
+      
+      
+      
+      # conn.cursor()
+      データベースを操作する時のメソッド 
+      cursor = conn.cursor()
+      
+      
+      # cursor.execute(
+          'CREATE DATABASE udemy_python_test_mysql_database')
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

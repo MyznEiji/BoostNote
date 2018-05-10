@@ -1,0 +1,34 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Object"
+description: "C#Object"
+snippets: [
+  {
+    name: "C#Object.cs"
+    mode: "C#"
+    content: '''
+      //Object.GetType()
+      現在のインスタンスのTypeを取得する
+      ```
+      100.GetType();
+      ```
+      
+      
+      //Object.ToString();
+      現在のオブジェクトを表す文字列を返す
+      
+      
+      //GameObject.activeSelf 
+      自身が有効であればTrueを返す。
+      
+      
+      //GameObject.activeInHierarchy 
+      親子関係に依存し、ヒエラルキー上の親が無効であれば、自信が有効であってもFalseを返す。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:11:21.049Z"
+updatedAt: "2017-11-03T07:53:13.547Z"

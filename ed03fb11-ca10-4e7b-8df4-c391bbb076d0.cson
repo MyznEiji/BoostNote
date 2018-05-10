@@ -1,0 +1,136 @@
+createdAt: "2018-03-18T05:33:45.213Z"
+updatedAt: "2018-03-19T08:58:52.344Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "PHP Simple HTML DOM Parser"
+description: "PHP Simple HTML DOM Parser"
+snippets: [
+  {
+    name: "PHP_Simple_HTML_DOM_Parser.py"
+    mode: "Python"
+    content: '''
+      # PHP Simple HTML DOM Parser
+      
+      PHP Simple HTML DOM ParserはPHPでスクレイピングを行う際に使うライブラリです。
+      PHP Simple HTML DOM Parserはsimple_html_dom.phpファイルをダウンロードして
+      読み込むだけで使うことができます。このsimple_html_dom.phpファイルにはスクレイピングを
+      するための様々なメソッドが用意されています。
+      
+      では、simple_html_dom.phpを入れてみましょう。 
+      こちらのサイトにアクセスをしてsimple_html_dom.phpファイルをダウンロードしましょう。
+      [PHP Simple HTML DOM Parser - Browse Files at SourceForge.net](https://sourceforge.net/projects/simplehtmldom/files/)
+      
+      
+      # file_get_htmlメソッド
+      file_get_htmlメソッドはsimple_html_dom.phpファイルに定義されているメソッドです。
+      file_get_html("スクレイピングしたいウェブサイトのURL")と引数にURLの文字列を指定する
+      ことで、そのURLのウェブサイトのHTMLを取得します。
+      
+      require_once 'simple_html_dom.php';
+      $page = file_get_html('http://review-movie.herokuapp.com/'); // movie-reviewのHTMLを取得
+      
+      
+      
+      # findメソッド
+      findメソッドはfile_get_htmlメソッドで取得したページの情報が入ったインスタンスに
+      対して使用します。これを使うと取得したウェブサイトのHTML情報の中から指定したHTML要素の
+      内容を検索できます。
+      該当するHTMLのタグ要素が1つでも、返り値は配列の形式で返ってきます。
+      
+      $elements = simple_html_domインスタンス->find('セレクタ');
+      
+      
+      
+      
+      # plaintextメソッド
+      findメソッドで得られたHTML情報のテキストを取得したい場合、plaintextメソッドを使います。
+      例えば、先ほどのfindメソッドから取得した'li a'のい最初の要素を見てみましょう。
+      
+      require_once 'simple_html_dom.php';
+      $page = file_get_html('http://review-movie.herokuapp.com/'); // movie-reviewのHTMLを取得
+      $elements = $page->find('h2 a'); // h2要素の下のa要素を検索
+      echo elements[0];
+      
+      
+      
+      # 属性を取得する場合
+      ->で属性を取得
+      $image_url = $page->find('.entry-content img')[0]->src;
+      
+      
+      # firstOrNewメソッド
+      インスタンス生成時に引数として渡した値を保持したレコードがあればそのレコードの
+      インスタンスを返し、なければ新しくインスタンスを作るメソッドです。
+    '''
+  }
+  {
+    name: "Scraping.php"
+    mode: "PHP"
+    content: '''
+      <?php
+      
+      namespace App;
+      use App\\Product;
+      
+      class Scraping
+      {
+        public static function movie_urls()
+        {
+          echo "get movies link URL\\n";
+          require_once 'simple_html_dom.php';
+      
+          $links = array();
+          $next_url = "";
+      
+          while (true)
+          {
+            echo $next_url;
+            $current_page = file_get_html("http://review-movie.herokuapp.com/" . $next_url);
+            $elements = $current_page->find(".entry-title a");
+            foreach ($elements as $ele)
+            {
+              $links[] = $ele->href;
+            }
+      
+            $next_link = $current_page->find('.pagination .next a');
+      
+            if (!$next_link)
+            {
+              break;
+            }
+      
+            $next_url = $next_link[0]->href;
+          }
+      
+          foreach ($links as $link)
+          {
+            Scraping::get_product("http://review-movie.herokuapp.com/" . $link);
+          }
+        }
+      
+        public static function get_product($link)
+        {
+          echo "get movie information\\n";
+          $page = file_get_html($link);
+          $title = $page->find('.entry-title')[0]->plaintext;
+          $image_url = $page->find('.entry-content img')[0]->src;
+          $director = $page->find('.director span')[0]->plaintext;
+          $detail = $page->find('.entry-content p')[0]->plaintext;
+          $open_date = $page->find('.date span')[0]->plaintext;
+      
+          $product = Product::firstOrNew(array('title' => $title, 'image_url' => $image_url));
+          $product->director = $director;
+          $product->detail = $detail;
+          $product->open_date = $open_date;
+          $product->save();
+        }
+      }
+      
+       ?>
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

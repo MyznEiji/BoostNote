@@ -1,0 +1,48 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Property"
+description: '''
+  C#Property
+  
+'''
+snippets: [
+  {
+    name: "C#String.cs"
+    mode: "C#"
+    content: '''
+      //String.Length (Property)
+      現在のStringオブジェクト内の文字数を取得します。
+      
+      
+      
+    '''
+  }
+  {
+    name: "C#Console.cs"
+    mode: "C#"
+    content: '''
+      //Console.ForegroundColor
+      コンソールの前景色を取得または設定します。
+      Console.ForegroundColor = ConsoleColor.Black;
+      
+      
+      //Console.BackgroundColor
+      コンソールの背景色を取得または設定します
+      Console.BackgroundColor = ConsoleColor.Red;
+    '''
+  }
+  {
+    name: "C#ConsoleKeyInfo.cs"
+    mode: "C#"
+    content: '''
+      //ConsoleKeyInfo.KeyChar{get;}
+      現在のConsoleKeyInfoオブジェクトが表すUnicode文字を取得する
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-28T10:30:09.829Z"
+updatedAt: "2017-10-02T10:51:44.462Z"

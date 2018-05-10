@@ -1,0 +1,94 @@
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "Scraping"
+description: "Scraping"
+snippets: [
+  {
+    name: "General.rb"
+    mode: "Ruby"
+    content: '''
+      #スクレイピングの手順まとめ
+      ・Mechanizeを使ったスクレイピングの手順をまとめましょう。
+      ・Mechanizeクラスのインスタンスを生成する
+      ・Mechanizeクラスのインスタンスメソッドget(情報を取得したいウェブサイトのURL)で、
+        ウェブサイトのHTML情報を取得する
+      ・欲しいデータのあるタグ要素をsearchメソッドで指定して取得する
+      ・取得したタグ要素のHTML情報にたいしてinner_textメソッド、
+        またはget_attributeメソッドを使って欲しい値を取得する
+      
+      
+      #Mechanize
+      Mechanizeはスクレイピングを行うためのGemです。
+      MechanizeのGemを入れるとMechanizeクラスが使えるようになります。
+      このMechanizeクラスにはスクレイピングをするための様々なメソッドが用意されています。
+      ```
+        gem 'mechanize'
+      ```
+      Mechanizeを使ってスクレイピングをするには、まずMechanizeクラスのインスタンスを生成します。
+      
+      ```
+        agent = Mechanize.new # Mechanizeクラスのインスタンスを生成
+      ```
+    '''
+  }
+  {
+    name: "Method.rb"
+    mode: "Ruby"
+    content: '''
+      #getメソッド
+      getメソッドはMechanizeクラスのインスタンスメソッドです。
+      get("スクレイピングしたいウェブサイトのURL")と引数にURLの文字列を指定することで、
+      そのURLのウェブサイトのHTMLを取得します。
+      ```
+        agent = Mechanize.new
+        page = agent.get("http://review-movie.herokuapp.com/") 
+        # MovieReviewのHTMLを取得
+      ```
+      
+      
+      #searchメソッド
+      searchメソッドはgetメソッドで取得したページの情報が入ったオブジェクトに対して使用します。
+      これを使うと取得したウェブサイトのHTML情報の中から指定したHTML要素の内容を検索できます。
+      該当するHTMLのタグ要素が1つでも、返り値は配列の形式で返ってきます。
+      searchメソッドは以下のような使い方をします。
+      ```
+         elements = Mechanize::Pageオブジェクト.search('セレクタ')
+      ```
+      
+      #atメソッド
+      searchメソッドは該当要素全てを取得するのに対して、atメソッドは該当1件のみを取得します。
+      ```
+      elements = page.at('li a')
+      ```
+      
+      
+      #inner_textメソッド
+      searchメソッドで得られたHTML情報のテキストを取得したい場合、
+      inner_textメソッドを使います。
+      
+      
+      #get_attributeメソッド
+      aタグ要素のHTMLはリンク先のURLを値とする属性hrefを持っています。
+      このようなHTMLの属性の値を取得したい場合、get_attributeメソッドを使います。
+      get_attribute(属性)で指定した属性の値を取得できます。
+      また、.get_attribute(属性)は[:属性]と簡略化して書くこともできます。
+      ```
+        agent = Mechanize.new
+        page = agent.get("http://review-movie.herokuapp.com/")
+        elements = page.search('h2 a') # h2要素の下のa要素を検索
+      
+        elements.each do |ele|
+          puts ele.get_attribute('href') # puts ele[:href]としても良い
+        end
+      ```
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-27T04:10:42.374Z"
+updatedAt: "2018-03-05T07:32:55.673Z"

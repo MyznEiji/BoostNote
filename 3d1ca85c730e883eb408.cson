@@ -1,0 +1,56 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "UnityGeneral"
+description: '''
+  UnityGeneral
+  
+'''
+snippets: [
+  {
+    name: "UnityGeneral.cs"
+    mode: "C#"
+    content: '''
+      //Quad
+      Quadとは、Unityに標準で用意されている板状のオブジェクトのことです。
+      画像などを表示する場合などに使用します。
+      
+      //プレハブから参照できなオブジェクト
+      Hierarchyビュー上のオブジェクトからはプレハブのコンポーネントは参照できない
+      
+      //キーボードの設定
+      Edit → Project Settings → Input
+      "ゲームパッド用の設定"
+      HorizontalとVerticalのTypeを[Joystick Axis]に変更する
+      
+      //接触設定
+      Edit → ProjectSettings → TagsAndLayersでLayerを定義して
+      Edit → ProjectSettings → Physicsで物理干渉を設定をする
+      
+      
+      //一定時間で自動的に消滅させる
+      Destroy(gameObject,2.0f);
+      
+      
+      //パーティクルが再生から終了したと同時にパーティクルのオブジェクトが消滅
+      パーティクルにアタッチしたスクリプト"ParticleAutoDestroy.cs"
+      void Start(){
+        ParticleSystem particleSystem = GetComponent<ParticleSystem>();
+        Destroy(gameObject,particleSystem.duration);
+      }
+      
+      
+      //マズルフラッシュ
+      1AssetのSimpleParticlePack → Resoueces → Explosions → FlashRingFlame01を
+        Hierarchyビューにドラッグ＆ドロップ
+      2FlashRingFlame01の子オブジェクトのFlash01を削除する
+      3FlashRingFlame01と子オブジェクトのPositionの値を0にする
+      4FlashRingFlame01の子にPointLightを追加してPositionを0にして、LightRangeを100に変更
+      5エフェクト自体を消滅するAutoDestoy.csをFlashRingFlame01をドラッグ＆ドロップ
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-13T15:26:46.481Z"
+updatedAt: "2017-09-07T04:57:13.657Z"

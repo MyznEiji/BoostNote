@@ -1,0 +1,23 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Char"
+description: "C#Char"
+snippets: [
+  {
+    name: "C#Char.cs"
+    mode: "C#"
+    content: '''
+      //Char.IsDigit(int32)
+      指定されたUnicode文字が10進数の数字がどうか示します
+      
+      
+      //Char.GetNumericValue(int32)
+      指定されたUnicodeの数字を倍精度浮動小数点数に変換します
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:12:30.209Z"
+updatedAt: "2017-11-02T14:12:39.348Z"

@@ -1,0 +1,25 @@
+createdAt: "2018-03-11T11:48:46.870Z"
+updatedAt: "2018-03-11T11:50:57.262Z"
+type: "SNIPPET_NOTE"
+folder: "ea77b093ffd39c8e29de"
+title: "DjangoUrls"
+description: "DjangoUrls"
+snippets: [
+  {
+    name: "DjangoUrls.py"
+    mode: "Python"
+    content: '''
+      # 静的な画像を扱う場合
+      from django.conf.urls.static import static
+      from django.conf import settings
+      
+      urlpatterns = [
+          url(r'^posts/', include('posts.urls')),
+          url(r'^admin/', admin.site.urls),
+      ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

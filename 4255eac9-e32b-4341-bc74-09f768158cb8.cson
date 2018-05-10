@@ -1,0 +1,223 @@
+createdAt: "2018-04-09T11:17:30.987Z"
+updatedAt: "2018-04-15T12:57:21.268Z"
+type: "SNIPPET_NOTE"
+folder: "a6d21478f5c795467587"
+title: "JavaScriptFunction"
+description: "JavaScriptFunction"
+snippets: [
+  {
+    name: "functionGeneral.js"
+    mode: "JavaScript"
+    content: '''
+      # 関数名の基本
+        関数はデータ型の一種
+        camelCase記法で表すのが基本
+        定義された上記で実行をしていても大丈夫
+      
+        function getTriangle(base, height)
+        {
+          return base * height / 2;
+      
+        }
+      
+        print("三角形の面積 : ", getTriangle(5, 2));
+      
+      
+      
+      
+      
+      
+      # Functionコンストラクター(代入時に評価される/代入してから下の行で呼び出す)
+        var getTriangle = new Function('base', 'height', 'return base * height / 2;');
+        print('三角形の面積 :' , getTriangle(5, 2));
+      
+        "定義を避ける場所"
+          while / for など繰り返しブロック中
+          頻繁に呼び出される関数
+      
+          
+          
+          
+      # 関数を変数に代入して利用する
+        var getTriangle = function(base, height)
+        {
+          return base * height / 2;
+        }
+      
+        print("三角形の面積は", getTriangle(5, 2));
+      
+      
+      
+      
+      # アロー関数 (function関数を書かない)
+      let getTriangle = (base, height) => {
+        return base * height / 2;
+      }
+      
+      print("三角形の面積は : ", getTriangle(5, 2));
+      
+      
+      
+      
+      # デフォルト引数
+        nullを渡すとデフォルト引数が適用されない
+        
+        function getTriangle(base=1, height=1)
+        {
+          return base * height / 2;
+        }
+      
+        print(getTriangle(5));
+        print(getTriangle(5, null)); #nullは適用されない
+        "適用されるには"
+        undefinedを使う
+        print(getTriangle(5, undefined));
+      
+      
+      # 可変長引数
+      
+        function sum(...nums)
+        {
+          let result = 0;
+          for (let num of nums)
+          {
+            if(typeof num != "number")throw new Error("指定値が数値ではありません:" + num);
+            result += num;
+          }
+          return result;
+        }
+      
+        try
+        {
+          print(sum(1,2,3,5,7,9));
+        }catch(e)
+        {
+          print(e.message);
+        }
+      
+      
+      
+      
+      # 名前付き引数
+      function getTriangle({base=1, height=1})
+      {
+        return base * height / 2;
+      }
+      
+      print(getTriangle({base:5, height:4}));
+      
+      
+      
+      # 複数の戻り値を個別の変数に代入する
+        function getMaxMin(...nums)
+        {
+          return [Math.max(...nums), Math.min(...nums)];
+        }
+      
+      
+        let result = getMaxMin(10, 35, -5, 78, 0);
+        print(result);
+      
+        let[max, min] = getMaxMin(10, 35, -5, 78, 0);
+        print(max);
+        print(min);
+      
+    '''
+  }
+  {
+    name: "args.js"
+    mode: "JavaScript"
+    content: '''
+      # JavaScriptは引数の数をチェックしない
+      
+        function showMessage(value)
+        {
+          print(value);
+        }
+      
+        showMessage('山田');
+        showMessage('山田', '鈴木'); #どれも山田とでる
+        
+      
+        # 引数の数が違うとエラーを表示する
+        function showMessage(value)
+        {
+          if(arguments.length !== 1)
+          {
+            throw new Error("引数の数が間違っています: ", arguments.length);
+          }
+          print(value);
+        }
+      
+        try{
+          showMessage('山田', '鈴木');
+        }catch(e)
+        {
+          print(e.message);
+        }
+      
+      # デフォルト引数
+      function getTriangle(base, height)
+      {
+        if (base == undefined) base = 1; #デフォルト引数を定義
+        if (height == undefined) height = 1;  #デフォルト引数を定義
+        return base * height / 2;
+      
+      }
+      
+      print("三角形の面積 : ", getTriangle());
+      
+      
+      # 引数が省略可能であることをわかりやすく示す
+        引数名に[o_base] [o_height]のようにo_をつける
+      
+      
+      # 引数の数がわからない時には可変長引数
+        function sum()
+        {
+          var result = 0;
+          for (var i = 0, len = arguments.length; i < len; i++)
+          {
+            var tmp = arguments[i];
+            if(typeof tmp != "number") throw new Error('引数が数値ではありません :', tmp);
+            result += tmp;
+          }
+          return result;
+        }
+      
+      
+        try {
+          print(sum(1,2,3,4,5));
+        }catch(e)
+        {
+          print(e.message);
+        }
+      
+      
+      
+      # 名前付き引数
+      function getTriangle(args)
+      {
+        if (args.base == undefined) args.base = 1;
+        if (args.height == undefined) args.height = 1;
+        return args.base * args.height / 2;
+      
+      }
+      
+      print("三角形の面積 : ", getTriangle({base:5, height:4}));
+      
+    '''
+  }
+]
+tags: [
+  "camelCase"
+  "functionコンストラクター"
+  "args"
+  "可変長引数"
+  "名前付き引数"
+  "引数"
+  "アロー関数"
+  "デフォルト引数"
+]
+isStarred: false
+isTrashed: false

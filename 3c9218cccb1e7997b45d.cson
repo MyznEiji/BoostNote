@@ -1,0 +1,30 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonJson"
+description: "PythonJson"
+snippets: [
+  {
+    name: "PythonJson.py"
+    mode: "Python"
+    content: '''
+      import json
+      
+      #json.loads(jsonData)
+      辞書型としてデータを読み込む
+      
+      #json.dumps(data)
+      dataをjson形式の文字列に戻すことができる
+      
+      #json.dump(data, open('data.json', 'w'))
+      第一引数に保存するデータ、第二引数に書き込むファイルを指定すると
+      
+      #json.load(open('data.json'))
+      jsonファイルを読み込む
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-29T06:40:10.491Z"
+updatedAt: "2017-11-29T06:51:33.708Z"

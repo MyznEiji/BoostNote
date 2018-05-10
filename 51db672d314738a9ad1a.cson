@@ -1,0 +1,35 @@
+createdAt: "2018-03-11T11:28:52.120Z"
+updatedAt: "2018-03-11T13:38:46.898Z"
+type: "SNIPPET_NOTE"
+folder: "ea77b093ffd39c8e29de"
+title: "DjangoView"
+description: "DjangoView"
+snippets: [
+  {
+    name: "DjangoView.py"
+    mode: "Python"
+    content: '''
+      # Post.objects.order_by("-published")
+      Postのオブジェクトをpublishedの降順にでソートする
+      
+      
+      # render(request, 'posts/index.html', {"posts" : posts})
+      テンプレートを使う時に使い、右のpostsのオブジェクトが左のpostsに代入されて
+      posts/index.htmlで使える変数になる
+      
+      
+      
+      # Post.objects.get(pk=post_id)
+      idを指定したPostのモデルのデータを取得する
+      pkはプライマリーキー（インデックスの番号）
+      
+      
+      # post = get_object_or_404(Post, pk=post_id)
+      from django.shortcuts import get_object_or_404
+      urlの値がないと404エラーを返す
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

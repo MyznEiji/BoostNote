@@ -1,0 +1,66 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonScikit-learn"
+description: "PythonScikit-learn"
+snippets: [
+  {
+    name: "PythonScikit-learn.py"
+    mode: "Python"
+    content: '''
+      #線形サポートベクターマシン
+      ニューラルネットワークのような機械学習のアルゴリズムのひとつ
+      最もグループ間の距離が離れるように直線を設定
+      
+      
+      #fit()
+      与えられた引数を元に、機械学習モデルが学習を行うメソッドです。
+      機械学習アルゴリズムの種類によってどのように学習が行われるかは異なります。
+      
+      
+      #predict()
+      学習したモデルを使ってクラスを予測する際に使用するscikit-learnのメソッドです。
+      予測した結果が返り値となります
+      
+      
+      #sklearn.linear_model.LinearRegression.intercept_
+      切片の値を出力する
+      
+      #sklearn.linear_model.LinearRegression.coef_
+      係数の値を出力する
+      
+      
+      #from sklearn.metrics import r2_score
+      #r2_score(array, array)
+      R-二乗値を測定を出力する
+      
+      
+      #from sklearn.datasets import load_breast_cancer
+        ガンのデータをインポート
+        "load_breast_cancer().data"
+        ガンのデータにアクセス
+      
+        "load_breast_cancer().data.feature_names"
+        カラムの名前にアクセス
+      
+        "load_breast_cancer().data.target_names"
+        目的変数(ラベル)
+      
+        "load_breast_cancer().data.DESCR"
+        データの詳しい詳細
+      
+      
+      #sklearn.feature_selection import SelectKBest
+      上位k個のベストな値を取得する
+      SelectKBest.get_support()
+      使われた次元をTrueで返す
+      
+      #sklearn.feature_selection import chi2
+      カイ2乗
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-08T12:09:12.593Z"
+updatedAt: "2017-12-25T08:06:18.341Z"

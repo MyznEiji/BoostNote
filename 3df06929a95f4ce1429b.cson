@@ -1,0 +1,25 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Touch"
+description: "Touch"
+snippets: [
+  {
+    name: "Touch.cs"
+    mode: "C#"
+    content: '''
+      //Touch.deltaPosition
+      1つ前にタッチしたところからの位置の変動値を返す
+      deltaPosition は前回の位置から最新のタッチ位置の差分としての Vector2 です。
+      deltaTime で deltaPosition.magnitude を割ることによって
+      タッチ移動のスピードを求めることができます。
+      ```
+      t.deltaPosition..magnitude / Time.deltaTime//タッチ移動のスピードを求める
+      ```
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-04T07:38:31.704Z"
+updatedAt: "2017-10-04T07:41:47.062Z"

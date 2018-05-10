@@ -1,0 +1,94 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#ObjectPool"
+description: "C#ObjectPool"
+snippets: [
+  {
+    name: "c#ObjectPool.cs"
+    mode: "C#"
+    content: '''
+      //ObjectPool
+      複数のオブジェクトを作成と破壊することを防ぐデザインパターンです。
+      Objectを作成することと削除することにはメモリを割り当てることと割り当てを
+      取り消すことになります。これを複数実行したら、処理が重たくなります。
+      したがって、作成したObjectを再利用することでこれを防ぐことが出来ます。
+      これをObject Poolパターンと言います。
+      例えば、銃弾を何個も連続で発射するときに、一個一個作成して破壊するとメモリを無駄に
+      使用してしまうので、再利用しようという考え方です。
+    '''
+  }
+  {
+    name: "ObjectPoolSample.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections.Generic;
+      using UnityEngine;
+      
+      public class ObjectpoolSample : MonoBehaviour {
+      
+          [SerializeField] GameObject pollObject;
+          [SerializeField] int polledAmount = 20 ;
+          [SerializeField] List<GameObject> pollList;
+      
+          // Use this for initialization
+          void Start () {
+              pollList = new List<GameObject>();
+      
+              for (int i = 0; i < polledAmount; i++) {
+                  GameObject gameObject = Instantiate(pollObject, Vector3.right * i, transform.rotation);
+                  gameObject.SetActive(false);
+                  pollList.Add(gameObject);
+              }
+          }
+      
+          void Update() {
+              if (Input.GetMouseButtonDown(0)) {
+                  getPollObject();
+              }
+      
+          }
+      
+          public GameObject getPollObject() {
+              for (int i = 0; i < pollList.Count; i++) {
+                  if (!pollList[i].activeInHierarchy) {
+                      pollList[i].SetActive(true);
+                      return pollList[i];
+                  }
+              }
+      
+              GameObject gameObject = Instantiate(pollObject);
+              pollList.Add(gameObject);
+              return gameObject;
+          }
+      }
+    '''
+  }
+  {
+    name: "Cube.cs"
+    mode: "C#"
+    content: '''
+      using UnityEngine;
+      
+      public class Cube : MonoBehaviour {
+          private float activeTime = 0;
+      
+          // Update is called once per frame
+          void Update () {
+              if (gameObject.activeInHierarchy) {
+                  activeTime += Time.deltaTime;
+              }
+      
+              if (activeTime > 1.0f) {
+                  gameObject.SetActive(false);
+                  activeTime = 0;
+              }
+          }
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-03T06:04:12.479Z"
+updatedAt: "2017-11-03T13:59:27.367Z"

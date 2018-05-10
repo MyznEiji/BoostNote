@@ -1,0 +1,46 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#String"
+description: "C#String"
+snippets: [
+  {
+    name: "C#String.cs"
+    mode: "C#"
+    content: '''
+      //String.Copy(String);
+      指定した String と同じ値を使用して、String の新しいインスタンスを作成します。
+      
+      
+      //String.IndexOf('String')
+      文字列内に指定した文字列と一致する部分があるかを探し、見つかったら、
+      最初に見つかった位置を0以上の整数で返します。見つからなければ、-1を返します。
+      ```
+      String str = "今日はいい天気です";
+      
+      int n = str.IndexOf('は');
+      print("文字列に'は'が出て来るのは" + n "番目の文字");
+      ```
+      
+      //String.Replace(string,string)
+      第一引数の文字列を第二引数の文字列に変える
+      
+      
+      //String.ToCharArray();
+      文字列をChar型の配列に変換して取得することができます。
+      
+      
+      //String.Substring(Int start,Int number)
+      文字列の中から指定した部分の文字列を取得するメソッド
+      第一引数はどこの文字から、第二引数に何文字かを指定する
+      
+      
+      using System;
+      String.Format("あ{0}う","い");
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:11:41.307Z"
+updatedAt: "2017-11-02T16:29:16.637Z"

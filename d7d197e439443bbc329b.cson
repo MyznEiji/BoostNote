@@ -1,0 +1,115 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#ConstAndStaticReadonly"
+description: "C#ConstAndStaticReadonly"
+snippets: [
+  {
+    name: "C#Const.cs"
+    mode: "C#"
+    content: '''
+      //cosntって何？
+      1,const = コンパイル時定数
+      2,int,float,double,bool,char,stringの型が使える。
+      3,宣言時に値を代入する必要がある。
+      4,string型が使えるので参照型も使えるのかも!と思ったけど、
+        参照型でconstできるのはstringのみ
+      5,プロパティをconstで定義することはできない。
+      6,newを使えない
+      7,constを使った定数にstaticキーワードをつけることはできない。
+      8,static readonlyより早いらしい
+      9,コンパイルされる時に定数の値と同じ値に置き換えられる
+      10,switch文にも使える
+      
+      将来変更され得るような値をconst定義すべきではありません。
+      円周率や金の原子に含まれる陽子の数のような、絶対不変の値のみがconst定義される
+      べきものである
+      
+      もちろんフィールド,コンストラクタ,メソッド内で自由に宣言可能!
+      あとスコープが違えば名前がかぶっていてもOK
+      
+      const定数は、コンパイルされる時に定数の値と同じ値に置き換えられる
+      
+      エラーはおきない
+          public const string a = "1";
+          public const string aa = null;//null代入はok
+          public const int b = 1;
+          public const bool c = true;
+          public const float d = 0.0f;
+          public const double e = 0.0d;
+      エラーが起きる
+          public const string a; //宣言時に値が代入されていない!
+          public const int b;//宣言時に値が代入されていない!
+          const string a = new string ('a', 1); //newは使えない!
+          public const Hoge hoge = new Hoge ();//参照型はstring以外は使えない
+          public const int AAA {//プロパティは使えない
+              get;
+              set;
+          }
+          public const int? c = null;//null許容型はだめ
+          public const string? d = null;//null許容型はだめ
+          public const static int f = 1;//staticキーワードは使えない
+          
+      
+      
+    '''
+  }
+  {
+    name: "C#ReadOnly.cs"
+    mode: "C#"
+    content: '''
+      //static readonlyって何？
+      
+      static readonly = 実行時変数
+      
+      1,これも定数扱い(読み取り専用)
+      2,値型にも参照型にも使える
+      3,宣言時に代入しなくてもエラーにはならない
+      4,宣言した後は代入できない
+      5,readonlyだけならコンストラクタ内で初期化可能
+      6,switch文に使えない
+      
+      constより本当に若干遅い(が気にするほどのレベルじゃない)
+        
+      エラーは起きない
+          static readonly int a = 1;
+          static readonly string b = "1";
+          static readonly Hoge c = new Hoge (); //参照型もOK
+          static readonly int d; //代入しなくてもOK.1が入る
+          static readonly Hoge e; //代入しなくてもOK.Nullが入る
+      宣言した後は代入できない
+          void Start ()
+          {
+              d = 100; //代入できない
+          }
+          static readonly int d;
+      readonlyだけならコンストラクタで初期化可能
+      public class Test2
+      {
+          public Test2 ()
+          {
+              a = 100;
+          }
+      
+          readonly int a;
+      }
+      エラーが出る(switch文には使えない)
+          void AAA ()
+          {
+              int b = 100;
+              switch (b) {
+              case a:
+                  break;
+              default:
+                  break;
+              }
+          }
+      
+          static readonly int a = 100;
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-06T11:25:49.011Z"
+updatedAt: "2017-11-06T11:36:02.215Z"

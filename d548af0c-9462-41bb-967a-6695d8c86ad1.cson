@@ -1,0 +1,171 @@
+createdAt: "2018-03-13T09:37:19.527Z"
+updatedAt: "2018-03-21T08:19:51.354Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelCommand"
+description: '''
+  LaravelCommand
+  
+'''
+snippets: [
+  {
+    name: "laravelCommand.py"
+    mode: "Python"
+    content: '''
+      # create-project コマンド
+      このコマンドはLaravelで新規アプリケーションを作成する際に使用します。
+      コマンドを実行する際には作成したいアプリケーション名を最後につけて 
+      「composer create-project laravel/laravel アプリケーション名」
+      とコマンドを実行します。
+      
+      
+      # php artisan make:controller コマンド
+      コントローラーを作成するためにはphp artisan make:controllerコマンドというものを
+      使用します。このコマンドを使用することによってコントローラーに関するファイルを自動で
+      作成してくれます。実際に使用する際には「php artisan make:controller コントローラー名」
+      というように作成したいコントローラーの名前を後ろに付けて実行します。
+      
+      
+      #  php artisan serveコマンド
+      アプリケーションを動かすためにはサーバーを立ち上げる必要があります。
+      「php artisan serve」コマンドはアプリケーションを動かすためのテストサーバーを起動
+      するためのコマンドです。
+      
+      テストサーバーが起動したので、アプリケーションが正しく動いているかを確認しましょう。
+      テストサーバーでアプリケーションを立ち上げる場合のURLはパスの前に
+      http://localhost:8000がついたものになります。
+          
+          
+      #  php artisan make:modelコマンド
+      php artisan make:modelコマンドを使用すると、DBにテーブルを作成するためのファイルと
+      そのテーブルに対応するモデルファイルとを自動で作成することができます。
+      実際に使用する際には「php artisan make:model モデル名(先頭大文字)」
+      というように作成したいモデルのクラス名を先頭大文字にしたものを後ろに付けて実行します。
+      
+      php artisan make:modelコマンドを使用すると、テーブルと紐づけるためのモデルファイルを
+      生成します。実際に使用するには「php artisan make:model モデルクラス名」というように
+      作成したいモデルクラス名を後ろにつけて実行します。
+      
+      
+      $ php artisan make:model Tweet -m
+      -mをつけるとモデルファイルを生成するのと同時に、マイグレーションファイルというデータを
+      保存するテーブルの設計図も同時に生成するという意味になります
+      
+      
+      # php artisan migrate
+      現在存在している未実行のマイグレーションファイルを実行するコマンドです。
+      
+      
+      # php artisan migrate:rollback
+      これから先新たなテーブルを作成したり、カラムの追加などテーブルに変更を加える際は常に
+      migrationファイルを作成します。php artisan migrate:rollbackコマンドを実行すると、
+      データベースの状態が最新のmigrationファイルを実行する前に戻ります。
+      
+      では、実際にphp artisan migrate:rollbackコマンドを試してみましょう。
+        
+        
+      # php artisan tinker コマンド
+      php artisan tinkerを実行すると作成したLaravelアプリケーションのメソッドやクラスなど
+      を実際に呼び出すことができます。
+      ターミナルから「php artisan tinker」コマンドを実行することでコンソールを起動できます。
+      
+      # php artisan make:migration
+      テーブルに新しくカラムを追加するには下記のコマンドを実行します。
+      php artisan make:migration ファイル名
+      
+      テーブルにカラムを追加したり、削除するようなテーブルの構造を変えたいときも
+      マイグレーションファイルを作成します。作成にはphp artisan make:migrationコマンドを
+      使用します。このコマンドはマイグレーションファイルを新しく作るためのものです。また、
+      カラムを追加する場合は--table=テーブル名オプションを利用しましょう。    
+      
+      $ php artisan make:migration add_columns_to_products_table --table=products
+          
+          
+      booksテーブルを作成するマイグレーションファイルを作成する
+      $ php artisan make:migration create_books_table --create=books
+      
+          
+      
+      # php artisan route:list
+      コマンドをターミナルから入力すれば、
+      ルートパスにアクセスした際にどのようなリクエストが送られているか確認できます。
+      
+      
+      # php artisan make:migration remove_name_tweets_table --table=tweets
+      Removeカラム名削除元テーブル名のカラム名の部分は、Addカラムの際と同様に必ずしも
+      厳密なカラム名を入力する必要はありません。今回はnameというカラムのみを削除するので、
+      Nameと記述します。
+      tweetsテーブルからカラムを削除するので --table=tweets と、テーブルの指定もしましょう。
+      
+          public function up()
+          {
+            Schema::table('tweets', function (Blueprint $table) {
+              $table->dropColumn('name');
+            });
+          }
+      
+      
+          
+          
+      # $ php artisan make:migration add_user_id_tweets_table --table=tweets
+      テーブルに新しくカラムを追加するには下記のコマンドを実行します。
+      php artisan make:migration ファイル名
+      
+      例えば、userの自己紹介を保存するためのカラム、introductionカラムをusersテーブルに
+      text型で追加したいとします。その時は、以下の例のように書きます。
+      
+          public function up()
+          {
+              Schema::table('tweets', function (Blueprint $table) {
+                  $table->integer('user_id');
+              });
+          }
+          
+          
+      
+      # APP_KEYの生成
+      .envファイルの中にAPP_KEYという定数が存在します。
+      しかしcloneした状態ではAPP_KEYの中には何も値が格納されておらず、
+      値を生成する必要があります。
+      sublimeText上の「mooovi」<「.env」ファイルの中身を確認してみましょう。
+      
+      2行目のAPP_KEYの中身が空っぽなのが確認できたと思います。
+      ここには通常ランダムな数字が入り、アプリケーションのパスワードの暗号化などに利用されます。
+      APP_KEYが存在しない場合は以下のコマンドで簡単に生成することができます。
+      
+      $ php artisan key:generate
+      APP_KEYのランダム文字列を生成するためのコマンドです。実際にターミナルで
+      実行してみましょう。
+      
+      
+          
+      
+      # php artisan make:consoleコマンド
+      新しいコマンドを作成するためのひな形を生成するコマンドです。作成したコマンドは 
+      php artisan コマンド名という形で使うことが出来ます。また、commandオプションを
+      指定することで、コマンドが登録された状態でファイルを作成できます。
+      $ php artisan make:console ファイル名 --command=登録したいコマンド名
+      
+      $ php artisan make:console MovieScraping --command=movie_scraping
+      
+        
+      app/Console/Kernel.phpファイルのcommandsプロパティにて行います。
+      
+          protected $commands = [
+              Commands\\Inspire::class,
+              Commands\\MovieScraping::class,
+          ];
+        
+        
+      MovieScraping.phpファイルにおける重要な記述は以下の2つです。
+      $signatureプロパティ・・・コマンド名
+      handle()メソッド・・コマンドが入力されたときに実行される内容を記述する
+      
+      handle()メソッドには実行内容を記述していきます。実行したいのはmovie_urls()メソッド
+      です。movie_urlsは静的メソッドなので、クラス名::静的メソッドという形で実行できます。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

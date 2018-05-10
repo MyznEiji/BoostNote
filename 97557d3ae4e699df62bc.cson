@@ -1,0 +1,182 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Move"
+description: "Move"
+snippets: [
+  {
+    name: "Position.cs"
+    mode: "C#"
+    content: '''
+      void Update () {
+        transform.position += Vector3.forward * Time.deltaTime;
+        Vector3(0, 0, 1) と同じ意味
+          
+        transform.position += Vector3.back * Time.deltaTime; 
+        Vector3(0, 0, -1) と同じ意味
+          
+        transform.position += Vector3.up * Time.deltaTime;
+        Vector3(0, 1, 0) と同じ意味 
+          
+        transform.position += Vector3.down * Time.deltaTime;
+        Vector3(0, -1, 0) と同じ意味
+          
+        transform.position += Vector3.right * Time.deltaTime;
+        Vector3(1, 0, 0) と同じ意味    
+          
+        transform.position += Vector3.left * Time.deltaTime;
+        Vector3(-1, 0, 0) と同じ意味
+          
+        transform.position = Vector3.one;
+        Vector3(1, 1, 1) と同じ意味
+          
+        transform.position = Vector3.zero;
+        Vector3(0, 0, 0) と同じ意味
+      }
+      
+      
+      //Rigidbodyがあるときに力を加える
+      ```
+      void Update(){
+        //AddForce( 力を加える方向, 力の加え方(ForceMode))
+        GetComponent<Rigidbody>().AddForce(transform.right * 100,ForceMode.Force);
+      }
+      ```
+      
+      
+      ```
+      void Update(){
+        transform.Translate(0.5f,0,0);
+      }
+      ```
+      
+      
+      //物体に加速度を与える。この例ではx軸方向にむかって進んでいく
+      ```
+      Rigidbody rb;
+      void Start(){
+        rb = GetComponent<Rigidbody>();
+      }
+      void Update(){
+        rb.velocity = new Vector3(5,0,0);
+      }
+      ```
+      
+      
+      ```
+      Rigidbody rb;
+      void Start(){
+        rb = GetComponent<Rigidbody>();
+      }
+      void Update(){
+        // 物体に力を加える。初動はゆっくりだが、徐々に加速度が増え速度が増す
+        rb.AddForce(new Vector(5,0,0));
+      
+        // 物体に加速度を与える。摩擦などを考慮せず加速度を設定するので、最初からトップスピード
+        rb.velocity = new Vector(5,0,0);
+      }
+      ```
+    '''
+  }
+  {
+    name: "Rotation.cs"
+    mode: "C#"
+    content: '''
+      //向きを変える
+      void Update () {
+        transform.Rotate(Vector3.forward);
+        Vector3(0, 0, 1) と同じ意味
+          
+        transform.Rotate(Vector3.back);
+        Vector3(0, 0, -1) と同じ意味
+          
+        transform.Rotate(Vector3.up);    
+        Vector3(0, 1, 0) と同じ意味 
+          
+        transform.Rotate(Vector3.down);    
+        Vector3(0, -1, 0) と同じ意味
+          
+        transform.Rotate(Vector3.right);    
+        Vector3(1, 0, 0) と同じ意味    
+          
+        transform.Rotate(Vector3.left);    
+        Vector3(-1, 0, 0) と同じ意味
+          
+        transform.Rotate(Vector3.one);  
+        Vector3(1, 1, 1) と同じ意味
+          
+        transform.Rotate(Vector3.zero);    
+        Vector3(0, 0, 0) と同じ意味
+      }
+      
+      
+      //Rigidbodyがあるときに力を加える
+      void Update(){
+        //AddTorque(Vector3 torque, ForceMode mode = ForceMode.Force);
+        GetComponent<Rigidbody>().AddTorque(transform.right * 100,ForceMode.Impulse);
+      }
+      
+      
+      //回転をして結果的に向きが変わる
+      Rigidbody rb;
+      void Start(){
+        rb = GetComponent<Rigidbody>();
+      }
+      void Update(){
+        rb.angularVelocity = new Vector3(50,30,0);
+      }
+      
+      
+      //Vector3(1,0,1)を基点にY軸を回転(公転)
+      void Update(){
+        //transform.RotateAround(Vector3 point, Vector3 axis, float angle);
+        transform.RotateAround(new Vector3 (1, 0, 1), transform.up,Time.deltaTime);
+      }
+      
+      
+      //ターゲットの方向にスムーズに方向を向く
+      void Update()
+      {
+        //transform.positionから見てtarget.transform.positionの方向を取得
+        Quaternion targetRotation = Quaternion.LookRotation
+        (
+          target.transform.position - transform.position
+        );
+        //スムーズにターゲットの方向を向く
+        transform.rotation = Quaternion.Slerp
+        (
+          transform.rotation,targetRotation,Time.deltaTime * 5
+        );
+      }
+      
+      
+      //ターゲットの方向を向く
+      transform.LookAt(target.transform);
+      transform.rotation = new Quaternion
+      (
+        0,
+        transform.rotation.y,
+        0,
+        transform.rotation.w
+      );
+      
+      
+      //10秒で１周する
+      transform.Rotate(0,360 / 10 * Time.deltaTime,0);
+    '''
+  }
+  {
+    name: "memo.cs"
+    mode: "C#"
+    content: '''
+      ForceModeはRigidbody.AddForce を使用して力を適用する方法のためのオプション。
+      ・Force:質量を使用してオブジェクトに継続的に力を加えたい時に使用します
+      ・Acceleration:その質量を無視して、Rigidbodyへ継続的な加速を追加します。
+      ・Impulse:対象のオブジェクトの質量(Mass)を使用して、rigidbodyに瞬時に力を加えます。 
+      ・VelocityChange:質量を無視して、Rigidbodyにインスタント速度変化を追加します。
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-05-27T14:06:57.072Z"
+updatedAt: "2017-12-08T11:11:51.863Z"

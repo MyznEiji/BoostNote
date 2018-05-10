@@ -1,0 +1,335 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Photon"
+description: "Photon"
+snippets: [
+  {
+    name: "General.cs"
+    mode: "C#"
+    content: '''
+      //Photonのサーバー通信の仕組み
+      Photonにおける通信では、それぞれのデバイスで
+      ローカルサーバー（手元のサーバーという意味で、今回に関してはUnityのゲームサーバーを示します）が
+      動いていて、それをPhotonが用意してくれている
+      マスターサーバー（今回は「Photon Cloud」という名前のサーバーを使用しています）が仲介して、
+      データのやりとりを手伝うことによって通信が可能になっています。
+      
+      
+      //Photonでユーザー同士がマッチングするまで
+      世界中のたくさんの人、アプリが一斉にこのPhotonのマスターサーバーを使用します。
+      なので「どのアプリで」、そして「誰と誰が」通信しているのかを区別する仕組みがないと、
+      全く違うアプリケーション同士で通信をし合ってしまったり、
+      通信したくない人と通信されてしまったりという状況が起きてしまいます。
+      
+      それを防ぐためにPhotonではいくつも階層を分けて、マッチングするユーザーを絞り込んでいます。
+      具体的には以下のような階層になっています。上から順番にプレイヤーをフィルターにかけていきます。
+      
+      名前       用途
+      AppId	    同じアプリ同士でしかマッチングしないように制限します。
+      Version	  同じアプリでもアップデートされると機能が変わります。
+                同じVersionのものだけが互いに通信できるように制限します。
+      Lobby	    実際に通信プレイを行う前の待機場所の様なものです。
+      Room	    Photonにおける最深部で実際に通信が行われる場所です
+      
+      AppId : Photonを介して行われるたくさんの種類の通信の中で同じアプリを使っているということを
+              示すために使うのが、前章で取得・登録したAppId（アップアイディー）です。
+              つまりは「同じコードで書かれたアプリを使用していても、
+              登録しているAppIdが違えば、同じアプリだと認識されずマッチングされない」
+      
+      Version : アプリケーションは一度使ったら終わりではなく、日々仕様変更やアップデートが
+                行われています。小規模な変更なら良いのですが、大規模な変更があったとき、
+                古いものと更新されたものが通信できてしまえば色々と問題が発生します。
+                そのために同じアプリでもVersion（バージョン）で区別をする必要があります。
+                これはサーバーに接続するタイミングで設定するString型の変数です
+                
+      Lobby : 実際に通信を行うのは一つ下のRoomの中ですが、その前の待機場所のような階層がLobbyです。
+              通信をするためのRoomを作成したり、選択するためのワンクッションだと思ってください。
+              一つのアプリに複数のLobbyが存在することもありますが、小規模なアプリの場合、
+              一つのLobbyに自動的に全員を入れてしまうことも多いです。
+              PhotonServerSettingsのClientSettingsのAuto-join Lobbyをチェックすることで
+              デフォルトロビーという名前のロビーを作成して、そこに全ユーザーを自動的に入れるという
+              設定をONにしています
+              
+      Room : 実際にプレイヤー同士が顔を合わせて通信をするのがこのRoomです。
+             なのでPlayerが簡単に設定を変更できる仕組みになっています。人数制限を課したり、
+             公開非公開を切り替えたりと設定は容易です。具体的な設定方法については後ほど説明します。
+             
+             
+      //PhotonでのInstantiate       
+      PhotonでInstantiateをするためにはプレハブをResourcesという名前のフォルダ以下に
+      置かなければいけないというルールがあるということです
+      
+      
+      //Photonの実装の際の問題点
+      Photonでの通信の実装には一つ問題点があります。それは「自身のUnity内だけでは通信が
+      実装できているのかの判定ができない」という点です。
+      もちろん同時に複数人で同じ作業をしているのであれば、実際に通信をして試すという
+      方法もありますが、そんなことは滅多にありません。
+      
+      そこで手間はかかりますが、「実際にUnityプロジェクトをアプリにビルドして、
+      そのアプリのサーバーとUnityのサーバーで通信をさせる」という方法でPhotonの
+      試運転をしてみましょう。
+      
+      
+      //ビルドによる試運転の仕組み
+      Unityで作るゲームの中ではスクリプト以外にも、「GameObject」や「シーン」などが
+      数多く含まれています。しかし前提として、これらも含んだUnityの全てのものはコードと言う
+      文字列の形で保存・管理されています。
+      
+      ではなぜ私たちはそのコードの塊をゲームとしてプレイできているのかと言うと、
+      その文字の塊を読み取り、ゲームとして再生してくれるサーバーがあるからです。
+      
+      ゲームを映画に例えてみて、コードをフィルム、サーバーを映写機だと想像すると理解が楽です。
+      『フィルム（コード）自体は私たち人間にとって何も意味を持たないですが、映写機（サーバー）が
+      フィルム（コード）を読み取って、私たちがわかる映画（ゲーム）と言う形で再生してくれる』おかげで、
+      私たちは映画（ゲーム）を楽しむことができます。
+      
+      つまり、「同じパソコン内で同じコードで動いていても、そのコードを読み取って再生する
+      サーバーが異なれば、それは全く別のゲームとして扱える」と言うことです。映画に例えるのであれば
+      『同じ映画館で同じフィルムを流していたとしても、そのフィルムを別々の映写機で再生していたならば、
+      それは別の映画である』ということです。
+      
+      なのでUnityで作業中のProject（Unityサーバーで動いている）とそれをアプリとしてビルドしたもの
+      （本番用のゲームサーバーで動いている）は、仮に同じパソコン内で起動していたとしても、
+      別のものとして扱って通信することが可能なのです。
+      
+      
+      
+      //自分と他のPlayerを区別して動かしましょう
+      現状ではPhoton ViewによってUnityサーバーによって生成されたPlayerとゲームサーバーによって
+      生成されたPlayerが同期（通信によってどちらのゲームにも反映させること）されているだけです。
+      つまり今は、「入力によって動くPlayerがただ２体存在している」という状態です。
+      なのでこれから入力が自分のPlayerだけに反映される様に設定しましょう。
+      
+      通信環境でPlayerを動かすにあたって、他Playerと区別しなければいけない
+      コンポーネントが２つあります。
+      
+      ・Cameraコンポーネント
+      ・FirstPersonControllerコンポーネント
+      
+      Cameraコンポーネントは、それぞれのPlayerが独立したCameraを持っていないと、
+      視界が交錯してしまいます。
+      FirstPersonControllerコンポーネントは、これが同期されてしまうと、
+      誰かの入力で全Playerが動いてしまうことになります。
+      
+      //Photonに関するメソッドを使用可能にするに
+      継承クラスをPhoton.MonoBehaviourにすることによって、Photonに関するメソッドが使用可能となります。
+    '''
+  }
+  {
+    name: "ImportFlow.cs"
+    mode: "C#"
+    content: '''
+      1.アセットをインポート(Photon Unity Networking)
+      2.PUN Wizardというビューや、エラーが出て来ますが、無視して大丈夫です。
+      3.Photonのホームぺージに行き,「サインイン」をクリックします。
+      4.ダッシュボードで「新しくアプリを作成する」をクリックしましょう。
+      5.Photonの種別 : Photon PUN、 
+      6.アプリケーション名 : アプリケーション名を入力して作成するをクリック
+      7.「アプリケーション ID」をコピーしましょう。
+      8.Unityに戻り、Projectビューで「Photon Unity Networking」->「Resources」->「PhotonServerSettings」をクリック。
+      9.PhotonServerSettingsを以下のように設定しましょう。
+        各項目の詳細に関しては、理解しなくても大丈夫です。
+      項目	     設定値
+      Hosting	  Photon Cloud
+      Region	  Jp
+      AppId	    先程取得したPUNのID
+      Protocol　Udp
+      Client    Settings	Auto-Join Lobbyにチェック
+      
+      
+      PhotonServerSettingsを設定することで、
+      使用するPhotonサーバーの詳細を設定することができます。
+      これでPhotonに関する初期設定は完了。
+    '''
+  }
+  {
+    name: "PhotonMethod.cs"
+    mode: "C#"
+    content: '''
+      //PhotonNetwork.ConnectUsingSettings(string Version)
+      Photonサーバーとの接続を行う関数です。ここでVersionを指定することでプレーヤーを
+      バージョンごとに分断しています。
+      "
+      void Start(){
+       PhotonNetwork.ConnectUsingSettings("1.0");
+      }
+      "
+      
+      
+      //OnJoinedLobby()
+      Auto-Join Lobbyを設定したため、サーバーに接続した後、プレイヤーはすぐにLobbyに入ります。
+      この関数は Lobbyに入ったタイミングで呼び出されます。
+      このOnJoinedLobby関数内では、PhotonNetwork.JoinRandomRoom()を呼び出しています。
+      "
+      void OnJoinedLobby(){
+          PhotonNetwork.JoinRandomRoom();
+      }
+      "
+      
+      
+      //JoinRandomRoom()
+      ロビーにいる状態で、JoinRandomRoom()が呼び出されると、
+      既存のRoomを探し出して、ランダムで接続しようとします。また、JoinRandomRoom関数は、
+      PhotonNetworkクラスの関数です。そのため、呼び出す際は
+      「PhotonNetwork.JoinRandomRoom()」と記述する必要があります。
+      
+      
+      //OnPhotonRandomJoinFailed()
+      OnPhotonRandomJoinFailed()は、JoinRandomRoom関数が失敗した際に呼び出されます。
+      JoinRandomRoom関数は、Roomが一つも作成されていない状態で呼び出されると失敗します。
+      つまり、 Roomが作成されていない状態で、JoinRandomRoom関数を呼び出すと失敗し、
+      OnPhotonRandomJoinFailed関数が呼び出されるということになります。
+      このOnPhotonRandomJoinFailed関数内では、PhotonNetwork.CreateRoom(null)を
+      呼び出しています。
+      "
+      void OnPhotonRandomJoinFailed(){
+          PhotonNetwork.CreateRoom(null);
+      }
+      "
+      
+      //CreateRoom(string roomName)
+      Lobbyにいる状態で、CreateRoom()が呼び出されると、Roomを新規作成します。
+      引数にstring型の値を持たせることで、Roomの名前を指定することができます。
+      「JoinRandomRoom()」が失敗したとき、つまり、Roomが存在しない状態の時に呼び出され、
+      Roomを作成しています。
+      
+      
+      //OnJoinedRoom()
+      OnJoinedRoom関数は、Roomに入った時に呼び出されます。
+      今回はRoomにきちんと入れたことを確認するために、きちんとRoomに入れた場合Consoleビューに「Roomに入りました！」を表示されるようにコードを記述しました。
+      "
+      void OnJoinedRoom(){
+          print("Roomに入りました！");
+      }
+      "
+      
+      
+      //Photon View
+      Photonを用いたプロジェクトに必須のコンポーネントです。
+      Photonサーバーとデータの送受信を行います。
+      Photon Viewの各項目は以下のようになっています。
+      
+      項目	                 内容
+      Owner	                アタッチしているゲームオブジェクトの所有者
+      View ID	              Photon ViewのID番号
+      Observe option	      同期の方法(いつ、どのように)
+      Observed Components	  同期させたい情報
+      
+      
+      //Photon Transform View
+      オブジェクトのTransformの情報を同期させるために必要なコンポーネントです。
+      Photon Transform Viewの「Synchronize Position」と「Synchronize Rotation」に
+      チェックを入れます。
+      こうすることで、Transform内の「Position」と「Rotation」の情報を同期できるようになります。 
+      
+      「Synchronize Position」を以下のように設定してください。
+      項目	               値
+      Interpolate Option	Lerp
+      Lerp Speed	        3
+        
+      「Synchronize Rotation」を以下のように設定してください。
+      
+      項目	　　　　        値
+      Interpolate Option	Lerp
+      Lerp Speed	        5
+        
+        
+        
+      // Interpolate Option
+      同期の際の補完処理を行うための設定です。これにより、オブジェクトの動きが滑らかに同期されます。
+      各オプションの詳細は以下の通りです。
+      
+      オプション : 詳細
+      Disable : 補完を行いません。こちらに設定すると、同期させたいオブジェクトの動きが
+                滑らかになりません。
+      Fixed Speed : 一定速度でオブジェクトを追従し補完します。
+                    同期させたいオブジェクトの動きが一定のときに有効です。
+      Estimated Speed : 受け取った「直前の座標」と「現在の座標」の差分を現在の速度と仮定して
+                        オブジェクトを移動させて補間します。ゆっくりと加速/減速する
+                        オブジェクトに有効です。
+      Synchronize Values : スクリプトで直接Transformを指定し、これを用いて補完します。
+                           動きの激しいオブジェクトの同期に有効です。
+      Lerp : 線形補完をします。激しく動くオブジェクトも滑らかに同期できるが、
+             タイムラグが生じる。選択すると出てくる、Lerp Speedは線形補間を行う速さを表します。
+             
+             
+             
+      //PhotonNetwork.Instantiate(string, Vector3, Quaternion , int)
+      同期したいオブジェクトをInstantiateするときに使用します。通常のInstantiateと異なり、
+      第1引数には生成したいオブジェクトの名前をstring型で、第4引数にはPhotonViewのグループの
+      番号がint型で入ります。
+             
+      
+      //photonView.isMine
+      PhotonViewが自分の物であるか、他のPlayerの物であるかを判定します。
+      自分の物である場合、trueが返されます。
+      
+      
+      
+      //PunRPC
+      RPCとは、ネットワーク上の別の端末の関数等を呼び出す仕組みです。
+      Photonではメソッドの前に[PunRPC]をつけることで、メソッドをRPCメソッド
+      （端末を飛び越えて呼び出せるメソッド）に変換することができます。
+      
+      
+      //isMessageQueueRunning
+      Photonでデータの受信を停止したい時に使用します。 
+      IsMessageQueueRunning == falseにすることでPhotonでの通信を一時停止することができます。
+      ここではStartシーンでPlayerオブジェクトが同期されてしまうのを防ぐために、
+      一度同期を停止する設定をしています。バトルのシーンに移行したタイミングでこれを
+      trueにすることでPlayerが同期されます
+      
+      
+      //RoomOption
+      ルームに関する設定をまとめているクラスです。以下のような項目があります。
+      項目	        説明
+      MaxPlayers	  ルームあたりの最大人数を設定できます
+      IsOpen	      trueだと新しいPlayerが参加でき、falseだと出来ません
+      IsVisible	    trueだとどのユーザーからもルームが見えますが、
+                    falseだと決まったユーザーにしか表示されません
+                    
+                    
+      //CreateRoom (string name, RoomOptions roomOptions, Lobby lobby)
+      第一引数の文字列を名前に持ち、第二引数のオプションを持ったルームを、
+      第三引数のロビー以下に生成します。今回は第三引数を null にしていますが、
+      こうすると勝手に現在いるロビーを取得します。
+      
+      
+      
+      //PhotonNetwork.room
+      現在在籍しているroomの情報が取得できます。以下のような属性があります。
+      属性	        意味
+      Name	        Roomの名前
+      MaxPlayers	  最大で入れる人数
+      IsOpen	      誰でも参加できるかどうか
+      IsVisible	    誰でも確認できるかどうか
+      PlayerCount	  現在いるPlayerの数を整数型で返す
+      
+      
+      //OnReceivedRoomListUpdate()
+      PhotonではStartやOnJoinedLobbyではまだRoomの情報は取得できておらず、
+      Roomの情報が取得出来次第、このOnReceivedRoomListUpdateメソッドが呼ばれる様に
+      なっています。なのでルームに関する処理はこの関数内、もしくはその後に書く必要があります。
+      今回はこの後定義するShowRoomsIndex関数を呼んでいます。
+      
+      
+      //RoomInfo
+      ここではRoomの情報がまとまって入っているクラスぐらいの理解で大丈夫です。
+      
+      
+      //PhotonNetwork.GetRoomList()
+      現在存在するRoomの一覧を取得するメソッドです。今回はこれで取得したルームに対して、
+      foreach文を回しています。
+      
+      
+      //PhotonNetwork.JoinRoom(string roomName)
+      stringでルームの名前を引数にとり、そのルームにPlayerを入れるメソッドです。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-19T02:09:49.993Z"
+updatedAt: "2017-08-20T10:33:09.612Z"

@@ -1,0 +1,87 @@
+createdAt: "2018-02-06T05:11:39.677Z"
+updatedAt: "2018-02-06T07:27:28.573Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonTensorFlow"
+description: "PythonTensorFlow"
+snippets: [
+  {
+    name: "TensorFlow.py"
+    mode: "Python"
+    content: '''
+      # tf.reset_default_graph
+      TensorFlowの初期化
+      
+      
+      # tf.placeholder(shape=[1, 16], dtype=tf.float32)
+      入力の値を格納するデータを生成
+      1行16列でfloatの32ビット型
+      
+      
+      # tf.Variable(tf.random_uniform([16, 4], 0, 0.01))
+      TensorFlowの変数を定義
+      tf.random_uniformはランダムな正規分布,16箇所のポジションに対して4つのアクションがある
+      分散を0.01
+      
+      
+      # tf.matmul(inputs1, W)
+      TensorFlowの数学的な掛け算
+      inputs1とWの掛け算
+      
+      
+      # tf.argmax(Qout, 1)
+      Qoutの最大値を一つ取り出す
+      
+      
+      # tf.reduce_sum(tf.square(nextQ - Qout))
+      reduce_sumは平均値をとる
+      squareは2乗の値をとる
+      
+      
+      # trainer = tf.train.GradientDescentOptimizer(learning_rate=0.1)
+      # trainer.minimize(loss)
+      tf.train.GradientDescentOptimizer : トレーニングモデルの指定(勾配降下法)
+      learning_rate : パラメータを更新する割合
+      
+      trainer.minimize(loss)はlossを最小化するように計算をするようにする
+      
+      
+      # tf.global_variables_initializer()
+      変数の初期化をする
+      
+      
+      # with tf.Session() as sess:
+      #   sess.run(init)
+      TensorFlowのセッションの開始
+      sess.run(init)でセッションの初期化
+      
+      
+      # tf.slice(weights, action_holder, [1])
+      TensorFlowの行列を使い
+      weightsのリストの中から
+      action_holderで選択している（0-3）の重みを取り出す
+      
+      
+      
+      # tf.one_hot(self.actions_, action_size)
+      ワンホットベクターを作る
+      第一引数はリストの変数で第二引数は行列の大きさ
+      
+      
+      # self.fc1 = tf.contrib.layers.fully_connected(self.inputs_, hidden_size)
+      
+      
+      # tf.train.AdamOptimizer(learning_rate).minimize(self.loss)
+      AdomOptimizerというアルゴリズムを使っている
+      最適化法
+      (Adomは動的に学習率を調整)
+      learning_rateは学習率
+      
+    '''
+  }
+]
+tags: [
+  "TensorFlow"
+]
+isStarred: false
+isTrashed: false

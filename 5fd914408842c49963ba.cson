@@ -1,0 +1,51 @@
+createdAt: "2018-03-07T07:44:08.883Z"
+updatedAt: "2018-03-19T14:42:36.680Z"
+type: "SNIPPET_NOTE"
+folder: "cc1259c329b67ab436bd"
+title: "PhpSystem"
+description: "PhpSystem"
+snippets: [
+  {
+    name: "phpSystem.php"
+    mode: "PHP"
+    content: '''
+      <!-- if -->
+      if (条件式1) {
+          // 条件式1が真(true)のときに実行する処理
+      } else if (条件式2) {
+          // 条件式1が偽(false)のとき、かつ
+          // 条件式2が真(true)のときに実行する処理
+      } else {
+          // 条件式1と条件式2がどちらとも偽(false)のときに実行する処理
+      }
+      
+      
+      <!-- count()関数 -->
+      count()関数はその配列の中にある要素の数を返してくれる関数です。連想配列、添字配列ともに利用可能です。
+      
+        count(配列); // => 配列内の要素の数
+      
+      
+      <!-- foreach構文 -->
+      配列に対してforeach構文を実行すると、配列に含まれる要素を順に取り出して繰り返し処理が
+      行われます。すなわち、配列の要素の数だけ処理が行われます。
+      foreach構文の使い方は以下のように配列に使います。添字配列・連想配列どちらにも適用が
+      可能です。
+      
+        foreach (添字配列 as $変数) {
+          //  処理
+        }
+      
+      
+      <!-- for文-->
+      
+      for ($i=0; $i<=100;$i++)
+      {
+        echo $1.",s";
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

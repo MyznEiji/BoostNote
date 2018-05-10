@@ -1,0 +1,26 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Texture"
+description: "Texture"
+snippets: [
+  {
+    name: "Texture.cs"
+    mode: "C#"
+    content: '''
+      //Texture2D.width
+      ピクセル単位でのテクスチャの幅
+      
+      //Texture2D.hight
+      ピクセル単位でのテクスチャの高さ
+      
+      
+      //Texture2D.GetPixels(int miplevel = 0)
+      テクスチャからピクセルの色を取得します。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-06T05:16:12.053Z"
+updatedAt: "2017-10-06T05:19:49.365Z"

@@ -1,0 +1,57 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#KeyWord"
+description: "C#KeyWord"
+snippets: [
+  {
+    name: "C#KeyWord.cs"
+    mode: "C#"
+    content: '''
+      //KeyWord
+      
+      //キーワード
+      コンパイラで特別な意味を持つ、事前に定義されている予約済みの識別子です。 
+      キーワードは、プレフィックスとして @ を含めない限り、プログラムで識別子として
+      使用できません。 たとえば、@if は有効な識別子ですが、if は違います。
+      これは、if がキーワードだからです。
+      
+      
+      //予約語一覧
+      			
+      abstract	as	      base	  bool
+      break	    byte 	    case	  catch
+      char	    checked	  class	  const
+      continue	decimal	  default	delegate
+      do	      double	  else	  enum
+      event	    explicit	extern  false
+      finally	  fixed	    float  	for
+      foreach	  goto	    if	    implicit
+      in	      in (ジェネリック修飾子)  	int	     interface
+      internal	is	      lock	  long
+      namespace	new	      null	  object
+      operator	out	      out (ジェネリック修飾子)	    override
+      params	  private 	protected   	public
+      readonly	ref	      return	 sbyte
+      sealed	  short	    sizeof	 stackalloc
+      static	  string	  struct	 switch
+      this	    throw	    true	   try
+      typeof	  uint    	ulong	   unchecked
+      unsafe	  ushort	  using   	using static
+      virtual	  void	    volatile	while
+      add	      alias   	ascending
+      async	    await   	descending
+      dynamic 	from	    get
+      global	  group   	into
+      join	    let	       nameof
+      orderby	  partial (型)	partial (メソッド)
+      remove	  select	    set
+      value	    var	        when (フィルター条件)
+      where (ジェネリック型制約)	where (クエリ句)	yield
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-27T09:06:52.847Z"
+updatedAt: "2017-10-27T09:08:49.584Z"

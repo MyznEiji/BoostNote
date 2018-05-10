@@ -1,0 +1,47 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Time"
+description: "Time"
+snippets: [
+  {
+    name: "Time.cs"
+    mode: "C#"
+    content: '''
+      //Time.timeScale
+      時間の経過をスケールします。これはスローモーション効果で使用できます。
+      TimeScale が 1.0 のとき、時間はリアルタイムと同じ早さで過ぎていきます。 
+      TimeScale が 0.5 のとき、時間はリアルタイムより2倍遅く過ぎていきます。
+      すべての関数がフレームレートの独立している場合、TimeScale をゼロに設定していると、
+      基本的にゲームを一時停止します。 
+      
+      AnimatorコンポーネントのUpdateModeをUnscaledTimeにすると、Time.timeScaleを
+      0にしてもアニメーション自体は動く
+      
+      //Time.deltaTime
+      最後のフレームを完了するのに要した時間(秒)(Read Only)
+        
+      //Time.fixedDeltaTime
+      固定フレームレートの更新を実行するインターバル(秒)
+      fixedUpdateのような感覚
+      
+      
+      //Time.frameCount
+      経過したフレーム数の合計(Read Only)
+        
+        
+      //Time.realtimeSinceStartup
+      ゲーム開始からのリアルタイム(秒)(Read Only)
+        
+        
+        
+      //Time.time
+      このフレームの開始する時間(Read Only)。ゲーム開始からの時間(秒)です。
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-23T17:26:01.618Z"
+updatedAt: "2017-10-06T06:10:56.248Z"

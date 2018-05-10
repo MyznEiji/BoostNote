@@ -1,0 +1,44 @@
+createdAt: "2018-03-06T11:32:21.199Z"
+updatedAt: "2018-04-07T09:20:56.302Z"
+type: "SNIPPET_NOTE"
+folder: "ae869880fb7248601fce"
+title: "mysqlGeneral"
+description: "mysqlGeneral"
+snippets: [
+  {
+    name: "mysqlGeneral.rb"
+    mode: "Ruby"
+    content: '''
+      # サブクエリ
+      サブクエリとは、ある検索結果を使用して別のSQL文を実行する仕組みのことです。
+      
+      SELECT *
+      FROM users
+      WHERE id NOT IN (
+          SELECT DISTINCT user_id
+          FROM shifts
+          WHERE date = "2015-07-01"
+      )
+      
+      
+      # mysqlターミナルを立ち上げる
+      mysql.server start
+      
+      
+      
+      #自動起動
+      brew services start mysql
+      
+      
+      #自動起動終了
+      brew services stop mysql
+      
+      
+      #起動サーバーを調べる
+      brew services list
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,395 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Inheritance"
+description: "C#Inheritance"
+snippets: [
+  {
+    name: "C#Inheritance.cs"
+    mode: "C#"
+    content: '''
+      //Inheritance
+      
+      //クラスの継承
+      元のクラスを引き継いで新しいクラスを作成することを継承
+      クラスの継承はOOP三原則
+      元のクラスを基本クラス、新しく作成されたクラスを派生クラス
+      
+      class 派生クラス名 : 基本クラス名
+      {
+        ・・・
+      }
+      
+      基本クラスのpublicなメンバは派生クラスから呼び出すことができる
+      
+      
+      //protectedアクセス修飾子
+      protectedの付いたメンバには自分自身のクラスと派生クラスからしかアクセスできない。
+      
+      
+      //名前の隠蔽
+      基本クラスのメンバと同じ名前のメンバを、派生クラスで持てるようにする。
+      この場合派生クラスのメンバはnewキーワードを付ける
+      呼び出す時にnewを付けたメンバを呼び出した場合基本クラスのメンバは無視されます。
+      ```
+      using System;
+      
+      class Base
+      {
+        public int x  =10;
+        public void BaseMethod()
+        {
+          Console.WriteLine("Baseクラスです");
+        }
+      }
+      
+      class Derived : Base
+      {
+        new public int x = 20; //基本クラスのメンバと同名
+        new public void BaseMethod() //基本クラスのメンバと同名
+        {
+          Console.WriteLine("Derivedクラスです");
+        }
+      }
+      
+      class Inheritance03
+      {
+        public static void Main()
+        {
+          Derived d = new Derived();
+          Console.WriteLine("x = {0}",d.x);
+          d.BaseMethod();
+        }
+      }
+      
+      ```
+      
+      
+      //baseキーワード
+      隠蔽されたメンバを派生クラス内で使いたい時に使い、基本クラスへの参照を表している
+      base.メンバ名
+      ```
+      using System;
+      
+      class Base
+      {
+        protected int x = 10;
+      }
+      
+      class Derived : Base
+      {
+        new int x = 20;
+        public void Show()
+        {
+          Console.WriteLine("x = {0}",base.x);//x = 10が参照できている
+        }
+      }
+      
+      class Inheritance04
+      {
+        public static void Main()
+        {
+          Derived d = new Derived();
+          d.Show();
+        }
+      }
+      ```
+      
+      
+      //メソッドのオーバーライド
+      基本クラスで"virtualキーワード"をつけてメソッドを定義する
+      派生クラスでは基本クラスと同じ戻り値、名前、引数のメソッドを"overrideキーワード"を
+      付ける
+      
+      基本クラスのメソッドを派生クラスで書き換え可能で
+      同一の名前のメソッドを"派生クラスごとのバージョン"のメソッドとすること。
+      もともとのメソッドを"仮想メソッド"と良い、
+      オーバーライドした新しいメソッドを"オーバーライドメソッド"という
+      仮想メソッドとオーバーライドメソッドは同じアクセス修飾子と
+      シグネチャも同じでなければならない。
+      静的メソッドのオーバーライドはできない。
+      
+      ```
+      using System;
+      class MyBase
+      {
+        public virtual void Method()//仮想メソッド
+        {
+          Console.WriteLine("Mybase");
+        }
+      }
+      
+      class Derived1 : MyBase
+      {
+        public override void Method() //オーバーライドメソッド
+        {
+          Console.WriteLine("Derived1");
+        }
+      }
+      
+      
+      class Derived2 : MyBase
+      {
+        public override void Method()//オーバーライドメソッド
+        {
+          Console.WriteLine("Derived2");
+        }
+      }
+      ```
+      
+      
+      
+      //多様性
+      参照変数ではなくオブジェクトに基づいてメソッドが決定される。
+      オブジェクトの特性に従って振る舞いがなされる、考えられる。
+      オブジェクトとメソッドにおけるこのような性質を多様性。
+      多様性はオブジェクト指向プログラミングの三本柱の1つ
+      
+      
+      //動的メソッドディスパッチ
+      仮想メソッドはオブジェクトの型により、どの仮想メソッドが呼び出されるかが決まる
+      Base myRef;
+      Derived1 dv1 = new Derived1();
+      myRef = dv1 
+      
+      myRef.Method(); //参照変数のBaseではなく、オブジェクトの型のメソッドを実行
+      はDerived1クラスのMethodメソッドが呼ばれる
+      
+      
+      //クラスの多層階
+      なんらかのクラスから派生させた派生クラスを基本クラスとして、さらに
+      派生クラスを作ること
+      ```
+      using System;
+      
+      class MyBase
+      {
+        protected int x = 10;
+        public virtual void Show()
+        {
+          Console.WriteLine("x = {0}", x);
+        }
+      }
+      
+      class Derived1 : MyBase
+      {
+        protected int y = 20;
+      }
+      
+      class Derived2 : Derived1
+      {
+        int z = 30;
+        public override void Show()
+        {
+          Console.WriteLine("z = {0}",z);
+        }
+      }
+      ```
+      
+      
+      //クラスの継承とコンストラクタ
+      基本クラスから順にコンストラクタが呼び出される。
+      ```
+      using System;
+      
+      class MyBase
+      {
+        public MyBase()
+        {
+          //処理１
+        }
+      }
+      class Derived1 : MyBase
+      {
+        public Derived1()
+        {
+          //処理２
+        }
+      }
+      class Derived2 : Derived1
+      {
+        public Derived2()
+        {
+          //処理３
+        }
+      }
+      ```
+      
+      
+      //基本クラスのコンストラクタが引数をとる場合
+      public 派生クラスのコンストラクタ(引数,...) : base(引数,...)
+      {
+        //処理
+      }
+      ```
+      //2次方程式ax^2 + bx + c = 0において[b^2 - 4ac]の判定式のクラス
+      using System;
+      class MyBase
+      {
+        protected double d;
+        public MyBase(double a, double b, double c)
+        {
+          d = Math.Pow(b,2.0) - 4.0 * a * c;
+        }
+      }
+      class MyJunde : MyBase
+      {
+        public bool bjudge;
+        
+        public MyJudge(double p, double q, double r) : base(p,q,r)
+        {
+          Console.WriteLine("判別式  = {0}",d);
+          if (d < 0.0) djudge = false;
+          else djudge = true;
+        }
+      }
+      
+      class Inheritance07
+      {
+        public static void Main()
+        {
+          MyJudge mj = new MyJudge(1,2,3); //false
+          Console.WriteLine(mj.bjudge);
+          MyJudge mk = new MyJudge(1,4,0); //true
+          Console.WriteLine(mk.bjudge);
+        }
+      }
+      ```
+      
+      
+      
+      //抽象クラス
+      抽象メソッドを含むクラスのこと
+      メソッドの戻り値の型とパラメータリストだけを定義し,メソッドの実装は
+      派生クラスに任せたい時に使う
+      "abstractキーワード"を使ってクラスを宣言する
+      abstract class ClassName
+      {
+        ・・・
+      }
+      
+      
+      //抽象メソッド
+      メソッドの中身は記述せず、メソッドの使用や意味だけを示すメソッド
+      インスタンスメソッドのみ適用でき、静的メソッドには適用できない。
+      基本クラスの抽象メソッドは必ずオーバーライドする。
+      "abstractキーワード"を使ってメソッドを宣言する
+      abstract データ型　メソッド名(パラメーター);
+      
+      ```
+      using System;
+      abstract class MyAb //抽象クラス
+      {
+        //hanbetsuメソッドは抽象メソッド
+        public abstract double Hanbetsu(double a, double b, double c)
+      }
+      class MyHanbetsu : MyAb
+      {
+        public override double Hanbetsu(double a, doubel b, double c)
+        {
+          return Math.Pow(b,2.0) - 4.0 * a * c;
+        }
+      }
+      
+      class Abstract01
+      {
+        public static void Main()
+        {
+          MyHanbetsu h = new MyHanbetsu();
+          double d = h.Hanbetsu(1.0,2.0,3.0);
+          Consle.WriteLine(d);
+        }
+      }
+      ```
+      
+      
+      "sealedキーワード"
+      クラスによっては継承されたくないものに定義する
+      抽象クラスはシールするくとができない
+      sealed class MyClass
+      {
+        ・・・
+      }
+      
+      
+      //クラスを分割定義する
+      クラスに"partialキーワード"を付けることでクラス定義が膨大になった場合、
+      定義を機能ごとに分割して、それぞれを別のファイルに保存する。
+      ```
+      using System;
+      
+      partial class MyClass
+      {
+        public int x;
+      }
+      
+      class partial01
+      {
+        public static void Main()
+        {
+          MyClass mc = new MyClass();
+          mc.x = 10;
+          mc Show();
+        }
+      }
+      
+      partial class MyClass
+      {
+        public void Show()
+        {
+          Cosole.WriteLine("x = {0}",x);
+        }
+      }
+      ```
+      
+      
+      //メソッドを分割定義する
+      クラスの分割同様パーシャルクラス内なら"partialキーワード"を使うことで
+      メソッドの宣言と定義を別々のクラスに書くことができる。
+      このメソッドのことを"パーシャルメソッド"という
+      
+      パーシャルメソッドにできるのは、戻り値の型がvoidであるprivateメソッドだけ。
+      
+      ```
+      using System;
+      
+      partial class PartialMethod01
+      {
+        public static void Main()
+        {
+          Console.WriteLine("Mainメソッドです");
+          
+          PartialMethod01 pm = new PartialMethod01();
+          pm.Func1();
+          pm.Func2("てすと");
+        }
+        
+        //ここではメソッドの中身を記述していない
+        //戻り値はvoid型,privateでなくてはだめ
+        partial void Func1();
+        Partial void Func2(string s);
+      }
+      
+      partial class PartialMethod01
+      {
+        partial void Func1()
+        {
+          Console.WriteLine("パーシャルメソッド１です");
+        }
+      }
+      
+      partial class PartialMethod01
+      {
+        partial void Func2(string s)
+        {
+          Console.WriteLine("引数は[{0}]です",s);
+        }
+      }
+      ```
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-27T09:16:14.488Z"
+updatedAt: "2017-10-27T09:16:27.518Z"

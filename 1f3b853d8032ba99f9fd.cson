@@ -1,0 +1,166 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Tween"
+description: "Tween"
+snippets: [
+  {
+    name: "Tween.cs"
+    mode: "C#"
+    content: '''
+      //Tween
+      between（中間）に由来する言葉で、イラストが変化しながら繋がるアニメーションの
+      ことを「Tweenアニメーション」といいます。
+      始点と終点がわかっていれば、中間のアニメーションは補完で自動的に作ってくれます。
+      
+      UnityにおけるTweenは以下の３種類があげられます。
+      ・iTween
+      ・DoTween
+      ・LeanTween
+      
+      
+      //using DG.Tweening
+      DOTweenのクラスやメソッドなどを使用するために必要なので記述
+      
+      
+      //CanvasGroup
+      DOTweenでフェードアウトさせたい場合はCanvasGroupコンポーネントを
+      UIにアタッチする必要があります
+      
+      
+      //DOFade(float ,float)
+      CanvasGroupのAlpha値を制御し、値を変更させることで透明度操作できる
+      第一引数にAlpha値を指定し、第二引数に何秒かけて第一引数に指定したAlpha値までに
+      到達するかを指定します
+      
+      
+      //SetEase(Ease)
+      Easingを用いて、値の補完の緩急を調整しアニメーションを変化させることができます
+      ここでEasingの様々な種類を確認できる
+      "http://webcache.googleusercontent.com/search?q=cache:ZsyqKTmWV4QJ:easings.net/ja+&cd=1&hl=ja&ct=clnk&gl=jp%3Cbr%3E%0A"
+      
+      
+      
+      //SetLoops(int,LoopType)
+      第一引数に「繰り返す回数」
+      第二引数に「繰り返し方」を指定します。
+      第一引数にマイナスの値を指定すると無限ループになります。
+      
+      ・LoopType.Yoyo：アニメーションが終わったら逆再生をします。
+      ・LoopType.Incremental：アニメーションが終わった位置から再度アニメーションが
+        開始します。
+      ・LoopType.Restart：アニメーションのリスタートをします。
+      
+      無限ループにして、任意の時に一時停止したい場合はあらかじめTween型の変数(今回はhoge)
+      に格納しておき変数名(hoge).Pause()メソッドで停止させる
+      
+      
+      //DOAnchorPos(Vector2,int or float  )
+      RectTransformのAnchorポジションを用いて動かす際に使用します。
+      第一引数に、Vector2で移動する位置を指定します。
+      第二引数に、移動完了までの時間を指定します。
+      
+      
+      
+      //DOMove(Vector3,int or float)
+      オブジェクトのポジションを変更させるメソッドです。
+      第一引数に移動させたい位置をVector3型で指定します。
+      第二引数に何秒かけて第一引数に指定した位置に移動させるかを指定します。
+      
+      
+      
+      //DOLocalMove(Vector3,int of float)
+      第一引数に移動させたい位置をVector3型で指定します。
+      第二引数に何秒かけて第一引数に指定した位置に移動させるかを指定します。
+      
+      
+      //DOLocalMoveX(float, float)
+      x軸のみの平行移動
+      第一引数に移動させたい位置をfloat型で指定します。
+      第二引数に何秒かけて第一引数に指定した位置に移動させるかを指定します。
+      
+      
+      //DOLocalMoveY(float,float)
+      y軸のみの平行移動
+      第一引数に移動させたい位置をfloat型で指定します。
+      第二引数に何秒かけて第一引数に指定した位置に移動させるかを指定します。
+      
+      
+      //DOLocalMoveZ(float,float)
+      z軸のみの平行移動
+      第一引数に移動させたい位置をfloat型で指定します。
+      第二引数に何秒かけて第一引数に指定した位置に移動させるかを指定します。
+      
+      
+      //DOLocalRotate(Vector3,int or float)
+      第一引数に回転させたい位置をVector3型で指定します。
+      第二引数に何秒かけて第一引数に指定した位置に回転させるかを指定します。
+      
+      
+      //DOScale(Vector3, int or float)
+      第一引数に変化させたい大きさをVector3型で指定します。
+      第二引数に何秒かけて第一引数に指定した大きさに変化させるかを指定します。
+      
+      
+      //DOLocalPath (new Vector3[]{ new Vector3, Vector3, new Vector3}, 2f, PathType.CatmullRom)
+      複数座標移動
+      第一引数にVector3型の配列を渡し、各座標を順番に通るという複数座標移動が
+        提供されています。
+      第二引数に何秒かけて第一引数に指定した位置に移動させるかを指定します。
+      第三引数のPathTypeをCatmullRomにするか、Linearにするかで大きく印象が変わります。
+      
+      "CatmullRom"
+        なめらかなカーブを補完してくれます
+      "Linear"  
+        直線的な移動をします。デフォルトでなっている
+      
+      
+      //DOPunchPosition (Vector3(5f,0fなど), float, int(vibrate), float(elasticity))
+      パンチング運動(平行移動)
+      第一引数はyを0にするなどで平行移動で振動のようなアニメーション
+      第二引数は何秒かけてアニメーション動かすか指定
+      第三引数は振動の値を決める
+      第四引数は弾性の値を決める
+      
+      
+      //DOPunchScale(Vector3(), float, int(vibrate), float(elasticity))
+      パンチング運動(拡大縮小)
+      第一引数は拡大縮小する大きさを決める
+      第二引数は何秒かけてアニメーション動かすか指定
+      第三引数は振動の値を決める
+      第四引数は弾性の値を決める 
+      
+      
+      //DOShakePosition(float duration, float strength = 1, int vibrato = 10, float randomness = 90, bool snapping = false, bool fadeOut = true)
+      ランダムな移動を繰り返す。揺れの演出
+      第一引数はアニメーションの時間
+      
+      
+      //DOShakeRotation(float)
+      ランダムな向きの変化を繰り返す
+      第一引数はアニメーションの時間
+      
+      
+      //DOShakeScale(float)
+      ランダムなスケールの変化を繰り返す
+      第一引数はアニメーションの時間
+      
+      
+      //DOJump(Vector3 endValue, float jumpPower, int numJumps, float duration, bool snapping = false)
+      ジャンプのアニメーション
+      
+      
+      //.SetLookAt(0.3f,Vector3.forward)
+      カーブを曲がる際にカーブを先読みして傾けている
+      どうやらlookAheadで指定した秒数先の方向をセットしてくれているようです。
+      値が小さければ小さいほど、カーブの方向を向いてくれます。
+      
+      
+      //
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-17T15:09:27.494Z"
+updatedAt: "2017-11-18T12:42:47.940Z"

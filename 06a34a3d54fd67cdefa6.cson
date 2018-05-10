@@ -1,0 +1,25 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#List"
+description: "C#List"
+snippets: [
+  {
+    name: "c#List.cs"
+    mode: "C#"
+    content: '''
+      //List.Contains("cc");
+      List内に"cc"があるか調べる
+      
+      
+      //List.ContainsKey(Key)
+      キーが格納されているかをTuruFalsesで返す
+    '''
+  }
+]
+tags: [
+  "Contains"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T23:10:48.286Z"
+updatedAt: "2017-11-03T06:02:25.317Z"

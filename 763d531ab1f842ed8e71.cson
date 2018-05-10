@@ -1,0 +1,278 @@
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsMethod"
+description: "RailsMethod"
+snippets: [
+  {
+    name: "Method.rb"
+    mode: "Ruby"
+    content: '''
+      #ヘルパーメソッド
+      simple_formatのように、Railsでは主にviewでHTMLタグを出現させたりテキストを
+      加工するために予めメソッドが用意されています。これらをまとめて、ヘルパーメソッドといいます。
+      他には、form_tag(フォームを出現させるメソッド)や
+      link_to(aタグを出現させるメソッド)などがあります。
+      
+      
+      
+      #form_tag
+      ビューにHTMLのformタグを作成することで、ビューから情報を送信できることは説明しました。
+      しかし、Railsではセキュリティの観点から、
+      HTMLのformタグだけで作成したフォームを使用することは推奨されません。
+      通常、Railsでフォームから情報を送信するためにはform_tagを
+      始めとするヘルパーメソッドを使用します。
+      "
+      <div>
+        <form action="/test" method="post">
+          <input type="text" id="name">
+          <input type="submit">
+        </form>
+      </div>
+      "
+      ↓form_tagを使用した場合
+      "
+      <div>
+        <%= form_tag('/test', method: :post) do %>
+          <input type="text" id="name">
+          <input type="submit">
+        <% end %>
+      </div>
+      "
+      一引数は文字列の/tweetsです。これは、formの送信ボタンを押した際のリクエストのうち、
+      パスをあらわしています。
+      第二引数はハッシュクラスのインスタンスmethod: :postです。
+      同じくリクエストについて示していて、こちらはhttpメソッドをpostにするという書き方です。
+      
+      
+      
+      #HTTPメソッド
+      以前に、ウェブサイトを閲覧する際にPCからサーバーにリクエストが送られ、
+      それに対してサーバーからレスポンスが返ってくる仕組みについて説明しました。
+      このリクエストにはその目的によっていくつかの種類（メソッドといいます）に分けられます。
+      
+      
+      #HTTPリクエスト
+      これまでに4種類のHTTPリクエストのメソッドについて学習しました。
+      Railsではこれら4つのメソッドを利用して開発を行います。
+      役割や機能を以下の表にまとめたので再度確認しましょう。
+      
+      get : サーバーからブラウザに情報を返す。単にウェブサイトを閲覧する際には
+            このメソッドが利用されている。
+      post : ブラウザからサーバーに情報を送信し、サーバーに情報を保存する。
+             情報の登録などの際に、サーバーに情報を送信するために利用される。
+      delete : ブラウザからサーバーに情報を送信し、サーバーの情報を削除する。
+               アカウントの削除などの際に、サーバー内のデータを削除するために利用される。
+      patch : ブラウザからサーバーに情報を送信し、サーバー内の情報を置き換える。
+              登録情報の更新などの際に、サーバー内のデータを更新するために利用される。
+      put : メソッド名は違うが、patchと同じ役割を持っている。rails3まではputを使っていたが、
+            rails4からはpatchに移行したためカリキュラム内では使用しない。
+            フォームを作成する際にはフォームの初期値として、編集前のツイート情報を表示します。
+      
+      
+      #updateメソッド
+      updateはActiveRecordメソッドのうちの一つです。
+      updateメソッドはモデルのインスタンスに対して使用することで、
+      引数内の情報にレコードを更新することができます。
+      
+      
+      #params
+      ビューでフォームに入力された情報は、コントローラにキーと一緒にパラメーターとして送られます。
+      このパラメーターはparamsというメソッドを使うことで取得することができます。
+      paramsメソッドを使用する際にはparams[:キー名]という形で使用することができます。
+      "
+      params[:name]
+      =>"abe"
+      params[:text]
+      =>"hello"
+      "
+      
+      
+      #privateメソッド
+      classの内部でprivateとソースコードに書くと、それ以降に定義したメソッドは
+      classの外部から呼び出せなくなります。
+      このようにするメリットは以下の2つです。
+      1.classの外部から呼ばれたら困るメソッドを守ることができる
+      メソッドの中には、classの外部から呼び出されてしまうとエラーを起こすメソッドも存在し得ます。
+      そんな事態を事前に防ぐことができます。
+      2.可読性
+      classの外部から呼び出されるメソッドを探すときに、
+      private以下の部分は目を通さなくて良くなります。
+      
+      
+      #orderメソッド
+      orderメソッドは、テーブルから取得してきたインスタンスたちを並び替えるメソッドです。
+      例えば「contents」という名のテーブルがあり、以下のようにContentクラスからallメソッドを
+      利用して全てのレコードを取得してきたとします。この時、orderメソッドを利用して取得してきた
+      レコードを並び変えることができます。
+      "
+      def index
+        @contents = Content.all.order("id DESC")
+      end
+      "
+      orderメソッドは引数として("テーブルのカラム名 並び替える順序")という形を取ります。
+      並び替える順序には、ASC(昇順)とDESC(降順)の2種類があります。
+      
+      
+      
+      #link_toメソッド
+      link_toはRubyタグの中で使用することができるメソッドです。
+      このメソッドは引数を指定することで様々なリンクを生成します。
+      通常HTMLコード内でリンクを生成する際にはaタグを使用します。
+      link_toメソッドを使って記述を行うと、HTMLコードが読み込まれる際にaタグに変換されるので、
+      サイトを表示した際にはaタグと同様に、リンクとして表示されます。
+      今回の実装で追加するログインや新規登録ボタンもこのメソッドを利用して生成します。
+      
+      
+      
+      #redirect_toメソッド
+      Railsでは通常、アクション内の処理が終了すると自動的にアクション名と同名のビューが
+      表示されます。
+      ただしredirect_toメソッドをアクション内で利用すると、
+      そこからさらに別のアクションを実行したり、ビューに遷移させたりできます。
+      引数にはaction: :indexという形で、キーがaction:バリューが:indexであるハッシュを
+      指定します。このようにバリューにはアクションの名前のシンボル型を利用します。
+      丁寧に書くのであれば{ action: :index }となりますが、Railsの内部では特別にハッシュの
+      括弧{}を省略することができます。
+      
+      
+      #before_action
+      Railsではコントローラでbefore_action :メソッド名と記述することで、
+      コントローラのアクションが実行される前にそのメソッドを実行することができます。
+      また、オプションonlyやexceptを使うことにより、before_actionを実行することを
+      アクションごとに制限をかけることができます。
+      
+      
+      #text_field:maxlengthオプション
+      maxlengthは、text_fieldというinputタグを生成するヘルパーメソッドに
+      つけることができるオプションです。
+      生成されたフォームに7文字以上入力すると、エンターキーを押した瞬間に6文字までカットされます。
+      
+      
+      
+      #configure_permitted_parametersメソッド
+      deviseでは初期状態でサインアップ時にメールアドレスとパスワードのみを受け取るように
+      ストロングパラメーターが設定してあるので、追加したキーのパラメーターは許可されていません。
+      追加のパラメーターを許可したい場合は、application_controllerにおいて
+      before_actionにconfigure_permitted_parametersメソッドを設定します。
+      "
+      class ApplicationController < ActionController::Base
+        # Prevent CSRF attacks by raising an exception.
+        # For APIs, you may want to use :null_session instead.
+        protect_from_forgery with: :exception
+        before_action :configure_permitted_parameters, if: :devise_controller?
+      
+        def configure_permitted_parameters
+          devise_parameter_sanitizer.permit(:ストロングパラメーターを追加したいアクション名, keys: [:追加するキー])
+        end
+      end
+      "
+      
+      
+      #whereメソッド
+      whereメソッドはActiveRecordメソッドのうちの一つです。モデル.where(条件)のように
+      引数部分に条件を指定することで、テーブル内の条件に一致したレコードの
+      インスタンスを配列型で取得できます。
+      
+      
+      
+      #includesメソッド
+      includesメソッドはn+1問題を解消することができます。
+      指定された関連モデルをまとめて取得することで、SQLの発行回数を減らすことができます。
+      書き方は、includes(:モデル名)とします。引数で、
+      関連モデルをシンボル型(接頭に:がつく型)で指定します。
+      今回、usersテーブルとtweetsテーブルの間には以下の図のような関係があります。
+      tweetsテーブルのレコードは必ず1つのusersテーブルのレコードに属しているので、
+      includesメソッドを利用することでtweetsテーブルのレコードを取得する段階で関連する
+      usersテーブルのレコードも一度に取得することができます。
+      
+      
+      
+      #destroyメソッド
+      ActiveRecordメソッドのうちの一つで、インスタンスに対してそのレコードを削除する際に
+      使うことができます。
+      
+      
+      
+      #resourcesメソッド
+      Railsの基本となるコントローラの7つのアクションで記載した
+      7つのアクション名に対してのルーティングを自動で生成するメソッドです。
+      tweetsテーブルにとっての1ツイート、usersテーブルにとっての1ユーザー、
+      つまり、テーブルに保存されるレコード1つの情報のことをリソースと呼びます。
+      以下の例のような記述では、bookというリソースに対して、
+      基本となる7つのアクションをリクエストするルーティングが設定されます。
+      "
+      Rails.application.routes.draw do
+        resources :books
+      end
+      "
+      terminal
+      "
+       Prefix Verb      URI Pattern           Controller#Action
+          books GET    /books(.:format)          books#index
+                POST   /books(.:format)          books#create
+       new_book GET    /books/new(.:format)      books#new
+      edit_book GET    /books/:id/edit(.:format) books#edit
+           book GET    /books/:id(.:format)      books#show
+                PATCH  /books/:id(.:format)      books#update
+                PUT    /books/:id(.:format)      books#update
+                DELETE /books/:id(.:format)      books#destroy
+      "
+      
+      
+      #collection
+      Rails7つのアクション以外のアクション名を定義する時に使います。
+        resources :products, only: :show do
+          resources :reviews, only: [:new, :create]
+          collection do
+            get 'search'
+          end
+        end
+      
+      #render
+      renderメソッドは、部分テンプレートを呼び出す際に利用するメソッドです。
+      
+      
+      #render partialオプション
+      renderメソッドに :partialというオプションをつけることで、
+      明示的に部分テンプレート名を指定し、部分テンプレートを表示することができます。
+      "
+      render partial: "sample"
+      "
+      
+      
+      #render localsオプション
+      また、localsというオプションを用いると部分テンプレート内でその変数を使えるようになります。
+      "
+      render partial: "sample", locals: { tweet: "hello!" }
+      "
+      
+      
+      #first_or_initializeメソッド
+      whereメソッドとともに使うことで、whereで検索した条件のレコードがあれば
+      そのレコードのインスタンスを返し、なければ新しくインスタンスを作るメソッドです。
+      
+      
+      #add_column
+      add_columnをマイグレーションファイルのchangeメソッド内に書くとカラムの追加ができます。
+      記述方法は以下です。
+      ```
+       add_column :テーブル名, :カラム名, :カラムの型
+      ```
+      
+      
+      #remove_column
+      マイグレーションファイルのchangeメソッドではカラムを追加だけでなく削除もできます。
+      remove_columnをマイグレーションファイルのchangeメソッド内に書くとカラムの削除ができます。
+      ```
+      remove_column :テーブル名, :カラム名, :カラムの型
+      ```
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-14T05:15:28.207Z"
+updatedAt: "2018-03-14T06:00:23.492Z"

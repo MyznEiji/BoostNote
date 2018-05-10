@@ -1,0 +1,19 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Light"
+description: "Light"
+snippets: [
+  {
+    name: " UnityLight.cs"
+    mode: "C#"
+    content: '''
+      //Culling Mask
+      光源の影響範囲の設定
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-23T04:26:58.963Z"
+updatedAt: "2017-09-23T04:46:09.250Z"

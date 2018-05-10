@@ -1,0 +1,84 @@
+createdAt: "2018-05-07T06:35:01.063Z"
+updatedAt: "2018-05-07T06:44:40.853Z"
+type: "SNIPPET_NOTE"
+folder: "1e7ebab7ad5dd101bc6c"
+title: "Cyber attack"
+description: "Cyber attack"
+snippets: [
+  {
+    name: "flow.py"
+    mode: "Python"
+    content: '''
+      # サーバーアタックの典型的な手順
+      
+      1. ターゲットを特定
+      2. 情報を集める
+      3. 関節アタック
+      4. 直接アタック(大量のデータを送ってバッファーオーバーフロー、メモリーから情報を溢れさせて侵入に必要な情報を取得する)
+      5. ハウスキーピング　
+      
+      
+      
+      # ターゲット特定
+      標的となるホストの情報を収集する
+      
+      "代表的なツール"
+      - ping
+      - tranceroute
+      - nslookup
+      - whois
+      - host
+      
+      
+      
+      # スキャン
+      ポートスキャンを行なってアタック方法を考える
+      
+      "代表的なツール"
+      - nmap
+      - Zenmap
+      
+      
+      # 関節アタック
+      通信路の盗聴や、パケットダンプなどで手がかりを得る
+      
+      "代表的なツール"
+      - sniffing
+      - Wireshark
+      
+      
+      # 直接アタック
+      サーバーに侵入する
+      
+      "代表的なツール"
+      - Cain&Abel
+      - Fiddler
+      - ssh
+      - crunch
+      - THC-Hydra
+      - Metasploit
+      - w, who
+      
+      
+      
+      # ハウスキーピング
+      侵入した形跡を残さない
+      
+      "代表的な手法"
+      - ログの消去
+      - タイムスタンプの改竄
+      - バックドア
+      - Netcat
+      - Cryptcat
+      
+      
+      
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

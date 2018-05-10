@@ -1,0 +1,131 @@
+createdAt: "2018-01-25T09:51:02.620Z"
+updatedAt: "2018-01-25T09:55:13.694Z"
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Keyword"
+description: '''
+  C#Keyword
+  
+'''
+snippets: [
+  {
+    name: "c#Keyword.cs"
+    mode: "C#"
+    content: '''
+      //outキーワード
+      変数に値を代入せずに"outキーワード"をつけることで参照による呼び出しが行える
+      
+      ```
+      using System;
+      
+      class MyClass
+      {
+        public void Square(double x, double y, out double s)
+        {
+          s = x * y;
+        }
+      }
+      
+      class OutKeyword01
+      {
+        public static void Main()
+        {
+          double a = 125.3, b = 16.25, c;
+          MyClass mc = new MyClass();
+          
+          //cには値を代入していない
+          mc.Square(a,b,out c);
+          
+          Console.WriteLine
+          (
+            "縦{0}m,横{1}mの長方形の面積は{2}平方メートル",
+            a,
+            b,
+            c
+          )
+        }
+      }
+      ```
+      
+      //refキーワード
+      変数に値を代入した状態で"refキーワード"をつけることで参照による呼び出しが行える
+      呼び出し先で値を変えて、呼び出し元にも影響を与える
+      
+      ```
+      using System;
+      
+      class MyClass
+      {
+        private int temp;
+        
+        public void Swap(ref int x, ref int y)
+        {
+          temp = x;
+          x = y;
+          y = temp;
+        }
+      }
+      
+      class Swap01
+      {
+        public static void Main()
+        {
+          MyClass s = new MyClass();
+          int x = 10, y = 20;
+          s.Swap(ref x,ref y);
+          Console.WriteLine("x = {0},y = {1}",x,y);
+        }
+      }  
+      
+      [Console]
+      x = 20,y = 10
+      ```
+      
+      
+      
+      //is演算子とas演算子
+      参照型のみを対象とした演算子。
+      
+      "is演算子"
+      式 is データ型
+      
+      式は参照型でなくてはならない
+      式が指定のデータ型であればtrueを返し、そうでなければfalseを返す
+      ```
+      	object o;
+      	long l = 1;
+      
+        o = l;
+        print(o is long);
+        print(o is int);
+      
+        o = "abs";
+        print(o is string);
+      
+      ```
+      
+      
+      "as演算子"
+      式 as データ型
+      
+      式が指定のデータ型に変換する
+      式もデータ型も参照型でなくてはならない。
+      失敗するとnullが返される.
+        
+      ```
+      	long l = 100;
+      	object o;
+      	string s;
+      
+        o = l;
+        s = o as string;
+        print(o);
+      ```
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

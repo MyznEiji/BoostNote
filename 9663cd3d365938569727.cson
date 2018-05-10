@@ -1,0 +1,274 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Coroutine"
+description: "Coroutine"
+snippets: [
+  {
+    name: "Coroutine.cs"
+    mode: "C#"
+    content: '''
+      //yield return new WaitForSeconds (int);
+      処理が一時中断され、一定時間経過すると次の行から処理が再開します
+      
+      
+      //yield return null;
+      そこでいったん処理が中断され、次のフレームで処理が再開されます
+      
+      
+      //yield break;
+      コルーチンの途中で処理を終了する
+      
+      
+      //yield return StartCoroutine (Coroutine);
+      コルーチン内で別のコルーチンを実行できます。
+      
+      
+      
+      //StartCoroutine (coroutineSample(5, 0.5f)); 
+      StartCoroutineの引数内でコルーチン関数を呼び出すことでも、コルーチンを実行できます
+      コルーチンに2つ以上の引数を持たせることができます
+      
+      
+      //IEnumerator.Current
+      コルーチンの処理の戻り値
+      
+      
+      
+    '''
+  }
+  {
+    name: "MouseButtonClick.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      
+      public class MouseButtonClick : MonoBehaviour 
+      {
+      	[SerializeField]UnityEngine.UI.Text text;
+      	IEnumerator coroutineMethod;
+      
+      	void Start()
+      	{
+      		//IEnumeratorを取得
+      		coroutineMethod = ChangeColorCoroutine();
+      	}
+      	void Update()
+      	{
+      		if(Input.GetMouseButtonDown(0))StartCoroutine(coroutineMethod);
+      		if(Input.GetMouseButtonUp(0))StopCoroutine(coroutineMethod);
+      	}
+      	IEnumerator ChangeColorCoroutine()
+      	{
+      		float clickTime = 0;
+      		//コルーチン進行中は数値を増加させる
+      		while(clickTime < 3)
+      		{
+      			clickTime += Time.deltaTime;
+      			text.text = clickTime.ToString("0.000");
+      			yield return null;
+      		}
+      		text.text = "finished";
+      	}
+      }
+      
+    '''
+  }
+  {
+    name: "ChangeColorCoroutine.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      
+      public class CoroutineSample : MonoBehaviour 
+      {
+      	bool isRunning = false;
+      	Coroutine coroutine;
+      	[SerializeField] Renderer leftRenderer,rightRenderer = null;
+      	Stack<Coroutine> coroutineStack = new Stack<Coroutine>();
+      
+      	void Update()
+      	{
+      		if(Input.GetMouseButtonDown(0))
+      		{
+      			var coroutine = StartCoroutine(ChangeColorCoroutine());
+      			coroutineStack.Push(coroutine);
+      		}
+      		if(Input.GetMouseButtonUp(0))
+      		{
+      			foreach(var coroutine in coroutineStack)
+      			{
+      				StopCoroutine(coroutine);
+      			}
+      			ChangeColor(GetComponent<Renderer>(),Color.white);
+      			ChangeColor(leftRenderer,Color.green);
+      			ChangeColor(rightRenderer,Color.green);
+      			isRunning = false;
+      		}
+      	}
+      	IEnumerator ChangeColorCoroutine()
+      	{
+      		float sum = 0;
+      
+      		if(isRunning){yield break;}
+      		isRunning = true;
+      
+      		var renderer = GetComponent<Renderer>();
+      		ChangeColor(renderer,Color.blue);
+      
+      		var leftCoroutine = StartCoroutine(ChangeColorCoroutineWithRuntime(leftRenderer,(result) => sum += result));
+      		var rightCoroutine = StartCoroutine(ChangeColorCoroutineWithRuntime(rightRenderer,(result) => sum += result));
+      
+      		coroutineStack.Push(leftCoroutine);
+      		coroutineStack.Push(rightCoroutine);
+      
+      		yield return leftCoroutine;
+      		yield return rightCoroutine;
+      
+      		yield return new WaitForSeconds(0.2f);
+      		ChangeColor(renderer,Color.white);
+      		isRunning = false;
+      
+      		//待機時間の合計をログに出力
+      		print(sum);
+      	}
+      
+      	IEnumerator ChangeColorCoroutineWithRuntime(Renderer renderer,UnityEngine.Events.UnityAction<float> callback)
+      	{
+      		ChangeColor(renderer,Color.red);
+      
+      		float waitSec = Random.Range(0.2f,1f);
+      		yield return new WaitForSeconds(waitSec);
+      
+      		ChangeColor(renderer,Color.green);
+      		//待機した時間を返す
+      		callback(waitSec);
+      	}
+      	//マテリアルの色を変える
+      	void ChangeColor(Renderer renderer,Color color)
+      	{
+      		renderer.material.color = color;
+      	}
+      }
+      
+    '''
+  }
+  {
+    name: "CoroutineResultPattern.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      using System;
+      
+      public class CoroutineResult : MonoBehaviour {
+      	// // どちらのメソッドからも見える変数に値を代入する
+      	// int result;
+      	// // Use this for initialization
+      	// void Start () {
+      	// 	StartCoroutine(Hoge());	
+      	// }
+      
+      	// IEnumerator Hoge()
+      	// {
+      	// 	yield return StartCoroutine(Fuga());
+      	// 	print(result);
+      	// }
+      
+      	// IEnumerator Fuga()
+      	// {
+      	// 	yield return new WaitForSeconds(2f);
+      	// 	result = 355;
+      	// }
+      
+      
+      
+      
+      
+      	// //コールバック関数を渡して結果を返してもらう
+      	// void Start()
+      	// {
+      	// 	StartCoroutine(Hoge());
+      	// }
+      	// IEnumerator Hoge()
+      	// {
+      	// 	int? result = null;
+      	// 	 yield return StartCoroutine(Fuga(r => result =r));
+      		
+      	// 	//下を実行するとresultはnullなのでerrorが投げられる。
+      	// 	//yield return new WaitForSeconds(3.0f);
+      	// 	print(result.Value);
+      	// }
+      
+      	// IEnumerator Fuga(Action<int> callback)
+      	// {
+      	// 	yield return new WaitForSeconds(2.0f);
+      	// 	callback(335);
+      	// }
+      
+      
+      
+      
+      
+      	// IEnumerator#Current を使用する
+      	void Start()
+      	{
+      		StartCoroutine(Hoge());
+      	}
+      	IEnumerator Hoge()
+      	{
+      		var coroutine = Fuga();
+      		yield return StartCoroutine(coroutine);
+      		var result = (int)coroutine.Current;
+      		print(result);
+      	}
+      
+      	IEnumerator Fuga()
+      	{
+      		yield return new WaitForSeconds(2.0f);
+      		yield return 335;
+      	}
+      }
+    '''
+  }
+  {
+    name: "StopCoroutineKeyCodeOne.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      
+      public class StopCoroutineKeyCodeOne : MonoBehaviour {
+      	private IEnumerator coroutine;
+        
+      	void Start () {
+      		coroutine = Sample(10,0.5f);
+      		StartCoroutine(coroutine);
+      	}
+      	
+      	void Update()
+      	{
+      		if(Input.GetKey(KeyCode.Alpha1)) StopCoroutine(coroutine);
+      	}
+      	private IEnumerator Sample(int num, float interval)
+      	{
+      		for(int i = 0; i < num; i++)
+      		{
+      			Debug.Log("i : " + i);
+      			yield return new WaitForSeconds(interval);
+      		}
+      	}
+      }
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-05-30T04:06:09.552Z"
+updatedAt: "2017-11-02T08:12:13.690Z"

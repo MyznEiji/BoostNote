@@ -1,0 +1,40 @@
+createdAt: "2018-03-20T04:03:31.938Z"
+updatedAt: "2018-03-21T07:21:25.865Z"
+type: "SNIPPET_NOTE"
+folder: "cc1259c329b67ab436bd"
+title: "PhpWeb"
+description: "PhpWeb"
+snippets: [
+  {
+    name: "phpWeb.py"
+    mode: "Python"
+    content: '''
+      # ローカルサーバーを介して検証
+      $ php -S 127.0.0.1:8000でローカルサーバを起動して
+        127.0.0.1:8000/ファイル名でwebブラウザで検証
+      
+      
+          
+      # htmlのformタグを使って値を飛ばす
+      formタグを使うと遷移先のページでinputのnameのキーで値を取得できる
+      $_post["Key"]
+      
+        
+      namemounth.php
+          <form class="" action="action.php" method="post">
+            名前 : <input type="text" name="name" value="">
+            生まれた月 : <input type="text" name="month" value="">
+            <input type="submit" name="" value="SENT">  
+          </form>
+          
+      action.php
+          <h1>あなたの名前と生まれた月</h1>
+          こんにちは、<?php echo $_POST['name'] ?>さん
+          <br>
+          あなたの生まれた月は<?php echo $_POST['month']?>月です。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

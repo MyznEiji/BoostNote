@@ -1,0 +1,250 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "UniRx"
+description: "UniRx"
+snippets: [
+  {
+    name: "UniRx.cs"
+    mode: "C#"
+    content: '''
+      //UniRxとは
+      Reactive Extensions for Unityの略でRxをUnityで使えるようになるライブラリです。
+      
+      
+      //オペレーター
+      Observableから発行されたメッセージに対して処理を行う部品をオペレータと呼び、
+      このオペレータをObservableとSubscribeの間に挟み込む(LINQ構文のように記述する)
+      ことでメッセージに対して様々な処理を行うことができます
+      
+      
+      //Whereオペレータ
+      WhereオペレータはObservableから発行されるメッセージをフィルタリングすることが
+      可能なオペレータです。
+      WhereオペレータをObservableとSubscribeとの間に挟み込むことで、先ほどの
+      「正常な状態変化の通知(OnNext)であるけど引数の値が偶数であった時のみ
+      Observerが受け取りOnNextメソッドに記述した処理を行いたい場合」
+      という状況を簡単に実現することができます。
+      
+      
+      //Selectオペレータ
+      Selectオペレータは通知の値を変えたりすることができます。
+      
+      
+      
+      //Bufferオペレータ
+      Bufferオペレータは引数に与えた値分のメッセージを溜め込みまとめることができます。
+      例えば「Buffer(2)」とした時はメッセージが2つ発行されるまではObserverに通知は
+      行かずに2つ発行された時にまとまったメッセージをObserverが受け取ることができます。
+      
+      Bufferオペレータは「Buffer(4,2)」のように引数を2つ取ることができます。
+      引数が1つの時はメッセージを溜め込みまとめることができましたが、
+      引数が2つの時は挙動がだいぶ変わり第一引数の値分メッセージを溜め込み、
+      第二引数の値分溜め込んだメッセージの中からメッセージを流すことができます。
+      
+      
+      //ストリームとは
+      「Subject(のObservable)がメッセージを発行しメッセージをオペレータで加工し
+      Observerがそれを受け取る」という流れ
+      さらにストリームの発生源(メッセージの発行元)のことをストリームソースと表現します。
+      
+      
+      //ストリームの構築
+      ストリームはストリームソースをSubscribeすることによって構築されます。
+      
+      よってストリームを作るための流れは以下のステップになります。
+      
+      1.ストリームソースを用意すaる
+      2.目的にあったオペレータを記述する
+      3.最後にSubscribeしてストリームを構築する
+      というようになっています。
+      
+      
+      //UpdateAsObservable()
+      UpdateAsObservable()はUpdate関数をストリームに変換することができるメソッドです。
+      また、UpdateAsObservable()で構築されたストリームはGameObjectが
+      削除されたタイミングでOnCompletedメッセージが発行されるため
+      ストリームの後処理が簡単に行えます。
+      
+      
+      //ThrottleFirstオペレータ
+      ThrottleFirstオペレータはメッセージがきたら一定時間メッセージを遮断することが
+      できるオペレータです。
+      このオペレータは引数を渡すことができるのですが、渡せる引数はfloat型ではなく、
+      System.Timespan構造体なので注意しましょう。
+      ".ThrottleFirst(TimeSpan.FromSeconds(2.0f))"
+      
+      
+      //Observable.FromCoroutineメソッド
+      Observable.FromCoroutineメソッドは引数にコルーチンを与えSubscribeすると
+      コルーチンを開始することができます。
+      第２引数であるbool型のpublishEveryYieldにtrueかfalseを与えることで
+      コルーチンでyieldしたタイミングでOnNextを発行するかしないかを選択することが
+      できます。
+      
+      ```
+          void Start ()
+          {
+              Observable.FromMicroCoroutine (ToStreamCoroutine, publishEveryYield: true)
+                  .Subscribe (_ => Debug.Log("OnNext"),
+                              () => Debug.Log("OnCompleted")
+                  );
+          }
+      
+          IEnumerator ToStreamCoroutine()
+          {
+              Debug.Log ("Coroutine Start");
+      
+              yield return new WaitForSeconds (2.0f);
+      
+              Debug.Log ("Coroutine Finished");
+          }
+      ```
+      
+      
+      //Observable.FromCoroutineValueメソッド
+      引数にコルーチンを与えSubscribeするとコルーチンを開始することができ、
+      yield returnで返された値を取り出してストリームで利用することができます。
+      
+      
+      //UnityEvent.AsObservable()
+      UniRxでは、UnityEventをストリームに変換するためのUnityEvent.AsObservable()が
+      用意されていますが、すべてのUnityEventに対してUnityEventAsObservable()が
+      定義されています。
+      
+      
+      //ReactiveProperty
+      ReactivePropertyはSubjectの機能を持ち合わせた変数のような動きをします。
+      ・.Valueで現在の値を設定、取得が可能
+      ・.Valueで値が変化する度に、OnNextが発行される
+      などの機能がある
+      
+      簡単にnewでインスタンス化することができる
+      var rp = new ReactiveProperty<int> ();
+      
+      初期値をもたせたい場合は以下のようにコンストラクタで指定することができます。
+      var rp = new ReactiveProperty<int> (5);
+      
+      ReactivePropertyはSubjectの機能を持っているのでSubscribeをすることもできます。
+      var rp = new ReactiveProperty<int> ();
+      rp.Subscribe (x => Debug.Log (x));
+      
+      .Valueで値を変更、取得しOnNextを発行することもできます。
+      var rp = new ReactiveProperty<int> (5);
+      rp.Subscribe (x => Debug.Log (x));
+      rp.Value = 10;
+      
+      
+      //Observable.Return
+      このストリームは、メッセージを一回発行するとそれ以降に発行するメッセージがないため
+      OnNextが発行された後に自動的にOnCompletedが発行されストリームを破棄します。
+      
+      ここで、メッセージを発行する時に値を特に値が必要ない場合は、引数にUnit.Defaultを
+      渡すことで値のないメッセージを発行することができます。
+      
+      
+      //Observable.Create
+      Observable.Createは自由に値を発行できるストリームソースを構築することができます。
+      
+      Func, IDisposable>(IObserverを受けとりIDisposableをreturnする関数)を
+      引数にとる必要があります。
+      
+      
+      //Observable.Timer
+      Observable.Timerは一定時間後にメッセージを発行するファクトリメソッドです。
+      引数を最大２つまで取ることができ、引数の数で挙動が変わります。
+      ・引数1つ：一定時間後にメッセージを発行する
+      ・引数2つ：一定時間後にメッセージを発行した後、第2引数に指定した時間おきに
+        メッセージを発行し続けます。(自身でストリームを停止しない限りメッセージを
+        発行し続けるので注意しましょう)
+      
+        
+      //Observable.TimerFrame
+      引数に指定したフレーム後にメッセージを発行します。
+      
+      
+    '''
+  }
+  {
+    name: "NotUniRx_FPS_Script.cs"
+    mode: "C#"
+    content: '''
+      public class UpdateStream : MonoBehaviour
+      {
+          bool isPause;
+          float coolTime;
+      
+          void Update ()
+          {
+      //      ポーズ中は行動不可
+              if (!isPause)
+              {
+                  coolTime++;
+      
+      //          弾丸の連続発射はできない
+                  if (coolTime > 2.0f)
+                  {
+      //              Xを押したら弾丸を発射
+                      if (Input.GetKey (KeyCode.X))
+                      {
+                          Shot ();
+                      }
+                  }
+      
+      //          スペースを押したらジャンプ
+                  if (Input.GetKey (KeyCode.Space))
+                  {
+                      Jump ();    
+                  }   
+              }
+          }
+      
+          void Shot ()
+          {
+              Debug.Log("Shot!");
+          }
+      
+          void Jump ()
+          {
+              Debug.Log("Jump");
+          }
+      }
+    '''
+  }
+  {
+    name: "UniRx_FPS_Script.cs"
+    mode: "C#"
+    content: '''
+      public class UpdateStream : MonoBehaviour
+      {
+          bool isPause;
+      
+          void Start ()
+          {
+              this.UpdateAsObservable()
+                  .Where(_ => !isPause && Input.GetKey(KeyCode.X))
+                  .ThrottleFirst(TimeSpan.FromSeconds(2.0f))
+                  .Subscribe(_ => Shot());
+      
+              this.UpdateAsObservable()
+                  .Where(_ => !isPause && Input.GetKey(KeyCode.Space))
+                  .Subscribe(_ => Jump());
+          }
+      
+          void Shot ()
+          {
+              Debug.Log ("Shot!");
+          }
+      
+          void Jump ()
+          {
+              Debug.Log ("Jump!");
+          }
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-29T09:17:23.116Z"
+updatedAt: "2017-10-30T00:10:38.907Z"

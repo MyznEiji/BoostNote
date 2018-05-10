@@ -1,0 +1,115 @@
+createdAt: "2018-03-28T16:54:24.565Z"
+updatedAt: "2018-03-28T17:12:59.974Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonListComprehension"
+description: "PythonListComprehension"
+snippets: [
+  {
+    name: "ListComprehension.py"
+    mode: "Python"
+    content: '''
+      # リスト内包表記
+      1,2行のfor文なんかは、それぞれの要素に行たい処理の中にリスト内包表記を書く
+      
+      t = [1, 2, 3, 4, 5]
+      t2 = [5, 6, 7, 8, 9]
+      
+      r = []
+      for i in t:
+          if i % 2 == 0:
+              r.append(i)
+      
+      print(r)
+      
+      
+      "こちらが内包表記"
+      r = [i for i in t if i % 2 == 0]
+      print(r)
+      
+      r = []
+      for i in t:
+          for j in t2:
+              r.append(i * j)
+      
+              
+      "こちらが内包表記"
+      print(r)        
+       r = [i * j for i in t for j in t2]
+       print(r)
+       
+    '''
+  }
+  {
+    name: "DictComprehenision.py"
+    mode: "Python"
+    content: '''
+      #辞書内包表記
+      
+       w = ["mon", "tue", "wed"]
+       f = ["coffe", "milk", "water"]
+      
+      d = {} 
+      for x, y in zip(w, f):
+          d[x] = y
+      print(d)    
+      
+      
+      
+      "こちらが内包表記"
+      d = {x: y for x, y in zip(w, f)}
+      print(d)
+      
+    '''
+  }
+  {
+    name: "SetComprehenision.py"
+    mode: "Python"
+    content: '''
+      # 集合内包表記
+      
+      s = set()
+      for i in range(10):
+          if i % 2 == 0:
+              s.add(i)
+      print(s)        
+      
+      
+      
+      
+      "こちらが内包表記"
+      s = {i for i in range(10) if i % 2 == 0}
+      print(s)
+      
+    '''
+  }
+  {
+    name: "GeneratorComprehenision.py"
+    mode: "Python"
+    content: '''
+      # ジェネレーター内包表記
+      tupleと間違えやすいが,()で定義する。
+      
+      
+      
+      def g():
+          for i in range(10):
+              yield i
+      g = g()
+      
+      
+      "こちらが内包表記"
+      g = (i for i in range(10) if i % 2 == 0)
+      for x in g:
+          print(x)
+    '''
+  }
+]
+tags: [
+  "リスト内包表記"
+  "辞書内包表記"
+  "集合内包表記"
+  "ジェネレーター内包表記"
+]
+isStarred: false
+isTrashed: false

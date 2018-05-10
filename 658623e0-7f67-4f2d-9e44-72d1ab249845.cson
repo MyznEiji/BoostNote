@@ -1,0 +1,247 @@
+createdAt: "2018-04-26T07:51:45.744Z"
+updatedAt: "2018-05-10T08:07:30.746Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "jqueryAjax"
+description: "jqueryAjax"
+snippets: [
+  {
+    name: "Ajax.js"
+    mode: "JavaScript"
+    content: '''
+      Ajaxは
+      通信を行うのでサーバーを起動しなければいけない
+      ファイルがサーバー上にある必要がある
+      コールバックを多用する
+      # python -m http.server でローカルサーバを起動
+      
+      外部JavaScript以外は同じドメインからしかファイルを読めない
+      
+      
+      # #btnAjaxボタンを押したら./text1.txtファイルを挿入する
+      $(function() {
+      	// ajax
+      	$("#btnAjax").click(function() {
+      		$.ajax({
+      			url: "./text1.txt",
+      			success: function(data) {
+      				$("#target").text(data);
+      			}
+      		});
+      	});
+      });
+      
+      $.ajax()に引数を取ることで通信を行うことができる
+      引数はオブジェクトになっている。
+      urlプロパティにが同じディレクトリのtext1.txtを指定
+      successプロパティに通信が成功した時のメソッドを書く。
+      functionの引数のdataはurlで読み込んだファイルになる
+      
+      
+      
+      
+    '''
+  }
+  {
+    name: "get.js"
+    mode: "JavaScript"
+    content: '''
+      # $.get()
+      引数にurlを指定してそのファイルの中身を取得する
+      
+      
+      
+      # $.get(url[, data][,success])
+      第一引数は読み込むためのUrl webページからの相対pass
+      第二引数はサーバーに送るデータをマップ値で書く。cdiなどに送るパラメータになる
+        マップ値{name1: param1, name2: param2, ... nameX: paramX}
+      第三引数は成功時の処理を関数で書く
+        この関数は3つの引数をとります
+        function(data, textStatus, jqXHR)
+          data : 得られたデータ
+          textStatus : 文字列による通信結果のステータス情報
+          jqXHR : jQuery XML Http Request(HTTP通信用のAPI)、$.get()の戻り値としても
+                  取得可能
+                  Promiseの機能を持っている
+      
+      # $.get().done()
+      通信が成功した時のメソッド
+          
+      $(function() {
+      	// btn1 クリック時の処理
+      	$("#btn1").click(function() {
+      		$.get("message.txt", function(d) { 
+            //相対パスでurlを追加して、ファイルのデータをbで取得している
+      			console.log(d);
+      		});
+      	});
+      
+      	// btn2 クリック時の処理
+      	$("#btn2").click(function() {
+      		$.get("message.txt")
+      		.done(function(d) {
+      			console.log(d);
+      		});
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "getJson.js"
+    mode: "JavaScript"
+    content: '''
+      # JSON
+      JavaScriptObjectNotation 
+      軽量なデータ交換フォーマットで単純なテキスト
+      
+      "形式"
+      {"name1": "param1",
+       "name2": {"sub1": 2},
+       "name3": [1,2,3]}
+      
+      クロスドメインのセキュリティ制限で外部ドメインのファイルが読み込めない
+      
+      
+      # JSONP
+      クロスドメインのセキュリティ制限で外部ドメインのファイルが読み込めない問題を解決する
+      JSON with padding(詰め物、話の文章の不要な付け足し)
+      
+      外部JavaScriptの形で読み込む
+      "形式"
+      callback(
+        {"name1": "param1",
+         "name2": {"sub1": 2},
+         "name3": [1,2,3]})
+      
+      上記の関数を読み込み側で用意しておくとValueを取得できる 
+      
+      ~.cgi?name=cat&callback=? (?とするとJqueryのランダムな関数名にする)
+        ↓
+      callback=jQuery1234567890
+      としてcgiを呼びだす
+      
+      
+      
+      #getJSON()
+      $(function() {
+        //filickrのurlを利用している
+        //jsoncallbackのパラメーターを指定することでJSONPとして受け取る関数名を指定する
+      	var url = "http://api.flickr.com/services/feeds/"
+      			+ "photos_public.gne?jsoncallback=?";
+      	//flickrに送るパラメータの内容のオブジェクトを作成している
+      	var data = {tags: "cc0", tagmode: "any", format: "json"};
+      
+      	// btn クリック時の処理
+      	$("#btn").click(function() {
+      		$.getJSON(url, data)
+      		.done(function(d) {
+            //dはjsonをオブジェクトしたものが入っている
+      			console.log(d);
+      			$.each(d.items, function(i, itm) {
+      				$("<img>").attr("src", itm.media.m).appendTo("body");
+      			});
+      		});
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "load.js"
+    mode: "JavaScript"
+    content: '''
+      # .load()
+      データを取得してwebページに挿入する
+      Ajax系のメソッドと少し違う
+      
+      $("~").load(url)として扱う
+      urlで読み込んだ内容を("~")に挿入する
+      
+      $(function() {
+      	// btn1 クリック時の処理
+      	$("#btn1").click(function() {
+      		$("div").load("message.html");
+      	});
+      
+      	// btn2 クリック時の処理
+      	$("#btn2").click(function() {
+          //urlの後に半角スペースをあけると読み込んだファイルの取得するデータの条件を指定する
+      		$("div").load("message.html div:eq(2)");
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "ajax.js"
+    mode: "JavaScript"
+    content: '''
+      # $.ajax()
+      書き方が2通りある
+      $.ajax(url[, settings])
+      $.ajax([settings])
+      
+      
+      $(function() {
+      	var url = "http://api.flickr.com/services/feeds/"
+      			+ "photos_public.gne?jsoncallback=?"
+      	var data = {tags: "cc0", tagmode: "any", format: "json"};
+      
+      	// 成功時のimg出力
+        //ajax系のメソッドは関数が成功したら関数の引数として3つの引数を受け取ることができる
+      	var outputImg = function(data, status, jqXHR) {
+      		console.log(data); //取得したデータ
+      		console.log(status); //ステータスの文字列
+      		console.log("[done]", jqXHR, jqXHR.statusText);
+      		$.each(data.items, function(i, itm) {
+      			$("<img>").attr("src", itm.media.m).appendTo("body");
+      		});
+      	};
+      
+      	// 失敗時の情報出力
+      	var outputFailInf = function(jqXHR, status, errorThrown) {
+      		console.log("[fail]", jqXHR, jqXHR.statusText);
+      		console.log(status);
+      		console.log(errorThrown);　//サーバーの状態によってのエラーのテキスト
+      			// "Not Found"や"Internal Server Error"などの文字列
+      	};
+      
+      	// btn1 クリック時の処理
+      	$("#btn1").click(function() {
+      		$.ajax(url, {
+      			data: data,
+      			dataType: "jsonp",	// 必要
+      			cache: false,
+      			timeout: 2000
+      		})
+      		.done(outputImg)
+      		.fail(outputFailInf);
+      	});
+      
+      	// btn2 クリック時の処理
+      	$("#btn2").click(function() {
+      		$.ajax({
+      			url: url,
+      			data: data,
+      			dataType: "jsonp",	// 必要
+      			cache: false,
+      			timeout: 2000
+      		})
+      		.done(outputImg)
+      		.fail(outputFailInf);
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "ajax"
+  "$.get"
+  "get"
+  "getJSON"
+  "load"
+]
+isStarred: false
+isTrashed: false

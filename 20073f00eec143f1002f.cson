@@ -1,0 +1,176 @@
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsCommand"
+description: "RailsCommand"
+snippets: [
+  {
+    name: "Command.rb"
+    mode: "Ruby"
+    content: '''
+      #rails new コマンド
+      このコマンドはRailsで新規アプリケーションを作成する際に使用します。
+      コマンドを実行する際には作成したいアプリケーション名を最後につけて
+      「rails new アプリケーション名」とコマンドを実行します。また、オプションを付ける場合には
+      「- オプション名」と追記することで様々なオプションをつけることができます。
+      
+      
+      
+      #Gemfileとbundle install
+      RailsでGemを追加するには「Gemfile」というファイルに「gem ‘Gem名’」と追記し、
+      「bundle install」コマンドを実行する必要があります。
+      「bundle install」コマンドは「bundler」と呼ばれるシステムを利用してGemを
+      インストールするためのコマンドです。Gemfileに追記したGemは「bundle install」コマンドを
+      実行することによってインストールされるので、Gemfileを編集した際には
+      必ずこのコマンドを実行しましょう。
+      $ bundle install# Gemをインストール
+      
+      
+      #bundle update
+      bundle updateを行うことによってgemfileに記述した内容を
+      gemfile.lockに反映さすことができます。
+      $ bundle update # Gemfileを更新する
+      
+      
+      #rails g controller コマンド
+      コントローラを作成するためにはrails g controllerコマンドというものを使用します。
+      このコマンドを使用することによってコントローラに関するファイルを自動で作成してくれます。
+      実際に使用する際には「rails g controller コントローラ名」というように作成したい
+      コントローラの名前を後ろに付けて実行します。
+      gとは「generate」
+      
+      rails g controller Pages index
+      とすると
+      Pagesというcontrollerにindexアクションが定義されたfileとindex.html.erbが生成される
+      
+      
+      #rails d controller コマンド
+      先ほど、コントローラを作成する際に「rails g controller」コマンドを
+      使用して作成を行ないました。この時にコントローラ名を間違えて作成してしまった場合、
+      「rails d controller」コマンドを使用してコントローラファイルを削除することが出来ます。
+      dとは「destroy」
+      
+      
+      #rails s コマンド
+      アプリケーションを動かすためにはサーバーを立ち上げる必要があります。
+      「rails s」コマンドはアプリケーションを動かすためのテストサーバーを起動するためのコマンドです。
+      rails sのsとはserverを省略したものです。
+      テストサーバーが起動したので、アプリケーションが正しく動いているかを確認しましょう。
+      テストサーバーでアプリケーションを立ち上げる場合のURLはパスの前に
+      http://localhost:3000がついたものになります。
+      
+      
+      #control c コマンド
+      rails sコマンドで立ち上げたサーバーは「control + c」
+      (controlボタンとcを同時押ししてください)
+      でシャットダウンできます。サーバーを立ち上げたままだとコマンド入力などはできないので、
+      テストサーバーでの確認作業が終わったらシャットダウンしましょう。
+      
+      
+      #rails g model コマンド
+      rails g modelコマンドを使用すると、
+      DBにテーブルを作成するためのファイルとそのテーブルに対応するモデルファイルとを
+      自動で作成することができます。実際に使用する際には
+      「rails g model モデルクラス名(全て小文字)」というように作成したいモデルのクラス名を全て
+      小文字にしたものを後ろに付けて実行します。
+      
+      
+      #rails d model コマンド
+      モデルを作成する際は「rails g model」コマンドを使用して作成を行いました。
+      この時にモデル名を間違えて作成してしまった場合、
+      「rails d model」コマンドを使用してモデルファイルを削除することができます。
+      
+      
+      #rake db:migrate
+      現在存在している未実行のマイグレーションファイルを実行するコマンドです。
+      
+      
+      #rake db:rollback
+      これから先新たなテーブルを作成したり、カラムの追加などテーブルに変更を加える際は
+      常にmigrationファイルを作成します。rake db:rollbackコマンドを実行すると、
+      データベースの状態が最新のmigrationファイルを実行する前に戻ります。
+      
+      
+      #rails c コマンド
+      rails c とは「rails console」(コンソール)の略です。
+      コンソールを実行すると作成したRailsアプリケーションのメソッドやクラスなどを
+      実際に呼び出すことができます。ターミナルから「rails c」コマンドを実行することで
+      コンソールを起動できます。
+      コンソールを終了するには、コンソール上で「exit」と入力しエンターキーを押します。
+      
+      
+      #カラムを追加するマイグレーションファイルの作成
+      カラムを追加するマイグレーションファイルを作成するためには、下記のコマンドを実行します。
+      "
+      $ rails g migration Addカラム名To追加先テーブル名 追加するカラム名:型
+      "
+      
+      
+      
+      #カラムを削除するするマイグレーションの作成
+      "
+      $ rails g migration Removeカラム名From削除元テーブル名 削除するカラム名：型
+      "
+      $ rails g migration RemoveNameFromTweets name:string
+      # マイグレーションファイルの作成
+      
+      $ rake db:migrate
+      # マイグレーションの実行
+      
+      
+      #rake routes
+      このコマンドは現在定義しているルーティングを表示してくれるコマンドです。
+      ターミナルで入力することで、config/routes.rbに記述したルーティングを表示してくれます。
+      http://localhost:3000/rails/info/routesでwebでも確認できる
+      
+      項目名	       意味
+      Prefix 	   :「Prefix」はルーティングの名前を表しています。
+                  「Prefix」は設定を行わなくても、自動的に割り当てられますが、
+                   自ら設定することもできます。
+      Verb	     :「Verb」はHTTPメソッドを表しています。
+                   右側に表示されているパスにどのHTTPメソッドでアクセスするかを示しています。
+      URI Pattern:「URI Pattern」はルーティングのパスを表しています。
+                   このパスにアクセスされた際に、指定のコントローラとアクションで処理が行われます。
+      Controller#Action :「Controller#Action」は指定したパスにアクセスした際に
+                          処理が行われるコントローラとアクションを表しています。
+                          #以前がコントローラ名、#以後がアクション名を示しています。
+      
+      #reload!
+      コンソール起動中にコードを修正・追記した際、コンソールはリアルタイムで変更内容を
+      反映してくれません。
+      その際は通常、一度exitして再度 rails c コマンドを打ちコンソールを再起動するという
+      手順を踏みますが、 reload! コマンドを実行すると毎回exitせずともコンソールがコードの
+      変更内容を読み込んでくれるので大変便利です。
+      今後コンソールで何かを実行する前には reload! コマンドの実行を忘れないようにしてください。
+      ```
+        [1] pry(main)> Scraping.movie_urls
+        get movies link URL
+        #=> nil
+      
+        ## movie_urlsメソッド内の文字列「get movies link URL」を「リロードのテストです」に変更
+      
+        #reload!をかけずに再度実行した場合は変更内容が反映されない
+        [2] pry(main)> Scraping.movie_urls
+        get movies link URL
+        #=> nil
+      
+        #reload!をかけてから再度実行すると編集内容が反映される
+        [3] pry(main)> reload!
+        Reloading...
+        #=> true
+      
+        [4] pry(main)> Scraping.movie_urls
+        # リロードのテストです
+        #=> nil
+      ```
+      
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-13T03:44:24.344Z"
+updatedAt: "2018-03-14T06:00:50.990Z"

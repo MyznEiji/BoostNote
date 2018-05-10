@@ -1,0 +1,21 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Enum"
+description: "C#Enum"
+snippets: [
+  {
+    name: "C#Enum.cs"
+    mode: "C#"
+    content: '''
+      //Enum.GetValues(typeof())
+      定義済みの値を配列で受け取ることができます。
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:12:46.251Z"
+updatedAt: "2017-11-02T14:12:56.223Z"

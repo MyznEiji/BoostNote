@@ -1,0 +1,19 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Bounds"
+description: "Bounds"
+snippets: [
+  {
+    name: "Bounds.cs"
+    mode: "C#"
+    content: '''
+      //Bounds.Encapsulate(Vector3 point)
+      設定した point を含むように拡大します
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-06T05:30:37.864Z"
+updatedAt: "2017-10-06T05:31:44.703Z"

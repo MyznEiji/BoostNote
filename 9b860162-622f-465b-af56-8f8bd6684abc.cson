@@ -1,0 +1,185 @@
+createdAt: "2018-03-14T06:05:12.801Z"
+updatedAt: "2018-03-15T08:45:43.905Z"
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsHTTP"
+description: "RailsHTTP"
+snippets: [
+  {
+    name: "railsHttp.rb"
+    mode: "Ruby"
+    content: '''
+      # HTTPメソッドの種類は８つ
+      HTTPメソッドは、クライアントが行いたい処理をサーバに伝えるという役割があるが
+      メソッドはたったの８つだけ。しかもメインで使うのは5つか６つ！
+      
+      メソッド	      意味
+      GET	          リソースの取得
+      POST	　       子リソースの作成、リソースへのデータ追加、その他処理
+      PUT	          リソースの更新、リソースの作成
+      DELETE	      リソースの削除
+      HEAD	        リソースのヘッダ (メタデータの取得)
+      OPTIONS	      リソースがサポートしているメソッドの取得
+      TRACE	        プロキシ動作の確認
+      CONNECT	      プロキシ動作のトンネル接続への変更
+      
+      
+      
+      # CRUD
+      CRUDはCreate, Read, Update, Deleteのこと。
+      HTTPメソッドのうちGET、POST、PUT、DELETEは「CRUD」を満たす
+      
+      CURD名	      意味	    メソッド
+      Create	     作成	     POST/PUT
+      Read	       読み込み	  GET
+      Update	     更新	     PUT
+      Delete	     削除	     DELETE
+      
+      
+      
+      # GET -> リソースの取得
+      指定したURIの情報を取得するメソッド。
+      利用頻度はおそらく最も高く、Webページ、画像、映像、フィードの取得などがこれに当たる。
+      
+      Request.
+      GET /list HTTP/1.1
+      Host: example.jp
+      
+      Response.
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+      [
+        {"uri": "http://example.jp/list/item1"}
+      ]
+      
+      このとき、リクエストは[http://example.jp/list] に対するGETだと言える。
+      リクエストに対して、サーバは指定されたURIに対応するデータをレスポンスとして返す。
+      
+      
+      
+      # POST -> リソースの作成、追加
+      
+      GETに次いで利用頻度が高い！
+      3つの役割があるよー
+      
+      
+      ( i ) 子リソースの作成
+        POSTの代表的な機能で、あるリソースに対する子リソースを作成することができる。
+        ブログ記事の投稿などで使われる。
+      
+        Request.
+        POST /list HTTP/1.1
+        Content-Type: text/plain; charset=utf-8
+      
+        Qiitaでの初投稿！
+        Response.
+        HTTP/1.1 201 Created
+        Content-Type: text/plain; charset=utf-8
+        Location: http://example.jp/list/item5
+      
+        Qiitaでの初投稿！
+        このリクエストは [http://example.jp/list] に対して、
+        新しい子リソースを作るようにPOSTで指示している。
+        レスポンスでは[201 Created]というステータスコードが返ってきており、
+        新しいリソースが生成されたことが分かる。
+      
+      ( ii ) リソースへのデータの追加
+        子リソース作成ほどメインで使わないが、既存リソースへのデータの追加もできる。
+        GETしたリソースに対して...
+      
+        Request.
+        POST /log HTTP/1.1
+        Host: example.jp
+      
+        2017-02-24T10:13:00Z, GET /log, 200
+        Response.
+        HTTP/1.1 200 OK
+        このときレスポンスは[200 OK]が返ってくる。
+        これはリクエストが新規リソースの作成ではなく、データの追加を意味しているため。
+      
+      ( iii ) ほかのメソッドでは対応できない処理
+        POSTの３つ目の機能は、ほかのメソッドでは対応できない処理の実行。
+        例として、検索結果を表示するURIが挙げられる。
+      
+        http://example.jp/search?q={検索キーワード}
+        通常はこのURIをGETできるが、検索キーワードがとてもながーい場合、
+        URIにキーワードを入れてGETする方式は使えない。これはURIを実装する上で、
+        2000文字の制限があるため。
+        こういうときにPOSTを使う。
+      
+        Request.
+        POST /search HTTP/1.1
+        Content-Type: application/x-www-form-urlencoded
+      
+        q=very+long+keyword+foo+bar+...+....
+        GETがキーワードをURIに含めるのに対して、POSTはリクエストボディに入れることができる。
+        そのため、どんなにながーいキーワードにも対応できる。素晴らしい。
+      
+      
+      
+      # PUT -> リソースの更新、作成
+      2つの機能を持っているよ
+      
+      ( i ) リソースの更新
+        リソースを更新する前にまずGETするよー
+      
+        Request.
+        GET /list/item5 HTTP/1.1
+        Host: example.jp
+        Response.
+        HTTP/1.1 200 OK
+        Content-Type: text/plain; charset=utf-8
+      
+        Qiita初投稿！
+        PUTを使って「Qiita初投稿！」から「実は2回目！」に更新していくと...
+      
+        Request.
+        PUT /list/item5 HTTP/1.1
+        Host: example.jp
+      
+        実は2回目！
+        Response.
+        HTTP/1.1 200 OK
+        Content-Type: text/plain; charset=utf-8
+      
+        実は2回目！
+        これで更新完了！
+      
+      ( ii ) リソースの作成
+        POSTでもできるリソースの作成がPUTでもできる。
+        例えば [http://example.jp/newitem] がまだ存在しないとする。
+        このとき、
+      
+        Request.
+        PUT /newitem HTTP/1.1
+        Host: example.jp
+        Content-Type: text/plain; charset=utf-8
+      
+        新しいリソース/newitemの内容
+        Response.
+        HTTP/1.1 201 Created
+        Content-Type: text/plain; charset=utf-8
+      
+        新しいリソース/newitemの内容
+        このとき、PUTは存在しないURIへのリクエストとなるため、
+        サーバは新しくリソースを作成すると解釈する。
+        そして、リクエストが成功すると[201 Created]を返す。
+        /newitemが存在していた場合は、ただの更新処理になる。
+      
+      
+      
+      # DELETE -> リソースの削除
+      DELETEは言葉のまんま、リソースを削除するメソッド
+      
+      Request.
+      DELETE /list/item2 HTTP/1.1
+      Host: example.jp
+      Response.
+      HTTP/1.1 200 OK
+      一般的に、DELETEのレスポンスはボディを持たない。そのためレスポンスのステータスコードにはボディがないという意味で、[204 No Content]が使われる場合もある。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

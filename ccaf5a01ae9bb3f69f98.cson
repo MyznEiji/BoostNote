@@ -1,0 +1,19 @@
+createdAt: "2018-02-27T10:17:24.115Z"
+updatedAt: "2018-02-27T10:18:30.537Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "jquery"
+description: "jquery"
+snippets: [
+  {
+    name: "jquery.js"
+    mode: "JavaScript"
+    content: '''
+      $('#img_unit').html("...");
+      　　　セレクタ  メソッド パラメータ
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

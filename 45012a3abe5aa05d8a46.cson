@@ -1,0 +1,447 @@
+createdAt: "2018-02-08T07:12:51.474Z"
+updatedAt: "2018-02-14T12:33:21.885Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonOpenCV"
+description: "PythonOpenCV"
+snippets: [
+  {
+    name: "pythonOpenCv.py"
+    mode: "Python"
+    content: '''
+      import cv2
+      
+      # cv2.imread(path)
+      pathの画像を読み込む
+      cv2.imread("src/grapes.jpg", 0)
+      第二引数に0を与えることでgrayScaleで取得する
+      
+      # cv2.imshow("string(windowName)", 表示する対象)
+      
+      # cv2.waitKey(0)
+      引数の数m秒の間キーボードの入力を受け付ける
+      0の場合は入力待ち
+      
+      if cv2.waitKey(30) == 27:
+      で27はエスケープkeyなので30ミリセックの間にエスケープキーが押されたらという条件式が作れる
+      
+      # cv2.destroyAllWindow()
+      全てのウインドウを閉じる
+      
+      
+      # cv2.imwrite(path, 保存する対象)
+      保存する対象をpathの場所に保存する
+      
+      
+      
+      # cv2.VideoCapture("movie/Cosmos.mp4")
+      引数のpathの動画を読み込む
+      
+      
+      # cv2.VideoCapture().isOpened()
+      ちゃんと読み込めていればTrue を返す
+      
+      
+      # rat, frame = cv2.VideoCapture().read()
+      ちゃんと読み込めていればTrueがratに代入される
+      frameには読み込まれたフレームが入る
+      
+      
+      # cv2.VideoWriter_fourcc(*"XVID")
+      書き込みの設定。コーデックを指定する
+      
+      
+      #cv2.VideoWriter("path", fourcc, 30.0, (w,h))
+      書き込みをする
+      第一引数はpathで第二引数は書き込みの設定
+      第三引数はFPS
+      第四引数は動画の解像度
+      
+      # cv2.VideoCapture().release()
+      メモリを解放する
+      
+      
+      # cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
+      windowの設定ができる
+      AUTOSIZEは綺麗な状態で出力する
+      WINDOW_NORMALでwindowを変形させることができる
+      
+      
+      
+      # cv2.resizeWindow("window", 640, 480)
+      2,3引数のところで、windowの大きさを調整できる
+      引数でinterpolationで縮小する際は
+      cv2.INTER_AREAを渡してあげる
+      
+      
+      # cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+      画像をBGRやHLSやGrayScaleに変更することができる
+      v2.COLOR_BGR2HLSでHLSに変換する
+      
+      
+      # cv2.calcHist([img], [i], None, [256], [0, 256])
+      画像をヒストグラムにするときにように計算した値を出力する
+      画像の対象を[]で囲む
+      第二引数はBGRをインデックス番号で指定する
+      第三引数はマスクする画像があるか
+      
+      
+      # cv2.equalizeHist(img)
+      画像のヒストグラムの均一化をして明暗をはっきりさせる
+      
+      
+      # ガンマ変換を行う
+      for i in range(256):
+          gamma_cvt[1][0] = 255 * (float(i) / 255) ** (1.0 / gamma)
+      
+      img_gamma = cv2.LUT(img, gamma_cvt)
+      
+      # cv2.createTrackbar("track", "img", trackValue, 255, onTrackbar)
+      トラックバーを作る
+      第三引数はトラックバーの初期値
+      第四引数は最大値
+      第五引数は関数を渡していてその関数が呼ばれた時にトラックバーが作られる
+      
+      # cv2.line(img, (0, 0), (150, 150), (255, 0, 0), 2)
+      直線を出力する、
+      2 始点
+      3 終点
+      4 カラーを指定する
+      5 線の太さ
+      
+      
+      # cv2.rectangle(img, (100, 25), (300, 150), (0, 255, 0), 4)
+      四角のインスタンスを作成
+      2 四角形の左上
+      3 四角形の右上
+      4 カラーを指定する
+      5 線の太さ
+      
+      
+      # cv2.circle(img, (100, 100), 55, (0, 0, 255), -1)
+      円のインスタンスを作成
+      2 中心の座標
+      3 半径
+      4 カラーの指定
+      5 線の太さ　　-1にすることで塗りつぶす
+      
+      
+      #　cv2.ellipse(img, (250, 250), (100, 50), 20, 0, 360, (255, 0, 0), 1)
+      楕円のインスタンスを作成
+      2 中心の座標
+      3 楕円の歪み
+      4 楕円の傾き
+      5 (0~360)の中からのスタート地点
+      6 (0~369)の中からの終点
+      7 カラーの指定
+      8 線の太さ
+      
+      
+      # pts = np.array([[100, 30], [200, 30], [200, 80], [100, 50]])
+      # cv2.polylines(img, [pts], False, (100, 255, 0), 3)
+      折れ線のインスタンスを作成
+      2　座標
+      3 始点と終点を繋げるか
+      4 カラーの指定
+      5 線の太さ
+      
+      # font = cv2.FONT_HERSHEY_SIMPLEX
+       # cv2.putText(img, "OpenCV", (100, 300), font, 1, (0, 255, 0), 3, cv2.LINE_AA)
+        
+      文字の描画、上式の場合はOpenCVを描画
+      2 描画する文字
+      3 座標
+      4 フォント
+      5
+      6 カラーの指定
+      7 線の太さ
+      8 テキストが美しくなる
+      
+      
+      # ret, img_th = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)
+      画像を2値化する
+      retには閾値,img_thは画像が帰ってくる
+      2 閾値
+      3 閾値を超えたら変換する値
+      4 2値化の方法
+      
+      ret2, img_o = cv2.threshold(img, 0, 255, cv2.THRESH_OTSU)
+      でOTSUを使用すると勝手に閾値を決めてくれる
+      
+      
+      
+      # img_ada = cv2.adaptiveThreshold(
+      #   img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 3, 1)
+      アダブティブで2値化する
+      2 閾値を超えたら変更する値
+      3 モデルの選択
+      4 モデルを選択
+      5 どれくらいの閾値にするかの値を決める
+      6 上に同じ
+      
+      
+      # cv2.warpAffine(img, afn_mat, (w, h))
+      アファイン変換をする。
+      dx, dy = 30, 30
+      afn_mat = np.float32([[1, 0, dx], [0, 1, dy]])
+      h, w = img.shape[:2]
+      
+      2 変換行列
+      3 解像度
+      
+      
+      # cv2.getRotationMatrix2D((w/2, h/2), 40, 1)
+      回転座標を作る
+      1 回転させる中心(横)
+      2 回転させる中心(縦)
+      3 回転させる角度(度)
+      4 画像のスケール
+      
+      
+      # cv2.filter2D(img, -1, kernel1)
+      畳み込みを行う
+      kernel1 = np.ones((3, 3)) / 9.0
+      1 入力画像
+      2 ビット震度(負の値だと、元の画像と同じものを返す)
+      3 行列(kernel)
+      
+      
+      # cv2.blur(img, (3, 3))
+      フィルターを使わずに畳み込みの処理ができる
+      2 3x3で畳み込みをするための行列
+      
+      
+      # cv2.GaussianBlur(img, (9, 9), 2)
+      ガウンシャンフィルターを使う
+      2 行列(奇数)
+      3 ガウス関数のシグマ（分散）大きければ大きいほど画像がボケる
+      
+      
+      # cv2.medianBlur(img, 5)
+      メディアンフィルターを使う
+      最頻値で塗りつぶす
+      2 フィルターの大きさ
+      
+      
+      # cv2.bilateralFilter(img, 20, 30, 30)
+      バイラテルフィルター
+      エッジは残して、軌道が滑らかなものを平滑化する非線形型。
+      2 窓の大きさ
+      3 エッジを保存するためのシグマ
+      4 ガウス関数のシグマ、ボケる
+      
+      
+      # cv2.Sobel(img, cv2.CV_32F, 1, 0, ksize=3)
+      x,y方向に微分をしてエッジを検出する
+      2 ビット深度
+      3 x方向に微分をしたければ1,でなければ0
+      4 y方向に微分をしたければ1,でなければ0
+      5 カーネルのサイズ
+      
+      
+      # cv2.Laplacian(img, cv2.CV_32F)
+      2次微分という微分係数の変化率でエッジを検出する。全ての方向のエッジ
+      2 ビット深度
+      
+      img_blur = cv2.GaussianBlur(img, (21, 21), 2)
+      cv2.Laplacian(img_blur, cv2.CV_32F)
+      
+      ガウシアンブラーを噛ませることによってエッジが太く検出される
+      
+      
+      # cv2.Canny(img, 10, 100)
+      cannyのエッジ検出を行う
+      2 低い閾値
+      3 高い閾値
+      
+      
+      # cv2.HoughLines(img_canny, 1, np.pi / 180, 100)
+      直線を検出する
+      2 ロウの刻み幅  [行の番号, 0, 0]に格納される　
+      3 シータの回す角度 [行の番号, 0, 1]に格納される
+      
+      
+      
+      # cv2.HoughCircles(img_g, cv2.HOUGH_GRADIENT,
+      #                          dp=1,
+      #                          minDist=1,
+      #                          param1=20,
+      #                          param2=35,
+      #                          minRadius=1,
+      #                          maxRadius=30)
+      
+      円を検出する
+      引数がわからなくなったらHoughCircles?と入力すると引数の説明がわかる
+      
+      2 cv2.HOUGH_GRADIENTこれしかない(Method)
+      3 精度(基本的には1を使う)
+      4 検出するときの円と中心の距離で大きくすると円として見逃してしまう
+      5 エッジの検出の閾値2
+      6 エッジの検出の閾値2
+      7 円の検出の閾値
+      
+      
+      # cv2.dilate(img_th, kernel)
+      白が膨張される、ノイズを消す
+      kernel = np.ones((3, 3), dtype=np.uint8)
+      
+      
+      # cv2.erode(img_th, kernel)
+      ノイズが黒に変換される、収縮
+      kernel = np.ones((3, 3), dtype=np.uint8)
+      
+      
+      #cv2.morphologyEx(img_th, cv2.MORPH_CROSS, kernel)
+      kernel = np.ones((3, 3), dtype=np.uint8)
+      膨張してから収縮させる
+      2 クロージングやオープニングを指定する
+      
+      ノイズを消すと膨張して、穴が大きくなる場合がある。その穴を埋めるために収縮させる
+      
+      
+      # cv2.inpaint(img, img_bin, 3, cv2.INPAINT_NS)
+      落書きなどを消す
+      1 元の画像
+      2 マスク画像
+      3 どれくらいの情報を取り込むのか
+      4 手法
+      
+      
+      # cv2.cornerHarris(img_g, 2, 3, 0.04)
+      特徴抽出のコーナを取得する
+      2 ブロックサイズ(範囲)
+      3 内部のフィルターの大きさ
+      4 フィルターのパラメータで小さめの設定をしておく
+      
+      
+      # cv2.KAZE_create()
+      kazeの特徴抽出モデルを作成する
+      
+      
+      # cv2.KAZE_create().detect(img, None)
+      kazeで特徴を抽出して特徴点を生成する
+      2 基本的にNoneを入れる
+      
+      # cv2.drawKeypoints(img_kaze, kp1, None)
+      特徴を抽出したものを描く
+      2 特徴を抽出したもの
+      3 基本的にNone
+      
+      
+      # cv2.AKAZE_create()
+      Akazeの特徴抽出モデルを作成する
+      
+      
+      # cv2.ORB_create()
+      ORBの特徴抽出モデルを作成する
+      
+      
+      # 顔検出のライブラリの場所
+      /Users/miyazonoeiji/.pyenv/versions/anaconda3-5.0.1/share/OpenCV/haarcascades/
+      
+      haarcascade_eye.xml　目を検出
+      haarcascade_frontalcatface.xml : 正面を向いた猫の顔を検出
+      haarcascade_frontalface_default.xml :　正面を向いた人間の顔を検出
+      
+        
+      # cv2.CascadeClassifier(HAAR_FILE)
+      顔検出のモデルを作成する
+      HAAR_FILEはPath
+      
+      
+      
+      # cascade.detectMultiScale(img_g)
+      
+      img_gは検出する元となる画像
+      cascodeは顔検出のモデル
+      
+      # nLabels, labelImage, stats, centroids = cv2.connectedComponentsWithStats(img_bi)
+      nLabelsには検出したブトッブの個数。背景も個数に入る
+      labelImageラベルのIDが割り振られる
+      statsは最小のx,yとwidthとhightと最後にブロブの面積が格納されている
+      centroids
+      
+      
+      # img_con, contours, hierarchy = cv2.findContours(img_bi, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+      1 検出する画像　
+      2 輪郭を検出するもの 
+      3 輪郭を抽出するオプション  
+      
+      # cv2.drawContours(img, contours, -1, (255, 0, 0), 1)
+      2
+      3 すべての輪郭にする場合は-1
+      4 色
+      5 太さ
+      
+      
+      # cv2.inRange(hsv, lower, upper)
+      lower と upperで宣言した値の色っぽい色をhsvデータで出力する
+      
+      
+      
+      # cv2.bitwise_and(frame, frame, mask = frame_mask)
+      ２値画像の論理積をとる、共通する部分をだす。フレームとフレームの論理積を出す
+      3 抽出する色のframe
+    '''
+  }
+]
+tags: [
+  "ガンマ変換"
+  "アファイン変換"
+  "モルフォンジー演算"
+  "imread()"
+  "imshow()"
+  "waitKey"
+  "destroyAllWindow()"
+  "imwrite"
+  "VideoCapture"
+  "isOpened()"
+  "read()"
+  "VideoWriter_fourcc"
+  "VideoWriter"
+  "release()"
+  "namedWindow"
+  "resizeWindow"
+  "cvtColor"
+  "calcHist"
+  "equalizeHist"
+  "createTrackbar"
+  "line"
+  "rectangle"
+  "circle"
+  "ellipse"
+  "polylines"
+  "putText"
+  "threshold"
+  "adaptiveThreshold"
+  "warpAffine"
+  "getRotationMatrix2D"
+  "filter2D"
+  "blur"
+  "GaussianBlur"
+  "medianBlur"
+  "bilateralFilter"
+  "Sobel"
+  "Laplacian"
+  "Canny"
+  "HoughLines"
+  "HoughCircles"
+  "dilate"
+  "erode"
+  "morphologyEx"
+  "inpaint"
+  "cornerHarris"
+  "KAZE_create()"
+  "detect"
+  "drawKeypoints"
+  "AKAZE_create()"
+  "ORB_create()"
+  "顔検出"
+  "CascadeClassifier"
+  "detectMultiScale"
+  "connectedComponentsWithStats"
+  "findContours"
+  "drawContours"
+]
+isStarred: false
+isTrashed: false

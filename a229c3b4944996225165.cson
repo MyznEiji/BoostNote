@@ -1,0 +1,27 @@
+createdAt: "2018-03-10T14:55:02.601Z"
+updatedAt: "2018-03-10T15:01:35.070Z"
+type: "SNIPPET_NOTE"
+folder: "ea77b093ffd39c8e29de"
+title: "Setting.py"
+description: "Setting.py"
+snippets: [
+  {
+    name: "Setting.py"
+    mode: "Python"
+    content: '''
+      # LANGUAGE_CODE = 'ja'
+      日本語になる
+      
+      
+      # TIME_ZONE = 'Asia/Tokyo'
+      時間の指定が日本時間になる
+      
+      
+      # INSTALLED_APPS = []
+      プロジェクトとの関連づけをする
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,95 @@
+createdAt: "2018-04-09T04:47:59.797Z"
+updatedAt: "2018-04-12T08:29:38.905Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonFlask"
+description: "PythonFlask"
+snippets: [
+  {
+    name: "Flask.py"
+    mode: "Python"
+    content: '''
+      from flask import Flask
+      from flask import g  # グローバルの値を入れるライブラリ
+      from flask import render_template  
+      from flask import request
+      from flask import Response
+      
+      
+      # app = Flask(__name__)
+      自分のファイルをグローバルに宣言
+      
+      　
+      # / がルートでリクエストされたら下の関数をレスポンスする
+      @app.route('/')
+      def hello_world():
+          return 'top'
+        
+        
+      # app.run()
+        サーバーが走る
+      
+        "基本設定は"
+      
+          def main():
+              app.debug = True
+              app.run() 
+              # app.run(host='127.0.0.1', port=5000)　デフォルト
+      
+          if __name__ = '__main__':
+              main()
+      
+              
+      # 任意のurlの文字を関数で取得する
+        @app.route('/hello/<username>')
+        def hello_world2(username):
+            return 'hello world %s' % (username)
+      
+        <>でurlで打ち込まれた文字列を取得して、メソッドで利用している
+      
+      
+      # urlに任意の文字列がない場合の設定
+        @app.route('/hello')
+        @app.route('/hello/<username>')
+        def hello_world2(username=None):
+            return 'hello world %s' % (username)
+      
+        
+        
+      #PostやPut,DELETEにアクセスする場合
+      @app.route('/post', methods=['POST', 'PUT', 'DELETE'])
+      from flask import request
+      def show_post():
+          return str(request.values)    
+          
+          
+      
+      # flaskのDBにアクセスするパターン
+        import sqlite3
+        from flask import g
+          def get_db():
+              db = getattr(g, '_database', None)
+              if db is None:
+                  db = g._database = sqilte3.connect('test_sqlite.db')
+              return db
+          
+          
+      # @app.teardown_appcontext
+        def close_connection(exception):
+            db = getattr(g, '_database', None)
+            if db is not None:
+                db.close()
+      
+        アプリケーションにアクセスするときにデータベースのコネクションが作られて、
+        アプリケーションが終了するときにはコネクションがクローズする
+      
+      
+      
+    '''
+  }
+]
+tags: [
+  "flask"
+]
+isStarred: false
+isTrashed: false

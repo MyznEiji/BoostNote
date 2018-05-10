@@ -1,0 +1,83 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "MonoBehaviour"
+description: "MonoBehaviour"
+snippets: [
+  {
+    name: "MonoBehaviour.cs"
+    mode: "C#"
+    content: '''
+      //MonoBehaviour.Update()
+      毎フレームごとに呼ばれる関数
+      毎フレームごとに呼ばれるので、Inputなどの記述をするといい。
+      
+      //MonoBehaviour.FixedUpdate()
+      秒間に呼ばれる回数が一定になる
+      Rigidbodyなどの記述をすることで動きを一定に保つ
+      フレームレートはUnityメニューのEdit→Project Settings→Timeで設定出来ます。
+      TimeManagerが表示され、Fixed TimeStepでフレームレートを変更出来ます。
+      デフォルトで0.02となっていて0.02秒間に1回フレームが呼ばれる設定になっています。
+      つまり1フレーム/0.02秒ですね、これを1秒間に直していくと
+      100フレーム/2秒→50フレーム/1秒、つまり50fpsという事になります。
+      
+      //MonoBehaviour.LateUpdate()
+      Update関数が呼ばれた後に呼ばれる関数
+      
+      
+      //MonoBehaviour.Awake()
+      この関数は常に Start 関数の前およびプレハブのインスタンス化直後に呼び出されます
+      
+      //MonoBehaviour.OnLevelWasLoaded
+      この関数は新しいシーンが読み込まれたとき、ゲームオブジェクトに通知するために
+      実行されます。
+      
+      
+      //MonoBehaviour.OnEnable()
+      この関数は、オブジェクトが有効になってアクティブになったときに呼び出されます。
+      
+      //MonoBehaviour.OnDisable()
+      OnDisable関数はOnEnable関数とは逆でゲームオブジェクトが非アクティブになったときに
+      実行されます。
+      
+      
+      //MonoBehaviour.OnDestroy
+      OnDestroy関数はその名の通りそのゲームオブジェクトが削除された時に実行される関数です。
+      
+      
+      // OnCollisionEnter(Collision)
+      このcollider/rigidbodyは他のcollider/rigidbodyに触れたときに
+      OnCollisionEnterは呼び出されます。
+      
+      
+      //OnCollisionExit(Collision)
+      このcollider/rigidbodyが他のcollider/rigidbodyと触れ合うのをやめたときに
+      OnCollisionExitは呼び出されます。
+      
+      
+      //OnCollisionStay(Collision)
+      rigidbody/colliderが他のrigidbody/colliderに
+      触れている間毎フレーム1度だけ呼び出されます。
+      
+      
+      //OnTriggerEnter(Collider)
+      Colliderが他のトリガーイベントに侵入したときにOnTriggerEnterが呼び出されます。
+      
+      
+      //OnTriggerExit(Collider)
+      Colliderがotherのトリガーに触れるのをやめたときにOnTriggerExitは呼び出されます。
+      
+      
+      //OnTriggerStay(Collider)
+      トリガーが他のColliderに触れ続けている間ほとんど毎フレーム呼び出されます。
+      
+      
+      //Invoke(string methodName, float time)
+      time後にmethidNameを実行する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-04T08:01:49.379Z"
+updatedAt: "2017-11-18T12:42:12.888Z"

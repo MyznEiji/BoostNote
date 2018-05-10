@@ -1,0 +1,57 @@
+createdAt: "2018-03-16T11:33:23.081Z"
+updatedAt: "2018-03-19T09:11:23.689Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelDebug"
+description: "LaravelDebug"
+snippets: [
+  {
+    name: "laravelDebug.py"
+    mode: "Python"
+    content: '''
+      # PsySH
+      PsySHはPHPのフレームワーク向けに開発されたデバッグツールです。デバッグツールとは、
+      作業の際にバグの有無を確認したり、処理を止めてソースコードが正しいかを確認する際に
+      使用するツールです。デバッグツールを使いこなすことで、より開発がしやすくなります。
+      
+      PsySHは外部のライブラリとして用意されており、ファサードと同様にcomposerを使って
+      インストールすることが可能です。
+      $ composer require psy/psysh:@stable
+      
+      
+      namespace App\\Http\\Controllers;
+      
+        // 省略
+      
+          public function store(Request $request)
+          {
+              Tweet::create(
+                  array(
+                      'image' => $request->image,
+                      'text' => $request->text,
+                      'user_id' => Auth::user()->id
+                  )
+              );
+              eval(\\Psy\\SH());
+      
+              return view('tweets.store');
+          }
+        
+      >>>Request::all()
+      
+        
+      # laravel-debugbarファサード
+      barryvdh/laravel-debugbar ファサードを使うと各アクションでどのようなSQLが
+      発行されているかを確認することができます。実際にインストールしてどのようなSQLが
+      発行されているか確認してみましょう。
+      
+      新しくライブラリを追加するにはcomposer requireコマンドを実行、app.phpファイルを
+      編集という流れでした。
+      新しくライブラリを追加するにはcomposer.jsonを編集、composer updateコマンドを
+      実行、app.phpファイルを編集という流れでした。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

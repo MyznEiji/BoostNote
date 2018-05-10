@@ -1,0 +1,24 @@
+createdAt: "2018-01-15T06:22:19.372Z"
+updatedAt: "2018-01-15T06:26:11.464Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonShutil"
+description: "PythonShutil"
+snippets: [
+  {
+    name: "pythonShutil.py"
+    mode: "Python"
+    content: '''
+      # import shutil
+      
+      #shutil.copy("test_dir/test_dir2/empty.txt", "test_dir/test_dir2/empty2.txt")
+      第一引数をコピーして、第二引数でコピーしたものを複製する
+      
+      # shutil.rmtree("test_dir")
+      ディレクトリを削除する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

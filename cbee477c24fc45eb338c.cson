@@ -1,0 +1,282 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Delegate"
+description: "C#Delegate"
+snippets: [
+  {
+    name: "C#Delegate.cs"
+    mode: "C#"
+    content: '''
+      //Delegate
+      
+      //デリゲート
+      メソッドを直接呼び出す代わりに、メソッドへの参照を保存しておき、
+      この参照を使ってメソッドを呼び出すこと。
+      "delegateキーワード"を使ってデリゲートを宣言する
+      
+      delegate データ型 名前(パラメータリスト)
+      
+      データ型はデリケートを通して呼び出すメソッドの戻り値の型
+      パラメータリストは呼び出すメソッドのパラメータリストと同じでなくてはなりません。
+      
+      int MyMethod(int x, double y){}
+      このメソッドを呼び出せるデリゲート宣言は
+      delegate int MyDelegate(int a,double b);
+      
+      デリゲートを通してメソッドの呼び出しを行うには
+      MyDelegate md = new MyDelegate(MyMethod);
+      md(4,0.25);
+      とすれば
+      MyMethod(4,0.25);
+      を実行したのと同じ
+      
+      ```
+      using System;
+      
+      delegate void MyDelegate();
+      
+      class MyClass
+      {
+        public void Show()
+        {
+          Console.WriteLine("呼ばれました");
+        }
+        public static string Show1(string s1,string s2)
+        {
+          return s1 + "は" + s2 + "です";
+        }
+      }
+      
+      class Delegate02
+      {
+        public static void Main()
+        {
+          MyClass = mc new MyClass();
+          mc.Show();
+          
+          MyDelegate m = new MyDelegate(mc.Show);
+          m();
+          
+          MyDelegate md = new MyDelegate(MyClass.Show1);
+          Console.WriteLine(md("C#","おもしろい"));
+        }
+      }
+      ```
+      
+      //マルチキャストデリゲーション
+      呼び出すメソッドはいくつでも追加することができる
+      呼び出されるメソッドの名前はコンパイル時には解決されていない。
+      ユーザーがそのアプリケーションに対して自由な部品をあとで選択できる
+      MyDelegate md = new MyDelegate(mc1.Calc);
+      md += new MyDelegate(mc2.Calc);
+        
+      mc2.Calc()の呼び出しを削除したい場合
+      
+      md -= new MyDelegate(mc2.Calc);
+      
+      
+      
+      //匿名メソッド
+      あらかじめどこかで定義されているメソッドの名前が登場しませんね。その代わり、
+      {}内にメソッドの内容を直接書き込んでいます
+      MyDelegate md = delegate(引数,...){メソッドの中身;};
+      
+      ```
+      using System;
+      
+      delegate int MyDelegate(string s);
+      class MyClass
+      {
+        public int Show(string s)
+        {
+          Console.WriteLine("「{0}と入力されました」",s)
+          return 0;
+        }
+      }
+      
+      class AnoMethod01
+      {
+        public static void Main()
+        {
+          MyClass mc = new MyClass();
+          Console.Write("文字列入力");
+          string x = Console.ReadLine();
+          
+          //従来型
+          MyDelegate mdg = new MyDelegate(mc.Show);
+          mdg(x);
+          
+          //匿名メソッド
+          MyDelegate mdg2 = delegate(string i)
+          {
+            Console.WriteLine("{0}と入力されました",i);
+            return 0;
+          };
+          mdg2(x);
+        }
+      }
+      ```
+      
+      
+      //ラムダ式
+      =>をラムダ演算子
+      (引数、引数) => 右辺
+      引数なしのラムダ式を記述する場合()が必要。
+      () => 右辺
+      引数のデータ型はコンパイラが推論してくれるので、通常書く必要はない。
+      右辺には式形状の他に文形式で書くことができる。
+      文型式のときは{}で囲む必要がある。複数の文を記述することもできる
+      
+      引数 => {文;};
+      (引数,引数,・・・) => {文; 文;};
+      
+      ```
+      using System;
+      delegate void MyDelegate();
+      delegate int MyDelegate01(int x,int y);
+      delegate void MyDelegate02(int x); //マルチキャスト用途のデリゲード
+      
+      class Lambda01
+      {
+        public static void Show()
+        {
+          Console.WriteLine("呼ばれました");
+        }
+        public stataic void Main()
+        {
+          //直接Showメソッドを呼び出す
+          Show();
+          
+          //デリゲートの作成
+          MyDelegate md = () => Show();
+          //デリゲートを通してShowメソッドを実行
+          md();
+          
+          //x,yの型はコンパイラが推論
+          MyDelegate01 md01 = (x,y) => {return x + y};
+          Console.WriteLine("2 + 3 = {0}",md01(2,3));
+          
+          MyDelegate02 md02 = x => 
+            Console.WriteLine("{0}の2乗は{1}",x,x * x);
+          MyDelegate02 md03 = x =>
+            Condole.WriteLine("{0}の2倍は{1}",x,x * 2);
+          
+          MyDelegate md04 = md02 + md03; //マルチキャスト
+          md04(10); 
+          
+        }
+      }
+      ```
+      
+      
+      //イベント
+      何かが起きたをイベントと言い,これに関して一連の処理を実行するものを
+      イベントハンドラ
+      
+      イベントを発生させるクラスを用意します。
+      このクラスにはイベントフィールドが必要です
+      event データ型 名前;
+      
+      データ型とはデリゲートの型です。(デリゲートの名前がabcならabc型)
+      イベントを起こすには
+      イベントの名前();
+      
+      いきなり「イベントの名前();」でイベントを発生させてはいけない
+      イベントフィールドがnullの時は何もしないようにしておく必要がある。
+      
+      通常「On + イベント名」という名前のメソッドで行う
+      ```
+      class イベントを発生させるクラス
+      {
+        public event デリゲートの名前 イベントの名前;
+        public Onイベントの名前()
+        {
+          if(イベントの名前 != null)　イベントの名前();
+        }
+      }
+      ```
+      
+      このイベントが発生したら何をするかを定義する
+      イベントの名前 += 実行するメソッド;
+      イベントの名前 += 実行するメソッド2; //イベントのマルチキャスト
+      
+      ```
+      using System;
+      
+      delegate void MyDelegate();
+      
+      class MyEventClass //イベントを発生させるクラス
+      {
+        public event MyDelegate EventName; //イベントフィールド
+        public void OnEventName()
+        {
+          if(EventName != null)　//イベントフィールドがnullでないなら
+            EventName();         //イベントを発生させる
+        }
+      }
+      
+      class MyClass
+      {
+        public void Show()
+        {
+          Console.WriteLine("Show");
+        }
+      }
+      
+      class MyClass2
+      {
+        public void Show2()
+        {
+          Console.WriteLine("Show2!!");
+        }
+      }
+      class Event01
+      {
+        public static void Main()
+        {
+          MyClass mc = new MyClass();
+          MyClass2 mc2 = new MyClass2();
+          MyEventClass myEvent = new MyEventClass();
+          
+          //イベントフィールドにイベントハンドラを設定
+          myEvent.EventName() += new MyDelegate(mc.Show);
+          myEvent.EventName() += new MyDelegate(mc2.Show2)
+            
+          myEvent.OnEventName(); //イベントを発生させる
+        }
+      }
+      ```
+      
+    '''
+  }
+  {
+    name: "C#Delegate2.cs"
+    mode: "C#"
+    content: '''
+      //同期呼び出し
+      メソッドを呼び出すとメソッド内の処理が完了するまで呼び出し元には戻ってきません。
+      このような動作を同期呼び出し (Synchronous Call) と呼びます。
+      
+      
+      //非同期呼び出し
+      非同期呼び出し (Asynchronous Call) とは、 メソッドを呼び出した瞬間に呼び出し元に
+      処理が戻ってくるような呼び出しのことです。
+      
+      デリゲートの非同期呼び出しをすると、 デリゲートを介して呼び出されるメソッドの処理と、
+      呼び出し元の処理が平行して行われることになります。
+      
+      デリゲート型を定義すると、 C# コンパイラによって自動的に "BeginInvoke" と
+      "EndInvoke" というメソッドが生成されます。 この BeginInvoke を用いることにより
+      非同期呼び出しを開始し、 EndInvoke を用いることにより非同期処理の終了を待つ事が
+      出来ます。
+    '''
+  }
+]
+tags: [
+  "同期呼び出し"
+  "非同期呼び出し"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-27T09:17:22.416Z"
+updatedAt: "2017-11-07T02:51:39.900Z"

@@ -1,0 +1,178 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonGeneral"
+description: "PythonGeneral"
+snippets: [
+  {
+    name: "PythonGeneral.py"
+    mode: "Python"
+    content: '''
+      #importの書き方、順番
+      
+      (上からアルファベット順番)
+      標準ライブラリ
+      
+      サードパーティライブラリ
+      
+      自分たちのパッケージ
+      
+      ローカルのファイル
+      
+      というように分けて見やすくする
+      
+      
+        "from ..hoge.fuga import piyo"
+        現在のディレクトリの親ディレクトリからhogeのfugaのpiyoをインポートする
+      
+        
+      
+        "import *"
+        *はそのディレクトリの__init__.pyの__all__を参照する
+        __init__.pyに__all__ = ["hoge", "fuga", "piyo"]
+        そのディレクトリ内のhoge.pyとfuga.pyとpiyo.pyを参照する
+      
+        
+        
+        "インポートエラーを避けるために"
+        
+        try:
+            from lesson_package import human
+        except ImportError:
+            from lesson_package.talk import human
+            
+            
+            
+        "ライブラリがどこのディレクトリに保存されているのかを確認する"
+          print(ライブラリ名.__file__)
+          print(termcolor.__file__)
+          print(collections.__file__)
+      
+      
+        
+      #pythonコマンド
+      pythonコマンドはPythonに関する様々な操作をターミナルで行うために必要なコマンドです。
+      Pythonファイルをプログラムとして実行するためには以下のようにターミナルに打ち込みます。
+      
+      $python [実行したいpythonファイルのパス]
+      
+      
+      #対話モード
+      対話モードとは、ターミナルから直接、Pythonのプログラムを動かすことができる機能です。
+      ターミナルから「python」と入力すると起動します。pythonを実行したら、直接プログラムを
+      入力してエンターキーを押すだけでコードを実行してくれます。
+      対話モードを終了するには、pythonを起動中に「exit()」と入力しエンターキーを押すか、
+      「cntrol + D」を入力し修了し
+      
+      
+       
+      #日本語対応
+      #coding: UTG-8を先頭に宣言すると日本語対応する
+      
+      
+      
+      #Txtファイルのデータを取り出す
+      score_list = []
+      
+      score_list_file = open("score")
+      
+      for score in score_list_file:
+          #rstrip()は行末の文字を取り除く.
+          score = score.rstrip().split(",")
+          score_list.append(score)
+      #fileをOpenしたらcloseする
+      score_list_file.close()
+      print score_list
+      
+      
+      #CPU: 直列処理が得意、演算の中心
+      #GPU: 並列演算が得意、本来は画像処理用
+      
+      
+      #ディープラーニングとGPU
+      複数の処理を並列で行うことにより パフォーマンスが大幅に向上(e.g. 10倍以上)
+      ディープラーニングには、GPUが必須
+      
+      
+      #None
+      NoneTypeというデータ型の唯一の値です
+      
+      #Cloud9上でjupyter notebookを起動
+      jupyter notebook --ip 0.0.0.0 --port 8080 --no-browser
+      普通のターミナルで開くなら
+      ipython notebook　か、
+      jypyter notebook　をターミナルで入力
+      
+      
+      #文字の長さ
+      スクリプトでの文字の長さは80文字までと決まっている
+      \\を行末につけるか()でくくると改行すればその行は一行と設定できる
+      
+      
+      #from,import,asなど
+      import lesson_package.utils as ut
+      """ 
+      lesson_packgeのパッケージを読み込む。(同じディレクトリにあるフォルダ)その後に
+      utilsモジュール(ファイル)を読み込んで、その中に定義されているメソッドを使っていく
+      """
+      from lesson_package import utils 
+      from lesson_package.utils import say_twice
+      
+      "ライブラリの順はabc順"
+      標準ライブラリ(sysなど)
+      ↓
+      サードパーティライブラリ(matplotlibなど)
+      ↓
+      チームのライブラリ
+      ↓
+      自分のライブラリ
+      
+      
+      
+      "インストールしたサードパーティライブラリが入ってる場所"
+      /Users/miyazonoeiji/.pyenv/versions/3.6.2/lib/python3.6/site-packages
+      
+      "標準ライブラリが入ってる場所"
+      /Users/miyazonoeiji/.pyenv/versions/3.6.2/lib/python3.6/collections
+      
+      "pythonがライブラリを読み込む順番を確認する"
+      import sys
+      print(sys.path)
+      
+      "ライブラリを作る時の注意点"
+      ライブラリにデバック用にprint()をしていると、他のスクリプト上でインポートした時に
+      自動的に実行されてします。
+      なので、ライブラリにデバック用にprint()を書き込むのであれば
+      if __name__ == '__main__':
+        print()
+      とやると、他のスクリプトから呼ばれた時は__name__がスクリプトの名前に変化するので、
+      print()されない仕組みになる
+      
+      同様にメソッドを呼ぶときも
+      def main():
+        hogehoge()
+      if __name__ == '__main__':
+        main()
+      とやると、他のスクリプトがインポートして実行した時に自動的にメソッドが
+      実行されるのを防ぐことができる
+      
+      
+      # print(id(object))
+      objectのメモリのアドレスを出力する
+      
+    '''
+  }
+]
+tags: [
+  "from"
+  "import"
+  "as"
+  "__name__"
+  "__main__"
+  "id()"
+  "import_*"
+  "__all__"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-21T08:37:56.009Z"
+updatedAt: "2018-03-29T10:17:18.963Z"

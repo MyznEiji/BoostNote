@@ -1,0 +1,198 @@
+createdAt: "2018-04-13T07:28:27.710Z"
+updatedAt: "2018-04-17T09:53:26.530Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonTest"
+description: "PythonTest"
+snippets: [
+  {
+    name: "doctest.py"
+    mode: "Python"
+    content: '''
+      #ドキュメントに使用例を書く
+      本格的にテストというよりは、ドキュメント+テスト
+      複雑なテストでドキュメントが長くなる場合は別のファイルにテストファイルとして分ける
+      他のプログラマにコードを見せる時に有効な手法
+      
+      
+      import doctest
+      
+      class Call():
+          def add_num_add_double(self, x, y):
+              """Add adn double
+      
+              >>> c = Call()
+              >>> c.add_num_add_double(1, 1)
+              4
+      
+              """
+      
+              if type(x) is not int or type(y) is not int:
+                  raise ValueError
+      
+              result = x + y
+              result *= 2
+              return result
+      
+      if __name__ == '__main__':
+          import doctest
+          doctest.testmod()
+      
+          
+          
+      
+    '''
+  }
+  {
+    name: "unittest.py"
+    mode: "Python"
+    content: '''
+      
+      #メソッド
+      assertEqual(a, b)	        a == b	 
+      assertNotEqual(a, b)	    a != b	 
+      assertTrue(x)	            bool(x) is True	 
+      assertFalse(x)	          bool(x) is False	 
+      assertIs(a, b)	          a is b	
+      assertIsNot(a, b)     	  a is not b
+      assertIsNone(x)	          x is None	
+      assertIsNotNone(x)	      x is not None	
+      assertIn(a, b)	          a in b
+      assertNotIn(a, b)	        a not in b
+      assertIsInstance(a, b)	  isinstance(a, b)	
+      assertNotIsInstance(a, b)	not isinstance(a, b)
+      
+      
+      
+      
+      
+      
+      # calculationPython.py
+      class Call():
+          def add_num_add_double(self, x, y):
+      
+              result = x + y
+              result *= 2
+              return result
+      
+      
+            
+      # test_calculation.py
+      import unittest
+      
+      import calculationPython
+      
+      
+      class CalTest(unittest.TestCase):
+          def test_add_num_and_double(self):
+              cal = calculationPython.Call()
+              self.assertEqual(cal.add_num_add_double(1, 1), 4)
+      
+      
+      if __name__ == '__main__':
+          unittest.main()
+          
+          
+      
+      1. テストするクラスを呼び込む
+      2. unittest.TestCaseを継承する
+      3. メソッドをtest_メソッド名で定義する
+      4. クラスのインスタンスを変数に定義してメソッド呼び出す
+      5. そのメソッドの結果が予想されたものと確かめるためにself.assertEqual()の引数として渡す。第一引数はメソッド、第二引数はそのメソッドの予想する返り値
+      
+      
+      
+      #例外がしっかり行われるかどうかを確認する
+      
+          def test_add_num_and_double_raise(self):
+              cal = calculationPython.Call()
+              with self.assertRaises(ValueError):
+                  cal.add_num_add_double('1', '1')
+                  
+                  
+        # with seld.assertRaises(ErrorName):
+            処理
+          
+      
+          
+      # テスト実行前後に処理する場合
+        def setUp(self): #テストを行う前の処理
+              print('setup')
+              self.cal = calculationPython.Call()
+      
+          def tearDown(self): #テストの後の処理
+              print('clean up')
+              del self.cal
+              
+              
+      
+      # テストのスキップをする時
+          @unittest.skip('skip')
+          def test_add_num_and_double_raise(self):
+              with self.assertRaises(ValueError):
+                  self.cal.add_num_add_double('1', '1')
+      
+                  
+          @unittest.skipIf(release_name=='lesson', 'skip!!')
+          release_nameが'lesson'の時にスキップする処理
+      
+      
+    '''
+  }
+  {
+    name: "pytest.py"
+    mode: "Python"
+    content: '''
+      import calculationPython
+      
+      def test_add_num_and_double(self):
+          cal = calculationPython.Call()
+          assert cal.add_num_add_double(1, 1) == 4
+      
+      # testというメソッド名と
+        assertというテストメソッドでテスト処理を行える。
+        実行時は$ pytest ファイル名で実行できる
+        
+        
+      
+      # クラスの場合
+      class TestCal(object):
+          def test_add_num_and_double(self):
+              cal = calculationPython.Call()
+              assert cal.add_num_add_double(1, 1) == 4
+      
+              
+      # 例外のテストを行う時
+      
+      import pytest
+          def test_add_num_and_double_raise(self):
+              with pytest.raises(ValueError):
+                  cal = calculationPython.Call()
+                  cal.add_num_add_double('1', '1')
+                  
+                  
+      # conftest
+        実行する時にオプションを渡して、そのオプションによって処理を変えたい場合
+      
+          "conftest.py" # ここにoptionを追加する設定を書く
+          def pytest_addoption(parser):
+              parser.addoption('--os-name', default='linux', help='os name')
+      
+      
+          def test_add_num_and_double(self, request):
+                  os_name = request.config.getoption('--os-name')
+                  print(os_name)
+                  if os_name == 'mac':
+                      print('ls')
+                  elif os_name == 'windows':
+                      print('dir')
+      
+          $ pytest pytestPython.py  --os-name=mac -s
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

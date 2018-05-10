@@ -1,0 +1,492 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonPandas"
+description: "PythonPandas"
+snippets: [
+  {
+    name: "PythonPandas.py"
+    mode: "Python"
+    content: '''
+      #Pandas
+      Pandas(パンダス)はデータ解析を支援する機能を提供するライブラリです。
+      Pythonでデータ解析をする際には必須のライブラリーとなります。
+      データ分析によく使われるデータフレームという形でデータを保存し、操作をしたり、
+      さらには平均や標準偏差をコマンド一つで求める事を可能にします。
+      
+      #pandas.columns
+      カラムを出力することができる
+      
+      
+      #pandas.cut(hoge, fuga)
+      データをカテゴリー分けする
+      hogeが分割するデータ
+      fugaがカテゴリー,指標
+      
+      "pandas.value_counts(hoge)"
+      カテゴリー分けされたhogeのそれぞのカテゴリーにどれくらいデータが入ってるかを
+      出力する
+      
+      #pandas.categories
+      カテゴリー分けされたもののカテゴリーを表示します。
+      
+      
+      #pandas.head()
+      最初のレコード5つを取り出す
+      引数を指定することでレコード数を変更できる
+      
+      #pandas.tail()
+      最後からのレコードを取り出す
+      
+      
+      #Pandas.corr()
+      pandasライブラリーの関数で、データのカラム同士の相関を数値化したもの(相関係数)を
+      表示する関数です。
+      
+      #pandas.corrwith()
+      ペアワイズ相関を簡単に計算してくれます
+      
+      
+      #Pandas.concat([Series1, Series2], axis=num)
+      シリーズを結合できる  
+      axisは連結方向で0の場合は行方向に、1の場合は列方向に連結する
+      列方向に連結するとdataFrameみたいに返ってくる
+      keys=['','']でkeyを作成できる
+      ignore_indexをTrueにするとそれぞれindexが分別されなくなる
+      
+      #Pandas.value_counts()
+      Pandasモジュールのメソッドです。データフレームのカラム名を指定すると、
+      そのカラムの種類別にカウントし、出力します。
+      
+      
+      #Pandas.loc[]
+      行ラベル、列ラベルで指定して取得できる
+      
+      flight_dframe.loc['January', 1955]
+      
+      #Pandas.iloc[]
+      指定した番号のデータの行・列を取得できます。
+      ```
+      2列目以降の全てのレコード(行)をXに代入
+      X = wine.iloc[:, 1:].values
+      ```
+      複数列取り出すとき(1,2列目を取り出す)
+      hoge.iloc[:,[1,2]]
+      
+      
+      #pd.read_clipboard() 
+      クリップボードから読み込むことが可能です。
+      主にグラフなどを読み込むのが便利
+      a = np.read_clipboard()
+      a['First Season'] #空欄があるカラムにアクセスする場合
+      a.Team #空欄のないカラムにアクセスする場合
+      a[['Team','First Season']] #複数のカラムにアクセスする場合
+      
+      
+      #pd.read_csv(csvFile)
+      csvを読み込む
+      データフレームにしてくれる
+      
+      最初の一行目はheaderとして扱われるから引数にheader=Noneとする
+      引数をnrows=2とすると取ってくる行の数を指定できる
+      
+      #dataframe.to_csv('fileName.csv')
+      csvファイルとしてdataframeを保存することができる
+      sep=''で文字の間の保存方法を指定する
+      sys.stdoutで標準出力を行う #import sysをする必要がある
+      columns=[]カラムを指定できる
+      
+      
+      #pd.read_table(FileName, sep=',')
+      テーブルを読み込む
+      sep=','とすることで「,」区切りで文字を読み込む
+      
+      
+      #pd.read_html(url, flavor='html5lib')
+      HTMLからデータを読み込み、tableをDataFrameにしてくれる。
+      pd.read_html(url)[0]
+      データセットを呼ぶ。
+      "データセットのカラムを呼ぶ"
+      dframe.columns.values
+      
+      
+      #pandas_datareader.data.get_data_yahoo.pct_change()
+      変化の割合を計算できます。
+      
+      
+      #pandas_datareader.data.corr()
+      値の相関を出力する
+      
+      
+      #pandas.rolling_mean(coloum, [day,day,day])
+      単純移動平均を出力する
+      pd.rolling_mean(AAPL['Adj Close'], [10, 20, 50])
+      
+      
+      #pandas.get_dummies(dataframe['coloumName'])
+      カテゴリーを表現する変数を、ダミー変数に展開します。
+      occ_dummies = pd.get_dummies(df['occupation'])
+      
+    '''
+  }
+  {
+    name: "PythonPandasDataFrame.py"
+    mode: "Python"
+    content: '''
+      #DataFrame(テーブルの各セルの値,カラムの内容)
+        呼び出し元のオブジェクトを元にテーブルを作成します。
+      
+      
+      #Pandas.DataFrame.describe()
+        要約等軽量を取得できる
+        要約統計量とは平均や、中央値、分散(バラけ具合)と言った様な、
+        データ分析の為に理解する必要がある統計的な数値の事。
+      
+      
+      #pandas.DataFrame.info()
+        データフレームの合計などの情報を出力する
+      
+      
+      #pandas.DataFrame(DataFrame, columns=['Team', 'First Season'])
+        あるデータフレームから指定したカラムのデータフレームを作成する
+        ないカラムを指定するとnullが入る
+      
+        DataFrame(np.arange(4*4).reshape(4*4)) #簡単にデータフレームを作れる
+      
+        DataFrame({"key1": ["A"]*2 + ["B"]*3, "key2": [2, 2, 2, 3, 3]})
+      
+        "データフレームに新しいカラムを作って、0-nの値を代入する"
+        DataFrame["Column"] = np.arrange(n)
+      
+        "決まったインデックスのカラムに値を追加する"
+        DataFrame['Column'] = Series(
+            ["Levi's Stadium", "AT&T Stadium"], 
+            index=[4, 0])
+      
+      
+        "素早くReindexが可能です"
+        new_columns = ['col1','col2','col3','col4','col5','col6']
+        new_index = ['A','B','C','D','E','F']
+        dframe.ix[new_index, new_columns]
+      
+        "カラムを削除する"
+        del nfl_frame['Stadium']
+      
+      
+        """列（カラム）を削除することも可能です。
+           その場合、列の軸を示す、axis=1が必要"""
+        dframe1.drop('year',axis=1)
+      
+        "データフレームを足す"
+        1.) >dataFrame1 + dataFrame2
+        2.) >dataFrame1.add(dataFrame2) 
+        dataFrame1にdataFrame2のカラムがないとnullが渡される
+        nullじゃない値を渡す場合は
+        dataFrame1.add(dataFrame2, fill_value=0)
+        
+      
+      #pandas.DataFrame.sum()
+        カラムごとの合計を求める
+        引数にaxis=1とするとレコードごとの合計を求める
+        
+      
+      #pandas.DataFrame.drop()
+        indexを指定して、行を削除
+        dframe1.drop('LA') #, axis=0が省略されている
+      
+      #pandas.DataFrame.merge(dataFrame1, dataFrame2)
+        dataFrame1にdataFrame2をマージする
+        pd.merge(df_left, df_right, left_on='culumn', 
+                right_index=True, how='outer')
+      
+      #pandas.DataFrame.join(dataFrame2)
+        dataFrameにdataFrame2を結合する
+        df_left.join(df_right)
+      
+      
+      #pandas.DataFrame.min()
+        カラムごとの最小値を求める
+        引数にaxis=1とするとレコードごとの最小値を求める
+      
+      
+      #pandas.DataFrame.max()
+        カラムごとの最大値を求める
+        引数にaxis=1とするとレコードごとの最大値を求める
+      
+      
+      #pandas.DataFrame.idxmin()
+        最小値を保持しているインデックスを調べられます。
+        引数にaxis=1とするとカラムごとの最小値のインデックスを求める
+      
+      #pandas.DataFrame.cumsum()
+        累積を求めることができます。
+      
+      
+      #pandas.DataFrame.dropna()
+        データフレームの値からnullを取り除く
+        引数に how='all'とやるとすべてnullの行がなくなります
+        引数にaxisも使える
+        thresh=num nullでない値がnull以上を取り出す
+      
+      #pandas.DataFrame.fillna(1)
+        nullの値を1で埋める
+        "列ごとに埋める値を変えられます"
+        dframe2.fillna({0: 'a', 1: 'b', 2: 'c', 3: 'd'})
+      
+      
+      #pandas.DataFrame.index.names = ['INDEX_1', 'INDEX_2']
+        行方向の名前
+      
+      
+      #pandas.DataFrame.columns.names = ['Cities', 'Temp']
+        列方向の名前
+      
+      
+      #pandas.dataFrame.pivot('data','variable','value')
+        行にdate, 列にvariable、これをvalueで埋めます。
+        dataとvariabelが同じ同じデータを持っている場合に使える
+      
+      #pandas.DataFrame.duplicated()
+        データフレームに重複したデータがあるかどうかがわかります。
+      
+      #pandas.DataFrame.map(dictionary)
+        DataFrameのカラムに紐づいたdictionaryを作り.mapメソッドの引数に渡して
+        あげると、dataFrameにカラムが追加できる
+        dframe['state'] = dframe['city'].map(state_map)
+        dframe['state']を新規のカラムとして追加するがdframe['city']に紐づいた
+        state_mapで追加している
+      
+        辞書型で新しいカラム(Survivor)にtitanic_dfのカラム(Survived)が0ならnoで
+        1ならyesの値を追加していく
+        titanic_df["Survivor"] = titanic_df.Survived.map({0: "no", 1: "yes"})
+      
+      
+      #pandas.dataFrame.drop_duplicates()
+        重複した行を削除できます。
+        重複したデータの参照元は上から順に参照するが
+        被ったデータの最後のデータを持ってきたい場合は
+        take_last=Trueと引数に渡してあげる
+      
+      #pandas.dataframe.merge(dframe1,dframe2)
+        dataFrameをマージする、どちらにもあるものだけが値に追加される
+        how='left'　とすること、左側のデータを基準にマージする
+        how='outer'　とすることで、基準を両方とし、どちらかに入っていればマージする
+      
+      #pandas.dataframe.sort_values('columns', ascending=False, inplace=True)
+        culumnsの値をソートする。
+        ascending=Falseで逆の順番になり、
+        inplaceでその値を更新する
+      
+      
+      #pandas.dataframe.take(array)
+        arrayを元にデータフレームのインデックスの配列を入れ替える
+      
+      #pandas.dataframe.index.map(str.lower)
+        インデックスを小文字にする
+      
+      #pandas.dataframe.rename(index=str.title, columns=str.lower)
+        インデックスを頭文字だけ大文字にして、カラムを小文字にする
+        renameは変更を更新されないので、更新したい場合はinplace=Trueと
+        引数に渡してあげる
+        "辞書型でも渡せる"
+        dframe.rename(index={'ny': 'NEW YORK'},
+                    columns={'A': 'ALPHA'})
+        インデックスのnyをNewYorkに、カラムのAをAlphaに変更する
+      
+      
+      #pandas.dataframe.groupby(dataframe[key])
+        keyをキーとしてdataframeをグループにまとめる
+        dframe.groupby('k1').mean()
+        k1を基準にしてデータフレームの値の平均を求めている
+      
+        dframe['dataset1'].groupby(dframe['k1'])
+        k1を基準にしてdframe['dataset1']の値をグループ分けしている。
+      
+        .mean()
+        .size()
+        などでそのキーを基準にしたデータフレームの値を出せる
+          
+        "as_index"
+        Trueにするとkeyがインデックスになる
+        Falseだと普通に
+        
+        "イテレート（繰り返し処理）ができます。"
+        for name,group in dframe.groupby('k1'):
+            print('This is the {} group'.format(name))
+            print(group)
+            print('\\n')
+        ```
+        This is the X group
+           dataset1  dataset2 k1     k2
+        0  1.283895 -0.114607  X  alpha
+        1 -0.434267 -1.107295  X   beta
+        ```
+      
+      #pandas.DataFrame.groupby.agg()
+        最大値から最小値を引いた値を取得する
+        引数に'mean'とやると平均値を取得する
+      
+        for (k1,k2) , group in dframe.groupby(['k1','k2']):
+            print('Key1 = {} Key2 = {}'.format(k1,k2))
+            print(group)
+            print('\\n')
+        ```
+        Key1 = X Key2 = alpha
+           dataset1  dataset2 k1     k2
+        0  1.283895 -0.114607  X  alpha
+      
+        ```
+      
+      #新しい列を作る（関数で検証して子供か大人かを調べる）
+      
+        titanic_df["person"] = titanic_df[["Age", "Sex"]]\\
+                               .apply(male_female_child, axis=1)
+      
+      
+      #pandas.DataFrame.hist()
+        データフレームでヒストグラムを作れる
+        titanic_df['Age'].hist(bins=70)
+      
+        
+      #pandas.DataFrame.pct_change()
+        期間のパーセント変化率
+        
+        AAPL['Adj Close'].pct_change()
+        
+      #データからある期間のデータを抽出  
+      poll_df[poll_df['Start Date'].apply(lambda x:x.startswith("2012-10"))]
+      
+    '''
+  }
+  {
+    name: "PythonPandasSeries.py"
+    mode: "Python"
+    content: '''
+      #pandas.Series()
+      シリーズはアレイによく似ているが、シリーズはインデックスが付いていて、
+      そのインデックスを文字列にしたりできる
+      ww2_cas = Series(
+        [8700000, 4300000, 3000000, 2100000, 400000], 
+        index=['USSR', 'Germany', 'China', 'Japan', 'USA'])
+      
+      でindexを文字列にすることができ、ww2_cas['USA']でアクセスできる
+      ww2_cas > 4000000　を入力すると4000000以上がTrueと表示される
+      ww2_cas[ww2_cas > 4000000]で4000000以上の要素にアクセスできる
+      
+      
+      #pandas.Series.ix()
+      引数に数字を渡すとそのレコードが既存の場合はそのレコードのカラムの値を取り出せる
+      ない場合は作れる  
+      添え字を渡してデータを取得できる
+      
+      #pandas.Series.reindex( , fill_value=0, method='ffill')
+      インデックスを再構成できる
+      fill_valueで新しいインデックスにnullじゃなくて0を入れる
+      method='ffill'でnullのインデックスの間に、直前のインデックスに値が入ってる
+      値を参照して代入する
+      
+      #pandas.Series.drop('indexName')
+      indexを消す
+      
+      
+      #pandas.Series.sort_index()
+      indexで並び替える
+      
+      
+      #pandas.Series.sort_values()
+      値で並べ替えができます。
+      
+      
+      #pandas.Series.rank()
+      値が小さい順にソートする
+      
+      
+      #pandas.Series.to_dict()
+      シリーズを辞書型に変更できる
+      逆に Series(辞書)でカッコ内の辞書をシリーズに変更できる
+      
+      
+      #pandas.Series.values
+      シリーズの中のValueが表示される
+      
+      #pandas.Series.index
+      シリーズの中のindexが表示する
+      
+      #pandas.Series.isnull(Series)
+      要素がnullの場合Trueを表示する 
+      
+      #pandas.Series.name
+      シリーズに名前をつけることができる
+      pandas.Series.name = 'Name'
+      
+      #pandas.Series.index.name
+      indexに名前をつけることができる
+      pandas.Series.index.name = "Name"
+      
+      
+      #pandas.Series.isnull()
+      nullがあるインデックスはTrue
+      
+      
+      #pandas.Series.dropna()
+      nullの値を取り除ける
+      
+      
+      #pandas.Series(np.random.randn(6),
+                    index=[[1,1,1,2,2,2],
+                           ['a','b','c','a','b','c']])
+      階層構造があるindexを作ることができます。
+      
+      
+      #pandas.Series.unstack()
+      シリーズを元にデータフレームを作る
+      逆にDataFrameをシリーズに戻す時は
+      DataFrame.T.unstack()
+      
+      
+      #Series.combine_first(Seriew2)
+      Seriesにnullが入っていたらSeries2の同じインデックスから参照してくる
+      
+      #Series.replace(hoge, fuga)
+      値がhogeを指定してfugaと置換する
+      ser1.replace([1,4],[100,400])
+      1を100に4を400に置換する
+      
+      """pandas_datareader.data.get_data_yahoo(
+        [.inc], 
+        start=datetime.datetime(0000,00,00) ,    
+        end=datetime.datetime(0000,00,00))['Adj Close'] """
+      米国のYahooのサービスを使って、株価を取得します
+      
+      prices = pdweb.get_data_yahoo(
+        ['CVX', 'XOM', 'BP'],
+        start=datetime.datetime(2010, 1, 1),
+        end=datetime.datetime(2013, 1, 1))['Adj Close']
+      
+      "株価のグラフをplot"
+      pandas_datareader.plot()
+      plt.show()
+      
+      
+      
+      
+      """pandas_datareader.data.get_data_yahoo(
+        [.inc], 
+        start=datetime.datetime(0000,00,00) ,    
+        end=datetime.datetime(0000,00,00))['Volume']"""
+      出来高（何株売買されたか）のデータも取れます
+      
+      volume = pdweb.get_data_yahoo(
+        ['CVX','XOM','BP'], 
+        start=datetime.datetime(2010, 1, 1), 
+        end=datetime.datetime(2013, 1, 1))['Volume']
+      
+    '''
+  }
+]
+tags: [
+  "DataFrame"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-21T17:51:39.083Z"
+updatedAt: "2018-03-24T10:35:01.234Z"

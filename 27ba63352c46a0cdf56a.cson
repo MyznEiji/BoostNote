@@ -1,0 +1,21 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#"
+description: "C#"
+snippets: [
+  {
+    name: "CSharpMethod.cs"
+    mode: "C#"
+    content: '''
+      //ToStringメソッド
+      ToStringは引数で書式を指定することができます。
+      「"0.0"」を引数にすることで、少数第一位まで表示させることができます。
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-08-13T15:20:07.431Z"
+updatedAt: "2017-09-28T11:52:29.811Z"
+isTrashed: false

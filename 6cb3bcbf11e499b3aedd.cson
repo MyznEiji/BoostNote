@@ -1,0 +1,307 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonNumpy"
+description: "PythonNumpy"
+snippets: [
+  {
+    name: "PythonNumpy.py"
+    mode: "Python"
+    content: '''
+      #ナンパイ
+      数列の扱いを効率化するために使用
+      科学計算のための基本的なパッケージ
+      
+      
+      #import numpy as np
+      ナンパイをnpで扱えるように導入する定義
+      
+      
+      #np.abs(hoge)
+      hogeを絶対値にする
+      dframe[(np.abs(dframe) > 3).any(1)]
+      any()は絶対値が3以上の値が1つでもあるデータを持ってくる
+      0は行方向,1は列方向のデータを取得する  
+      
+      
+      #np.sign(dataframe)
+      データフレームの値が+の場合は+1が
+      -の場合は-1が返ってくる
+      
+      
+      #np.random.normal(27000,15000,10000)
+      27000を中心に15000の標準偏差、データ数は10000正規分布を作る
+      
+      
+      #np.mean(variable)
+      平均値を計算する
+      ```
+      hoge = [1,4,5,4,8]
+      fuga = np.mean(hoge)
+      ```
+      
+      
+      #np.median(variale)
+      中央値を計算する
+      
+      
+      #np.random.randint(18,high=90,size=500)
+      18から90までの乱数を500個つくる
+      
+      
+      #np.std()
+      標準偏差を出す
+      
+      
+      #np.var()
+      分散を出す
+      
+      
+      #np.random.permutation(num)
+      numの数のランダムの配列を生成する
+      
+      #np.random.uniform(-10,10,100000)
+      -10から10の間で100000個の均一なデータをつくる
+      
+      #np.random.shuffle(list)
+      リストの中身をシャッフルするNumPyのメソッド
+      
+      
+      #np.arange(-3,3,0.001)
+      -3から3の範囲で0.001刻みでデータセットを作る
+      
+      
+      #np.percentile(data,50)
+      データを小さい順に並べていって、全体の50%になる点を求めることができる
+      90と入力するとデータの小さい順から全体の90%になる点を求めることができる
+      
+      
+      #np.corroef(data,data)
+      引数で渡された値を相関係数をマトリックスで返す
+      
+      
+      #np.polyfit(x,y,4)
+      ４次の多項式で近似した際の各係数を求める
+      
+      #np.poly1d
+      多項式を表すPythonの関数を求める
+      
+      #np.linspace(start,stop,num)
+      等差数列を生成する関数
+      
+      
+      #np.max()
+      NumPyで作成したリストオブジェクト内の最大値を取得する
+      
+      #np.min()
+      NumPyで作成したリストオブジェクト内の最小値を取得する
+      
+      #np.array()
+      NumPyのメソッドが使用できる配列。
+      NumPy配列オブジェクトを作成する事ができるメソッドです。
+      引数にリストを渡すことで渡されたリストの要素を、NumPy配列を返り値として返します。
+      
+      
+      #np.array.shape()
+      NumPy配列オブジェクトが持つ属性値です。返り値は(列数, 行数)という形で返ってきます。
+      
+      
+      #np.concatenate(array,array, axis=num)
+      2つの配列を結合して、1つの配列を作成するメソッド
+      axisはデフォルトが0で
+      0の場合行方向に連結して、1の場合は列方向に連結する  
+      
+      
+      #np.reshape(変更後の行数、変更後の列数)
+      配列の行数と列数を変換するメソッド。
+      変換する前と後で、要素の総数が一緒になる必要があるということです。
+      例えば、shapeが(2, 3)で要素数が6の配列を(3, 2)に変更すること
+      np.reshape((3, 3))
+      
+      #np.array.T
+      配列の行と列を入れ替える為のメソッド
+      1次元配列に使った際は何も変更せずにそのままの配列を返します
+      
+      #np.array.transpose()
+      配列の行と列を入れ替える為のメソッド
+      1次元配列に使った際は何も変更せずにそのままの配列を返します
+      np.array.transpose((1,0))   (行, 列)
+      
+      #np.unique(List)
+      配列から重複を無くした状態の配列を作成するためのメソッドです。
+      
+      
+      #np.meshgrid(x_axis,y_axis)
+      二つの配列を生成します。それらの一方を縦軸に、もう一方を横軸に取り、
+      格子状の座標を表現しています。
+      
+      
+      #np.ravel()
+      多次元配列を1次元に変換します。変換する際には、配列の数値が変更されたりはしません。
+      
+      #np.argmax(array)
+      引数の配列の最大値をインデックス番号で返す
+      
+      
+      #np.dtype()
+      配列の中身の型を返す
+      
+      #np.zeros()
+      すべての要素が0の配列を作る
+      np.zeros((5,5)) #5行5列の０の配列を作る
+      
+      #np.ones()
+      すべての要素が1の配列を作る
+      np.ones((5,5)) #5行5列の1の配列を作る
+      
+      #np.empty()
+      すべての要素が空の配列を作る
+      np.empty((5,5)) #5行5列の空の配列を作る
+      
+      #np.eye()
+      単位行列を作る
+      np.eye(5)  #5行5列の単位行列を作る
+      
+      
+      #np.sqrt()
+      平方根を計算する
+      np.sqrt(4)　の場合は√4なので =2になります
+      
+      
+      #np.random.randn(10)
+      正規分布に従う乱数
+      
+      
+      #np.add(A,B)
+      AとB、２つの配列を足す
+      
+      #np.maximum(A,B)
+      AとBの各要素の大きいほうを返す
+      
+      
+      #np.where(array1,array2,array3)
+      array1がTrueならarray2でarray1がFalseならarray3の配列を作る
+      
+      
+      #np.any()
+      配列の中に一つでもTrueがあればTrueを返す
+      
+      #np.all()
+      配列の中がすべてTrueならTrueを返す
+      
+      #np.save('fileName', array)
+      配列をバイナリデータとして保存(拡張子は.npy)
+      
+      
+      #np.load('fileName')
+      保存したアレイを読み込む  
+      
+      
+      #np.savez('fileName',x=arr1,y=arr2)
+      複数のアレイをzip形式で保存
+      "読み込む時は"
+      ディスクから読み込む
+      archive_array = np.load('ziparrays.npz')
+      archive_array['x']　でどのarrayかを選択する
+      
+      
+      #np.seed(12345)
+      乱数生成の規則性を制御できる
+      
+      
+      #np.nan
+      null
+      
+      #np.where()
+      引数の条件にあったインデックスが返ってくる
+      np.where(pd.isnull(Series))  #Seriesのnullのインデックスが返ってくる
+      
+      Series(np.where(pd.isnull(ser1), ser2, ser1), index=ser1.index)
+      ser1がnullのところにはser2の値が入って,そのほかはser1が入る
+      
+      "それと同じことができるSeriesメソッド”
+      Series.combine_first(Seriew2)
+      Seriesにnullが入っていたらSeries2の同じインデックスから参照してくる
+      
+      
+      #np.linalg.lstsq()[0]
+        戻り値
+        最小二乗解p, 残差の合計residues, 係数行列aのランクrank, aのsingular value
+        [0]は配列の0個目の要素を取り出す
+      
+        Xを[X 1]の形にします。
+        X = np.array([[value, 1] for value in X])
+         最小二乗法の計算を実行します。
+        a, b = np.linalg.lstsq(X, Y)[0]
+         まずは元のデータをプロットします。
+        plt.plot(boston_df.RM, boston_df.Price, 'o')
+         求めた回帰直線を描きます。
+        x = boston_df.RM
+        plt.plot(x, a * x + b, 'r')
+        plt.show()
+      
+      #np.vstack(coloum)
+      2次元配列を作る
+      
+      #np.loadtxt("ファイルディレクトリ", delimiter=",")
+      ファイルをdelimiterで区切られた語をデータとして取得する
+      
+      np.loadtxt("2D_example.csv", delimiter=",")
+      
+      
+      #np.array.astype(int)
+      配列の中身をint型に変換する　
+      
+      #np.isnan(data)
+      dataの値がnumならTrueを返す
+    '''
+  }
+]
+tags: [
+  "concatenate"
+  "mean()"
+  "random.normal()"
+  "median()"
+  "random.randint"
+  "std()"
+  "var()"
+  "random.uniform"
+  "random.shuffle()"
+  "arange()"
+  "percentile()"
+  "corroef()"
+  "polyfit()"
+  "poly1d()"
+  "linspace()"
+  "max()"
+  "min()"
+  "shape()"
+  "concatenate()"
+  "reshape()"
+  "T"
+  "transpose()"
+  "unique()"
+  "meshgrid()"
+  "ravel()"
+  "argmax"
+  "dtype()"
+  "zeros()"
+  "ones()"
+  "empty()"
+  "eye()"
+  "sqrt()"
+  "random.randn()"
+  "add()"
+  "any()"
+  "all()"
+  "save()"
+  "load()"
+  "savez()"
+  "seed()"
+  "nan"
+  "where()"
+  "linalg.lstsq()"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-12T08:18:03.943Z"
+updatedAt: "2017-12-25T07:15:32.480Z"

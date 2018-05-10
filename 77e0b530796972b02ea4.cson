@@ -1,0 +1,66 @@
+createdAt: "2018-03-06T08:40:00.466Z"
+updatedAt: "2018-03-14T05:59:48.703Z"
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsBootstrap"
+description: "RailsBootstrap"
+snippets: [
+  {
+    name: "Bootstrap.rb"
+    mode: "Ruby"
+    content: '''
+      # gridレイアウト
+      gridレイアウトは、要素の横並びレイアウトを簡単に実現できる仕組みです。使用法としては、Bootstrapに予め用意されているclassを指定するだけです。
+      
+      gridレイアウトの仕組み
+      私達が普段ブラウザを閲覧する道具は、主に3つあります。スマートフォン、PC、
+      そしてタブレットです。Bootstrapは、これらの中のどのデバイスで閲覧されても、
+      同一のCSSで対処できるように作られています。ブラウザの幅が変わっても、
+      要素自体の幅を柔軟に変更してくれます。
+      
+      Bootstrapで規定されている幅の区分は以下の通りです。
+      
+      名前	            幅区分
+      Extra small(xs)	  幅768px未満
+      Small(sm)	        幅768px以上、992px未満
+      Medium(md)	      幅992px以上、1200px未満
+      Large(lg)	        幅1200px以上
+      
+      
+      # colクラス
+      ある2つ以上の要素らにこのクラスを当てると、それらの要素を横並びにできます。その際、
+      rowというクラスをもった要素を親要素とし、ブラウザ幅と横幅の割合を12分割に収まる範囲で
+      指定する必要があります。
+      例えば、ブラウザの幅がExtra small(スマートフォン)の場合で、2つの要素を均等の横幅の
+      割合で横並びにしたい時は、
+      
+      
+      # containerクラス
+      containerクラスはBootstrapに予め用意されているクラスで、
+      このクラスを指定したブロック要素を中央寄せにしてくれます。
+      
+      Bootstrapでは、以下の例のようにcontainerクラスをあてた要素の中に
+      gridシステムを入れ子にすることが基本になります
+      
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-6">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+            </div>
+            <div class="col-xs-4">
+            </div>
+            <div class="col-xs-4">
+            </div>
+          </div>
+        </div>
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

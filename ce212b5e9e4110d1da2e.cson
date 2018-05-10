@@ -1,0 +1,120 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonDictionary"
+description: "PythonDictionary"
+snippets: [
+  {
+    name: "PythonDictionary.py"
+    mode: "Python"
+    content: '''
+      #辞書オブジェクト
+      辞書オブジェクト(略称:辞書)は１つの変数で複数のデータを持つことのできるオブジェクトです。
+      辞書オブジェクトは、自身の中にデータとそれに対応するキーのセットを所持することができます。
+      dict = {"title": "Forrest Gump"}
+      print(dict)
+      dict = dict("title"="Forrest Gump")
+      同じ処理になる
+      
+      
+      辞書オブジェクトから値を取得する方法方法
+      辞書オブジェクト[欲しい値のキー]
+      
+      リストより取り出しスピードは早い
+      
+      
+      #dictionary.keys() dict_keys型
+      辞書のキーを返す
+      
+      #dictionary.values() dict_value型
+      辞書の値を返す
+      
+      
+      #dictionary.items() dict_items型
+      キー・バリュー・ペアを返す
+      for文でよく用いられる
+      d = {'x' : 100, 'y' : 200}
+      for k, v in d.items():
+        print(k, ':', v)
+      
+      
+      #dictionary.get(key,value) 
+      keyが登録済みか検証し、未登録なら登録し、登録済みなら登録された値を返す
+      アクセスしたいキーと、そのキーが存在しない時に用いる値の2つを引数に取る
+      
+      #dictionary.setdefault()
+      キーが未登録の場合のみ値を登録する
+      第一引数には調べたいキーを設定し、第二引数にはそのキーが存在しないときに設定する
+      値を設定します。
+      "使い方" 適当な文字列の中に同じ文字が何個あるか計算するプログラム
+      s = "efdkfjijfojaseicjdshjkadhfhesfjidsjfaeio;jfd"
+      d = {}
+      for c in s:
+          d.setdefault(c, 0)
+          d[c] += 1
+      print(d)
+      
+      
+      #pprintモジュール
+      辞書の内容を綺麗に表示する関数を使うことができる
+      import pprint 
+      pprint.pprint(dictionary)
+      
+      
+      #dictionary1.update(dictionary2)
+      dictionary1にdictionary2を上書きする
+      既存の変数は上書き、新規の変数は追加をする
+      
+      #dictionary.pop('key')
+      keyを削除する
+      
+      #del dictionary['key']
+      keyを削除する。del dictionaryをするとdictionary自体を削除する
+      
+      #dictionary.clear()
+      dictionaryの中身をクリアする
+      
+      #'key' in dictionary
+      dictionaryの中にkeyはあるかTrueFalseで返す
+      
+      #dictionary.copy()
+      dictionaryをコピーする。参照渡しの際に便利
+    '''
+  }
+  {
+    name: "defaultdict.py"
+    mode: "Python"
+    content: '''
+      # 文字列の文字がそれぞれどれくらい含まれているか確かめるアルゴリズム
+      
+      s = "sjdflasmv,nojfoejfkljfjl"
+      
+      d = {}
+      for c in s:
+          if c not in d:
+              d[c] = 0
+          d[c] += 1
+      print(d)
+      d = {}
+      for c in s:
+          d.setdefault(c, 0)
+          d[c] += 1
+      print(d)
+      
+    '''
+  }
+]
+tags: [
+  "keys()"
+  "values()"
+  "items()"
+  "get()"
+  "setdefault()"
+  "update()"
+  "clear()"
+  "copy()"
+  "defaultdict"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-19T10:31:50.873Z"
+updatedAt: "2018-03-29T10:12:34.363Z"

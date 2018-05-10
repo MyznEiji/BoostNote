@@ -1,0 +1,25 @@
+createdAt: "2018-03-11T11:34:58.728Z"
+updatedAt: "2018-03-11T11:37:09.949Z"
+type: "SNIPPET_NOTE"
+folder: "ea77b093ffd39c8e29de"
+title: "DjangoHtml"
+description: "DjangoHtml"
+snippets: [
+  {
+    name: "DjangoHtml.py"
+    mode: "Python"
+    content: '''
+      # {%%}
+      HTMLの中でpythonを使えるようにする
+        {% for post in posts.all%}
+          {{post.title}}
+        {% endfor%}
+      
+      # {{}}
+      レコードの中身に紐づいてる値を取り出せる
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,92 @@
+createdAt: "2018-03-04T08:57:01.258Z"
+updatedAt: "2018-03-14T06:00:06.492Z"
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsRailsHelperMethod"
+description: "RailsRailsHelperMethod"
+snippets: [
+  {
+    name: "helperMethod.rb"
+    mode: "Ruby"
+    content: '''
+      # form_for
+      form_forは、特定のモデルを編集・追加するためのフォームを生成するヘルパーメソッドです。
+      特定のテーブルにレコードだけを新規作成、更新するときに利用します。
+      
+      <%= form_for(モデルクラスのインスタンス) do |f| %>
+      
+      <% end %>
+        
+      
+      form_forは引数のインスタンスが何も情報を持っていなければ自動的にcreateアクションへ、
+      すでに情報を持っている場合はupdateアクションへ自動的に振り分けてくれます。
+        
+      form_for内におけるメソッドはformに使用するhtmlタグの数だけあります。
+        
+      メソッド	        用途
+        
+      f.label	        labelのlabelタグを表示　
+      f.text_field	  textのinputタグを表示
+      f.date_select	  モデルで設定したフィールドをselectタグで選べるようにして表示
+      f.check_box	    checkboxのinputタグを表示
+      f.number_field	numberのinputタグを表示
+      f.submit	      submitのinputタグを表示
+        
+      [フォーム(form) - - Railsドキュメント](http://railsdoc.com/form)
+        
+        
+        
+        
+        
+      # form_forとform_tag
+      form_for と form_tag どちらを使うべきかは、基本的にモデルの有無で判断します。
+      入力フォームで入力するデータのモデルがあれば form_for を使い、
+        入力するデータが特にモデルを持っていなければ form_tag を使います。
+      
+      form_for: モデルがあるデータを扱うときに使う。(投稿フォームなど)
+      form_tag: 単にデータを特定のアクションに送りたい時に使う。（検索フォームなど）
+      form_for
+      今回は、レビュー投稿画面views/reviews/new.html.erbに常に新規作成されたReviewクラスのインスタンスを渡します。
+      フォームに入力された値は、投稿ボタンを押した瞬間にReviewクラスの新規インスタンスにそれぞれの属性の値としてセットされ、インスタンスはそのままreviewsテーブルに保存されます。
+      このような関係を簡単に実現してくれるのがform_for です。以下のコードをご覧ください。
+        
+        
+      # image_tag
+      image_tagは、htmlの<img>タグを生成するヘルパーメソッドです。
+        
+      <%= image_tag "image/sample.jpg" %> #=> <img src="image/sample.jpg">
+      
+          
+        
+        
+      # submit_tag
+      submit機能をつけたいときに使う。
+      <input name="****" type="submit" value="***" />
+      
+      # <%= submit_tag '保存' %>
+      
+      
+      
+      # text_field_tag
+      テキストフィールド
+      name,value属性が必要
+      
+        
+      # text_area_tag
+      テキストエリア(行数のあるもの)
+      text_field_tagと同じ使い方
+      
+        
+      # link_to ヘルパー
+      リンク挿入の時に使う。
+      "URL"部分には、名前付きルート　root_XXXXのしても可能
+      'テキスト'の部分は変数でもOK。
+      idとclassはハッシュとして与えるが、｛｝省略可能
+        
+        
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

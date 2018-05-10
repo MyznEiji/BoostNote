@@ -1,0 +1,144 @@
+createdAt: "2018-01-05T07:44:18.485Z"
+updatedAt: "2018-03-05T14:20:53.745Z"
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "ActiveRecord::Base"
+description: "ActiveRecord::Base"
+snippets: [
+  {
+    name: "RailsActiveRecord::Base.rb"
+    mode: "Ruby"
+    content: '''
+      #allメソッド
+      allメソッドはActiveRecord::Baseを継承したモデルと結びつくテーブルの
+      レコードを全て取得します。
+      コンソールからallを実行した場合下記の最後のように「:」と表示され次の
+      コマンドが打てなくなる現象があります。
+      これはターミナルの表示領域がいっぱいになってしまうためで、
+      「Q」 を押すと次のコマンドが打てるようになります。
+      
+      
+      
+      #newメソッド・saveメソッド
+      newメソッドはクラスのインスタンスを生成するメソッドです。
+      ActiveRecord::Baseを継承しているモデルクラスの場合、
+      newメソッドを実行すると関連するテーブルのカラム名がキーになった
+      ハッシュのようなものが生成されます。これをモデルクラスのインスタンスと呼びます。
+      インスタンスのそれぞれのキーに値を代入してsaveメソッドを実行するとテーブルに保存されます。
+      
+      
+      #createメソッド
+      createメソッドはレコードの作成を行うことのできるメソッドです。
+      newメソッドとsaveメソッドを使用して行った処理をcreateメソッドで一気に行うことができるので、
+      単にレコードを作成する場合にはこのメソッドを使用しましょう。
+      下記の例１と例２は同様の作業を行っています。
+      
+      
+      #findメソッド
+      findメソッドは引数に指定したidにあたる作品情報を1件だけ取得します。 
+      もし、そのidにあたる作品が存在しない場合、エラーが発生します。
+      
+      
+      #find_byメソッド
+      Tweet.find_by(text: "hoge")
+      特定のレコード1つだけを取得する
+      
+      
+      #whereメソッド
+      特定のレコードを全て取得する
+      
+      where('title LIKE(?)', "a%")	aから始まるタイトル
+      where('title LIKE(?)', "%b")	bで終わるタイトル
+      where('title LIKE(?)', "%c%")	cが含まれるタイトル
+      where('title LIKE(?)', "d_")	dで始まる2文字のタイトル
+      where('title LIKE(?)', "_e")	eで終わる2文字のタイトル
+      
+      
+      #orderメソッド
+      レコードの順番を並び替える
+      order('id DESC')
+      
+      order('id ASC')
+      idカラムの値が小さい順(昇順)に並び替えれば最新順に並べ替えたことになります
+      
+      
+      #updateメソッド
+      レコードを上書きする
+      tweet = Tweet.find(8)
+      tweet.update(text: "update is beautifull", image: "http://update.jpg")
+      
+      
+      # first_or_initializeメソッド
+      whereメソッドとともに使うことで、whereで検索した条件のレコードがあればそのレコードの
+      インスタンスを返し、なければ新しくインスタンスを作るメソッドです。
+      
+      # limitメソッド
+      
+      limitメソッド はデータをいくつ取得するかというのが指定できるメソッドで、
+      引数には取得したい件数を指定します。
+      
+        User.limit(10)
+      
+      
+      
+      # averageメソッド
+      averageメソッドは、ActiveRecord_Relationクラスのメソッドです。
+      averageメソッドは、averageメソッドを利用するインスタンス取得先のテーブルのカラムを
+      シンボル型で引数にとります。その値の平均を、小数点ありの状態で返してくれます。
+      
+        students = Student.all
+        students.average(:score)
+      
+      
+      # roundメソッド
+      小数点ありの数字クラスのインスタンスが利用できます。
+      利用した数字の小数点以下を四捨五入します。
+      
+      
+      # present?メソッド
+      配列の中身が存在すればtrue、存在しなければfalseを返してくれます。
+      
+      
+      # groupメソッド
+      groupメソッドはテーブルのレコードを指定したカラムでまとめることができます。
+      以下のように使います。
+      Review.group(:product_id)
+      
+      
+      # countメソッド
+      countメソッドは配列などの要素数を返すメソッドです。
+      groupメソッドに続けて使うとまとめられたそれぞれのレコードの数が取得できます。
+      	
+      Review.group(:product_id).count
+      => {21=>2, 22=>1, 23=>4}
+      
+      
+      # order('count_カラム名').count(カラム名)
+      countメソッドの引数にカラム名を指定することができます。するとorderメソッドで
+      count_カラム名でのソートが可能となります。これはそのカラムを持つレコードの数で
+      ソートするという意味です。
+      
+      Review.group(:product_id).order('count_product_idDESC').limit(5).count(:product_id)
+      => {23=>4, 21=>2, 22=>1}
+      
+      
+      # keysメソッド
+      ハッシュはkeysというメソッドを持っています。これはハッシュのキーだけを取り出して
+      配列として返すメソッドです。
+      
+      
+      # mapメソッド
+      mapメソッドは配列オブジェクトのインスタンスメソッドです。
+      mapメソッドは配列の中身を１つずつ取り出してブロックという構文を繰り返し実行します。
+      そして、ブロックの返り値を集めた新しい配列を作成します。
+      
+        numbers = [2, 5, 9]
+        squares = numbers.map {|number| number * number}
+        p squares
+        => [4, 25, 81]
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

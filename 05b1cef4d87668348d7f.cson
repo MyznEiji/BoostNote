@@ -1,0 +1,25 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonMath"
+description: "PythonMath"
+snippets: [
+  {
+    name: "PythonMath.py"
+    mode: "Python"
+    content: '''
+      import math
+      
+      #math.exp
+      自然対数の底の累乗を計算する　ネイピア数
+      
+      #math.factorial
+      階乗を計算する
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-12-11T15:26:35.095Z"
+updatedAt: "2017-12-16T13:38:06.663Z"

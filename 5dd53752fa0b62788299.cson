@@ -1,0 +1,114 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonString"
+description: "PythonString"
+snippets: [
+  {
+    name: "PythonString.py"
+    mode: "Python"
+    content: '''
+      #string.upper()
+      文字列を大文字にする
+      
+      #string.lower()
+      文字列を小文字にする
+      
+      # string.title()
+        文字列を、単語ごとに大文字から始まり、
+        残りの文字のうち大小文字の区別があるものは全て小文字にする
+      
+        >>> 'Hello world'.title()
+        'Hello World'
+      
+      #string.replace("xxx","yyy")
+      aの変数のxxxをyyyに置換する
+      ```
+      a = "Hello World"
+      b = a.replace("Hello","Good morning")
+      ```
+      
+      #string[0:3]
+      文字列の範囲指定をして抜き出す
+      
+      
+      #string.sprit("区切り文字")
+      区切り文字で区切られたリストを作成する
+      
+      #string.join(list)
+      区切られたlistをstringで連結して文字列にしてくれる
+      
+      #string.startswith("x")
+      その文字列がxから始まっているかをbool型で返す
+      
+      
+      #string.find("x")
+      最初のxがあるかどうか調べる
+      
+      
+      #string.rfind("x")
+      最後のMikeがあるかどうか調べる
+      
+      
+      #string.count("x")
+      文字列中のxの数をカウントする
+      
+      
+      #string.capitalize()
+      文頭の文字を大文字にする
+      
+      
+      #string.upper()
+      全部の文字を大文字にする
+      
+      
+      #string.lower()
+      全部の文字を小文字にする
+      
+      #string.replace("Mike", "Nuncy")
+      文字列中のMikeをNuncyに変更する
+      
+      #string.format()
+      print("a is {}".format("a"))
+      print("a is {} {} {}".format(1, 2, 3))
+      print("a is {0} {1} {2}".format(1, 2, 3))
+      print("a is {2} {1} {0}".format(1, 2, 3))
+      print("My name is {name} {family}".format(name="Jun", family="Sakai"))
+      
+      
+      # string.Template
+        from string import Template
+      
+        d = {"Guido van Rossum":"Python", "Larry Wall":"Perl", "Matz":"Ruby", "James Gosling":"Java"}
+        t = Template('$auth is the author of the $prog programming language.')
+        print "\\n".join([t.substitute(auth=a, prog=p) for a,p in d.items()])
+       
+      
+        実行結果
+      
+        Larry Wall is the author of the Perl programming language.
+        James Gosling is the author of the Java programming language.
+        Guido van Rossum is the author of the Python programming language.
+        Matz is the author of the Ruby programming language.
+      
+        
+        
+    '''
+  }
+]
+tags: [
+  "Template"
+  "startswith()"
+  "find()"
+  "rfind()"
+  "count()"
+  "title()"
+  "capitalize()"
+  "upper()"
+  "lower()"
+  "replace()"
+  "sprit()"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-18T08:51:29.553Z"
+updatedAt: "2018-03-24T11:26:24.145Z"

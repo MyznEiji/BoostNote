@@ -1,0 +1,30 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "NavMesh"
+description: "NavMesh"
+snippets: [
+  {
+    name: "NavMesh.cs"
+    mode: "C#"
+    content: '''
+      //移動できる範囲を制限
+      高さ方向への動きが少ないゲームの場合はNavigationの機能を利用する
+      NavMeshとNavMeshの上を動き回るNavMeshAgentコンポーネントを組み合わせて使用
+      1.windowからNavigationを選択して、ObjectタブのNavigation Staticにチェック
+      2.Bakeをする
+      3.動かすObjectにNavMeshAgentを追加
+      
+      
+      //NavMeshAgent.SetDestination(Vector3 target)
+      移動先の目的地点を新規設定するか更新して、新たに経路探索を開始します
+      
+      //NavMeshAgent.Move(Vector3 offset)
+      現在の位置から相対的に移動します
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-05T15:31:15.028Z"
+updatedAt: "2017-10-06T05:12:51.184Z"

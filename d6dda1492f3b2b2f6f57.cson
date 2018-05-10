@@ -1,0 +1,83 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "RigidBody"
+description: '''
+  RigidBody
+  
+'''
+snippets: [
+  {
+    name: "Property.cs"
+    mode: "C#"
+    content: '''
+      パラメータ
+      //Mass: 物体の質量(Kg)
+      
+      //Drag: 力によって動く際オブジェクトに影響する空気抵抗の大きさ。
+      0の場合空気抵抗がなしで、動きが止まらない。無限の場合オブジェクトは動きを止めます。
+      
+      //AngularDrag: 回転する際オブジェクトに影響する空気抵抗の大きさ。
+      0の場合空気抵抗なしで、回転が止まらない。
+      このパラメーターの値を無限に設定するだけでは、
+      オブジェクトの回転を止められないことに注意
+      
+      //UseGravity: 有効にすると、オブジェクトは重力の影響を受けます。
+      
+      //IsKinematic:チェックすると物理演算が無効になる。
+      衝突で影響は受けないけども、衝突した相手の動きには影響を与えます。
+      チェック時にオブジェクトを動かしたい場合は、Transform.translate(new Vector3)か
+      Transform.Rotate(new Vector3)で動かしましょう。
+      動かしたくない壁的なものは設定しとくと良い。
+      
+      //InterpolateRigidbody:
+      Rigidbodyの動きがぎこちないとき、次のオプションを試してください。
+      ・None:補間を適用しない
+      ・Interpolate:前フレームのTransform にもとづいて Transform のスムージング。
+      ・Extrapolate:次フレームのTransform を予測して Transform のスムージング。
+      
+      //CollisionDetection:
+      高速で動くオブジェクトが、衝突を検知せずにすり抜けることを防止します。
+      ・Discrete : シーンに存在する他の全てのオブジェクトとの衝突判定を一定時間おきに
+                行います。そのため、衝突判定を行っていない瞬間に衝突した場合は、
+                適切な処理がされません
+      ・Continuous : 衝突判定を継続的に行ってくれます。
+                    動的なコライダー(Rigidboydあり)には Discrete(不連続)な衝突、
+                    静的なメッシュコライダー（Rigidbodyなし）には 
+                    Continuous(連続)な衝突を適用します
+      ・ContinuousDynamic : 静的なメッシュコライダー(Rigidbodyなし)にも
+                            連続的な衝突を適用します。
+      
+      
+      //Constraints:リジッドボディの動きに関する制限。
+      ・FreezePosition:ワールド座標系の X、Y、Z 軸で移動するRigidbodyを
+        選択的に停止します
+      ・Freeze Rotation:ローカル座標系の X、Y、Z 軸で回転するRigidbodyを
+        選択的に停止します	
+      
+      
+      
+      //Rigidbody.AddTorque(Vector3 torque, ForceMode mode = ForceMode.Force)
+      Rigidbody.AddTorqueはRigidbodyがアタッチされているオブジェクトに対して
+      トルク(回転する力)を加えることができます。
+      
+      //Rigidbody.MovePosition(Vector3 position);
+      Rigidbody オブジェクトを指定する位置へ移動します
+      Rigidbody で Rigidbody interpolation（補間）を有効にした場合、
+      Rigidbody.MovePosition を呼び出すとレンダリングされる中間フレームで2つの
+      位置の間のスムーズな遷移となります。これは、各 FixedUpdate で継続的に 
+      rigidbody を動かしたい場合、使用される必要があります。
+    '''
+  }
+  {
+    name: "Detail.cs"
+    mode: "C#"
+    content: '''
+      Rigidbodyを使うと、ゲームオブジェクトを物理エンジンによって制御する事ができます。これにより、よりリアルな衝突や、その他の素晴らしい挙動が可能になります。RigidbodyにForceを与えてGameObjectを操作すると、TransformComponentを直接調整した場合とは全く異なる挙動になります。一般的には、あるGameObjectのRigidbodyとTransformの両方を、同時に操作しない方が良いです。どちらか一方だけを操作するようにしてください。
+      Rigidbodyは、外力を利用するという点でTransformの操作と大きく違います。Rigidbodyでは力やトルクを受けることができますが、Transfomrではできません。Transformでは移動や回転ができますが、物理演算を使った場合と同じようには動きません。Rigidbodyに力やトルクを加えると、ObjectのTransformComponentの位置や回転を実際に変更します。このため、どちら一方だけを使用する必要があります。物理演算を使っている最中にTransformを変更すると、衝突やその他の計算に問題が生じる原因になります。
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-07-19T02:52:46.381Z"
+updatedAt: "2017-10-04T08:15:14.110Z"

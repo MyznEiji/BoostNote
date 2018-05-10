@@ -1,0 +1,182 @@
+createdAt: "2018-05-05T09:41:38.357Z"
+updatedAt: "2018-05-05T11:39:34.213Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryAttribute"
+description: "JqueryAttribute"
+snippets: [
+  {
+    name: "val.js"
+    mode: "JavaScript"
+    content: '''
+      # .val
+      要素のvalueを取得する
+      $(function() {
+      	// ボタン クリック時の処理
+      	$("#btn").click(function() {
+      		var text = $("#text1").val();
+      		console.log(text);
+      		$("#text2").val(text);
+      	});
+      });
+      
+    '''
+  }
+  {
+    name: "attr.js"
+    mode: "JavaScript"
+    content: '''
+      # 要素の属性を取得、設定
+      
+      
+      # .attr()
+      第二引数の値に変更される
+      $(function(){
+        // ボタン1 クリック時の処理
+      	$("#btn1").click(function() {
+      		$("#lnk").attr("href", "index.html");
+      	});
+      });
+      
+      # .removeAttr()
+      属性を削除する
+      $(function(){
+        // ボタン2 クリック時の処理
+      	$("#btn2").click(function() {
+      		$("#lnk").removeAttr("href");
+      	});
+      });
+    '''
+  }
+  {
+    name: "prop.js"
+    mode: "JavaScript"
+    content: '''
+      # 値がtrueとfalseが帰ってくる
+      # propメソッドで値をとったほうがいい属性はchecked, selected, readonly, disabled
+      # が望ましい
+      
+      attrで属性を取得する場合はある場合はその属性が返ってきてない場合はundefinedが帰るが
+      protの場合はtrue falseで返る
+      
+      
+      # .prop()
+      .prop("checked")   # true false 値は変化する
+      $(function(){
+      	// btnProp クリック時の処理
+      	$("#btnProp").click(function() {
+      		console.log("cb1", $("#cb1").prop("checked"));
+      		console.log("cb2", $("#cb2").prop("checked"));
+      	});  
+        
+        
+        // btnSet クリック時の処理 チェックボックスの値を変える
+      	$("#btnSet").click(function() {
+      		$("#cb1").prop("checked", false);
+      		$("#cb2").prop("checked", true);
+      	});
+        
+        
+      });
+      
+      
+      # .removeProp
+      ネイティブプロパティには使えない
+      もともとHTMLにあるプロパティには使えない
+      
+      $(function(){
+        // btnRmv クリック時の処理
+      	$("#btnRmv").click(function() {
+          
+          # propでmyporpを追加して
+      		$(this).prop("myProp", true);
+      		console.log($(this).prop("myProp")); # trueが表示される
+      
+      		$(this).removeProp("myProp");
+      		console.log($(this).prop("myProp"));　# undefinedが表示される
+      	});
+      })
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    '''
+  }
+  {
+    name: "class.js"
+    mode: "JavaScript"
+    content: '''
+      
+      
+      # .addClass
+      クラスを追加する
+      $(function() {
+      	// btnAdd クリック時の処理
+      	$("#btnAdd").click(function() {
+      		$("p").addClass("attention");
+      	});
+      });
+      
+      
+      
+      
+      # .removeClass
+      クラスを削除する
+      $(function() {
+        // btnRmv クリック時の処理
+      	$("#btnRmv").click(function() {
+      		$("p").removeClass("attention");
+      	});
+      });
+      
+      
+      
+      
+      # .toggleClass
+      指定したクラスがあれば削除、なければ追加する
+      $(function() {
+      	// btnTgl クリック時の処理
+      	$("#btnTgl").click(function() {
+      		$("p").toggleClass("attention");
+      	});
+      });
+      
+      
+      
+      
+      # .hasClass
+      指定したクラスがあればtrue なければfalseが返る
+      $(function() {
+      	// btnHas クリック時の処理
+      	$("#btnHas").click(function() {
+      		console.log($("p").hasClass("attention"));
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "val"
+  "attr"
+  "removeAttr"
+  "prop"
+  "removeProp"
+  "addClass"
+  "removeClass"
+  "toggleClass"
+  "hasClass"
+]
+isStarred: false
+isTrashed: false

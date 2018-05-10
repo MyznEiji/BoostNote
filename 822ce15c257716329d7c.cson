@@ -1,0 +1,94 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonFunction"
+description: "PythonFunction"
+snippets: [
+  {
+    name: "PythonFunction.py"
+    mode: "Python"
+    content: '''
+      #関数の定義
+      def func1(): #定義
+        print"World"
+      
+      func1() #呼び出し
+      
+      
+      #関数を関数で呼ぶ処理
+      def SquareIt(x):
+        return x * x
+      
+      def DoSomething(f,x)
+        return f(x)
+      
+      print DoSomething(SquareIt,3)
+      
+      
+      
+      #引数と戻り値
+      a = 7
+      b = 3
+      def add1(c,d):
+        e = c + d
+        print e
+        
+      add1(a,b)
+      
+      def add2(c,d):
+        e = c + d
+        return e
+      
+      add2(a,b)
+      
+      
+      # 位置引数とキーワード引数
+      位置引数は第一引数第二引数で参照しているが
+      キーワード引数はメソッド呼び出しの時のキーワードを参照している
+      def menu(entree, drink, dessert):
+        print(entree)
+        print(drink)
+        print(dessert)
+        
+      menu(entree="beef", dessert="ice", drink="beer")
+      
+      
+      
+      # デフォルト引数
+      def menu(entree="beef", drink="wine", dessert="ice"):
+      
+      menu(entree="chiken")とするとentreeだけが上書きされる
+      
+      
+      # pythonはlistをデフォルト引数で与えるべきではない
+      def test(x, l=[]):
+        l.apeend(x)
+        return l
+      のように、参照渡しのオブジェクトをデフォルト引数に渡しておくと,
+      t = test(100)
+      print(t)
+      >[100]
+      t = test(100)
+      pritn(t)
+      >[100,100]
+      とlを参照しているので、参照したlに追加されてしまっている
+      
+      解決方法
+      def test(x, l=None):
+        if l is None:
+          l = []
+        l.apeend(x)
+        return l
+      として、lがNoneの場合のみlistを生成する。
+      それぞれ独立したリストになる。
+    '''
+  }
+]
+tags: [
+  "位置引数"
+  "キーワード引数"
+  "デフォルト引数"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-21T08:51:16.950Z"
+updatedAt: "2018-01-23T07:46:24.446Z"

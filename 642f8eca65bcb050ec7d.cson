@@ -1,0 +1,47 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Particle"
+description: "Particle"
+snippets: [
+  {
+    name: "Particle.cs"
+    mode: "C#"
+    content: '''
+      Duration:パーティクルを放出し続ける時間
+      
+      Looping:放出サイクルをループするかどうか
+      
+      Prewram:パーティクル再生時に、予めパーティクルを飛ばした状態にしておくかどうか
+      
+      StartDelay:パーティクル再生時の遅延時間の設定
+      
+      StartLifetime:パーティクルが生まれてから消失するまでの時間
+      
+      StartSpeed:パーティクルの放出スピード。値が大きい程激しく放出される
+      
+      3DStartSize:チェックを入れていると3次元で大きさを設定する事ができる
+      
+      StartSize:パーティクル放出時の大きさ
+      
+      3DStartRotation:チェックを入れていると3次元での回転を設定する事ができる
+      
+      RandomizeRotationDirection:ランダムな回転幅を持たせる事ができる
+      
+      StartColor:パーティクル放出時の色
+      
+      GravityModifier:パーティクルの重力
+      
+      SimulationSpace:パーティクルシステムを移動させた時に、パーティクルがどの座標に追従するか
+      
+      ScalingMode:パーティクルの大きさの継承パターン(ローカル, ワールド)を選ぶことができる
+      
+      PlayOnAwake:オブジェクトが生成されたタイミングで放出を開始するかどうか
+      
+      MaxParticles:1回のループで放出するパーティクルの上限数
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-07-21T06:52:38.051Z"
+updatedAt: "2017-07-21T06:54:53.332Z"

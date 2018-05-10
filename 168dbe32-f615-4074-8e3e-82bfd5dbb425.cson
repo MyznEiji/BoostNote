@@ -1,0 +1,29 @@
+createdAt: "2018-04-08T11:58:23.667Z"
+updatedAt: "2018-04-09T09:16:21.925Z"
+type: "SNIPPET_NOTE"
+folder: "a6d21478f5c795467587"
+title: "JavaScriptArray"
+description: "JavaScriptArray"
+snippets: [
+  {
+    name: "Array.js"
+    mode: "JavaScript"
+    content: '''
+      # arrayの定義
+      var data = ['JavaScript', 'Ajax', 'ASP.NET'];
+      print(data[0]);
+      
+      
+      # Dictionaryの定義
+      var obj = {x:1, y:2, z:3};
+      print(obj["x"]);
+      
+    '''
+  }
+]
+tags: [
+  "array"
+  "dictionary"
+]
+isStarred: false
+isTrashed: false

@@ -1,0 +1,36 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonSys"
+description: "PythonSys"
+snippets: [
+  {
+    name: "PythonSys.py"
+    mode: "Python"
+    content: '''
+      import sys
+      
+      #sys.exit()
+      プログラムを終了することができる
+      
+      #print(sys.argv)
+      ターミナルから引数を渡すとスクリプト上でリストとして使える。
+      $ hogehoge.py hoge fuga piyo 
+        
+        print(sys.argv)
+        hoge, fuga
+      
+      
+      #print(sys.path)
+      importする場所のpathを表示
+    '''
+  }
+]
+tags: [
+  "argv"
+  "path"
+  "コマンドライン引数"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-18T08:58:04.364Z"
+updatedAt: "2018-03-29T06:01:01.352Z"

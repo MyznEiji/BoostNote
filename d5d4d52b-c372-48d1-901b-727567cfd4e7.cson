@@ -1,0 +1,244 @@
+createdAt: "2018-03-29T14:03:46.490Z"
+updatedAt: "2018-03-29T15:46:42.304Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonLogging"
+description: "PythonLogging"
+snippets: [
+  {
+    name: "logging.py"
+    mode: "Python"
+    content: '''
+      """
+      CRITICAL
+      ERROR
+      WARNING
+      INFO
+      DEBUG
+      """
+      
+      
+      import logging
+      
+      
+      logging.basicConfig(filename='test.log', level=logging.INFO)
+      
+      logging.critical('critical')
+      logging.error('error')
+      logging.warning('warning')
+      logging.info('info')
+      logging.debug('debug')
+      
+      
+      logging.info('info {}'.format('test'))
+      logging.info('info %s %s' % ('test', 'test2'))
+      logging.info('info %s %s', 'test', 'test2') #loggingの場合のみタプルにしなくてもいい
+      
+      
+      "level="
+      デフォルトはwarningまで出力するがlevelに渡すと,出力できる範囲を変えることができる
+      
+      "filename="
+      ファイルに出力することができる
+    '''
+  }
+  {
+    name: "loggingFormat.py"
+    mode: "Python"
+    content: '''
+      import logging
+      
+      # levelnameをとメッセージだけをカスタマイズして出力する
+      formatter = '%(levelname)s:%(message)s'
+      
+      logging.basicConfig( level=logging.INFO, format=formatter)
+      logging.info('info %s %s', 'test', 'test2')
+      
+      
+      # 時間とメッセージだけをカスタマイズして、フォーマットとして出力する
+      formatter = '%(asctime)s:%(message)s'
+      
+      logging.basicConfig( level=logging.INFO, format=formatter)
+      logging.info('info %s %s', 'test', 'test2')
+      
+    '''
+  }
+  {
+    name: "logger.py"
+    mode: "Python"
+    content: '''
+      # ルート以外のloggingを行う場合
+      
+      import logging
+      
+      try:
+          import logtest
+      except ModuleNotFoundError:
+          from configAndLogging import logtest
+      
+      
+      logging.basicConfig(level=logging.INFO)
+      
+      logging.info('info')
+      
+      logger = logging.getLogger(__name__)
+      logger.setLevel(logging.DEBUG)
+      logger.debug('debug')
+      
+      logtest.do_something()
+      
+      
+      
+      
+      
+      "logtest.py"
+      import logging
+      
+      
+      logger = logging.getLogger(__name__)
+      logger.setLevel(logging.DEBUG)
+      
+      def do_something():
+          logger.info('from logtest')
+          logger.debug('from logtest debug')
+      
+          
+          
+      # logging.getLogger(__name__)
+      looging.basicConfig()のあとに、そのloggingを引き継ぐことができる。
+      logger = logging.getLogger(__name__)
+      logger.setLevel(laggign.DEBUG)
+      logger.debug('debug')
+      
+      
+      
+      # logging.setLevel(logging.DEBUG)
+      loggingのレベルを変更できる
+    '''
+  }
+  {
+    name: "handler.py"
+    mode: "Python"
+    content: '''
+      # あるロギングはファイルにも書き込みたいときに使える
+      
+      import logging
+      
+      try:
+          import logtest2
+      except ModuleNotFoundError:
+          from configAndLogging import logtest2
+      
+      
+      logging.basicConfig(level=logging.INFO)
+      
+      
+      logger = logging.getLogger(__name__)
+      logger.setLevel(logging.DEBUG)
+      logger.debug('debug')
+      
+      logtest2.do_something()
+      
+      
+      
+      
+      
+      "logtest2.py"
+      import logging
+      
+      
+      logger = logging.getLogger(__name__)
+      logger.setLevel(logging.DEBUG)
+      
+      h = logging.FileHandler('logtest.log')
+      logger.addHandler(h) # loggerのloggingだけlogtest.logに書き込む
+      
+      def do_something():
+          logging.info('from logtest info')
+          logger.info('from logtest')
+          logger.debug('from logtest debug')
+      
+        
+        
+      # logging.FIleHandler()
+      ハンドラーで書き込むファイルを設定する
+      
+      
+      
+      # logging.addHandler()
+      ハンドラーで設定したファイルに書き込む
+    '''
+  }
+  {
+    name: "config.py"
+    mode: "Python"
+    content: '''
+      # あらかじめにいろんな設定を定義しておいて、場合によってgetLoggerのところで設定を変える
+      
+      import logging.config
+      
+      
+      logging.config.fileConfig('logging.ini')
+      logger = logging.getLogger(__name__) #'simpleExample'にするとDebugまで表示する
+      
+      logger.debug('debug message')
+      logger.info('info message')
+      logger.warning('warn message')
+      logger.error('error message')
+      logger.critical('critical message')
+      
+      
+      
+      
+      
+      "logging.ini"
+      
+      [loggers]
+      keys=root, simpleExample
+      
+      [handlers]
+      keys=streamHandler
+      
+      [formatters]
+      keys=formatter
+      
+      [logger_root]
+      level=WARNING
+      handlers=streamHandler
+      
+      [logger_simpleExample]
+      level=DEBUG
+      handlers=streamHandler
+      qualname=simpleExample
+      propagate=0
+      
+      [handler_streamHandler]
+      class=StreamHandler
+      level=DEBUG
+      formatter=formatter
+      args={sys.stderr,}
+      
+      [formatter_formatter]
+      format=%(asctime)s %(name)-12s %(levelname)-8s %(message)s
+      
+    '''
+  }
+]
+tags: [
+  "logging"
+  "critical"
+  "error"
+  "info"
+  "warning"
+  "debug"
+  "%s"
+  "basicConfig()"
+  "format"
+  "getLogger()"
+  "setLevel()"
+  "handler"
+  "FileHandler()"
+  "addHandler()"
+]
+isStarred: false
+isTrashed: false

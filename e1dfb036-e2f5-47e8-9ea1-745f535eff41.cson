@@ -1,0 +1,111 @@
+createdAt: "2018-03-31T16:59:27.344Z"
+updatedAt: "2018-03-31T17:15:36.455Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonOptparse"
+description: "PythonOptparse"
+snippets: [
+  {
+    name: "optparse.py"
+    mode: "Python"
+    content: '''
+      from optparse import OptionParser
+      
+      
+      
+      # スクリプトに引数を渡してスクリプトのオプションの設定やhelpの設定を可能にする
+      
+      # OptionParser(usage=usage)
+        OptionParserのインスタンスを生成
+        usageには--helpオプションでどんなオプションがあるのかを記述していく
+        usage = 'usage: %prog [options] arg1 arg2'  
+        "%progはスクリプト自体を示す"
+      
+      
+      # parser.add_option('-f', '--file', action='store', type='string',
+                            dest='filename', help='File name')
+        オプションの設定をする
+        -f, --fileの時のオプション。
+        store : 
+        type : 渡す引数が文字列だからstringに設定
+        dest : 渡された値の変数名
+        help : --helpの時の説明文
+        const : あるオプションをつけた時だけdestの変数に代入するようなシステムのときに使う。
+                基本的にdestの変数に代入される
+        
+        
+        
+          
+      # parser.set_defaults(verbose=True)
+      デフォルトの値を入れておきたいときに使う
+      
+      
+          
+      # オプションのカテゴリーを分けたい時   
+      from optparse import OptionGroup
+      group = OptionGroup(parser, 'Dangerous options')
+      parser.add_option_group(group)
+      
+      
+      # parser.parse_args()
+      実行スクリプトの引数の値を取得する
+      options, args = parser.parse_args()
+      
+      
+      
+      # 基本はmain関数に書き込み、自身のスクリプトが実行された時だけ、処理するようにする
+      if __name__ == '__main__':
+          main()
+      
+    '''
+  }
+  {
+    name: "sampleOptparse.py"
+    mode: "Python"
+    content: '''
+      from optparse import OptionParser
+      from optparse import OptionGroup
+      
+      
+      
+      def main():
+          usage = 'usage: %prog [options] arg1 arg2'
+          parser = OptionParser(usage=usage)
+          parser.add_option('-f', '--file', action='store', type='string',
+                            dest='filename', help='File name')
+          parser.add_option('-n', '--num', action='store', type='int', dest='num')
+          parser.set_defaults(verbose=True)
+          # parser.add_option('-v', action='store_true', dest='verbose')
+          parser.add_option('-v', action='store_false', dest='verbose', default=True)
+          parser.add_option('-q', action='store_false', dest='verbose')
+      
+          parser.add_option('-r', action='store_const', const='root', dest='user_name')
+          parser.add_option('-e', dest='env')
+      
+          def is_relase(option, opt_str, value, parser):
+              if parser.values.env == 'prd':
+                  raise parser.error("Can't relase")
+              setattr(parser.values, option.dest, True)
+      
+          parser.add_option('--release', action='callback', callback=is_relase, dest='release')
+      
+          group = OptionGroup(parser, 'Dangerous options')
+          group.add_option('-g', action='store_true', help='Group option')
+          parser.add_option_group(group)
+      
+          options, args = parser.parse_args()
+          print(options)
+          print(options.num)
+          print(args)
+      
+      if __name__ == '__main__':
+          main()
+      
+    '''
+  }
+]
+tags: [
+  "optparse"
+]
+isStarred: false
+isTrashed: false

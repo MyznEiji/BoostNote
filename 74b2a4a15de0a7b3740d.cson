@@ -1,0 +1,79 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Linq"
+description: "C#Linq"
+snippets: [
+  {
+    name: "C#Linq.cs"
+    mode: "C#"
+    content: '''
+      //LINQとは
+      統合言語クエリ（Language INtegrated Query）のことを指します。
+      様々な種類のデータ集合に対して標準化された方法でデータを問い合わせる（クエリ）ことを
+      可能にするために、言語に統合された機能のことです。
+      Unityではusing System.Linq;を名前空間に加えることでLINQクエリ式を
+      使用することが出来ます。
+      
+      
+      //クエリとは
+      クエリとは「問い合わせる」という意味で、データの問い合わせ要求に使われます。
+      一番わかりやすいのがデータベースです。
+      
+      
+      //クエリ式とは
+      クエリ式は上から順番に句単位でメソッド呼び出しに変換されます。
+      
+      
+      //from句
+      全てのクエリ式はfrom句から始まります。from句はデータの取り出し元を指定します。
+      from 要素の変数 in データの取り出し元
+      
+      
+      //select句
+      データの出力形式を指定します。
+      全てのクエリはselect句またはgroup句で終わります。
+      select 出力形式
+      
+      
+      //where句
+      データを与えらた条件にそってフィルタリングします。
+      where 条件式
+      
+      
+      //group by句
+      キーを指定して、キーの値の等しいものをグループ化します。
+      group グループ化対象 by キー
+      
+      
+      //into
+      join句、group句、select句の後ろにさらにクエリを続ける場合に使います。
+      into 以降のクエリで用いる変数
+      
+      
+      //orderby句
+      データシーケンスを整列します。
+      orderby句では複数の整列キーを指定できるが、前に書いたキーほど優先されます。
+      例えば、「orderby p.X p.Y」と書いた場合、Xの値が等しい所でのみYの大小関係を
+      使って整列させます。
+      OrderBy、ThenByは昇順(小→大)に、OrderByDescendin、
+      ThenByDescendingは降順(大→小)に整列します。
+      orderby キー, キー descending/ascending
+        
+        
+      //join句
+      join句は2つのデータシーケンスを1つに結合します。
+      join 要素の変数 in データの取り出し元 on 条件式
+      
+      
+      //let句
+      クエリ式中で計算した値を変数に格納しておくことが出来る。
+      let 変数 = 値
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-28T07:42:35.552Z"
+updatedAt: "2017-10-29T07:00:16.498Z"

@@ -1,0 +1,477 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonClass"
+description: "PythonClass"
+snippets: [
+  {
+    name: "PhythonClass.py"
+    mode: "Python"
+    content: '''
+      #クラスの定義
+      
+        class Dog:
+          name = ""
+          def bark(self): #メソッドの場合はselfを入れる
+            m = self.name +"BowBow"　
+            #メソッドの中からプロパティにアクセスする場合はselfを使う
+            print m
+      
+        pochi = Dog()
+        pochi.name = "Pochi"
+        pochi.bark()  #PochiBowBowと出力
+      
+        hachi = Dog()
+        hachi.name = "Hachi"
+        hachi.bark()  #HachiBowBowと出力
+      
+      
+      
+      # メソッドの中でメソッドを呼ぶ
+      
+        class Person():
+            def __init__(self, name="Tom"):
+              self.name = name
+              print(self.name)
+      
+            def say_something(self):
+              print("I'm %s. hello" % (self.name))
+              self.run(10)
+      
+            def run(self, num):
+                print("run" * num)
+      
+        person = Person()
+        person.say_something()
+      
+      
+        
+      #クラスとリストの組み合わせ
+        class Calculation:
+          value = 0
+          def square(self):
+            s = self.value * self.value
+            return s
+      
+        #a = Calculation()
+        #b = Calculation()
+        #c = Calculation()
+        #calcs = [a,b,c]
+        #上記の宣言は下記の宣言と同じ
+      
+        calcs = [Calculation(),Calculation(),Calculation()]
+      
+        calcs[0].value = 3
+        calcs[1].value = 5
+        calcs[2].value = 7
+      
+        #print calcs[0].square()
+        #print calcs[0].square()
+        #print calcs[0].square()
+        #上記の宣言は下記の宣言と同じ
+      
+        for c in calcs
+          print c.square()
+        
+        
+        
+      # (object)  
+        class  Person(object) ←の(object)は書いても書かなくてもOK
+        python2のなごり
+      
+        
+        
+      # def __init__(self):
+        コンストラクタ
+        
+        class Person():
+          def __init__(self, name="Tom"):
+            self.name = name
+            print(self.name)
+          
+          def say_something(self):
+            print("I'm %s. hello" % (self.name))
+      
+            
+        person = Person('Mike')
+        person.say_something()  
+      
+        
+        
+      # def __del__(self):
+        デストラクト
+        class Person(object)
+          def __del__(self):
+            print("good bye")
+      
+        person = Person()
+        del person # ここでデストラクトが呼ばれる
+      
+      
+        
+      # クラスの継承
+        class Car(object):
+            def run(self):
+                print("run")
+      
+        class ToyotaCar(Car):
+            pass
+      
+        car = Car()
+        car.run()
+      
+        toyota_car = ToyotaCar()
+        toyota_car.run()
+      
+        
+        
+      # オーバーライド
+      super()で親クラスのメソッドなどを参照する
+      
+        class Car():
+            def __init__(self, model=None):
+                self.model = model
+      
+            def run(self):
+                print("run")
+      
+        class TeslaCar(Car):
+            def __init__(self, model="Model S", enable_auto_run=False):
+                super().__init__(model)  # 親クラスの__init__を参照する
+                self.enable_auto_run = enable_auto_run
+      
+            def run(self):
+                print("super fast")
+      
+            def auto_run(self):
+                print("auto run")        
+      
+      
+      
+      
+      
+        class TeslaCar(Car):
+            def __init__(self, model="Model S", enable_auto_run=False, passwd="123"):
+      
+                super().__init__(model)
+                self._enable_auto_run = enable_auto_run
+                self.passwd = passwd
+      
+            @property
+            def enable_auto_run(self):
+                return self._enable_auto_run
+      
+            @enable_auto_run.setter
+            def enable_auto_run(self, is_enable):
+                if self.passwd == "456":
+                    self._enable_auto_run = is_enable
+                else:
+                    raise ValueError
+      
+            def run(self):
+                print("super run")
+      
+            def auto_run(self):
+                print("auto run")
+      
+        tesla_car = TeslaCar("Model S", passwd="456")
+        print(tesla_car.model)
+        tesla_car.run()
+        tesla_car.auto_run()
+      
+      
+        print("###################")
+        tesla_car.enable_auto_run = True
+        print(tesla_car.enable_auto_run)
+      
+        
+        
+        
+      
+      # クラスを構造体として扱う
+      
+        class T(object):
+            pass
+      
+        t = T()
+        t.name = "Mike"
+        t.age = 20
+        pprint(t.name, t.age)
+      
+        属性を後から作ることが可能
+      
+      
+      
+      
+      # ダックタイピング
+      
+        class Person(object):
+            def __init__(self, age=1):
+                self.age = age
+      
+            def drive(self):
+                if self.age >= 18:
+                    print('ok')
+                else:
+                    raise Exception("No, Drive")
+      
+      
+        class Baby(Person):
+            def __init__(self, age=1):
+                if age < 18:
+                    super().__init__(age)
+                else:
+                    raise ValueErrors
+      
+      
+        class Adult(Person):
+            def __init__(self, age=18):
+                if age >= 18:
+                    super().__init__(age)
+                else:
+                    raise ValueErrors
+      
+      
+        baby = Baby()
+        adult = Adult()
+      
+        class Car(object):
+            def __init__(self, model=None):
+                self.model = model
+      
+            def run(self):
+                print("run")
+      
+            def ride(self, person):
+                person.drive()
+      
+      
+        car = Car()
+        car.ride(adult)
+      
+      
+        
+        
+      
+      # 抽象クラス(インターフェース)
+        abcをインポートして,そのABCMetaを使う
+      
+      
+        import abc
+      
+        class Person(metaclass=abc.ABCMeta):
+            def __init__(self, age=1):
+                self.age = age
+      
+            @abc.abstractmethod
+            def drive(self):
+                pass
+      
+      
+        class Baby(Person):
+            def __init__(self, age=1):
+                if age < 18:
+                    super().__init__(age)
+                else:
+                    raise ValueError
+      
+            def drive(self):
+                raise Exception("No Drive")
+      
+        class Adult(Person):
+            def __init__(self, age=18):
+                if age >= 18:
+                    super().__init__(age)
+                else:
+                    raise ValueErrors
+      
+            def drive(self):
+                pritn("ok")
+      
+      
+        baby = Baby()
+        adult = Adult()
+        
+        
+        
+        
+        
+      # 多重継承
+      
+        class Person(object):
+            def talk(self):
+                print("talk")
+      
+            def run(self):
+                print("Person Run")
+      
+        class Car(object):
+            def run(self):
+                print("car run")
+      
+        class PersonCarRobot(Person,Car):
+            def fly(self):
+                print("fly")
+      
+      
+        person_car_robot = PersonCarRobot()
+        person_car_robot.talk()
+        person_car_robot.run()
+        person_car_robot.fly()
+      
+        多重継承元に同じメソッドがあった時は、継承順が左にある方から継承される
+      
+      
+        
+        
+      # クラス変数
+        クラス共通の変数。
+      
+        class Person():
+          kind = "human"
+      
+          def __init__(self, name):
+            self.name = name
+      
+          def who_are_you(self):
+            print(self.name, self.kind)
+      
+        a = Person('A')
+        a.who_are_you()
+        b = Person('B')
+        b.who_are_you()
+      
+        
+        
+      # staticメソッド
+      @staticmethod　と宣言して
+      メソッドを書く
+      
+        class Person(object):
+      
+            @staticmethod
+            def about(year):
+                print("about human {}".format(year))
+                
+                
+        Person.about(1999)
+        
+        
+      
+        
+      # classメソッド
+      インスタンスを生成しなくてもアクセスできるメソッド
+      @classmethod
+      で定義する
+    '''
+  }
+  {
+    name: "PythonProperty.py"
+    mode: "Python"
+    content: '''
+      
+      # プロパティ
+        クラスの変数。
+        
+        class Car(object):
+          def __init__(self, model=None):
+              self.model = model
+      
+          def run(self):
+              print("run")
+      
+          def ride(self, person):
+              person.drive()
+      
+      
+        car = Car()
+        print(car.model) # そのインタンスのmodelを参照する
+        
+      
+          
+          
+          
+        "_(アンダースコア)が１つだと、" @property
+        属性を参照することはできるが、プロパティで
+        ある条件下でないと値の変更を行えないということを明示する方法
+          # 参照はできるけど値は変えて欲しくない時
+        
+          class TeslaCar(Car):
+            def __init__(self, model="Model S", enable_auto_run=False, passwd="123"):
+      
+                super().__init__(model)
+                self._enable_auto_run = enable_auto_run
+                self.passwd = passwd
+      
+            @property
+            def enable_auto_run(self):
+                return self._enable_auto_run
+        
+          @propertyがつくとメソッドだが、()はいらない。
+      
+        
+        
+        
+        
+        ".setter"
+        
+        class TeslaCar(Car):
+          def __init__(self, model="Model S", enable_auto_run=False, passwd="123"):
+      
+              super().__init__(model)
+              self._enable_auto_run = enable_auto_run
+              self.passwd = passwd
+      
+          @property
+          def enable_auto_run(self):
+              return self._enable_auto_run
+      
+          @enable_auto_run.setter
+          def enable_auto_run(self, is_enable):
+              if self.passwd == "456":
+                  self._enable_auto_run = is_enable
+              else:
+                  raise ValueError
+        
+          # 参照、書き換え可能。ある条件のとき(パスワードが一致した時だけ)に書き換え可能にする
+          @enable_auto_run.setterでプロパティを参照して、書き換える
+        
+        
+        
+        
+        
+        
+        "__(アンダースコア)が2つだと、"
+        privateなプロパティになる。
+        クラスからはアクセスできるが、インスタンスを
+        生成してから参照や値を変えることはできなくする
+          # 参照も値も変えられず、クラスだけで完結させる時
+      
+        アンダースコアがない場合は自由に書き換えてOK
+      
+    '''
+  }
+]
+tags: [
+  "class"
+  "self"
+  "__init__"
+  "コンストラクタ"
+  "__del__"
+  "デストラクト"
+  "継承"
+  "プロパティ"
+  "オーバーライド"
+  "super()"
+  "@property"
+  ".setter()"
+  "ダックタイピング"
+  "抽象クラス"
+  "インターフェース"
+  "多重継承"
+  "クラスメソッド"
+  "クラス変数"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-05T10:14:03.042Z"
+updatedAt: "2018-04-02T08:06:09.444Z"

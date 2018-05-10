@@ -1,0 +1,75 @@
+createdAt: "2018-05-06T08:43:53.952Z"
+updatedAt: "2018-05-06T09:12:49.326Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryDimentions"
+description: "JqueryDimentions"
+snippets: [
+  {
+    name: "dimentions.js"
+    mode: "JavaScript"
+    content: '''
+      # .width()
+      padding border marginの値を含まない
+      
+      
+      
+      #. height()
+      padding border marginの値を含まない
+      
+      
+      # .innerWidth()
+      border marginの値を含まないが、paddingの値は含む
+      
+      
+      
+      # .innerHeight()
+      border marginの値を含まないが、paddingの値は含む
+      
+      
+      
+      # .outerWidth()
+      marginの値を含まないが、padding,borderの値は含む
+      .outerWidth(true)とするとpadding border margin全ての値を含む
+      
+      
+      
+      # .outerHeight()
+      marginの値を含まないが、padding,borderの値は含む
+      .outerHeight(true)とするとpadding border margin全ての値を含む
+      
+      
+      
+      
+      $(function() {
+      	// ボタン クリック時の処理
+      	$("#btn").click(function() {
+      		var $t = $("#text");
+      
+      		// 値を取得
+      		console.log("plain", $t.width(), $t.height());
+      		console.log("inner", $t.innerWidth(), $t.innerHeight());
+      		console.log("outer1", $t.outerWidth(), $t.outerHeight());
+      		console.log("outer2", $t.outerWidth(true), $t.outerHeight(true));
+      
+      		// 値を設定
+      		$t.width(300);
+      
+      		// 値を設定（関数）
+      		$(".sub").width(function(i) {return i * 100 + 100});
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "width"
+  "height"
+  "innerWidth"
+  "innerHeight"
+  "outerWidth"
+  "outerHeight"
+]
+isStarred: false
+isTrashed: false

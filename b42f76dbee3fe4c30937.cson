@@ -1,0 +1,28 @@
+createdAt: "2018-01-15T07:24:16.605Z"
+updatedAt: "2018-01-15T07:25:26.675Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonZip"
+description: "PythonZip"
+snippets: [
+  {
+    name: "pythonZip.py"
+    mode: "Python"
+    content: '''
+      # import zipfile
+      
+      #zipファイル作成
+        with zipfile.ZipFile("test.zip", "w") as z:
+            z.write("testZip_dir")
+            z.write("testZip_dir/testZip.txt")
+      
+      
+      #zipファイル展開
+        with zipfile.ZipFile("test.zip", "r") as z:
+            z.extractall("zzz2")
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

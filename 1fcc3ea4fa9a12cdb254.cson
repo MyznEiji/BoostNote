@@ -1,0 +1,26 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Application"
+description: "Application"
+snippets: [
+  {
+    name: "UnityApplication.cs"
+    mode: "C#"
+    content: '''
+      //Application.LoadLevel(int index) or (string name)
+      その名前やインデックスによってレベルを読み込みます。
+      レベルを読み込む前にゲームで使用するレベルのリストに読み込むレベルを追加して
+      おかなくてはいけません。 Unity の File->Build Settings... を選択し、
+      レベルのリストに必要なレベルを追加します。 
+      MonoBehaviour.OnLevelWasLoaded はレベルが読み込まれた直後に
+      すべてのアクティブなゲームオブジェクトで呼び出されます。
+      
+      Application.LoadLevel(シーン名)で移動するシーンを指定する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-23T16:09:33.731Z"
+updatedAt: "2017-09-23T16:12:43.091Z"

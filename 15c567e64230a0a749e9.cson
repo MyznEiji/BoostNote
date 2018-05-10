@@ -1,0 +1,80 @@
+createdAt: "2018-02-25T08:03:56.461Z"
+updatedAt: "2018-02-25T10:23:27.283Z"
+type: "SNIPPET_NOTE"
+folder: "d155fa926dc4390a93fa"
+title: "HTML"
+description: "HTML"
+snippets: [
+  {
+    name: "html.html"
+    mode: "HTML"
+    content: '''
+      セクショニングコンテンツ <section>など
+      ヘッディングコンテンツ <h1>から<h6>
+      フレージングコンテンツ <p>など
+      埋め込みコンテンツ <video>など
+      インタラクティブコンテンツ <button>など
+      メタデータコンテンツ <style>など
+        
+        
+        
+      <!--ul要素-->
+        UnorderList
+        順序のないリストを示すブロック要素です。li要素と組み合わせて使用します。
+      
+        
+        
+      <!--ol要素-->
+        OrderList
+        順序のあるリストを示すブロック要素です。こちらも、li要素と組み合わせて使用します。
+      
+        start属性
+        <ol start=3></ol>
+        順番の値を変更できる
+      
+        type属性 
+        type=aにするとa,b,c,d,e・・・と順番を指定できる
+        <ol type="a"></ol>
+      
+        reversed属性
+        順番を逆さにする
+        <ol reversed> </ol>
+        
+        
+        
+      <!--li要素-->
+        リストの項目を示すブロック要素です。ul要素、またはol要素の間に記述します。
+        
+        
+        
+      <!-- a要素-->
+        囲った文章をクリックすると、特定のページに遷移するように設定できます。
+        aタグのhref属性に対して、遷移させたいページのURLを指定します。
+      
+        要素	  状態
+        link  　遷移先のWebサイトに訪問したことがないリンク。
+        visited	遷移先のWebサイトに訪問したことがあるリンク。
+        hover	  現在マウスを置いているリンク 。
+        active	現在クリックなどをして選択しているリンク。
+      
+        target属性 
+          _self そのページで展開される
+          _blank 別ページに遷移される
+      
+      
+      
+        
+      実態参照  
+        文字実体参照	表示	数値文字参照	表示	備考
+        &quot;	"	&#34;	"	quotation mark = APL quote 引用符
+        &amp;	&	&#38;	&	ampersand アンド記号
+        &apos;	'	&#39;	'	apostrophe アポストロフィ
+        &lt;	<	&#60;	<	less-than sign 不等号(より小)
+        &gt;	>	&#62;	>	greater-than sign 不等号(より大)
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,117 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Ray"
+description: "Ray"
+snippets: [
+  {
+    name: "RayControl.cs"
+    mode: "C#"
+    content: '''
+      public class RayControl : MonoBehaviour {
+          void Update () {
+              if(Input.GetMouseButtonDown(0)){
+                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                 RaycastHit hit;
+      
+                 if (Physics.Raycast(ray, out hit)) {
+                     GameObject selectedObj = hit.collider.gameObject;               
+                     print("name: " + selectedObj.name + selectedObj.transform.position); 
+                 }
+              }
+          }
+      }
+    '''
+  }
+  {
+    name: "Ray.cs"
+    mode: "C#"
+    content: '''
+      //Ray ray = new Ray(Vector3 origin,Vector3 direction)
+      origin Rayの発生地点
+      direction Rayの進む方向
+      
+      Rayの生成
+      
+      
+      
+      //Input.GetMouseButtonDownメソッド
+        InputクラスのGetMouseButtonDownメソッドは引数に渡した数値に応じて、そのボタンが押されているかどうかを判断します。
+        例えば、0を渡した時は「左クリック」、1を渡した時は「右クリック」が押されたかどうかを判断します。
+      
+      
+      Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Camera.mainと記述すると、Hierarchyビュー上にあるオブジェクトのうち、「Main Camera」タグがついたカメラを取得する事が   できます
+      
+      
+      Camera.ScreenPointToRayメソッドは、引数にスクリーンの座標(x, y)をVector3で指定することによって引数に指定した座標に向   けてカメラからRayを飛ばします。
+        この時、Vector3のZ座標（奥行き）は無視されます。
+        
+      RayCastHit型を利用すれば、Rayを飛ばした際に衝突したオブジェクトの情報を得ることができます。
+      
+      
+      Physics.Raycastメソッド
+        Rayがオブジェクトに衝突した場合はtrue、それ以外（Rayが何にも衝突していない場合）はfalseを返します。
+        順	      データ型	    渡す情報
+        第一引数	Ray型	      Rayの情報を持っているインスタンス
+        第二引数	RaycastHit型	衝突情報を入れる変数
+        第三引数	float型	    飛ばすRayの距離の長さ
+        
+        第三引数は省略する事ができ、省略した場合Rayが飛ぶ距離は無限大になります。
+        
+        引数を4つ渡した場合は、Rayの発射地点と発射方向をVector3型で指定する事ができるようになります。
+        第一引数	Vector3型	  Rayを発射する位置
+        第二引数	Vector3型	  Rayを発射する方向
+        第三引数	RaycastHit型	衝突情報を入れる変数
+        第四引数	float型	    飛ばすRayの距離の長さ 
+        Physics.Raycast(new Vector3(0, 0, 0) , new Vector3(10, 0, 10), out RayCastHit hit, float 10.0);
+      
+      
+      
+      //Camera.ViewportPointToRay()メソッド
+      カメラからRayを飛ばすメソッドの1つです。画面の左下を(0,0)、右上を(1,1)として
+      Rayを飛ばす座標を引数で指定します。
+      引数はVector2クラスではなくVector3クラスであることに注意しましょう。Zの値は無視されます。
+      
+      
+      //Ignore Raycast
+      Layerを「Ignore Raycast」にすることで、そのオブジェクトをRayの対象から外すことができます。
+      
+    '''
+  }
+  {
+    name: "ButtonCubeRay.cs"
+    mode: "C#"
+    content: '''
+      using UnityEngine;
+      
+      public class ButtonCubeRay : MonoBehaviour {
+      
+          void Update() {
+              if (!Input.GetMouseButtonDown(0)) {
+                  return;
+              }
+      
+              RaycastHit hit;
+              if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
+                  return;
+              }
+      
+              switch (hit.collider.gameObject.name) {
+              case "Button1":
+                  Debug.Log("ボタン1が押されました。");
+                  break;
+              case "Button2":
+                  Debug.Log("ボタン2が押されました。");
+                  break;
+              case "Button3":
+                  Debug.Log("ボタン3が押されました。");
+                  break;
+              }
+          
+    '''
+  }
+]
+tags: []
+isStarred: false
+createdAt: "2017-05-29T08:41:39.432Z"
+updatedAt: "2017-11-04T07:56:47.994Z"

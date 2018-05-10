@@ -1,0 +1,27 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Vector3"
+description: "Vector3"
+snippets: [
+  {
+    name: "Vector3Method.cs"
+    mode: "C#"
+    content: '''
+      //Vector3.Distance()
+      第一引数、第二引数にVector3型で座標を指定し、
+      その2点間の距離をfloat型で返すメソッドです。
+      
+      //Vector3.sqrMagnitude
+      ベクトルの２乗の長さを返します
+      
+      //Vector3.Angle(Vector3 from, Vector3 to);
+      ２点間(fromからto)の角度を返す
+      角度は常に２つのベクトル間の鋭角を返す(すなわち180度未満)
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-18T11:42:55.053Z"
+updatedAt: "2017-10-04T05:33:24.194Z"

@@ -1,0 +1,107 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Flyweight"
+description: "C#Flyweight"
+snippets: [
+  {
+    name: "C#Flyweight.cs"
+    mode: "C#"
+    content: '''
+      //Flyweight
+      インスタンスを共有することでリソースを無駄なく使うことに焦点を当てた
+      デザインパターンです。
+      例えば、ホームページの背景に使う小さな画像は、背景で表示される回数分ネットワーク
+      越しにやりとりがされるのではなく、画像を1度取得し、その画像を並べて表示します。
+      
+      
+      //Flyweightパターン
+      Factoryクラスを作成し、軽量化されるべきインスタンスは、
+      このFactoryクラスを介して取得するようにします。
+      
+      
+      //Factoryクラス
+      Flyweightパターンにおいて、軽量されるべきインスタンスの生成や管理を行うクラスです。
+      実際にFactroyという名前のクラスが存在するわけではありません。
+      
+    '''
+  }
+  {
+    name: "CharLetter.cs"
+    mode: "C#"
+    content: '''
+      using UnityEngine;
+      
+      public class CharLetter {
+      
+          public char singleletter;
+      
+          public CharLetter(char c) {
+              singleletter = c;
+          }
+      
+          public void ShowCharLetter(){
+              Debug.Log(singleletter);
+          }
+      }
+    '''
+  }
+  {
+    name: "LetterFactory.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections.Generic;
+      
+      public class LetterFactory  {
+      
+          private readonly Dictionary<char, CharLetter> list = new Dictionary<char, CharLetter>();
+      
+          private static readonly LetterFactory instance = new LetterFactory();
+      
+          public LetterFactory GetInstance() {
+              return instance;
+          }
+      
+          public CharLetter GetLetter(char c) {
+              if (list.ContainsKey (c)) {
+                  return list [c];
+              }
+      
+              var unUsedletter = new CharLetter(c);
+              list.Add(c, unUsedletter);
+      
+              return unUsedletter;
+          }
+      }
+    '''
+  }
+  {
+    name: "FlyweightTestUsed.cs"
+    mode: "C#"
+    content: '''
+      using System.Collections;
+      using System.Collections.Generic;
+      using UnityEngine;
+      
+      public class FlyweightTestUsed : MonoBehaviour {
+      
+          // Use this for initialization
+          void Start () {
+              var document = "iamaman";
+              var chars = document.ToCharArray();
+      
+              var letterFactory = new LetterFactory();
+      
+              foreach (var c in chars) {
+                  CharLetter charletter = letterFactory.GetLetter(c);
+                  charletter.ShowCharLetter();
+              }
+          }
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T12:26:41.501Z"
+updatedAt: "2017-11-03T10:27:30.767Z"

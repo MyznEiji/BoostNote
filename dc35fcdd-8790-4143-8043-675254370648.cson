@@ -1,0 +1,113 @@
+createdAt: "2018-03-16T12:54:51.743Z"
+updatedAt: "2018-03-23T08:55:57.850Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelUser"
+description: "LaravelUser"
+snippets: [
+  {
+    name: "laravelUser.py"
+    mode: "Python"
+    content: '''
+      # authミドルウェア
+      authミドルウェアはLaravelがあらかじめ定義しているミドルウェアで、ログイン、
+      新規登録などの認証機能や、ユーザーに関する様々なメソッドを提供しています。
+      
+      
+      今回は $this に対して middleware を呼び出しています。
+      以前、Lesson2のクラスとインスタンスで学習した通り、
+      $this を使用することで呼び出し元のオブジェクトを参照することができます。
+      TweetsController.php内で使用することにより、TweetsControllerクラス全体に
+      authミドルウェアが適用されるようになります。今回はarray('except' => 'index')として
+      いるため、TweetsControllerのindexアクション以外でauthミドルウェアが実行されます。
+      
+      
+      Route::auth();のより先に別のルーティングを記述していると、
+      ログインしているか調べる前にページを表示してしまうので、本来ログインしていないと
+      見れないページを見れるようになってしまいます。そのためRoute::auth();の記述は一番上に
+      書くということに注意しましょう。
+      
+      
+      
+      # Auth::check
+      Laravelでは予めAuthクラスというクラスが定義されています。
+      このAuthクラスを利用することでユーザー機能に関する様々なメソッドが
+      利用できるようになります。
+      Auth::checkメソッドはユーザーがログインしているかどうかを検証するメソッドです。
+      ログインしていればtrueを返し、ログインしていなければfalseを返します。
+      
+      
+      # Auth::user()
+      Authクラスにはuser()というメソッドが定義されています。これは、
+      現在ログイン中のユーザーのレコードを、Userクラスのインスタンスとして取得することが
+      できるメソッドです。
+      
+      例えば、usersテーブルでのidカラムの値が1のアカウントでログインしている場合、
+      Auth::user()はUser::find(1)と同じ意味を持ちます。この時、
+      Auth::user()->usersテーブルのカラム名とすることで、ログイン中のユーザーの
+      情報として登録されている各カラムの値を取得することができます。
+      
+      
+      # $ php artisan make:auth
+      
+      以下のファイルが生成されます。
+      
+      resources/views/auth/login.blade.php
+      resources/views/auth/register.blade.php
+      resources/views/auth/passwords/email.blade.php
+      resources/views/auth/passwords/reset.blade.php
+      resources/views/auth/emails/password.blade.php
+      resources/views/layouts/app.blade.php
+      resources/views/home.blade.php
+      resources/views/welcome.blade.php
+      app/Http/Controllers/HomeController.php
+      
+      
+      
+      # $redirectAfterLogoutプロパティ
+      サインアウトしたあとのリダイレクト先を指定するプロパティとして
+      $redirectAfterLogoutがあります。まずは$redirectAfterLogoutプロパティを
+      AuthenticatesUsers.phpファイルに定義し、サインアウト後のリダイレクト先URLを
+      代入します。
+      
+      
+      # middleware('auth')
+      php artisan make:authコマンドを打つとログイン画面とサインアップ画面を自動で
+      用意してくれます。ユーザーがログインしているかどうかを確認し、ログインしていない場合は
+      ログインページにリダイレクトしたいです。pictweetと同様、middleware('auth')を
+      使用して実装します。exceptやonlyオプションを組み合わせると特定のアクションを
+      指定することもできます。
+      
+      
+      
+      
+      # validation(検証)
+      validationとは、入力フォームを通じてビューからサーバー側へパラメーターが送られてきた際、
+      正常な値か検証することができる機能です。
+      
+      # validatorメソッド
+      AuthControllerにはvalidatorメソッドが定義されています。validatorメソッドの
+      Validator::makeメソッドにバリデーションをかけるカラムとその内容を記述します。
+      name、email、passwordカラムのいずれにも指定しているrequiredはフォームの中身が
+      あるかないかを検出し、ない場合は保存を実行せず元のビューにリダイレクトさせます。
+      
+      protected function validator(array $data)
+      {
+          return Validator::make($data, [
+              'name' => 'required',
+          ]);
+      }
+      
+      
+      # placeholderオプション
+      フォームの中に、''で囲んだ文字をフォームの値が空の時に薄く表示しておくことができます。
+      userが何を入力すれば良いかわかりやすくするためです。Form::textメソッドのオプション
+      として、以下のように利用します。
+      
+      {{ Form::text('name', '', ['placeholder' => 'ニックネームを入力（必須）']) }}
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

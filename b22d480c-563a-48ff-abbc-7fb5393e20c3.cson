@@ -1,0 +1,46 @@
+createdAt: "2018-04-09T08:35:47.478Z"
+updatedAt: "2018-04-09T09:16:08.360Z"
+type: "SNIPPET_NOTE"
+folder: "a6d21478f5c795467587"
+title: "JavaScriptOperater"
+description: "JavaScriptOperater"
+snippets: [
+  {
+    name: "operater.js"
+    mode: "JavaScript"
+    content: '''
+      # delete 
+      オブジェクトのプロパティや配列の要素を削除
+      var x = 10;
+      delete x;#オブジェクトは削除されない
+      
+      x = 6;
+      delete x; #削除される
+      
+      
+      # instanceof
+      オブジェクトが指定されたクラスのインスタンスかを判定　
+      
+      
+      # new
+      新しいインスタンスを生成する
+      
+      
+      #typeof
+      オペランドのデータ型を取得する
+      
+      
+      # void
+      未定義値を返す
+    '''
+  }
+]
+tags: [
+  "delete"
+  "instanceof"
+  "new"
+  "typeof"
+  "void"
+]
+isStarred: false
+isTrashed: false

@@ -1,0 +1,114 @@
+createdAt: "2018-03-16T10:00:35.238Z"
+updatedAt: "2018-03-19T08:56:32.276Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelForm"
+description: "LaravelForm"
+snippets: [
+  {
+    name: "LaravelForm.py"
+    mode: "Python"
+    content: '''
+      # Form::open
+      ビューにHTMLのformタグを作成することで、ビューから情報を送信できることは説明しました。
+      しかし、Laravelではセキュリティの観点から、HTMLのformタグだけで作成したフォームを使用する
+      ことは推奨されません。ですので今回はlaravelcollective/htmlで定義されている
+      Formファサードというものを使います。
+      <div>
+        {{ Form::open(array('url' => '/test', 'method' => 'post')) }}
+          <input type="text" id="name">
+          <input type="submit">
+        {{ Form::close() }}
+      </div>
+      
+      
+      # ファサード
+      ファサードとは静的メソッドの形式でLaravelの機能を手軽に扱えるようにしたものです。
+      便利な機能をシンプルな記述で利用できるためLaravelでは頻繁に使われています。
+      実はこれまでも、ルーティングを行う時にはRouteファサードを使用していました。
+      ファサードを利用することにより、色々な機能を手軽に実装することができます。
+      今回では入力フォームを実装したいので、FORMファサードを使用しましょう。
+      
+      
+      
+      # laravelcollective/html
+      FORMファサードを使うためにはlaravelcollective/htmlライブラリを読みこむ必要があります。
+      Laravelではライブラリを読み込む時にcomposer requireコマンドを利用します。
+      composer require ライブラリ名と実行することでcomposer.jsonファイルが更新され、
+      読み込んだライブラリが使用できるようになります。
+      $ composer require laravelcollective/html 5.2
+      
+      
+      # app.php
+      app.phpファイルはLaravelの設定ファイルです。ライブラリを追加する場合、
+      composer.jsonにインストールしたいライブラリを追加し、composer updateコマンドを
+      実行しただけでは使えるようにはなりません。app.phpファイルにファサードの登録や読み込みを
+      するための設定をする必要があります。
+      
+      
+      
+      # Request $request
+      ビューでフォームに入力された情報は、コントローラーにキーと一緒に
+      パラメーターとして送られます。このパラメーターはRequestというクラスを使うことで
+      取得することが出来ます。今回はRequestクラスのプロパティ$requestを定義しています。
+      実際に使う場合は$request->nameという形で使用することが出来ます。
+      
+          public function store(Request $request)
+          {
+              Tweet::create(
+                  array(
+                      'name' => $request->name,
+                      'image' => $request->image,
+                      'text' => $request->text
+                  )
+              );
+      
+              return view('tweets.store');
+          }
+      
+      
+      # $guarded $fillableプロパティ
+      モデルクラスに$guardedまたは$fillableを定義することで、テーブルに複数の値を同時に
+      保存することができるようになります。$guardedには複数値を代入させないカラムの指定を、
+      $fillableには複数代入させるカラムの指定を定義します。デフォルトでは
+      $guarded = array(*)となっているため全てのカラムが複数代入できないようになっています。
+      今回はid以外は複数代入できるように設定していきます。
+      
+      class Tweet extends Model
+      {
+          protected $fillable = array('name', 'image', 'text');
+      }
+      
+      
+      # Form::modelメソッド
+      Form::modelメソッドは、モデルのインスタンスをフォームに紐づけ、 
+      モデルのプロパティ名を指定するだけでモデルのインスタンスに対応する値を読み込ませることが
+      できます。これにより、モデルに紐付いたフォームをすっきりと書くことができます。
+      
+      
+      
+      # Form::openとForm::model
+      Form::model と Form::open どちらを使うべきかは、基本的にモデルの有無で判断します。
+      入力フォームで入力するデータのモデルがあれば Form::model を使い、入力するデータのモデルが
+      なければ Form::openを使います。
+      
+          
+      Form::model：モデルがあるデータを扱うときに使う。(投稿フォームなど)
+      Form::open：単にデータを特定のアクションに送りたい時に使う。（検索フォームなど）
+          
+          
+      その他のメソッド
+      メソッド	          用途
+      Form::open	      formの開始タグを生成
+      Form::close	      formの終了タグを生成
+      Form::label	      labelのlabelタグを表示　
+      Form::text	      textのinputタグを表示
+      Form::selectRange	モデルで設定したフィールドをselectタグで選べるようにして表示
+      Form::check_box	  checkboxのinputタグを表示
+      Form::submit	      submitのinputタグを表示    
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,70 @@
+createdAt: "2018-03-13T09:37:32.925Z"
+updatedAt: "2018-03-19T08:45:51.426Z"
+type: "SNIPPET_NOTE"
+folder: "5202b1c383243659e92c"
+title: "LaravelGeneral"
+description: "LaravelGeneral"
+snippets: [
+  {
+    name: "laravelGeneral.py"
+    mode: "Python"
+    content: '''
+      # composer.jsonファイルを以下のように編集してください
+      Laravelのバージョン5.2では以下の設定をしないとエラーが出るため最初に
+      composer.jsonファイルを編集します。
+      43行目の"php artisan clear-compiled"をコピーし、46行目の"php artisan optimize"
+      の下に貼り付けます。
+      その後に42~44行目までを削除します。
+      composer.jsonファイルはすべて配列型なため43行目"php artisan optimize"の最後に
+      ,のつけ忘れに注意してください。
+      
+      composer.jsonファイルの変更を読み込むために
+      composer installコマンドを実行します。
+      
+      
+      # Laravelでは、ユーザのパスワードなどを他人に知られないようにするために
+      .envファイルに定義されているAPP_KEYというものを使います。
+      3行目に APP_KEY=SomeRandomString という項目があると思います。
+      Laravelでは予めデフォルトで SomeRandomString と記述されているので、
+      任意の文字列に変更します。
+      APP_KEYを設定するには php artisan key:generateコマンドを実行します。
+        
+      # view
+      ビューファイルの拡張子はblade.phpですが、
+      これはphpのコードを書くことが出来るHTMLファイルだと理解しておきましょう。
+      
+      
+      
+      # require_once構文
+      require_once構文はファイルを指定し、そのファイルを一度だけ読み込むことができます。
+      先ほどsimple_html_dom.phpファイルを配置しましたが、このファイルを反映させるためには
+      require_onceを使って読み込む必要があります。読み込みは
+      require_once('simple_html_dom.php')とファイル名を指定します。
+      
+        require_once 'simple_html_dom.php';
+      
+        
+      # requireとrequire_onceの違い
+      require構文は指定した回数だけファイルを読み込みます。例えば、
+      require('simple_html_dom.php')と3回記述すると3回simple_html_dom.phpファイルが
+      読み込まれます。一方で、require_onceは再読み込みをしません。require_onceを使うと
+      一度読み込んだファイルがあれば同じ名前のファイルは2回目以降読み込まれなくなります。
+      そうすることで、関数の再定義や変数に再代入によるエラーを未然に防ぐことができます。
+      
+      
+      
+      
+      # laravelcollective/htmlライブラリ
+      laravelcollective/htmlはFormに関する多くの便利なメソッドが用意されている
+      ライブラリです。Formに関わらずLaravelのようなフレームワークには多くのライブラリが
+      用意されており、これらを用いることでコードを簡潔に書くことができるようになります。
+      LaravelのViewでFormを記述するには、直接HTMLを書く方法とライブラリに定義されている
+      メソッドを利用する2種類の方法があります。今回は後者のライブラリ(laravelcollective/html)を使う方法で実装していきます。
+      
+      laravelcollective/htmlはcomposerを使ってインストールします。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

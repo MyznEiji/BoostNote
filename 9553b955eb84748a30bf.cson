@@ -1,0 +1,21 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#State"
+description: "C#State"
+snippets: [
+  {
+    name: "c#State.cs"
+    mode: "C#"
+    content: '''
+      //State
+      Stateパターンとは、「状態」をクラスとして表現するパターンです。
+      例えば、前に進むという移動の動作は同じだが、走っている状態と歩いている状態で
+      スピードのみ異なる場合があります。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-03T08:58:16.436Z"
+updatedAt: "2017-11-03T08:58:54.434Z"

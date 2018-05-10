@@ -1,0 +1,51 @@
+createdAt: "2018-05-06T08:57:35.505Z"
+updatedAt: "2018-05-08T09:17:36.930Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryData"
+description: "JqueryData"
+snippets: [
+  {
+    name: "data.js"
+    mode: "JavaScript"
+    content: '''
+      # HTML上にdata-*があればその値を読む
+      # ただし、値を設定してもHTML上のdata-*は書き変わらない
+      # jQueryの内部的なかyッシュを書き換える仕様
+      # プログラム内で要素に値を保持したい場合に利用するといい
+      
+      
+      # .data()
+      データ属性の値を取得する
+      
+      
+      # .removeData()
+      指定したデータ要素を削除する
+      
+      
+      
+      $(function() {
+      	// ボタン クリック時の処理
+      	$("#btn").click(function() {
+      		var $t = $(this);
+      
+      		console.log("name", $t.data("name"));
+      		console.log("age", $t.data("age"));
+      		console.log("like", $t.data("like"));
+      
+      		$t.data("age", $t.data("age") + 1);
+      		if ($t.data("like")) $t.removeData("like");
+      		else                 $t.data("like", "cat");
+      		$t.removeData("name");
+      	});
+      });
+      
+    '''
+  }
+]
+tags: [
+  "data"
+  "removeData"
+]
+isStarred: false
+isTrashed: false

@@ -1,0 +1,113 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonScipy"
+description: "PythonScipy"
+snippets: [
+  {
+    name: "pythonScipy.py"
+    mode: "Python"
+    content: '''
+      #Scipy
+      科学や統計に用いられるパッケージ
+      
+      
+      #from scipy import stats
+      scipyのなかのstatsをインポートしている
+      
+      
+      #stats.norm(0, 5).rvn(100)
+      平均が0、標準偏差が5の乱数データを100個作る
+      
+      #stats.mode(variable)
+      モードを求める
+      
+      #from scipy.stats import norm
+      scipy.statsのnormをインポートをしている
+      normに確率密度関数を扱うpdf関数が含まれている
+      
+      
+      #stats.norm()
+      正規分布のための関数
+      第一引数に平均値
+      第二引数で分布の幅を決めてあげる（標準偏差）
+      
+      
+      #norm.pdf()
+      確率密度関数を扱う
+      
+      #from scipy.stats import expon
+      scipy.statsの中のexpon(エクスポネーシャル)をインポートしている
+      
+      #stats.ganam()
+      ガンマ関数を扱える
+      
+      #expon.pdf(data)
+      指数確率密度関数/ べき乗則に従った確率密度関数を得る
+      "べき乗則"
+      平仮名の「し」という字に似た「少数のほんの上位が突出して数を稼ぎ、
+      大多数の下位が少数を分け合う」特徴を持つ自然法則
+      
+      
+      
+      #from scipy.stats import binom
+      scipy.statsの中のbinom(バイノミナル)をインポートしている
+      
+      
+      #binom.pmf(x,n,p)
+      ニ項確率質量関数を用いるときに使う。
+      グラフにすると離散的で分布は釣鐘状になる
+      
+      #binom.stats(n, p) n=試行の回数 p=成功の確率
+      二項分布の平均と、分散を求めることができる
+      標準偏差は分散**0.5で求めることができる
+      
+      #binom.pmf(array, n, p)
+      二項分布の確率質量関数から実際の確率を計算する
+      
+      
+      #from scipy.stats import poisson
+      scipy.statsの中のpoisson(ポワゾン)をインポート  
+      
+      #poisson.pmf(k,average)
+      ポアゾン確率質量関数
+      平均値があって、ある値になる確率を求めてくれる
+      ex.ウェブサイトの訪問者が平均で１日500人。550人になる確率は？
+      ポアゾン分布の平均がaverageの時のkが来る確率を求めることができる
+      
+      
+      #scipy.skew(data)
+      歪度を計算する 
+      
+      
+      #scipy.kurtosis(data)
+      尖度を計算する
+      
+      
+      #slope,intercept,r_value,p_value,std_err = scipy.stats.linregress(x,y)
+      slope = 傾き
+      intercept = 切片,
+      r_value = 相関係数
+      p_value = 有意確率
+      std_err = 標準誤差
+      
+      
+      #scipy.misc.comb(a, b)
+      aCbが求めることができる 確率のコンビネーション、a回のうちb回する組み合わせを
+      求められる
+      
+      
+      #scipy.stats.ttest_ind(A, B)
+      AとBをT検定を行う
+      返ってきた値のStaticが統計量で pvalueがp値です
+      統計量Tは2つのデータセットの各値の差の標準偏差、および分散で計算をする
+      統計的に有意となるためには、大きい（正確には絶対値が）
+      統計量tと小さいp値が必要です。
+      実際には、統計学者はp値の結果をより重視しています。
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-12T08:43:46.348Z"
+updatedAt: "2017-12-20T09:49:46.227Z"

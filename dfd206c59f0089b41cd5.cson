@@ -1,0 +1,80 @@
+type: "SNIPPET_NOTE"
+folder: "f2a0c68525cd18b96288"
+title: "RailsGem"
+description: "RailsGem"
+snippets: [
+  {
+    name: "Gem.rb"
+    mode: "Ruby"
+    content: '''
+      #pry-rails
+      pry-railsはRails向けに開発されたデバッグツールです。デバッグツールとは、
+      作業の際にバグの有無を確認したり、処理を止めてソースコードが正しいかを確認する際に
+      使用するツールです。デバッグツールを使いこなすことで、より開発がしやすくなります。
+      pry-railsはGemとして提供されており、本開発では最初にGemのインストールを行った際に
+      インストールしてあります。またGemをインストールした時はrails sをし直しサーバーを
+      立ち上げ直す必要があります。それはインストールしたGemが反映されるタイミングがサーバーを
+      立ち上げるときだからです。
+      
+      
+      
+      #prefix
+      Prefix(プレフィックス)とは、ルーティングのパスが入る変数のことです。
+      コントローラやビューなどで呼び出すことで、prefixに入っているパスやURL情報を
+      取得できるようになります。Prefixは、routes.rbの各リクエストにオプションとして設定しますが、
+      記述によっては自動的に作成される場合もあります。
+      これを確認するには、ターミナルからrake routesコマンドを実行します。
+      すると、以下のような表示になります。
+      
+      リクエスト	                 prefix	                パス
+      devise/sessions#new	      new_user_session	     /users/sign_in
+      devise/sessions#create	  user_session	         /users/sign_in
+      devise/sessions#destroy	  destroy_user_session	 /users/sign_out
+      
+      
+      
+      
+      #bundlerによるgem管理
+      bundlerを利用してインストールしたgemは、Railsの各プロジェクトではなく、
+      Rubyのバージョンごとにある保存場所にインストールされています。
+      bundle show [gemの名前]というコマンドを実行するとbundlerでインストールした
+      gemがどこに保存されているのか確認することができます。
+      ```
+        $ bundle show rails
+        /.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/rails-4.2.6
+      ```
+      
+      
+      #bundle execコマンド
+      bundle exec は2つ以上のrailsアプリケーションを同じバージョンのRubyを利用して
+      作成している際に必要となるコマンドです。
+      rakeコマンドやrailsコマンドなどはそれぞれrake、railsというgemによって使うことができますが、
+      開発しているプロジェクトが2つ以上ある場合に「rake db:migrate」などのコマンドを
+      打ち込んでしまうとエラーが起きることがあります。
+      これは同じRubyのバージョンで複数のアプリケーションを開発していると、
+      同じ名前のgemでもアプリケーションごとにバージョンが異なることがあるためです。
+      例えば、下の方なアプリがある場合です。
+      
+      アプリ	　　　　　　 rubyバージョン	nokogiriバージョン
+      アプリケーション１	 2.3.1	　　　　 1.3.3
+      アプリケーション２	 2.3.1	        1.5.9
+      
+      アプリケーション1をターミナルでrake db:migrateしたい際には、bundle execコマンドを
+      接頭につけてrakeコマンドを実行すると、Gemfileで指定した環境下のrakeの
+      コマンドとして実行されます。
+      
+      ```
+        $ bundle exec rake db:migrate
+        # 必ず最初に bundle exec をつけて実行する。
+      ```
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-08-15T05:55:39.062Z"
+updatedAt: "2018-03-14T05:59:52.310Z"

@@ -1,0 +1,23 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Convert"
+description: "C#Convert"
+snippets: [
+  {
+    name: "C#Convert.cs"
+    mode: "C#"
+    content: '''
+      //Convert.ToInt32
+      文字列をInt32(int)型に変換します
+      
+      //Convert.ToInt16
+      文字列をUint16(ushort)型に変換します
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-11-02T14:10:36.566Z"
+updatedAt: "2017-11-02T14:10:51.397Z"

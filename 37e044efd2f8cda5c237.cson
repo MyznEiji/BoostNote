@@ -1,0 +1,210 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonMatplotlib"
+description: "PythonMatplotlib"
+snippets: [
+  {
+    name: "PythonMatplotlib.py"
+    mode: "Python"
+    content: '''
+      import matplotlib.pyplot as plt　と宣言
+      
+      #matplotlib
+      Pythonでグラフを描画するためのライブラリー。
+      読み込んだデータをグラフ上にプロット(散布)したり、
+      棒線グラフや散布図のグラフに描画することが出来ます。
+      
+      
+      #plt.arange()
+      arange(0,10,0.1)とすることで
+      0から10まで0.1刻みで出力する
+      
+      #plt.plot(x,y)
+      #plt.show()
+      とすることでx,y軸のグラフの描画ができる
+      
+      #dataframe.plot(kind="", x="", y="")
+      データフレームのグラフが描画できる
+      "legend=True"
+      Trueにすると凡例が表示される
+      
+      "figsize=(10, 4)"
+      横幅10,縦幅4でグラフを描画する
+      
+      "xerr"
+      X 軸方向のエラーバー (誤差範囲) を出力する場合、数値または配列を指定。
+      
+      "yerr"
+      Y 軸方向のエラーバー (誤差範囲) を出力する場合、数値または配列を指定。
+      
+      
+      #plt.plot(x,y,label = "xxx")
+      グラフ上にxxxのラベルを明示することができる
+      
+      #plt.plot(x,norm.pdf(x),b-')
+      第三引数はグラフの色
+      -はソリッドで:は点線となる
+      
+      #plt.scatter(x,y,c="color",label= "name",marker= "+")
+      散布図を用いる時に使う
+      markerはマーカに用いる記号
+      cはカラー
+      sは大きさ
+      edgecolorsマーカーの淵の色
+      label=nは凡例の時の設定
+      
+      
+      #plt.legend()
+      散布図を用いる時に使う
+      凡例の設定を行う
+      ex
+      plt.legend('A','B',loc = 4)
+      loc=4というのはこの場合グラフの右下を表す
+      
+      
+      #plt.hist(data,segments)
+      ヒストグラムを作る。第一引数にデータ、第二引数にセグメント数
+      
+      "matplotlib.pyplot.hist の主要な引数"
+      
+      bins : ビン (表示する棒) の数。階級数。(デフォルト値: 10)
+      range : ビンの最小値と最大値を指定。(デフォルト値: (x.min(), x.max()))
+      normed : True に設定すると正規化 (合計値が 1 になるように変換) を実施。
+                (デフォルト値: False)
+      cumulative : True に設定すると、累積ヒストグラムを出力。 
+                    (デフォルト値: False)
+      bottom : 各棒の下側の余白を数値または配列で指定。
+      histtype : ‘bar’ (通常のヒストグラム), ‘barstacked’ (積み上げヒストグラム),  
+                  ‘step’ (線), ‘stepfilled ‘ (塗りつぶしありの線) から選択。 
+                  (デフォルト値: ‘bar’)
+      align : 各棒の中心を X 軸目盛上のどの横位置で出力するか。
+              ‘left’, ‘mid’, ‘right’ から選択。(デフォルト値: ‘mid’)
+      orientation : 棒の方向。’horizontal’ (水平方向), ‘vertical’ (垂直方向) 
+                    から選択。(デフォルト値: ‘vertical’)
+      rwidth : 各棒の幅を数値または、配列で指定。
+      log : True に設定すると、縦軸を対数目盛で表示します。
+      color : ヒストグラムの色。配列で指定し、データセット単位で色を指定することが
+              できます。
+      label : 凡例を載せる際に使用します。
+      stacked : True に設定すると積み上げヒストグラムで出力します。
+                False に設定すると、横に並べて出力します。
+      edgecolor : 棒の枠線の色
+      
+      
+      
+      #plt.savefig('Passを指定',保存する形式)
+      プロットした画像を指定した保存先に、指定した形式で保存する
+      
+      
+      #plt.axes()
+      軸の調整をするオブジェクトを取得
+      
+      
+      #plt.axes.set_xlim([min,max])
+      x軸の範囲の設定
+      
+      
+      #plt.axes.set_ylim([min,max])
+      y軸の範囲の設定
+      
+      
+      #plt.axes.set_xticks([目盛り])
+      x軸に目盛りをつける
+      ex
+      plt.axes.xticks([-5,-4,-3,-2,-1,0,1,2,3,4,5])
+      
+      
+      #plt.axes.set_yticks([目盛り])
+      y軸に目盛りをつける
+      
+      
+      #axes.grid()
+      目盛りに対応したグリッドが自動的に描画される
+      
+      
+      #XKCDスタイル
+      漫画調のグラフの描画ができる。
+      
+      
+      #plt.xkcd()
+      XKCDスタイルを呼び出す
+      
+      #棒グラフの描画
+      values = [12,55,4,32,14]
+      colors = ['r','g','b','c','m']
+      plt.bar(range(0.5),values,color = colors)
+      plt.show()
+      
+      
+      #from matplotlib.colors import ListedColormap
+      色のリストであるカラーマップを作成するためのモジュール
+      
+      
+      
+      #plt.contourf(横軸、縦軸、高さ)
+      等高線を描画するメソッド。第一引数に横軸、第二引数に縦軸に取り、
+      第三引数を高さを取ります。同じ高さの領域を塗り潰すグラフを描画します。
+      横軸、縦軸、高さは同じ列数(次元数)である必要があります。
+      
+      #plt.xlabel(string)
+      x軸の名前
+      
+      #plt.ylabel(string)
+      y軸の名前
+      
+      #plt.imshow()
+      
+      #plt.add_legend()
+      凡例を追加できる
+      
+      
+      #plt.annotate()
+        矢印とかコメントとかをを描画できる
+      
+        "xy=(750,-1000)"                    
+        矢印の終点
+      
+        "xytext=(750, -1000+1000)"
+        注釈コメントの位置。矢印の始点
+        
+        for label, x, y in zip(rets.columns, rets.mean(), rets.std()):
+          plt.annotate(
+              label,
+              xy=(x, y), xytext=(0, 20),
+              textcoords='offset points', ha='right', va="bottom",
+              arrowprops=dict(arrowstyle='-', connectionstyle='arc3
+                      
+       
+                              
+      #plt.hlines(y=0, xmin=-1.0, xmax=50)
+      水平な線を引くことができる 
+                              
+                              
+      #plt.subplots()
+      複数のグラフを表示、グラフの大きさを変更する
+        x = np.linspace(-3, 3, 20)
+        y1 = x
+        y2 = x ** 2
+        y3 = x ** 3
+        y4 = x ** 4
+        fig, ax = plt.subplots(2, 2, figsize=(6, 4))
+                              
+        # 左上
+        ax[0, 0].plot(x, y1)
+        # 右上
+        ax[0, 1].plot(x, y2)
+        # 左下
+        ax[1, 0].plot(x, y3)
+        # 右下
+        ax[1, 1].plot(x, y4)
+                            
+                              
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-05T11:31:22.046Z"
+updatedAt: "2018-03-21T07:33:55.362Z"

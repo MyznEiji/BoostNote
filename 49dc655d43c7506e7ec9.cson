@@ -1,0 +1,60 @@
+type: "SNIPPET_NOTE"
+folder: "7cb7449b9a7bb5682bf5"
+title: "Mathf"
+description: "Mathf"
+snippets: [
+  {
+    name: "Mathf.cs"
+    mode: "C#"
+    content: '''
+      //Mathf.Infinity
+      無限大を表現する
+      
+      
+      //Mathf.NegativeInfinity
+      負の無限大を表現する
+      
+      
+      //Mathf.Clamp(float value, float min, float max);
+      valueを最小と最大で値を制限する
+      
+      
+      //Mathf.Move.Towards(float current, float target, float maxDelta);
+      currentからtargetまで、maxDeltaのスピードで移動します。
+      これは基本的に Mathf.Lerp と同じですが、代わりに関数は速度がmaxDeltaを
+      超えないようにします。 MaxDeltaの値が負の場合はtargetから遠ざかります。
+      
+      
+      //Mathf.sign(float f);
+      fの符号を返します。
+      fが正か 0 の場合は 1 を、負の場合は -1 を返します
+      
+      
+      //Mathf.Max(float a, float b);
+      2つ以上の値から最大値を返します。
+      比較した2つの値のうち大きい方を返します
+      
+      
+      //Mathf.Abs(float f);
+      fの絶対値を返す。
+      値の符号が正、負関係なく、絶対値を返す
+      
+      
+      //Mathf.PingPong(float t, float length);
+      値tを行き来させます。 tはlengthより大きくなることも0より小さくなることもありません。
+      返される値は0とlengthの間を行ったり来たり移動します。
+      
+      
+      
+      
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-07T14:07:46.244Z"
+updatedAt: "2017-09-23T16:14:55.655Z"

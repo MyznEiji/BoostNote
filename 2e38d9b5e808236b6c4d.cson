@@ -1,0 +1,19 @@
+type: "SNIPPET_NOTE"
+folder: "ae869880fb7248601fce"
+title: "mysqlError"
+description: "mysqlError"
+snippets: [
+  {
+    name: "mysqlError.cs"
+    mode: "C#"
+    content: '''
+      //ERROR 1007 (HY000): Can't create database 'pictweet_development'; database exists
+      すでにデーターベースが存在している
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-17T12:52:18.455Z"
+updatedAt: "2017-09-17T12:52:58.920Z"

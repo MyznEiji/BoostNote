@@ -1,0 +1,64 @@
+createdAt: "2018-03-08T05:18:01.548Z"
+updatedAt: "2018-03-09T10:37:22.127Z"
+type: "SNIPPET_NOTE"
+folder: "58b5c6ff6396fd51e590"
+title: "General"
+description: "General"
+snippets: [
+  {
+    name: "General.py"
+    mode: "Python"
+    content: '''
+      # IAM
+      Identity and Access Management
+      AWSのユーザーアクセスと暗号キーの管理を行うサービス
+      
+      
+      # ポリシー
+      ユーザーの権限
+      
+      #ロール
+      サーバーの権限
+      
+      
+      # AZ(アベイラビリティゾーン)
+      データセンター
+      
+      # VPC(Virtual Private Cloud)
+      プライベートなリソース空間
+      
+      
+      # サブネット
+      ネットワークアドレス空間
+      
+      
+      # インバウンドルール
+      サーバーに入ってくる通信のルール
+      
+      
+      # アウトバウンドルール
+      サーバーから出て行く通信のルール
+      
+      # Route53
+      DNSサービス
+      自分でDNSサーバーを立てることなく利用できる
+      WebブラウザからDNSレコード管理ができる
+      AWSサービスをエイリアスとして設定することができる
+      
+      外向けDNS(インターネット向け)
+      
+      内向けDNS(VPC向け)
+      
+      
+      # DNSの仕組み
+      www.orchestrabit.jp
+      
+      ルートDNSサーバー : jp
+      お名前.comのDNSサーバー : orchestrabit.jp
+      AWSのDNSサーバー(Route53) : www.orchestrabit.jp
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

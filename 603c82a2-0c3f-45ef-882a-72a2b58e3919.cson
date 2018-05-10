@@ -1,0 +1,836 @@
+createdAt: "2018-04-19T09:13:27.842Z"
+updatedAt: "2018-05-05T15:45:18.241Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonParallelization"
+description: "PythonParallelization"
+snippets: [
+  {
+    name: "thread.py"
+    mode: "Python"
+    content: '''
+      # 他のメソッドから呼ばれて、スレッドが乱発されるとこまるので、
+      # 基本的にif __name__ == '__main__':で処理する
+      
+      
+      
+      import logging
+      import threading
+      import time
+      
+      
+      #loggingで出力する
+      logging.basicConfig(
+          level=logging.DEBUG, format='%(threadName)s: %(message)s')
+      
+      def worker1():
+          logging.debug('start')
+          time.sleep(5)
+          logging.debug('end')
+      
+      
+      def worker2(x, y=1):
+          logging.debug('start')
+          logging.debug(x)
+          logging.debug(y)
+          time.sleep(5)
+          logging.debug('end')
+      
+          
+      if __name__ == '__main__':
+          t1 = threading.Thread(name="rename worker1", target=worker1)
+          t2 = threading.Thread(target=worker2, args=(100,), kwargs={'y':200})
+          t1.start() #スレッドが走る
+          t2.start()
+      
+          print('started')
+          
+          
+          
+      "name"スレッドの名前を変えることができる
+      "args"スレッドに変数を渡して、処理ができる
+      
+      
+      
+      
+      #デーモン化
+      if __name__ == '__main__':
+          t1 = threading.Thread(target=worker1)
+          t1.setDaemon(True) #このt1の処理が長い時にまたないで処理を終了する
+          t2 = threading.Thread(target=worker2)
+          t1.start() #スレッドが走る
+          t2.start()
+      
+          print('started')
+      
+          t1.join()　# setDeamonしたやつでも処理が終わるまで待つ
+          t2.join()　#デーモン化してないやつでも明示的に書くのが暗黙の了解
+          
+          
+          
+      # for文でスレッドを生成する場合
+      if __name__ == '__main__':
+          for _ in range(5):
+              t = threading.Thread(target=worker1)
+              t.setDaemon(True) #このt1の処理が長い時にまたないで処理を終了する
+              t.start()
+      
+          print(threading.enumerate())
+          for thread in threading.enumerate(): # 処理中のスレッドのリスト
+              if thread is threading.currentThread(): 
+                  print(thread)
+                  continue #メインのスレッドであればjoinはしないようにする
+              thread.join(
+      
+                
+                
+                
+      # timer
+        t = threading.Timer(3, worker1) # スレッドのタイマーを使って始める時間を遅らせる
+        t.start()
+                
+        "argsやkwargsも渡せる"
+    '''
+  }
+  {
+    name: "LockRLock.py"
+    mode: "Python"
+    content: '''
+      # 並列処理で何かの処理を待ってから、ある処理をしたいときに使う
+      
+      def worker1(d, lock):
+          logging.debug('start')
+          with lock: #acquire()とrelease()を省くことができる
+              i = d['x']
+              time.sleep(5)
+              d['x'] = i + 1
+              logging.debug(d)
+              with lock:
+                  d['x'] = i + 1
+          logging.debug('end')
+      
+      
+      def worker2(d, lock):
+          logging.debug('start')
+          lock.acquire()
+          i = d['x']
+          d['x'] = i + 1
+          logging.debug(d)
+          lock.release()
+          logging.debug('end')
+      
+      if __name__ == '__main__':
+      
+      
+          d = {'x': 0}
+          lock2 = threading.Lock() #lockのインスタンスを生成(lockのネストはできない)
+          lock = threading.RLock() 
+          #Rlockのインスタンスを生成(ネストした時にreleaseされていなくてもacquireに入る)
+      
+          t1 = threading.Thread(target=worker1, args=(d, lock))
+          t2 = threading.Thread(target=worker2, args=(d, lock))
+          t1.start()
+          t2.start()
+          
+          
+          
+    '''
+  }
+  {
+    name: "Semaphore.py"
+    mode: "Python"
+    content: '''
+      # Lockとにてるけど、そのスレッド数をコントロールできる  
+      
+      threading.Semaphore(2)とするとlockしたやつうち2つのスレッドが動く
+      
+      
+      import logging
+      import threading
+      import time
+      
+      
+      logging.basicConfig(
+          level=logging.DEBUG, format='%(threadName)s: %(message)s')
+      
+      def worker1(semaphore):
+          with semaphore:
+              logging.debug('start')
+              time.sleep(5)
+              logging.debug('end')
+      
+      def worker2(semaphore):
+          with semaphore:
+              logging.debug('start')
+              time.sleep(5)
+              logging.debug('end')
+      
+      def worker3(semaphore):
+          with semaphore:
+              logging.debug('start')
+              time.sleep(5)
+              logging.debug('end')
+      
+      
+      if __name__ == '__main__':
+      
+          semaphore = threading.Semaphore(2)
+      
+          t1 = threading.Thread(target=worker1, args=(semaphore,))
+          t2 = threading.Thread(target=worker2, args=(semaphore,))
+          t3 = threading.Thread(target=worker3, args=(semaphore,))
+          t1.start()
+          t2.start()
+          t3.start()
+      
+    '''
+  }
+  {
+    name: "queue.py"
+    mode: "Python"
+    content: '''
+      
+      def worker1(queue):
+          logging.debug('start')
+          queue.put(100) # 値をqueueに入れる
+          time.sleep(5)
+          queue.put(200) # 値をqueueに入れる
+          logging.debug('end')
+      
+      
+      def worker2(queue):
+          logging.debug('start')
+          print(queue.get()) # queueに入っている値を取得する
+          print(queue.get()) # queueに値が入るまで取得待ちする
+          logging.debug('end')
+      
+      
+      if __name__ == '__main__':
+      
+          queue = queue.Queue()
+      
+          t1 = threading.Thread(target=worker1, args=(queue,))
+          t2 = threading.Thread(target=worker2, args=(queue,))
+          t1.start()
+          t2.start()
+          
+          
+          
+          
+      # 10万回のデータを3つのスレッド処理する時
+      import logging
+      import threading
+      import queue
+      import time
+      
+      
+      logging.basicConfig(
+          level=logging.DEBUG, format='%(threadName)s: %(message)s')
+      
+      def worker1(queue):
+          logging.debug('start')
+          while True:
+              item = queue.get()
+              if item is None:
+                  break
+              logging.debug(item)
+              queue.task_done()
+      
+          logging.debug('logggggggggggggggggggggggggggggggggggggg')
+          logging.debug('end')
+      
+      if __name__ == '__main__':
+          queue = queue.Queue()
+          for i in range(100000):
+              queue.put(i) # queueに値を追加している
+          ts = []
+          for _ in range(3): # 100000万行のデータを3つのスレッドで処理をする
+              t = threading.Thread(target=worker1, args=(queue,))
+              t.start()
+              ts.append(t)
+          logging.debug('tasks are not done')
+          queue.join()
+          logging.debug('task are done')
+      
+          for _ in range(len(ts)):
+              queue.put(None)
+      
+      
+          [t.join() for t in ts]
+      
+    '''
+  }
+  {
+    name: "event.py"
+    mode: "Python"
+    content: '''
+      # キューはリストのようなもの
+      # スレッド同士で値を入れたり取り出したりすることができる
+      # 何万件の処理とかに使われる
+      
+      import logging
+      import threading
+      import queue
+      import time
+      
+      
+      logging.basicConfig(
+          level=logging.DEBUG, format='%(threadName)s: %(message)s')
+      
+      def worker1(event):
+          event.wait() # event.set()を待っている　
+          logging.debug('start')
+          time.sleep(3)
+          logging.debug('end')
+      
+      
+      def worker2(event):
+          event.wait() #event.set()を待っている
+          logging.debug('start')
+          time.sleep(3)
+          logging.debug('end')
+      
+      
+      def worker3(event):
+          logging.debug('start')
+          time.sleep(5)
+          logging.debug('end')
+          event.set()
+      
+      
+      if __name__ == '__main__':
+          event = threading.Event()
+          t1 = threading.Thread(target=worker1, args=(event,))
+          t2 = threading.Thread(target=worker2, args=(event,))
+          t3 = threading.Thread(target=worker3, args=(event,))
+          t1.start()
+          t2.start()
+          t3.start()
+      
+    '''
+  }
+  {
+    name: "condition.py"
+    mode: "Python"
+    content: '''
+      # Lockのようにある処理をしたらある処理をする
+      
+      
+      import logging
+      import threading
+      import time
+      
+      
+      logging.basicConfig(
+          level=logging.DEBUG, format='%(threadName)s: %(message)s')
+      
+      
+      def worker1(condition):
+          # condition.notifyAllが実行するまで待つ
+          with condition:
+              condition.wait()
+              logging.debug('start')
+              time.sleep(3)
+              logging.debug('end')
+      
+      
+      def worker2(condition):
+          # condition.notifyAllが実行するまで待つ
+          with condition:
+              condition.wait()
+              logging.debug('start')
+              time.sleep(3)
+              logging.debug('end')
+      
+      
+      def worker3(condition):
+          with condition:
+              logging.debug('start')
+              time.sleep(5)
+              logging.debug('end')
+              
+              # condition.wait()に解放する
+              condition.notifyAll()
+      
+      if __name__ == '__main__':
+          condition = threading.Condition()
+          t1 = threading.Thread(target=worker1, args=(condition, ))
+          t2 = threading.Thread(target=worker2, args=(condition, ))
+          t3 = threading.Thread(target=worker3, args=(condition, ))
+      
+          t1.start()
+          t2.start()
+          t3.start()
+      
+    '''
+  }
+  {
+    name: "barrier.py"
+    mode: "Python"
+    content: '''
+      #　指定したスレッド数が立たないと次に進まない
+      # worker1=server worker2=クライアントでどっちも両方とも立ち上がってないと
+      # 処理が進まないようなときに使う、両方のスレッドが立ち上がってのを確認してから
+      # 処理を行う
+      
+      
+      import logging
+      import threading
+      import time
+      
+      
+      logging.basicConfig(
+          level=logging.DEBUG, format='%(threadName)s: %(message)s')
+      
+      
+      def worker1(barrier):
+          r = barrier.wait()
+          logging.debug('num={}'.format(r))
+          while True:
+              logging.debug('start')
+              time.sleep(2)
+              logging.debug('end')
+      
+      
+      def worker2(barrier):
+          r = barrier.wait()
+          logging.debug('num={}'.format(r))
+          while True:
+              logging.debug('start')
+              time.sleep(2)
+              logging.debug('end')
+      
+      
+      if __name__ == '__main__':
+          barrier = threading.Barrier(2)
+          t1 = threading.Thread(target=worker1, args=(barrier, ))
+          t2 = threading.Thread(target=worker2, args=(barrier, ))
+      
+          t1.start()
+          t2.start()
+      
+    '''
+  }
+  {
+    name: "multi-process.py"
+    mode: "Python"
+    content: '''
+      # マルチプロセシング　非同期
+      
+      
+      from multiprocessing import (
+          Process,
+          Lock, RLock, Semaphore, Queue, Event, Condition, Barrier,
+          Value, Array, Pipe, Manager)
+      
+      
+      
+      import logging
+      import multiprocessing
+      import time
+      
+      logging.basicConfig(
+          level = logging.DEBUG, format='%(processName)s: %(message)s')
+      
+      def worker1(i):
+          logging.debug('start')
+          logging.debug(i)
+          time.sleep(5)
+          logging.debug('end')
+      
+      def worker2(i):
+          logging.debug('start')
+          logging.debug(i)
+          logging.debug('end')
+      
+      
+      if __name__ == '__main__':
+          i = 10
+          t1 = multiprocessing.Process(target=worker1, args=(i,))
+          t1.deamon = True
+          t2 = multiprocessing.Process(name='renamed worker2', target=worker2, args=(i,))
+          t1.start()
+          t2.start()
+          t2.join()
+          t1.join()
+      
+    '''
+  }
+  {
+    name: "Pool.py"
+    mode: "Python"
+    content: '''
+      from multiprocessing import (
+          Process,
+          Lock, RLock, Semaphore, Queue, Event, Condition, Barrier,
+          Value, Array, Pipe, Manager)
+      
+      
+      
+      import logging
+      import multiprocessing
+      import time
+      
+      logging.basicConfig(
+          level = logging.DEBUG, format='%(processName)s: %(message)s')
+      
+      def worker1(i):
+          logging.debug('start')
+          time.sleep(5)
+          logging.debug('end')
+          return i
+      
+      
+      if __name__ == '__main__':
+          # t1 = multiprocessing.Process(target=worker1, args=(i,))
+          #プールの数でワーカの数を指定する
+          with multiprocessing.Pool(3) as p:
+              p1 = p.apply_async(worker1, (100, ))
+              p2 = p.apply_async(worker1, (100, ))
+              logging.debug('executed')
+              logging.debug(p1.get(timeout=1)) 　# timeoutで1秒で帰ってこなかったらエラーを出す
+              logging.debug(p2.get()) # ワーカーのリターンをgetする
+      
+    '''
+  }
+  {
+    name: "PoolBlock.py"
+    mode: "Python"
+    content: '''
+      # 何かを処理してからマルチプロセスで処理をする
+      
+      
+      from multiprocessing import (
+          Process,
+          Lock, RLock, Semaphore, Queue, Event, Condition, Barrier,
+          Value, Array, Pipe, Manager)
+      
+      
+      
+      import logging
+      import multiprocessing
+      import time
+      
+      logging.basicConfig(
+          level = logging.DEBUG, format='%(processName)s: %(message)s')
+      
+      def worker1(i):
+          logging.debug('start')
+          time.sleep(5)
+          logging.debug('end')
+          return i
+      
+      
+      if __name__ == '__main__':
+          # t1 = multiprocessing.Process(target=worker1, args=(i,))
+          #プールの数でワーカの数を指定する
+          with multiprocessing.Pool(3) as p:
+              logging.debug(p.apply(worker1, (200, )))
+              logging.debug('executed apply')
+              p1 = p.apply_async(worker1, (100, ))
+              p2 = p.apply_async(worker1, (100, ))
+              logging.debug('executed')
+              logging.debug(p1.get()) 
+              logging.debug(p2.get()) # ワーカーのリターンをgetする
+      
+    '''
+  }
+  {
+    name: "PoolMap..py"
+    mode: "Python"
+    content: '''
+      #　使うのが便利　短縮できる
+      
+      
+      import logging
+      import multiprocessing
+      import time
+      
+      logging.basicConfig(
+          level = logging.DEBUG, format='%(processName)s: %(message)s')
+      
+      def worker1(i):
+          logging.debug('start')
+          time.sleep(5)
+          logging.debug('end')
+          return i * 2
+      
+      
+      if __name__ == '__main__':
+          # t1 = multiprocessing.Process(target=worker1, args=(i,))
+          #プールの数でワーカの数を指定する
+          with multiprocessing.Pool(3) as p:
+              # やり方1
+              # r = p.map(worker1, [100, 200])
+              # logging.debug('executed')
+              # logging.debug(r)
+      
+      
+              # やり方2
+              r = p.map_async(worker1, [100, 200])
+              logging.debug('executed')
+              logging.debug(r.get())
+      
+      
+              # やり方3
+              # imapはイテレータなので繰り返し処理で実行する
+              r = p.imap(worker1, [100, 200])
+              logging.debug('executed')
+      
+              for i in r:
+                  logging.debug(i)
+      
+      
+              # p1 = p.apply_async(worker1, (100, ))
+              # p2 = p.apply_async(worker1, (100, ))
+              # logging.debug(p1.get())
+              # logging.debug(p2.get()) # ワーカーのリターンをgetする
+      
+    '''
+  }
+  {
+    name: "pipe.py"
+    mode: "Python"
+    content: '''
+      # メモリが独立したプロセスで値を受け渡す
+      
+      
+      """
+      from multiprocessing import(
+          Process,
+          Lock, RLock, Semaphore, Queue, Condition, Event, Barrier,
+          Pipe, Value, Array, Manager
+      )
+      """
+      
+      
+      # parent_connがsendしたらchild_connが値を受け取る
+      
+      import logging
+      import multiprocessing
+      import time
+      
+      logging.basicConfig(
+          level=logging.DEBUG, format='$(processName)s: %(message)s')
+      
+      
+      def f(conn):
+          conn.send(['test'])
+          time.sleep(5)
+          conn.close()
+      
+      
+      if __name__ == '__main__':
+          # 二つの変数にそれぞれプロセスを代入する　
+          parent_conn, child_conn = multiprocessing.Pipe
+          # プロセスがスタート
+          p = multiprocessing.Process(target=f, args=(parent_conn, ))
+          p.start()
+          logging.debug(child_conn.recv())
+      
+    '''
+  }
+  {
+    name: "valueArray.py"
+    mode: "Python"
+    content: '''
+      """
+      from multiprocessing import(
+          Process,
+          Lock, RLock, Semaphore, Queue, Condition, Event, Barrier,
+          Pipe, Value, Array, Manager
+      )
+      """
+      
+      
+      import logging
+      import multiprocessing
+      import time
+      
+      
+      logging.basicConfig(
+          level=logging.DEBUG, format='$(processName)s: %(message)s')
+      
+      
+      def f(num, arr):
+          logging.debug(num)
+          num.value += 1.0
+          logging.debug(arr)
+          for i in range(len(arr)):
+              arr[i] *= 2
+      
+      
+      if __name__ == '__main__':
+          # 浮動小数点の場合はf　整数はiで引数を渡す　    
+          num = multiprocessing.Value('f', 0.0)
+          arr = multiprocessing.Array('i', [1, 2, 3, 4, 5])
+      
+          p1 = multiprocessing.Process(target=f, args=(num, arr))
+          p2 = multiprocessing.Process(target=f, args=(num, arr))
+      
+          p1.start()
+          p2.start()
+      
+          p1.join()
+          p2.join()
+      
+          logging.debug(num.value)
+          logging.debug(arr[:])
+      
+    '''
+  }
+  {
+    name: "manager.py"
+    mode: "Python"
+    content: '''
+      """
+      from multiprocessing import(
+          Process,
+          Lock, RLock, Semaphore, Queue, Condition, Event, Barrier,
+          Pipe, Value, Array, Manager
+      )
+      """
+      
+      
+      # parent_connがsendしたらchild_connが値を受け取る
+      
+      import logging
+      import multiprocessing
+      import time
+      
+      logging.basicConfig(
+          level=logging.DEBUG, format='$(processName)s: %(message)s')
+      
+      
+      def worker1(l, d, n):
+          l.reverse()
+          d['x'] += 1
+          n.y += 1
+      
+      
+      if __name__ == '__main__':
+          with multiprocessing.Manager() as manager:
+              l = manager.list()
+              d = manager.dict()
+              n = manager.Namespace()
+      
+              l.append(1)
+              l.append(2)
+              l.append(3)
+              d['x'] = 0
+              n.y = 0
+      
+              p1 = multiprocessing.Process(target=worker1, args=(l, d, n))
+              p2 = multiprocessing.Process(target=worker1, args=(l, d, n))
+      
+              p1.start()
+              p2.start()
+      
+              p1.join()
+              p2.join()
+      
+              logging.debug(l)
+              logging.debug(d)
+              logging.debug(n)
+              
+      
+    '''
+  }
+  {
+    name: "clientAndServer.py"
+    mode: "Python"
+    content: '''
+      #別マシン上で走るプロセス間のネットワーク通信
+      
+      "server"
+      
+      import queue
+      from multiprocessing.managers import BaseManager
+      
+      queue = queue.Queue()
+      
+      class QueueManager(BaseManager):
+          pass
+      
+      QueueManager.register(
+          'get_queue', callable=lambda: queue)
+      
+      manager = QueueManager(
+          address=('127.0.0.1', 50000),
+          authkey=b'abracadabra')
+      
+      server = manager.get_server()
+      server.serve_forever()
+      
+      
+      
+      
+      
+      
+      "client" # putしてサーバーに文字列を送る
+      
+      from multiprocessing.managers import BaseManager
+      
+      class QueueManager(BaseManager):
+          pass
+      
+      QueueManager.register('get_queue')
+      
+      manager = QueueManager(
+          address=('127.0.0.1', 50000),
+          authkey=b'abracadabra')
+      
+      manager.connect()
+      queue = manager.get_queue()
+      queue.put('hello')
+      
+      
+      
+      
+      "client2" # queue.getでサーバにputされた情報を取得する
+      
+      
+      from multiprocessing.managers import BaseManager
+      
+      class QueueManager(BaseManager):
+          pass
+      
+      QueueManager.register('get_queue')
+      
+      manager = QueueManager(
+          address=('127.0.0.1', 50000),
+          authkey=b'abracadabra')
+      
+      manager.connect()
+      queue = manager.get_queue()
+      print(queue.get())
+      
+      
+      
+      
+      
+      
+      
+    '''
+  }
+]
+tags: [
+  "並列処理"
+  "マルチスレッド"
+  "thread"
+  "デーモン"
+  "threading.enumerate()"
+  "Timer"
+  "Lock"
+  "RLock"
+  "condition"
+  "barrier"
+  "multiprocessing"
+  "apply_async"
+  "block"
+  "Pool"
+  "Map"
+  "pipe"
+]
+isStarred: false
+isTrashed: false

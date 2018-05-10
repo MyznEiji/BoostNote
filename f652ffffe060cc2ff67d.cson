@@ -1,0 +1,31 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonKernelDensityEstimation"
+description: "PythonKernelDensityEstimation"
+snippets: [
+  {
+    name: "PythonKernelDensityEstimation.py"
+    mode: "Python"
+    content: '''
+      #カーネル密度推定
+      なめらかなヒストグラムを作る
+      ヒストグラムはデータポイントの個数を数え合わせる
+      カーネル密度推定はデータがあるところにそれぞれ正規分布を作り
+      それらを足し合わせて、なめらかな曲線を作成する
+      
+      
+      
+      #バンド幅の推定
+      一個一個の正規分布の幅を決める
+      
+      #注意点
+      そのデータから推定されるデータを分布するから
+      年齢だとマイナスや、200歳まで推定される
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-12-03T08:05:59.803Z"
+updatedAt: "2017-12-05T08:19:32.011Z"

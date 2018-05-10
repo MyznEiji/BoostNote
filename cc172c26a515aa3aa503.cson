@@ -1,0 +1,326 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Structure"
+description: "C#Structure"
+snippets: [
+  {
+    name: "C#Structure.cs"
+    mode: "C#"
+    content: '''
+      //Structure
+      
+      //構造体
+      クラスと似ていて、決定的に違うのクラスは参照型だが、"構造体は値型"。
+      また、"継承できない"。
+      "構造体は初期化子を使ってインスタンス変数を初期化することはできない"。
+      下記のように定義する
+      public int x = 10;
+      "structキーワード"を使って定義する
+      
+      struct 名前
+      {
+        ・・・
+      }
+      
+      インターフェースの実装
+      struct 名前 : インターフェイス
+      {
+        ・・・
+      }
+      
+      構造体のメンバになれるのは"メソッド","フィールド","プロパティ","インデクサ等"、
+      ほとんどクラスと同じ
+      
+      "構造体特有のコンストラクタ"も持っていますが、必ず引数が必要
+      デストラクトは定義できない。
+      ```
+      構造体名 構造体変数;
+      構造体変数.メンバ名;
+      ```
+      
+      メンバに"staticキーワード"をつけると、そのメンバは「構造体名.メンバ」
+      の形で呼び出すことができる。
+      
+      ```
+      using System;
+      struct MyStruct
+      {
+        public static int x = 10;
+        static int[] myArray = new int[10];
+        
+        public static void Show()
+        {
+          Console.WriteLine("x = {0}",x);
+        }
+      }
+      
+      public static void Main()
+      {
+        MyStruct.Show(); // x = 10
+        MyStruct.x = 20;
+        MyStruct.Show(); // x = 20
+      }
+      
+      ```
+      
+      
+      //コンストラクタを持つ構造体
+      new演算子を使ってオブジェクトを作成すると、自作のコンストラクタが呼び出される。
+      自作のコンストラクタを作らなかった場合はデフォルトコンストラクタが呼び出される。
+      ```
+      using System;
+      
+      struct MyStruct
+      {
+        public int x;
+        
+        //コンストラクタ
+        //構造体の自作コンストラクタにはパラメータリストが必要
+        public MyStruct(int a)
+        {
+          x = a;
+        }
+      }
+      
+      class Struct03
+      {
+        public struct void Main()
+        {
+          //引数なしのコンストラクタは自分で用意してないが
+          //構造体の場合はエラーにならない。
+          //この場合、ms.xは0で初期化される。
+          MyStruct ms = new MyStruct();
+          Console.WriteLine("ms.x = {0}",ms.x);
+          
+          //自作のコンストラクタを使って初期化
+          //当然、ms2.xは100となる
+          MsStruct ms2 = new MyStruct(100);
+          Console.WriteLine("ms2.x = {0}",ms2.x);
+          
+          //MyStruct型変数ms3を宣言
+          MyStruct ms3;
+          ms3 = ms2; //ms2の値をms3に代入
+          
+          //当然、ms3.xの値は100
+          Console.WriteLine("ms3.x = {0}",ms3.x);
+          
+          ms3.x = 50;  //ms3.xの値を50に変更
+          
+          //ms3.xの値を50に変更しても、ms2.xは影響を受けない
+          Console.WriteLine("ms2.x = {0}",ms2.x);
+        }
+      }
+      ```
+      
+      //クラスと構造体の違い
+      ```
+      using System;
+      struct MyStruct
+      {
+        public int x;
+      }
+      
+      class MyClass
+      {
+        public int x;
+      }
+      
+      class Struct04
+      {
+        publci static void Main()
+        {
+          MyStruct ms1 = new MyStruct();
+          MyStruct ms2;
+          
+          ms1.x = 20;
+          ms2 = ms1; 
+          Console.WriteLine("ms2.x = {0}",ms2.x);
+          ms2.x = 10;
+          Console.WriteLine("ms1.x = {0}",ms1.x);
+          
+          MyClass mc1 = new MyClass();
+          MyClass mc2;
+          
+          mc1.x = 20;
+          mc2 = mc1;
+          Console.WriteLine("mc2.x = {0}",mc2.x);
+          mc2.x = 10;
+          Console.WriteLine("mc1.x = {0}",mc1.x);
+        }
+      }
+      
+      [console]
+      ms2.x = 20
+      ms1.x = 20
+      mc2.x = 20
+      mc1.x = 10
+      ```
+      
+      
+      
+      //構造体でインターフェイスを実装
+      インターフェイスを実装した構造体はnew演算子でオブジェクトを作る必要がある
+      ```
+      using System;
+      interface IMyInterface
+      {
+        void Show();
+        int xprop
+        {
+          get;
+          set;
+        }
+      }
+      
+      struct MyStruct : IMyInterface
+      {
+        int x;
+        public void Show()
+        {
+          Console.WriteLine("x = {0}",x);
+        }
+        public int xprop
+        {
+          get
+          {
+            return x;
+          }
+          set
+          {
+          x = value;
+          }
+        }
+      }
+      
+      class struct05
+      {
+        public static void Main()
+        {
+          /*エラー！インターフェイスを実装した構造体は
+            newでオブジェクトを作らなければならない
+            MyStruct ms;
+            ms.xprop = 20;
+            ms.Show();*/
+          
+          MyStruct msNew = new MyStruct();
+          msNew.Show();
+          msNew.xprop = 20;
+          msNew.Show();
+        }
+      }
+      
+      [console]
+      x = 0
+      x = 20
+      ```
+      
+      
+      //構造体をメソッドに渡す
+      値型のデータをメソッドに渡し、データを加工してもらいたい時はrefキーワードを
+      付けて参照呼び出しにする
+      ```
+      //メソッドに渡される構造体とクラス
+      using System;
+      struct MyData
+      {
+        public int x,y;
+      }
+      
+      class MyDataClass
+      {
+        public int x,y;
+      }
+      
+      //データ変更用のクラス
+      class ChangeData
+      {
+        public void Change(ref Mydata md)
+        {
+          int temp;
+          temp = md.x;
+          md.x = md.y;
+          md.y = temp;
+        }
+        
+        public void Change(MyData md)
+        {
+          int temp;
+          temp = md.x;
+          md.x = md.y;
+          md.y = temp;
+        }
+        
+        public void Change(MyDataClass m)
+        {
+          int temp;
+          temp = md.x;
+          md.x = md.y;
+          md.y = temp;
+        }
+      }
+      
+      //Mainメソッドを持つクラス
+      class Struct06
+      {
+        public static void Main()
+        {
+          MyData md = new MyData();
+          md.x = 10;
+          md.y  -20;
+          
+          Console.WriteLine("最初の状態");
+          Console.WriteLine("md.x = {0}, md.y = {1}",md.x,ms.y);
+          
+          ChangeData cd = new ChangeData();
+          cd.Change(md);
+          Console.WriteLine("cd.Change(md)後");
+          Console.WriteLine("md.x = {0}, md.y = {1}",md.x,ms.y);
+          cd.Change(ref md);
+          Console.WriteLine("cd.Change(ref md)後");
+          Console.WriteLine("md.x = {0}, md.y = {1}",md.x,ms.y);    
+          
+          MyData m;
+          m.x = 10;
+          m.y = 20;
+          
+          Console.WriteLine("最初の状態");
+          Console.WriteLine("m.x = {0}, m.y = {1}",m.x,m.y);
+          cd.Change(ref m);
+          Console.WriteLine("cd.change(ref m)後");
+          Console.WriteLine("m.x = {0},m.y = {1}",m.x,m.y);
+          
+          MyDataClass mdc = new MyDataClass();
+          mdc.x = 10;
+          mdc.y = 20;        
+          Console.WriteLine("最初の状態");
+          Console.WriteLine("mdc.x = {0}, mdc.y = {1}",mdc.x,mdc.y);
+          cd.Change(mdc);
+          Console.WriteLine("cd.change(ref m)後");
+          Console.WriteLine("mdc.x = {0},mdc.y = {1}",mdc.x,mdc.y);
+        }
+      }
+      
+      [console]
+      最初の状態
+      md.x = 10, md.y = 20
+      cd.Change(md)後
+      md.x = 10, md.y = 20
+      cd.Change(ref md)後
+      md.x = 20, md.y = 10
+      最初の状態
+      md.x = 10,md.y = 20
+      cd.Change(ref md)後
+      md.x = 20,md.y = 10
+      最初の状態
+      mdc.x = 10,mdc.y = 20
+      cd.Change(mdc)後
+      mdc.x = 20, mdc.y = 10
+      ```
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-27T09:16:59.234Z"
+updatedAt: "2017-10-27T09:17:09.797Z"

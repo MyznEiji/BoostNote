@@ -1,0 +1,361 @@
+type: "SNIPPET_NOTE"
+folder: "4d7e758b4f010b205cc7"
+title: "C#Interface"
+description: "C#Interface"
+snippets: [
+  {
+    name: "C#Interface.cs"
+    mode: "C#"
+    content: '''
+      //Interface
+      
+      //インターフェイス
+      抽象メンバのみを持った参照型を定義することができる。
+      １つのインターフェースを異なるクラスに実装することが一般的
+      抽象メンバは
+      "メソッド"、"プロパティ"、"インデクサ"の３つがある
+      
+      "抽象メソッド"
+      戻り値の型　名前(パラメータリスト);
+      
+      "抽象プロパティ"
+      データ型 名前
+      {
+        get;
+        set;
+      }
+      
+      "抽象インデクサ"
+      データ型　this[データ型　インデックス]
+      {
+        get;
+        set;
+      }
+      "interfaceキーワード"を使って宣言する
+      インターフェースの名前は「I」で始める慣習がある。IMyInterfaceのように
+      
+      interface 名前
+      {
+        抽象メンバ
+        ・・・
+      }
+      
+      インターフェースを実装するクラスにおいて、:をつかてどのインターフェースを
+      使うか明示する
+      １つのクラスで複数のインターフェースを実装することもできる
+      class クラス名　: インターフェース1,インターフェース2
+      
+      基本クラスがある場合
+      class クラス名　: 基本クラス,インターフェース1,インターフェース2
+      
+      ```
+      using Sytem;
+      
+      interface IMyInterface
+      {
+        void Show(String str); //抽象メソッド
+        int xprop 　//抽象プロパティ
+        {
+          get;
+          set;
+        }
+        int this[int i] //抽象インデクサ
+        {
+          get;
+          set;
+        }
+      }
+      
+      class MyClass : IMyInterface
+      {
+        protected int i;
+        int[] arr = new int[10];
+        
+        public void Show(string str) //抽象メソッドの実装
+        {
+          Console.WriteLine(str);
+        }
+        public int xprop  //抽象プロパティの実装
+        {
+          get 
+          {
+            return i;
+          }
+          set 
+          {
+            i = value;
+          }
+        }
+        public int this[int index]　//抽象インデクサの実装
+        {
+          get
+          {
+            return arr[index];
+          }
+          set 
+          {
+            arr[index] = value;
+          }
+        }
+      }
+      
+      class Interface01
+      {
+        public static void Main()
+        {
+          MyClass mc = new MyClass();
+          mc.Show("Test Interface");
+          mc.xprop = 100;
+          Console.WriteLine("mc.xprop = {0}",mc.xprop);
+          for(int i = 0; i < 10; i++) mc[i] = i * 2;
+          for(int i = 0; i < 10; i++)
+            Console.WriteLine("mc[{0}] = {1}",i,mc[i]);
+        }
+      }
+      ```
+      
+      //１つのインターフェイスを複数のクラスで実装する
+      1つの参照変数が参照しているオブジェクトに応じて異なる振る舞いをする
+      ```
+      using System;
+      
+      interface IMyInterface
+      {
+        int Calc(int x,int y);
+      }
+      
+      class Plus : IMyInterface    //IMyInterfaceの実装
+      {
+        public int Calc(int a,int b)
+        {
+          return a + b;
+        }
+      }
+      
+      class Minus : IMyInterface  //IMyInterfaceの別の実装
+      {
+        public int Calc(int a,int b)
+        {
+          return a - b;
+        }
+      }
+      
+      class Interface03
+      {
+        public static void Main()
+        {
+          IMyInterface im;  //IMyInterface型の参照変数
+          Plus p = new Plus();
+          Minus m = new Minus();
+          
+          im = p;
+          Console.WriteLine("im.Calc = {0}",im.Calc(3,5));
+          im = m;
+          Console.WriteLine("im.Calc = {0}",im.Calc(3,5));
+        }
+      }
+      
+      ```
+      
+      
+      //複数のインターフェイスを実装
+      using System;
+      
+      public interface IDes
+      {
+        void Show(int i);
+      }
+      
+      public interface IDa
+      {
+        void Show(int i);
+      }
+      
+      class MyClass ; IDes, Ida
+      {
+        void IDes.Show(int i)
+        {
+          Console.WriteLine("iは{0}です",i);
+        }
+        void IDa.Show(int i)
+        {
+          Console.WriteLine("iは{0}だ",i);
+        }
+      }
+      
+      class Interface05
+      {
+        public static void Main()
+        {
+          IDes ides; //IDesインターフェイスへの参照変数
+          IDa ida; //IDaインターフェイスへの参照変数
+          MyClass mc = new MyClass();
+          
+          ides = mc;
+          ides.Show(5);
+          ida = mc;
+          ida.Show(5);
+        }
+      }
+      
+      
+      
+      //インターフェイスの継承
+      インターフェイスの継承することができる。
+      AのインターフェイスがBのインターフェイスを継承しているとします。
+      Aのインターフェイスをクラスに実装するときにはAとBのインターフェイスのすべての
+      抽象メソッドを実装する必要がある
+      interface 名前 : 継承されるインターフェイス
+      
+      ```
+      using System;
+      
+      interface IInterface1
+      {
+        void SetDataNo(int n);
+        void SetData(double data, int i);
+        double CalcSum();
+      }
+      
+      interface IInterface2 : IInterface1
+      {
+        double CalcAverage();
+      }
+      
+      class MyClass : IInterface2
+      {
+        double[] data;
+        bool bOK = false;
+        
+        /*配列の要素数を引数で受け取り、実際にメモリ上に配列を作成します。
+        それからbOKをtrueにして配列の準備ができたことがわかる*/
+        public void SetDataNo(int n)
+        {
+          data = new double[n];
+          bOK = true;
+        }
+        
+        //引数で指定された添字の要素にデータを格納する
+        public void SetData(double d, int i)
+        {
+          if(!bOK)
+          {
+            Console.WriteLine("配列の準備ができていません");
+            return;
+          }
+          data[i] = d;
+        }
+        //配列の要素に書くのされているデータの合計を求め、これを返します。
+        public double CalcSum()
+        {
+          if(!bOK)
+          {
+            Console.Write("配列の準備ができていません");
+            return -1.0;
+          }
+          double sum = 0.0;
+          for(int i = 0; i < data.Length; i++) sum += data[i];
+          return sum;  
+        }
+        
+        //CalcSumメソッドで合計を求めてから配列の要素数でこれを割った値を返します。
+        public double CalcAverage()
+        {
+          double sum = CalcSum();
+          return sum / data.Length;
+        }
+      }
+      
+      class Interface06
+      {
+        MyClass mc = new MyClass();
+        int nNO;
+      
+        while(true)
+        {
+          Console.Write("データ数---");
+          string strNo = Console.ReadLine();
+          nNo = Int32.Parse(strNo);
+          mc.SetDataNo(nNo);
+          
+          for(int i = 0; i < nNo; i++)
+          {
+            Console.Write("Data[{0}] = ",i);
+            string strData = Console.ReadLine();
+            mc.SetData(double.Parse(strData),i);
+          }
+          Console.WriteLine("合計 = {0}",mc.CalcSum());
+          Console.WriteLine("平均 = {0}",mc.CalcAverage());
+          Console.WriteLine();
+          Console.WriteLine("続けますか(Y/N)");
+          string yn = Console.ReadLine();
+          if(yn == "N" || un == "n")break;
+        }
+      }
+      ```
+      
+      //同じシグニチャの抽象メンバがある場合
+      継承元のインターフェイス中に継承先と同じシグニチャを持つ抽象メンバが存在した場合は、
+      継承元のメンバが隠されます。
+      この場合は継承先のメンバにnewキーワードをつける
+      
+      ```
+      using System;
+      
+      interface I1
+      {
+        void Show1();
+        void Show2();
+      }
+      
+      interface I2 : I1
+      {
+        new void Show1();
+      }
+      
+      class MyClass : I2
+      {
+        void I1.Show1()
+        {
+          Console.WriteLine("I1.Show1");
+        }
+        void I2.Show1()
+        {
+          Console.WriteLine("I2.Show1");
+        }
+        public void Show2()
+        {
+          Console.WriteLine("Show2");
+        }
+      }
+      
+      class Interface08
+      {
+        public static void Main()
+        {
+          MyClass mc = new MyClass();
+          I1 i1;
+          I2 i2;
+          
+          mc.Show2(); //Show2
+          
+          i1 = mc;
+          i1.Show1(); //I1.Show1
+          
+          i2 = mc;
+          i2.Show1(); //I2.Show1
+          i2.Show2(); //Show2
+        }
+      }
+      ```
+      
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
+createdAt: "2017-10-27T09:16:38.394Z"
+updatedAt: "2017-10-27T09:16:50.346Z"

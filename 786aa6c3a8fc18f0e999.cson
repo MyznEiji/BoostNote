@@ -1,0 +1,340 @@
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PhythonMethod"
+description: "PhythonMethod"
+snippets: [
+  {
+    name: "PhythonMethod.py"
+    mode: "Python"
+    content: '''
+      #関数の定義方法 
+        def MethodName():
+          s = 'Hi'
+          return s
+        resutlt = MethodName()
+      
+      
+        
+      "別なメソッドの実行方法"
+        f = MethodName
+        f()
+      
+        
+        
+      "型を明示的に宣言する"
+      -> で型の宣言をする
+      def add_num(a: int, b: int) -> int:
+          return a + b
+      
+      f = add_num(10, 20)
+      print(f)
+      
+        
+        
+      "default parameter"
+        あらかじめパラーメータに値を登録しておくこと
+        引数で渡されれば、更新される
+        def menu(entree='beef', drink='wine', dessert='ice'):
+          print(entree, drink, dessert)
+      
+        menu()
+        menu(chiken, coffee, chokorate)
+        
+        
+        
+      
+        def menu(entree, drink, dessert):
+            print("entree : ", entree, "\\ndrink : ", drink, "\\ndessert : ", dessert)
+      
+        menu(entree="beef", dessert="ice", drink="drink")
+      
+      
+      """
+      デフォルト引数で気をつけること
+      """  
+      
+      
+        def test_func(x, l=[]):
+            l.append(x)
+            return l
+      
+        r = test_func(100)
+        print(r)
+      
+        r = test_func(100)
+        print(r)
+      
+      
+        # リストは参照渡しだから、デフォルト引数にリストや、
+        # dictを宣言すると、前のインスタンスの
+        # リストを参照してしまう。
+      
+      
+        def test_func(x, l=None):
+            if l is None:
+                l = []
+            l.append(x)
+            return l
+      
+      
+        r = test_func(100)
+        print(r)
+      
+        r = test_func(100)
+        print(r)
+      
+      
+      
+      # 位置引数
+      引数の数がわからないときにargsにまとめて処理する
+      
+      "*args"タプル化
+        def hoge(*args):
+          print(args) #hoge, fuga, piyoとタプルに入れてれ出力される
+          for arg in args
+            print(arg)
+      
+        hoge('hoge', 'fuga', 'piyo')
+      
+        
+      
+      # キーワード引数
+      
+      "**kwargs"辞書化
+        def hoge(**kwargs):
+          print(kwargs) #{a="hoge", b="fuga"}と出力される
+      
+        d = {
+          "a": "hogehoge",
+          "b": "fugafuga"
+        }
+        hoge(a="hoge", b="fuga")
+        hoge(**d) #あらかじめ辞書で定義されていたものを引数で渡す  
+      
+        
+        
+      
+        def menu(food, *args, **kwargs):
+          print(food), #banana
+          print(args), #("apple","orange")
+          print(kwargs) #{"entree":"beef", "drink":"coffee"}
+        menu("banana", "apple", "orange", entree="beef", drink="coffee")
+      
+        
+      
+      "関数内関数"
+        def outer(a, b):
+      
+          def plus(c, d):
+            return c + d
+      
+          r1 = plus(a, b)
+          r2 = plus(b, a)
+          print(r1, r2)
+        outer(1, 2)
+      
+        
+      
+    '''
+  }
+  {
+    name: "docstring.py"
+    mode: "Python"
+    content: '''
+      # メソッドの下に基本的にはドキュメントを書く
+      def example_func(param1, param2):
+          """Example function with types documented in the docstring.
+      
+          Args:
+              param1 (int) : The first parameter.
+              param2 (str) : The second parameter.
+      
+          Returns:
+              bool: The return value. True for success, False otherwise.
+          """
+      
+          print(param1)
+          print(param2)
+      
+          return True
+      
+      
+      # 書いたドキュメントを見たい時は__doc__かhelpで確認できる 
+      print(example_func.__doc__)
+      print(help(example_func))
+      
+    '''
+  }
+  {
+    name: "lamdba.py"
+    mode: "Python"
+    content: '''
+      
+      #lambda式
+      引数をメソッドで渡すときに使用する
+      引数に1,2行のメソッドを定義をする時に便利
+      lambda 引数: 処理
+      
+      l = ["Mon", "tue", "wed", "Thu", "fri", "sat", "Sun"]
+      
+      def change_words(words, func):
+          for word in words:
+              print(func(word))
+          
+      change_words(l, lambda word: word.capitalize())
+      
+      
+    '''
+  }
+  {
+    name: "closure.py"
+    mode: "Python"
+    content: '''
+      
+      "closure"
+        関数内の関数を返してあげて、そのオブジェクトを変数に代入して代入したオブジェクトを
+        メソッドとして使える
+        def outer(a, b):
+      
+          def inner():
+            return a + b
+          return inner
+        f = outer(1, 2)
+        r = f() fの中にはouter内のinnerメソッドのオブジェクトが入っている
+        print(f) #3
+      
+        
+        使い方:"アバウトな円周率"と"正確な円周率"で円の面積の計算方法を分けたい時
+      
+          
+        def circle_area_func(pi):
+          def circle_area(radius):
+            return pi * dadius * radius
+      
+          return circle_area
+      
+        ca1 = circle_area_func(3.14) 大体の円周率で計算したい時に使う
+        ca2 = circle_area_func(3.141592)  細かい円周率で計算したい時に使う
+        print(ca1(10))
+        print(ca2(10))
+      
+      
+      
+      
+      
+      
+      
+    '''
+  }
+  {
+    name: "decorator.py"
+    mode: "Python"
+    content: '''
+      # デコレーター
+      あるメソッド群に決まった流れの処理を追加できる
+      
+      def print_more(func):
+          def wrapper(*args, **kwargs):
+              print("func:", func.__name__)
+              print("args:", args)
+              print("kwargs", kwargs)
+              result = func(*args, **kwargs)
+              print("result", result)
+              return result
+      
+          return wrapper
+      
+      def print_info(func):
+          def wrapper(*args, **kwargs):
+              print('start')
+              result = func(*args, **kwargs)
+              print('end')
+              return result
+          return wrapper
+      
+      @print_more
+      @print_info
+      def add_num(a, b):
+          return a + b
+      
+      
+      r = add_num(10, 20)
+      print(r)
+      
+      "結果は"
+      func: wrapper
+      args: (10, 20)
+      kwargs {}
+      start
+      end
+      result 30
+    '''
+  }
+  {
+    name: "generator.py"
+    mode: "Python"
+    content: '''
+      # ジェネレーター
+      関数にyieldがあるとジェネレータと判断する
+      同じ関数を読んでいるけど、値が変わる。
+      
+      
+      l = ['Good morning','Good afternoon','Good night']
+      
+      def greeting():
+          yield "Good morning"
+          yield "Good afternoon"
+          yield "Good night"
+      
+      
+      def counter(num=10):
+          for _ in range(num):
+              yield "run"
+      
+      g = greeting()
+      c = counter()
+      
+      print(next(g))
+      
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      
+      print(next(g))
+      
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      print(next(c))
+      
+      print(next(g))
+      
+    '''
+  }
+]
+tags: [
+  "lambda"
+  "docstring"
+  "__doc__"
+  "デフォルト引数"
+  "位置引数"
+  "キーワード引数"
+  "*args"
+  "**kwargs"
+  "関数内関数"
+  "closure"
+  "クロージャー"
+  "デコレーター"
+  "decorator"
+  "lamdba"
+  "ラムダ"
+  "ジェネレーター"
+  "generator"
+]
+isStarred: false
+isTrashed: false
+createdAt: "2017-09-21T12:02:40.441Z"
+updatedAt: "2018-03-28T13:58:12.801Z"

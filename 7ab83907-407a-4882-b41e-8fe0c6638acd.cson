@@ -1,0 +1,291 @@
+createdAt: "2018-05-01T19:42:29.313Z"
+updatedAt: "2018-05-02T08:31:50.561Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "jqueryTraversing"
+description: "jqueryTraversing"
+snippets: [
+  {
+    name: "Siblings.js"
+    mode: "JavaScript"
+    content: '''
+      # 兄弟系
+      同じ親を持つ同じ階層の要素を指す
+      
+      
+      # 兄弟後
+      .next()
+      .nextAll()
+      .nextUntil()
+      
+      
+      # 兄弟前
+      .prev()
+      .prevAll()
+      .prevUntil()
+      
+      
+      #兄弟全
+      .siblings()
+      
+      
+      
+      # ('').next();
+      兄弟要素で1つ後の要素
+      ('').next(セレクタ); セレクタ指定時は一致する場合のみ取得できる
+      
+      
+      
+      # ('').nextAll();
+      兄弟要素で後全ての要素
+      ('').nextAll(セレクタ); セレクタ指定時は一致する場合のみ取得できる
+      
+      
+      # ('').nextUntil(条件);
+      兄弟要素で後全て、ただし条件の要素の前まで
+      ('#target1').nextUntil(':contains(7)');
+      #target1から7のつく文字列を含む要素の前まで取得可能
+      
+      
+      
+      # ('').prev();
+      兄弟要素で1つ前の要素
+      ('').prev(セレクタ); セレクタ指定時は一致する場合のみ取得できる
+      
+      
+      
+      # ('').prevAll();
+      兄弟要素で前全ての要素
+      ('').prevAll(セレクタ); セレクタ指定時は一致する場合のみ取得できる
+      
+      
+      # ('').prevUntil(条件);
+      兄弟要素で前全て、ただし条件の要素の前まで
+      ('#target1').prevUntil(':contains(1)');
+      #target1から1のつく文字列を含む要素の前まで取得可能
+      
+      $("").prevUntil(条件、フィルタ)
+      フィルタ指定時は一致する要素のみ
+      
+      
+      #("").siblings()
+      兄弟要素全て
+      ('').siblings(セレクタ); セレクタ指定時は一致する場合のみ取得できる
+      
+    '''
+  }
+  {
+    name: "child.js"
+    mode: "JavaScript"
+    content: '''
+      # 子系
+      
+      
+      # $("").children()
+      1つ下の階層を選択する　テキストノードを含まない
+      $("").children(セレクタ)　セレクタが一致した要素のみを取得
+      $("#target2").children(":even") target2の1つ下の階層の偶数番目のものが取得できる
+      
+      
+      
+      # $("").contents()
+      1つ下の階層を選択する。テキストノードを含む
+      
+      
+      # $("").find(条件)
+      条件に一致する子孫要素を選択
+      $("").children(セレクタ)　セレクタが一致した要素のみを取得
+      $("#target2").children(":even") target2の1つ下の階層の偶数番目のものが取得できる
+      
+    '''
+  }
+  {
+    name: "parent.js"
+    mode: "JavaScript"
+    content: '''
+      # 親系
+      
+      
+      # $("").parent()
+      親要素(1階層上)
+      $("").parent(セレクタ) セレクタが一致した要素のみ
+      
+      
+      # $("").parents()
+      先祖要素(全ての親要素)
+      $("").parents(セレクタ) セレクタが一致した要素のみ
+      
+      
+      # $("").parentsUntil(条件)
+      先祖要素
+      ただし、条件の要素の１つ前まで
+      $("").parentsUntil(条件、フィルタ)
+      フィルタの指定時は一致する要素のみを取得
+      
+      
+      # $("").closest(条件)
+      自身から先祖要素に遡り最初に条件に一致した要素
+      
+      
+      # $("").offsetParent()
+      先祖要素で、positionがrelative,absolute ,fixedのいずれかの要素を選択する
+      要素の位置計算を行う際に利用する  
+      
+    '''
+  }
+  {
+    name: "other.js"
+    mode: "JavaScript"
+    content: '''
+      # 絞り込み系
+      
+      # .filter()
+      $("~").filter(条件)
+      条件で絞り込む
+      
+      $("li").filter(":last-child");
+      リスト要素の一番最後の要素を取得する
+      
+      "function"
+      $(".nst2 li").filter(function(i)
+      {
+        return i % 3 == 0;
+      });
+      
+      
+      
+      # ("~").has(条件)
+      条件を持っている 
+      $("li").has("ul");
+      リスト要素の中でul要素を持っているものだけを選択する
+      
+      
+      
+      # ("~").eq(番号)
+      番号の要素を選択する
+      $(".nst2 li").eq(2);
+      2つめの要素を選択
+      $(".nst2 li").eq(-2);
+      マイナスを指定したら下からの指定になる
+      
+      
+      # .first()
+      先頭の要素を選択する
+      $(".nst2 li").first();
+      リスト要素の中の一番最初の要素が選択される
+      
+      
+      # .last()
+      末尾の要素を選択する
+      $(".nst2 li").last();
+      リスト要素の中の一番最後の要素が選択される
+      
+      
+      # ("~").slice(開始[, 終了])
+      開始から終了の1つ前までの要素を選択
+      終了省略時は末尾まで
+      $(".nst2 li").slice(2, 4);
+      
+      
+      
+      # $("~").not(条件)
+      条件以外の要素
+      $("li").not(".top");
+      リスト要素のtop以外を選択
+      
+      "function"
+      $(".nst2 li").not(function(i)
+      {
+        return i % 3 == 0;
+      });
+      
+      
+      
+      # $("~").add(条件)
+      条件の要素を追加する
+      $(".nst2 li").add(".top");
+      .nst2 liの要素とクラスがtopのものを選択する
+      
+      
+      # $("~").~().addBack()
+      現在の要素に加えて１つ前の要素を追加する
+      $(".top").next().addBack();
+      topクラスの要素 + topクラス要素の次の要素を選択する
+      $("~").~().addBack(条件)
+      条件に一致した1つ前の要素を選択する
+      $(".top").next().addBack(":odd");
+      topクラスの要素 + topクラス要素の次の要素の奇数のものだけを選択する
+      
+      
+      
+      # $("~").~().end()
+      1つ前の状態に戻す
+      $(".nst2 .top").nextAll().css("color", "red").end().css("color", "blue");
+      .nst2　.topクラスの全てを選択して文字を赤色にします。endでcssを一旦破棄して
+      $(".nst2 .top").の状態に戻し、またtopだけを青色にしています
+      
+      
+      
+      # $("~").each(function(i, e){})
+      要素全てに対して処理
+      第一引数は選択した要素の番号を、第二引数には要素自身が代入される
+      $(".nst2 li").each(function(i, e)
+      {
+        var num = "{" + i + "}";
+        console.log(num, $(this).text());
+      });
+      $thisは現在のtargetを指している
+      
+      
+      # $("~").map(function(i, e){})
+      要素全てに対して処理
+      return の結果をまとめた新しいjQueryオブジェクトを作る
+      $(".nst2 li").map(function(i, e)
+      {
+        var num = "{" + i + "}";
+        return num, $(this).text();
+      });
+      
+      
+      
+      
+      # $("~").is(条件)
+      要素が条件を満たすか true false
+      $("li").each(function(i, e)
+      {
+        var $this = $(this);
+        if($this.is(":last-child"))
+        {
+          $this.css("color", "blue");
+        }
+      });
+    '''
+  }
+]
+tags: [
+  "next"
+  "nextAll"
+  "nextUntil"
+  "prev"
+  "prevAll"
+  "prevUntil"
+  "siblings"
+  "children"
+  "contents"
+  "find"
+  "filter"
+  "has"
+  "eq"
+  "first"
+  "last"
+  "slice"
+  "not"
+  "add"
+  "addBack"
+  "end"
+  "each"
+  "map"
+  "is"
+]
+isStarred: false
+isTrashed: false

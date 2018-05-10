@@ -1,0 +1,32 @@
+createdAt: "2018-01-15T07:54:59.851Z"
+updatedAt: "2018-03-27T12:20:48.402Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonSubprocess"
+description: "PythonSubprocess"
+snippets: [
+  {
+    name: "pythonSubprocess.py"
+    mode: "Python"
+    content: '''
+      # import subprocess
+      
+      # ターミナルと同じ結果が得られる
+      
+      #subprocess.run(["ls"])
+        lsコマンドが使える
+      
+      #subprocess.run("ls -a | grep test", shell=True)
+        Shellを使ってlinuxコマンドを使えるので、実際ターミナルのコマンドの
+        やり方と変わらなく使える 
+        どこかにrm -rfを勝手に入れられる懸念があるのでセキュリティ的には推奨
+        されていない。
+    '''
+  }
+]
+tags: [
+  "terminal"
+  "x"
+]
+isStarred: false
+isTrashed: false
