@@ -1,0 +1,114 @@
+createdAt: "2018-05-10T10:28:33.954Z"
+updatedAt: "2018-05-10T10:31:25.820Z"
+type: "SNIPPET_NOTE"
+folder: "5c21c34ed317a94d49a2"
+title: "PythonGrafic"
+description: "PythonGrafic"
+snippets: [
+  {
+    name: "turtle.py"
+    mode: "Python"
+    content: '''
+      import turtle
+      import time
+      
+      # 亀のアイコンを出力
+      turtle.shape('turtle')
+      # アイコンの色を変更
+      turtle.color('red')
+      # 第二引数はアイコンのエッジの色を変更します
+      turtle.color('red', 'yellow')
+      
+      # 前に100だけ進めます
+      turtle.forward(100)
+      # 右に90進めます
+      turtle.right(90)
+      # 亀のアイコンを隠します
+      turtle.hideturtle()
+      turtle.forward(100)
+      # 亀のアイコンを表示する
+      turtle.showturtle()
+      
+      # 円を書いて進みます
+      turtle.circle(100)
+      
+      time.sleep(2)
+      
+      # 軌跡の色を変更します
+      turtle.pencolor('blue')
+      turtle.right(45)
+      turtle.forward(100)
+      # 後ろに進みます
+      turtle.backward(200)
+      
+      #　初期位置に戻ります
+      turtle.home()
+      # タートルのクリア
+      turtle.clear()
+      # タートルの終了コマンド　
+      turtle.done()
+      
+    '''
+  }
+  {
+    name: "tkinter.py"
+    mode: "Python"
+    content: '''
+      import tkinter as tk
+      
+      class Application(tk.Frame):
+          # masterを元にして設定していく
+          def __init__(self, master=None):
+              super().__init__(master)
+      
+              # ボタンとかの表示をうまくやってくるもの
+              self.pack()
+              self.create_widgets()
+      
+          def create_widgets(self):
+              # ボタンのオブジェクトを生成
+              self.hi_there = tk.Button(self)
+              # テキストを挿入
+              self.hi_there["text"] = "Hello World\\n(click me)"
+              # クリックされた時の処理を追加
+              self.hi_there["command"] = self.say_hi
+              # トップに持ってきている
+              self.hi_there.pack(side="top")
+      
+              # ボタンを生成
+              self.quit = tk.Button(self, text="QUIT", fg="red",
+                                    command=root.destroy)
+              # bottomに配置する
+              self.quit.pack(side="bottom")
+      
+          def say_hi(self):
+              print("hi there, everyone!")
+      
+      # tkのインスタンスを生成
+      root = tk.Tk()
+      # tkのインスタンスを引数で渡してる
+      app = Application(master=root)
+      # アプリをスタートしている
+      app.mainloop()
+      
+    '''
+  }
+]
+tags: [
+  "turtle"
+  "shape"
+  "color"
+  "forward"
+  "right"
+  "hideturtle"
+  "showturtle"
+  "circle"
+  "pencolor"
+  "backward"
+  "home"
+  "clear"
+  "done"
+  "tkinter"
+]
+isStarred: false
+isTrashed: false
