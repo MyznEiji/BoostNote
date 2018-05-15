@@ -1,10 +1,7 @@
 type: "SNIPPET_NOTE"
 folder: "d510e689594eb44bbd51"
 title: "Shortcut Key"
-description: '''
-  
-  Shortcut Key
-'''
+description: "Shortcut Key"
 snippets: [
   {
     name: "ShortcutKey.rb"
@@ -117,4 +114,4 @@ tags: []
 isStarred: false
 isTrashed: false
 createdAt: "2017-08-13T02:40:42.021Z"
-updatedAt: "2017-09-25T09:13:12.923Z"
+updatedAt: "2018-05-12T02:48:27.595Z"

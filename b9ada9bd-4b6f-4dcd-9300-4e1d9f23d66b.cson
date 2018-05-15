@@ -1,0 +1,19 @@
+createdAt: "2018-05-14T06:25:58.501Z"
+updatedAt: "2018-05-14T06:26:54.731Z"
+type: "SNIPPET_NOTE"
+folder: "18fd729a7b39ec3d7477"
+title: "JqueryBookmarklet"
+description: "JqueryBookmarklet"
+snippets: [
+  {
+    name: "bookmarklet.js"
+    mode: "JavaScript"
+    content: '''
+      # ブックマークレット
+      ブックマークから手軽に使えるプログラム
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

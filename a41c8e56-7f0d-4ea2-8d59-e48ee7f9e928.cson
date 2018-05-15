@@ -1,5 +1,5 @@
 createdAt: "2018-05-10T08:48:02.411Z"
-updatedAt: "2018-05-10T09:11:29.225Z"
+updatedAt: "2018-05-14T06:26:29.573Z"
 type: "SNIPPET_NOTE"
 folder: "18fd729a7b39ec3d7477"
 title: "JqueryUtilities"
@@ -74,6 +74,7 @@ snippets: [
       配列に対して全ての要素に対して処理を行うときに使う
       $.each(配列, function(){})
       配列だけではなく配列風のオブジェクトにも実行できる(arguments)
+        
       
       
       # $.map()
@@ -92,9 +93,9 @@ snippets: [
         });
       
       
+        
       # $.grep()
-      
-      
+      配列に対して実行して、戻り値がtrueになるものだけを集めた配列を返す
       
       
       $(function() {
@@ -103,29 +104,9 @@ snippets: [
       	var arr = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23];
       	var obj = {name: "Mike", age: 18};
       
-      	// $.each()
-      	if (demo == 0) {
-      		$.each(arr, function(i, x) {
-      			console.log("[" + i + "]", x);
-      		});
-      	}
-      
-      	// $.map()
-      	if (demo == 1) {
-          // xが配列の要素、 iはインデックス番号
-      		var arr2 = $.map(arr, function(x, i) {
-      			return x - 1;
-      		});
-      		console.log(arr2);
-      
-      		var arr3 = $.map(obj, function(val, key) {
-      			return key + "@" + val;
-      		});
-      		console.log(arr3);
-      	}
-      
       	// $.grep()
       	if (demo == 2) {
+          // xが配列の要素、 iはインデックス番号
       		var arr2 = $.grep(arr, function(x, i) {
       			return x % 10 == 1;
       		});
@@ -138,6 +119,9 @@ snippets: [
 ]
 tags: [
   "extend"
+  "each"
+  "map"
+  "grep"
 ]
 isStarred: false
 isTrashed: false

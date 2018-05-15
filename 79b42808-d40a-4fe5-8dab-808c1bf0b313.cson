@@ -1,5 +1,5 @@
 createdAt: "2018-04-24T22:26:28.147Z"
-updatedAt: "2018-05-06T08:35:57.259Z"
+updatedAt: "2018-05-14T06:29:40.960Z"
 type: "SNIPPET_NOTE"
 folder: "18fd729a7b39ec3d7477"
 title: "jqueryGeneral"
@@ -35,6 +35,19 @@ snippets: [
         document.body.appendChild(script);
       を入力する
       
+      
+      
+      # webページにjQueryが読み込まれているかを確認する
+      	try {
+      		$ = jQuery;
+      		if ($) {r();}
+      	} catch(e) {
+      		o = d.createElement("script");
+      		o.type = "text/javascript";
+      		o.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js";
+      		o.onload = r;
+      		d.body.appendChild(o);
+      	}
           
     '''
   }
