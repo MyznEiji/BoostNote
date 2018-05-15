@@ -1,0 +1,22 @@
+createdAt: "2018-05-15T04:00:07.406Z"
+updatedAt: "2018-05-15T09:10:31.431Z"
+type: "SNIPPET_NOTE"
+folder: "5661aacdea031e259030"
+title: "ReactEslintrc"
+description: "ReactEslintrc"
+snippets: [
+  {
+    name: "Eslintc.js"
+    mode: "JavaScript"
+    content: '''
+      # Reactの書き方の拡張機能
+      ./node_modules/.bin/eslint FilePath
+      で実行
+    '''
+  }
+]
+tags: [
+  "Eslintrc"
+]
+isStarred: false
+isTrashed: false

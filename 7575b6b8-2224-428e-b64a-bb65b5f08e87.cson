@@ -1,0 +1,117 @@
+createdAt: "2018-05-15T09:44:35.861Z"
+updatedAt: "2018-05-15T10:10:26.181Z"
+type: "SNIPPET_NOTE"
+folder: "5661aacdea031e259030"
+title: "ReactStatefull"
+description: "ReactStatefull"
+snippets: [
+  {
+    name: "statefull.js"
+    mode: "JavaScript"
+    content: '''
+      # 必ず親がstateを持たなくても、stateはどこでも使える
+      # propは親がpropsを持っていなくてはならないが、
+      
+      # stateを更新する作業と、renderを更新する2つの役割を持っている
+      # setStateを呼ぶことでもう一度renderが呼ばれて、値が変更される 
+      
+      
+      import React, {Component} from 'react';
+      
+      import Greeting from './greeting';
+      //
+      // function App(props){
+      //   return (<div>Hello From Functional App</div>);
+      // }
+      
+      class App extends Component{
+        constructor(props)
+        {
+          super(props);
+          this.state = {
+            name: "Hoge",
+          };
+        }
+      
+        handleMouseOver(){
+          this.setState({name: "Hoge"});
+        }
+        handleMouseOut(){
+          this.setState({name: "Fuga"});
+        }
+      
+        render(){
+            // return (<div>Hello From Class App </div>);
+          return (
+            <div
+              onMouseOver={() => this.handleMouseOver()}
+              onMouseOut={() =>  this.handleMouseOut()}
+            >
+              <Greeting name={this.state.name } />
+      
+            </div>
+          );
+        }
+      }
+      
+      
+      export default App;
+      
+    '''
+  }
+  {
+    name: "input_button.js"
+    mode: "JavaScript"
+    content: '''
+      import React, {Component} from 'react';
+      
+      import Greeting from './greeting';
+      //
+      // function App(props){
+      //   return (<div>Hello From Functional App</div>);
+      // }
+      
+      class App extends Component{
+        constructor(props)
+        {
+          super(props);
+          this.state = {
+            name: "Hoge",
+          };
+        }
+      
+        //eはdomのイベントを取得している、
+        handlNameChange(name)
+        {
+          // target.valueはinputで入力された文字を取得
+      
+          this.setState({ name });
+        }
+      
+      
+        render(){
+            // return (<div>Hello From Class App </div>);
+          return (
+            <div>
+              <input
+                type="text"
+                value={this.state.name}
+                onChange={e => this.handlNameChange(e.target.value)}
+              />
+              <button onClick={() => this.handlNameChange('Bob')}>I am Bob</button>
+              <Greeting name={this.state.name } />
+      
+            </div>
+          );
+        }
+      }
+      
+      
+      export default App;
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

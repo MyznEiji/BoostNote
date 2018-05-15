@@ -1,0 +1,133 @@
+createdAt: "2018-05-15T03:37:17.200Z"
+updatedAt: "2018-05-15T09:43:52.330Z"
+type: "SNIPPET_NOTE"
+folder: "5661aacdea031e259030"
+title: "ReactGeneral"
+description: "ReactGeneral"
+snippets: [
+  {
+    name: "General.js"
+    mode: "JavaScript"
+    content: '''
+      # サーバーを立ち上げる
+      ./node_modules/.bin/webpack-dev-server
+      
+      これを簡単にする方法はpackage.jsonファイルに
+      "scripts": {
+          "start": "./node_modules/.bin/webpack-dev-server"
+        },
+      を記入して、yarn run startでサーバーを立ち上げる
+      
+      
+      
+      # 基本的な構築方法
+      1.Componentを作って(部品),それを組み合わせていく
+      2.Topレベルの要素は1つだけ
+          <div></div>
+          <div></div>
+        はNG
+          <div>
+            <div></div>
+            <div></div>
+          </div>
+        とする
+        
+      
+      # statefullなコンポーネントの作り方
+      
+      
+      
+      
+      # コンポーネントの作り方
+        "Functional Component"
+          関数として定義するのか
+          
+          import React, {Component} from 'react';
+          
+            function App(props){
+              return (<div>Hello From Functional App</div>);
+            }    
+      
+        "Class Component"
+          クラスとして定義するのか
+      
+          import React, {Component} from 'react';
+                                  
+          class App extends Component{
+            render(){
+                return (<div>Hello From Class App </div>);
+            }
+          }
+                      
+                        
+                        
+      # props
+      reactはいかにpropsを利用して、親から渡したデータによってインスタンスの値を変えて、
+      中身を変更して行く
+      いかに裁量性の高いcomponentを書けるかが保守性の高いコードを書ける秘訣になる
+                        
+                        
+                        
+    '''
+  }
+  {
+    name: "webpack.config.js"
+    mode: "JavaScript"
+    content: '''
+      // webpackの設定ファイル
+      
+      var publidDir = __dirname + '/public';
+      module.exports = {
+        // 元となるファイル(コンパイルする)
+        entry: [
+          './src/index.js'
+        ],
+        output: {
+          // outputはどこに吐き出すか
+          //
+          path: publidDir,
+          publicPath: '/',
+          filename: 'bundle.js'
+        },
+        module: {
+              rules: [{
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                  presets: ['react', 'es2015'],
+                },
+              }],
+            },
+        resolve: {
+          // entryからインポートされたライブラリを検索する拡張子を指定している
+          extensions: ['.js', '.jsx']
+        },
+        devServer: {
+          // webpackDevServerの設定
+          historyApiFallback: true,
+          // contentBaseがドキュメントルートになる
+          contentBase: publidDir
+        }
+      };
+      
+    '''
+  }
+  {
+    name: "HelloWorld.js"
+    mode: "JavaScript"
+    content: '''
+      #Reactをインポート
+      import React from 'react';
+      import ReactDOM from 'react-dom';
+      
+      # .containerの中にdivタグのHelloReactを作成  
+      ReactDOM.render(<div>Hello React!!!</div>, document.querySelector('.container'));
+      
+    '''
+  }
+]
+tags: [
+  "props"
+]
+isStarred: false
+isTrashed: false
