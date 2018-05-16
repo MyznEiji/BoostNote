@@ -1,0 +1,24 @@
+createdAt: "2018-05-16T13:40:26.855Z"
+updatedAt: "2018-05-16T14:04:50.439Z"
+type: "SNIPPET_NOTE"
+folder: "1e7ebab7ad5dd101bc6c"
+title: "Nmap"
+description: "Nmap"
+snippets: [
+  {
+    name: "nmap.py"
+    mode: "Python"
+    content: '''
+      # nmap ipアドレス
+      
+      nmap 192.168.0.1-20とすると
+      192.168.0.1から192.168.0.20の間のIPアドレス
+      
+      
+      空いているポートを調べたり、wifiの機器の種類を調べることができる
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

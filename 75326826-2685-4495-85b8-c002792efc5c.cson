@@ -1,0 +1,28 @@
+createdAt: "2018-05-16T06:21:24.118Z"
+updatedAt: "2018-05-16T06:28:52.045Z"
+type: "SNIPPET_NOTE"
+folder: "1e7ebab7ad5dd101bc6c"
+title: "Traceroute"
+description: "Traceroute"
+snippets: [
+  {
+    name: "traceroute.py"
+    mode: "Python"
+    content: '''
+      
+      "経路を確認する"
+      # traceroute サーバーアドレス
+      ex 
+      traceroute www.google.com
+      でグーグルのサーバーまでの経路を表示する
+      どの順番でどの番号の経路を通過してるのかを表示する
+      
+      "通信が途絶える = Firewallの存在を検知できる"
+      そこをうまく侵入できればその先に進んでサーバーにアクセスができる
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
