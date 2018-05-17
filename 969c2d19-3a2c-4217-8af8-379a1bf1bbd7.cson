@@ -1,5 +1,5 @@
 createdAt: "2018-04-08T08:57:59.771Z"
-updatedAt: "2018-04-26T08:03:55.792Z"
+updatedAt: "2018-05-17T06:55:46.457Z"
 type: "SNIPPET_NOTE"
 folder: "5c21c34ed317a94d49a2"
 title: "PythonNetwork"
@@ -272,6 +272,33 @@ snippets: [
       
             
             
+            
+      # client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      クライアントを作成
+      
+      AF_INET : インターネットのipアドレスの表記方法を使ってアドレスを定義することを宣言
+      SOCK_STREAM: 通信方式 TCPを使って通信する
+        
+        "client.connect(("www.google.com"80))"
+        サーバーに接続、ポート80番でグーグルのサーバーに接続
+        
+        "client.send(b"GET/HTTP/1.1\\r\\nHost:google.com\\r\\n\\r\\n")"
+        サーバーにバイト型の文字列を送る
+        
+        "response=client.recv(4096)"
+        リクエストを送ると返信が帰って来る
+        4096: 受信データの最大サイズ(バイト)
+          
+        
+        
+      # client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      SOCK_STREAM: 通信方式 UDPを使って通信する
+      
+        "client.sendto(b"12345", ("127.0.0.1", 80))"
+        バイトデータの12345を送ることができる
+        
+        "data, attr=client.recvfrom(4096)"
+        送信先から帰って来るデータ
       
     '''
   }
