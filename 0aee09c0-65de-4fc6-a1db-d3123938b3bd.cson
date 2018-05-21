@@ -1,0 +1,46 @@
+createdAt: "2018-05-21T08:48:50.165Z"
+updatedAt: "2018-05-21T08:50:13.609Z"
+type: "SNIPPET_NOTE"
+folder: "c7de755d4eba19dc5c05"
+title: "GItStash"
+description: "GItStash"
+snippets: [
+  {
+    name: "gitStash.cs"
+    mode: "C#"
+    content: '''
+      //作業中が途中でコミットしたくないけど別のブランチで作業しないといけない
+      //そういう時に作業を一時避難する
+      
+      //git stash
+      作業を一時避難する
+      
+      //git stash list 
+      避難した作業を確認する
+      
+      //git stash apply
+      避難した作業を復元する（ステージは復元されない）
+      
+      //git stash apply --index
+      ステージの状況も復元する
+      
+      //git stash apply <stashName>
+      特定の作業を復元したい場合
+      git stash apply stash@{1}　一番最新のstashをstash@{0}
+      
+      //git stash drop
+      最新の作業を削除する
+      
+      //git stash drop <stashName>
+      特定の作業を削除する
+      git stash drop stash@{1}
+      
+      //git stash clear
+      全作業を削除する
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
