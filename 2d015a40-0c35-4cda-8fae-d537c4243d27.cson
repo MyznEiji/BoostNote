@@ -1,0 +1,19 @@
+createdAt: "2018-05-24T05:18:07.365Z"
+updatedAt: "2018-05-24T05:19:24.334Z"
+type: "SNIPPET_NOTE"
+folder: "646be9a9375222219750"
+title: "Bash"
+description: "Bash"
+snippets: [
+  {
+    name: "bash.py"
+    mode: "Python"
+    content: '''
+      ログインシェルを変更します。
+      $ chsh -s /usr/local/bin/zsh
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
