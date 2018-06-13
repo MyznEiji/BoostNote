@@ -1,0 +1,70 @@
+createdAt: "2018-06-12T05:31:02.898Z"
+updatedAt: "2018-06-12T09:04:10.402Z"
+type: "SNIPPET_NOTE"
+folder: "8f41a1c53d82040dd608"
+title: "RubyGeneral"
+description: "RubyGeneral"
+snippets: [
+  {
+    name: "RubyGeneral.rb"
+    mode: "Ruby"
+    content: '''
+      # メソッドのカッコは省略可能
+      オブジェクト.メソッド(引数1, 引数2, 引数3)
+      オブジェクト.メソッド　引数1, 引数2, 引数3  (かっこ省略可)
+      
+      
+      # 文の区切り セミコロンを使って3つの文を1行に押し込める
+      1.to_s; nil.to_s; 10.to_s(16)
+      
+      # バックスラッシュを使って10.to_s 16　を改行して書く
+      10.to_s \\
+      16
+      
+      
+      # =begin =endで複数行コメントができる
+      =begin
+      コメント
+      コメント
+      コメント
+      =end
+      
+      
+      # 変数を宣言するには何かしらの値を代入する必要がある
+      x = nil
+      
+      
+      # 変数名は慣習として小文字のスネークケースで書く
+      
+      
+      # 多重代入
+      a, b = 1, 2
+      
+      
+      
+      # classメソッド
+      'abc'.class  # String
+      
+      
+      # require 
+      require ライブラリでgemのライブラリを読み込む
+      自分が定義したメソッド、クラスも参照可能
+      require './sample.rb' #カレントディレクトリのsample.rbを参照
+      
+      
+      # load
+      require は1回しかライブラリを読み込まない。
+      loadは毎回無条件に指定したファイルを読み込む
+      loadを使う際は.rbは省略できない
+      load './sample.rb'
+    '''
+  }
+]
+tags: [
+  "=begin"
+  "=end"
+  "class"
+  "require"
+]
+isStarred: false
+isTrashed: false

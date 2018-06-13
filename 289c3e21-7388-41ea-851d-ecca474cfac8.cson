@@ -1,0 +1,91 @@
+createdAt: "2018-06-12T05:42:54.473Z"
+updatedAt: "2018-06-12T08:53:57.543Z"
+type: "SNIPPET_NOTE"
+folder: "8f41a1c53d82040dd608"
+title: "RubySystem"
+description: "RubySystem"
+snippets: [
+  {
+    name: "RubySystem.rb"
+    mode: "Ruby"
+    content: '''
+      # and 
+      &&と同じだが優先度は&&の方が高い
+      
+      
+      # or 
+      ||と一緒だが優先度は||の方が高い
+      
+      
+      # not
+      !と一緒だが!の方が優先度が高い
+      
+      
+      # unless 
+      not ifと一緒。
+      
+      unless statu == 'ok'
+      
+      
+      # case
+      message = 
+      case 対象のオブジェクトや式
+        when val1
+          処理
+        when val2
+          処理
+        when val3
+          処理
+        else  
+          処理
+      end
+        
+      評価を戻り値として返すため変数に代入できる
+      
+        
+        
+        
+      # 三項演算子
+      式 ? trueの処理 : falseの処理
+      n > 10 ? '10より大きい ' : '10以下'
+        
+        
+      
+    '''
+  }
+  {
+    name: "if.rb"
+    mode: "Ruby"
+    content: '''
+      # Rubyのif分は最後に評価された式を戻り値として返す
+      co = 'italy'
+      
+      # pustを使わずにif文の戻り値を直接確認する
+      # 戻り値を代入する
+      greeting = 
+      if co == 'japan'
+        'こんにちは'
+      elsif co = 'us'
+        'hello'
+      elsif co == 'italy'
+        'ciao'
+      else
+        '???'
+      end
+      
+      
+      
+      # 後置if
+      point *= 5 if day == 1 # dayが1の時はpointが5倍
+      
+    '''
+  }
+]
+tags: [
+  "後置if"
+  "and"
+  "or"
+  "not"
+]
+isStarred: false
+isTrashed: false

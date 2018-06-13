@@ -1,0 +1,79 @@
+createdAt: "2018-06-12T05:43:51.971Z"
+updatedAt: "2018-06-12T06:59:52.728Z"
+type: "SNIPPET_NOTE"
+folder: "8f41a1c53d82040dd608"
+title: "RubyInteger"
+description: "RubyInteger"
+snippets: [
+  {
+    name: "RubyInteger.rb"
+    mode: "Ruby"
+    content: '''
+      # _は無視される
+      1_000_000_000　# 1000000000と同じなので_をつけるを桁数を読みやすい
+      
+      
+      # 正負反転
+      n = 1
+      -n  # -1となる
+      
+      
+      # 整数同士の割り算は整数になる
+      1 / 2  # 0.5ではなく0に変換される
+      1.0 / 2  # 0.5になる
+      1 / 2.0  # 0.5になる
+      
+      
+      # to_f
+      float型に型変換される
+      
+      
+      # to_i
+      integer型に
+    '''
+  }
+  {
+    name: "rounding_error.rb"
+    mode: "Ruby"
+    content: '''
+      # 丸め誤差
+      
+      0.1 * 3.0   # 0.30000000000000004
+      
+      2進数で計算しているため丸め誤差が発生する
+      
+      
+      # Rationalクラスを3/10と帰ってくる
+      0.1r * 3r   #  (3/10)
+      
+      
+      # Rationalクラスから戻すにはto_f
+      (0.1r * 3.0r).to_f   # 0.3
+    '''
+  }
+  {
+    name: "bit.rb"
+    mode: "Ruby"
+    content: '''
+      # ビット演算子
+      
+      ~ : ビット反転
+      & : ビット積
+      | : ビット和
+      ^ : 排他的論理和
+      >> : 右ビットシフト
+      << : 左ビットシフト
+      
+      
+      #　不動点小数点
+      2e-3 # 2 * 10 -3乗
+    '''
+  }
+]
+tags: [
+  "to_f"
+  "to_i"
+  "bit演算子"
+]
+isStarred: false
+isTrashed: false

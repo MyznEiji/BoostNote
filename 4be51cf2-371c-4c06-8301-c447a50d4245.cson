@@ -1,0 +1,80 @@
+createdAt: "2018-06-12T06:03:50.404Z"
+updatedAt: "2018-06-12T09:01:04.278Z"
+type: "SNIPPET_NOTE"
+folder: "8f41a1c53d82040dd608"
+title: "RubyMethod"
+description: "RubyMethod"
+snippets: [
+  {
+    name: "RubyMethod.rb"
+    mode: "Ruby"
+    content: '''
+      def メソッド名(arg1, arg2)
+        処理
+      end
+      
+      # メソッド名はスネークケースで書く(キャメルケースは使わない)
+        def hello_world
+        end
+      
+      
+      # アンダースコアでメソッド名を書き始める(あまりない)
+        def _hello_world
+        end
+      
+      
+      # メソッド名に数字を入れる (数字から始まるメソッド名は使えない) 
+        def hello_world2
+        end
+      
+      # メソッド名をひらがなにする(一般的ではない)
+        def はろーわーるど
+        end
+      
+      
+      # rubyはreturnを使わないのが主流
+        # return は途中で脱出する場合に使われることが多い
+        def hogehoge(hoge)
+          return 'colを入力してください' if col.nil?
+      
+          puts "あなたのcolは#{col}です"
+        end
+      
+      
+      # デフォルト引数が使える
+        def hoge(fuga="fuga")
+        end
+      
+      
+      # ?で終わるメソッド
+        慣習的に真偽値を返すメソッド
+        # 空文字かどうか
+        ''.empty?
+      
+        # 引数が含まれるか
+        'watch'.include?('at')
+      
+        # 奇数かどうか
+        1.odd?
+      
+      
+        #　偶数かどうか
+        1.even?
+      
+      
+        # オブジェクトがnilであるかどうか
+        nil.nil?
+      
+      
+      
+      # !で終わるメソッド　
+      慣習として使用する際は注意が必要
+      呼び出したオブジェクトの状態を変更してしまう、破壊的メソッド
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

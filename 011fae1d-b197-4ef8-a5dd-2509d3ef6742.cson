@@ -1,0 +1,63 @@
+createdAt: "2018-06-12T05:29:09.489Z"
+updatedAt: "2018-06-12T06:54:32.052Z"
+type: "SNIPPET_NOTE"
+folder: "8f41a1c53d82040dd608"
+title: "RubyString"
+description: "RubyString"
+snippets: [
+  {
+    name: "rubyString.rb"
+    mode: "Ruby"
+    content: '''
+      #to_sメソッド
+      数値オブジェクトのメソッドです。数値オブジェクトを文字列に変換してくれます
+      1.to_s()   : カッコがなくても大丈夫
+      10.to_s(16)    : 16進数の文字列に変換する
+      
+      
+      # %q!!
+      シングルクォートで囲んだことになる
+      puts %q!He said "Don't speak"!
+      
+      # %Q!!
+      ダブルクォートで囲んだことになる
+      
+      # %!!
+      ダブルクォートで囲んだことになる
+      
+      
+      # ヒアドキュメント
+      a = <<TEXT
+      これはヒアドキュメントです
+      複数行に弥長い文字列を作成するのに便利
+      TEXT
+      
+      <<HTML
+      <div>
+        <img src="sample.jpg">
+      </div>
+      HTML
+      
+      式展開も有効です
+      
+      
+      # フォーマットを指定して文字列を作成する
+      sprintf('%0.3f', 1.2)   # 1.200と小数点3桁まで出力
+      
+      
+      
+      # 配列を連結する
+      [10, 20, 30].join  # '102030'
+      
+      
+      # 文字列を繰り返す
+      'Hi' * 3 # 'HiHiHi'
+    '''
+  }
+]
+tags: [
+  "to_s"
+  "ヒアドキュメント"
+]
+isStarred: false
+isTrashed: false
