@@ -1,0 +1,35 @@
+createdAt: "2018-06-28T07:20:53.634Z"
+updatedAt: "2018-06-28T07:41:50.094Z"
+type: "SNIPPET_NOTE"
+folder: "65eddf1377d9280594ea"
+title: "DockerFile"
+description: "DockerFile"
+snippets: [
+  {
+    name: "DockerFile.py"
+    mode: "Python"
+    content: '''
+      # FROM docker/whalesay:latest
+      FROMとはイメージを作成する際に元になるイメージを指定する命令
+      
+      
+      # whalesayイメージ
+      ubuntのosがベースとなっている
+      パッケージのインストールはapt-getを使用する
+      
+      # RUN
+      RUN命令はイメージビルドする際に実行するコマンド
+      RUN apt-get -y update && apt-get insatall -y fortunes
+      
+      # CMD
+      コンテナが作成された後で実行するコマンドを指定するコマンド
+    '''
+  }
+]
+tags: [
+  "FROM"
+  "RUN"
+  "CMD"
+]
+isStarred: false
+isTrashed: false

@@ -1,0 +1,49 @@
+createdAt: "2018-06-28T08:10:25.096Z"
+updatedAt: "2018-06-28T08:47:57.324Z"
+type: "SNIPPET_NOTE"
+folder: "65eddf1377d9280594ea"
+title: "DockerHub"
+description: "DockerHub"
+snippets: [
+  {
+    name: "DockerHub.py"
+    mode: "Python"
+    content: '''
+      #Docker Hubにログインする場合
+      $ docker login
+      
+      
+      #Quay.ioにログインする場合
+      $ docker login quay.io
+      
+      
+      # Docker hubに置けるタグづけルール
+      <Docker ID>/<イメージ名>:<タグ名>   *タグ名は省略するとlatestタグとなる
+        
+        
+      # Docker hubにPushする際のコマンド
+      $ docker push <Docker ID>/<イメージ名>:<タグ名>
+        
+        
+      # nginxのコンテナを立ち上げるコマンド
+      $ docker run --name test-nginx -d -p 8080:80 nginx 
+      $ docker run --name <コンテナ名> -d \\
+      -p <ホスト側のポート番号>:<コンテナ側のポート番号> \\
+      <イメージ名>
+        
+      "--name"=起動するコンテナに名前をつけるオプション
+      "-d"=デタッチモード、コンテナの実行をバックグラウンドで行う
+      "-p"=コンテナのポートをコンテナ外に公開する設定、
+      "<ホスト側のポート番号>"=ホストマシーンが外部に公開する番号
+      "<コンテナ側のポート番号>"=コンテナにマッピングするポート番号
+      "-dを指定しないと"=フォアグラウンドでサーバが起動してログが流れてくる
+      
+      
+      # docker stop test-nginx
+      test-nginxのコンテナを停止する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
