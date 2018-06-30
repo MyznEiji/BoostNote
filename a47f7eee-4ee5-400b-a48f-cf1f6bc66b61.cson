@@ -1,5 +1,5 @@
 createdAt: "2018-06-27T06:25:20.149Z"
-updatedAt: "2018-06-28T13:52:00.937Z"
+updatedAt: "2018-06-29T09:42:34.199Z"
 type: "SNIPPET_NOTE"
 folder: "65eddf1377d9280594ea"
 title: "Docker_General"
@@ -15,6 +15,7 @@ snippets: [
       # $ docker run docker/whalesay cowsay Hello!
       コンテナで呼び出すコマンドはcowsay Hello!
       イメージの後ろにコンテナが立ち上がった後にコマンドを実行することができる   
+      createステータスとrunningステータスを同時に行う
       
       
       # $ docker images
@@ -119,6 +120,42 @@ snippets: [
       # docker ps
       現在実行中のコンテナを確認する
       "-a"=実行中じゃないコンテナも表示する
+      
+      # $ docker pause status-test
+      status-testコンテナを一時中断する
+      
+      
+      # $ docker unpause status-test
+      pauseしてるstatus-testコンテナをrunningにする
+      
+      
+      # $ docker stop status-test
+      status-testのコンテナが終了した状態にする(exit)
+      
+      
+      # $ docker start staus-test
+      staus-testのコンテナを起動する
+      
+      
+      # $ docker attach <コンテナ名 or コンテナID>
+      コンテナのシェルに接続するコマンド
+      exitする時にコンテナは終了する
+      
+      
+      # $ docker exec -it <コンテナ名 or コンテナID> /bin/bash
+      コンテナのシェルに接続するコマンド　
+      exitをする時コンテナは起動させたまま
+      
+      
+      # $ docker commit <コンテナ名 or コンテナID> <イメージ名>:<タグ名>
+      コンテナの状態をイメージして保存することができる
+      何か操作したコンテナからイメージを作成した場合コンテナ内で行われた作業は
+      どこにも明確な記録として残らなくなる
+      docker historyで記録に残らない
+      
+      
+      # $ docker run --link <コンテナ名 or コンテナID>:<リンク先コンテナの別名>
+      コンテナ名、または別名(エイリアスでリンク先に通信できるようになる)
     '''
   }
 ]
