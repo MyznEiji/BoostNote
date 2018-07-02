@@ -1,0 +1,64 @@
+createdAt: "2018-07-02T06:37:46.614Z"
+updatedAt: "2018-07-02T10:16:45.163Z"
+type: "SNIPPET_NOTE"
+folder: "65eddf1377d9280594ea"
+title: "Docker_Network"
+description: "Docker_Network"
+snippets: [
+  {
+    name: "Docker_network.py"
+    mode: "Python"
+    content: '''
+      # ブリッジドライバー
+      単一のdocker_host内で構成されるネットワークで小規模なネットワークを構成するときに
+      使われる
+      
+      
+      # ホストネットワーク
+      ホストドライバーを使用したネットワーク
+      $ docker run -d --name web --network host nginx
+      ホストネットワークに接続して nginxを動かす
+      
+      
+      # $ docker network ls
+      ネットワーク関連の設定に関するコマンド。現在存在するネットワークを表示する
+      
+      
+      # $ docker network inspect bridge
+      ネットワークの詳細を確認できる
+      
+      
+      # $ docker network create my_nw
+      my_nwというユーザー定義のブリッジネットワークを作成できる
+      
+      
+      # $ docker network connect my_nw alpine1
+      ブリッジネットワークにコンテナを接続する
+      my_nwというブリッジネットワークalpine1というコンテナを接続する
+      
+      
+      # $ docker inspect alpine
+      alpineが今何に接続されているかを確かめることができる
+      
+      
+      # $ docker network disconnect bridge alpine2
+      ブリッジネットワークを削除できる
+      
+      
+      # $ docker run -itd --name none_test --network none alpine /bin/sh
+      none networkに接続するnone_testコンテナを立ち上げる
+      
+      
+      # $ docker attach none 
+      noneコンテナをアタッチする　
+      
+      
+      
+      # docker-machine ip nw-vm1
+      nw-vm1のipを確認する
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

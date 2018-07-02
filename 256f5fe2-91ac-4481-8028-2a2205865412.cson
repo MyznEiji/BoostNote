@@ -1,0 +1,60 @@
+createdAt: "2018-07-01T07:27:33.880Z"
+updatedAt: "2018-07-02T10:16:52.483Z"
+type: "SNIPPET_NOTE"
+folder: "65eddf1377d9280594ea"
+title: "Docker_Machine"
+description: "Docker_Machine"
+snippets: [
+  {
+    name: "docker_machine.py"
+    mode: "Python"
+    content: '''
+      # $ docker-machine create crate-test
+      crate-testというdocker-machineをクリエイトする
+      
+      
+      # $ docker-machine ls
+      今あるdocker-machineを表示
+      
+      
+      # $ docker-machine stop crate-test
+      crate-testというdocker-machineをストップする  
+      仮想マシンの設定を変えるときは仮想マシンを停止する必要がある
+      
+      
+      # $ dcoker-machine start crate-test
+      crate-testというdocker-machineをスタートする
+      
+      
+      # $ exit 
+      仮想環境から抜ける
+      
+      # $ docker-machine rm crate-test
+      crate-testというdocker-machineを削除する
+      
+      
+      # $ docker-machine create --driver virtualbox default
+      仮想化のドライバーにvirtualboxのをしようして、defaultという
+      docker_hostを作成する.
+      defaultの部分は任意の名前をつけることができる
+      
+      
+      
+      # $ docker-machine env default
+      操作対象のdocker_hostを設定するための設定コマンドが表示される
+      
+      # $ docker-machine env -u
+      環境変数を削除するコマンドを表示する
+      
+      
+      # eval $(docker-machine env default)
+      defaultが操作対象のdocker_hostとして設定することができる
+      docker-machine lsでactiveのところに*がつく
+      
+      
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
