@@ -1,5 +1,5 @@
 createdAt: "2018-06-28T08:10:25.096Z"
-updatedAt: "2018-06-28T11:12:42.991Z"
+updatedAt: "2018-07-08T08:49:07.590Z"
 type: "SNIPPET_NOTE"
 folder: "65eddf1377d9280594ea"
 title: "DockerHub"
@@ -23,6 +23,20 @@ snippets: [
         
       # Docker hubにPushする際のコマンド
       $ docker push <Docker ID>/<イメージ名>:<タグ名>
+        
+        
+      # docker Hubからイメージをダウンロード
+        docker pull [オプション] イメージ名[:タグ名]
+        docker pull centos:7
+        centOSのバージョン7をダウンロード
+        -a : 全てのタグのイメージを取得 docker pull -a centos
+        
+        # Dockerイメージの名前
+          <Docker Hubのユーザ名>/イメージ名:[タグ名]
+        
+        
+        
+      
         
         
       

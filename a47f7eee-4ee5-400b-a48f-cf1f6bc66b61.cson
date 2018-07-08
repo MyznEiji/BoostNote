@@ -1,5 +1,5 @@
 createdAt: "2018-06-27T06:25:20.149Z"
-updatedAt: "2018-06-29T09:42:34.199Z"
+updatedAt: "2018-07-08T08:55:51.006Z"
 type: "SNIPPET_NOTE"
 folder: "65eddf1377d9280594ea"
 title: "Docker_General"
@@ -13,40 +13,65 @@ snippets: [
       
       
       # $ docker run docker/whalesay cowsay Hello!
-      コンテナで呼び出すコマンドはcowsay Hello!
-      イメージの後ろにコンテナが立ち上がった後にコマンドを実行することができる   
-      createステータスとrunningステータスを同時に行う
+        docker run Dockerのイメージ 実行コマンド
+        docker run ubuntu:latest /bin/echo 'Hello world'
+        Ubuntuのイメージを元にDockerコンテナを作成/実行し,作成したコンテナ内で
+        " Hello world "を表示する
+      
+        コンテナで呼び出すコマンドはcowsay Hello!
+        イメージの後ろにコンテナが立ち上がった後にコマンドを実行することができる   
+        createステータスとrunningステータスを同時に行う
+      
       
       
       # $ docker images
-      イメージの一覧を表示するサブコマンド
+        イメージの一覧を表示するサブコマンド
+        -a : すべてのイメージを表示 
+        --digests : ダイジェストを表示
+        --no-trunc : 結果を全て表示
+        -q : DockerイメージIDのみ表示
       
       
       # $ docker tag docker/whalesay my_whalesay:TAG_NAME
-      イメージにタグ付けするコマンド
-      "tag" = タグ付けするサブコマンド
-      "docker/whalesay"=元となるイメージ名
-      "my_walesay"=新しいイメージ名
-      ":TAG_NAME"=tag名を指定できる。
+        イメージにタグ付けするコマンド
+        "tag" = タグ付けするサブコマンド
+        "docker/whalesay"=元となるイメージ名
+        "my_walesay"=新しいイメージ名
+        ":TAG_NAME"=tag名を指定できる。
       
       
-      # $ docker inspect my_whalesay 
-      イメージの詳細情報を表示するコマンド
-      "inspect"=イメージの詳細情報を表示するサブコマンド
-      "my_whalesay"=対象のイメージ名 or イメージID
+      # $ docker inspect [option] コンテナ識別子またはイメージ識別子
+        イメージの詳細情報を確認する
+        $ docker inspect my_whalesay 
+        イメージの詳細情報を表示するコマンド
+        "inspect"=イメージの詳細情報を表示するサブコマンド
+        "my_whalesay"=対象のイメージ名 or イメージID
       
+        結果
+        "ID" : イメージID
+        "Created" : 作成日
+        "DockerVersion" :  Dockerのバージョン
+        "Author" : イメージの作成者
+        "Architecture" : CPUのアーキテクチャ
+          
+          
+        $ docker inspect --format="{{ .Os}}" ubuntu
+        Osの部分だけを取得する
+        $ docker inspect --format="{{ .Config.Image}}" ubuntu
+        Configの中のImageを取得する
       
+        
       # $ docker rmi docker/whalesay
-      ローカルのイメージを削除するコマンド
-      "rmi"=ローカル上のイメージを削除するサブコマンド
-      "docker/shalesay"=削除対象はイメージ名 or イメージID
-      "-f" =で強制削除する docker rmi -f docker/whalesay
+        ローカルのイメージを削除するコマンド
+        "rmi"=ローカル上のイメージを削除するサブコマンド
+        "docker/shalesay"=削除対象はイメージ名 or イメージID
+        "-f" =で強制削除する docker rmi -f docker/whalesay
       
       
       # $ docker pull docker/whalesay
-      docker hub上に存在するイメージを取得することができる　
-      "pull"=イメージを取得するサブコマンド
-      "docker/whalesay"=所得したイメージ
+        docker hub上に存在するイメージを取得することができる　
+        "pull"=イメージを取得するサブコマンド
+        "docker/whalesay"=所得したイメージ
       
       
       # $ docker build -t docker-whale .
@@ -64,38 +89,38 @@ snippets: [
           
           
       # nginxのコンテナを立ち上げるコマンド
-      $ docker run --name test-nginx -d -p 8080:80 nginx 
-      $ docker run --name <コンテナ名> -d \\
-      -p <ホスト側のポート番号>:<コンテナ側のポート番号> \\
-      <イメージ名>
-        
-      "--name"=起動するコンテナに名前をつけるオプション
-      "-d"=デタッチモード、コンテナの実行をバックグラウンドで行う
-      "-p"=コンテナのポートをコンテナ外に公開する設定、
-      "<ホスト側のポート番号>"=ホストマシーンが外部に公開する番号
-      "<コンテナ側のポート番号>"=コンテナにマッピングするポート番号
-      "-dを指定しないと"=フォアグラウンドでサーバが起動してログが流れてくる
-      "-v"=ボリューム
-      "-rm"=コンテナが終了した時点で自動的にコンテナの削除も行う
+        $ docker run --name test-nginx -d -p 8080:80 nginx 
+        $ docker run --name <コンテナ名> -d \\
+        -p <ホスト側のポート番号>:<コンテナ側のポート番号> \\
+        <イメージ名>
+      
+        "--name"=起動するコンテナに名前をつけるオプション
+        "-d"=デタッチモード、コンテナの実行をバックグラウンドで行う
+        "-p"=コンテナのポートをコンテナ外に公開する設定、
+        "<ホスト側のポート番号>"=ホストマシーンが外部に公開する番号
+        "<コンテナ側のポート番号>"=コンテナにマッピングするポート番号
+        "-dを指定しないと"=フォアグラウンドでサーバが起動してログが流れてくる
+        "-v"=ボリューム
+        "-rm"=コンテナが終了した時点で自動的にコンテナの削除も行う
       
       
       # docker stop test-nginx
-      test-nginxのコンテナを停止する
+        test-nginxのコンテナを停止する
       
       
       # ホストマシン上のディレクトリをコンテナにマウントする
-      ホスト上のhtmlファイルはnginxコンテナで公開できるようにする
+        ホスト上のhtmlファイルはnginxコンテナで公開できるようにする
       
       
       # docker run --name some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
-      nginxのコンテナを立ち上げるコマンド~バインドマウントを使用する~
-      # $ docker run --name <コンテナ名> -d \\ 
-      # -v <ホスト側のディレクトリ>:<コンテナ側のマウントポイント>:<オプション> \\
-      # -p <ホスト側のポータ番号>:<コンテナ側のポート番号> \\
-      # <イメージ名>
-      "ro"=read_only
-      # -v /Users/<ユーザー名>/docker-tutrial/html:/usr/share/nginx/html:ro
-      macの場合の-vオプションの引数
+        nginxのコンテナを立ち上げるコマンド~バインドマウントを使用する~
+        # $ docker run --name <コンテナ名> -d \\ 
+        # -v <ホスト側のディレクトリ>:<コンテナ側のマウントポイント>:<オプション> \\
+        # -p <ホスト側のポータ番号>:<コンテナ側のポート番号> \\
+        # <イメージ名>
+        "ro"=read_only
+        # -v /Users/<ユーザー名>/docker-tutrial/html:/usr/share/nginx/html:ro
+        macの場合の-vオプションの引数
       
       
       
@@ -116,6 +141,7 @@ snippets: [
       "-i"=コンテナの標準入力を取得して双方向に接続するもの
       "-t"=コンテナ内にttyを割り当てる
       "-it"コンテナでshellを実行してフォアグラウンドで実行状態にしたいときによく使われる
+      
       
       # docker ps
       現在実行中のコンテナを確認する
@@ -156,6 +182,9 @@ snippets: [
       
       # $ docker run --link <コンテナ名 or コンテナID>:<リンク先コンテナの別名>
       コンテナ名、または別名(エイリアスでリンク先に通信できるようになる)
+      
+      
+      # docker search [オプション　] 検索キーワード
     '''
   }
 ]
@@ -167,6 +196,7 @@ tags: [
   "inspect"
   "rmi"
   "pull"
+  "search"
 ]
 isStarred: false
 isTrashed: false
