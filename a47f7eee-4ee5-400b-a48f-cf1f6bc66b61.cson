@@ -1,5 +1,5 @@
 createdAt: "2018-06-27T06:25:20.149Z"
-updatedAt: "2018-07-08T08:55:51.006Z"
+updatedAt: "2018-07-08T08:58:12.506Z"
 type: "SNIPPET_NOTE"
 folder: "65eddf1377d9280594ea"
 title: "Docker_General"
@@ -185,6 +185,10 @@ snippets: [
       
       
       # docker search [オプション　] 検索キーワード
+        Docker Hubに公開されているイメージを検索する
+        --automated : Automated Buildのみ表示
+        --no-trunc : 結果をすべて表示する
+        -s : お気に入りの数の指定
     '''
   }
 ]

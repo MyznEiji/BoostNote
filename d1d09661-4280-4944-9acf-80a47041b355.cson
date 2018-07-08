@@ -1,5 +1,5 @@
 createdAt: "2018-06-28T08:10:25.096Z"
-updatedAt: "2018-07-08T08:49:07.590Z"
+updatedAt: "2018-07-08T10:05:13.555Z"
 type: "SNIPPET_NOTE"
 folder: "65eddf1377d9280594ea"
 title: "DockerHub"
@@ -10,8 +10,16 @@ snippets: [
     mode: "Python"
     content: '''
       #Docker Hubにログインする場合
-      $ docker login
+        $ docker login
+        -u : ユーザー見え
+        -p : パスワード
+        -e : メールアドレス
+          
+      # Docker hubからログアウト
+        docker logout [サーバー名]
       
+      
+          
       
       #Quay.ioにログインする場合
       $ docker login quay.io

@@ -1,0 +1,86 @@
+createdAt: "2018-07-08T10:06:31.578Z"
+updatedAt: "2018-07-08T11:06:11.611Z"
+type: "SNIPPET_NOTE"
+folder: "65eddf1377d9280594ea"
+title: "Docker Flow"
+description: "Docker Flow"
+snippets: [
+  {
+    name: "docker flow.py"
+    mode: "Python"
+    content: '''
+      # コンテナの生成(docker create)
+        イメージからコンテナを生成する
+        イメージの実態はDockerでサーバー機能を動かすために必要なディレクトリ/ファイル群
+      
+      # コンテナ生成 / 起動(docker run)
+        $ docker run [option] ImageName[:TagName] [argument]
+        イメージからコンテナを生成して、コンテナ場でプロセスを起動する
+        
+        "-a" : 標準入力、標準出力, 標準エラー出力をアタッチする
+        "--cidfile" : コンテナIDをファイルに出力する
+        "-d" : コンテナを生成し、バックグラウンドで実行する
+        "-i" : コンテナの標準入力を開く
+        "-t" : tty(端末デバイス)を使う
+        "--name" : コンテナ名
+          
+          
+        # カレンダーを出力する 
+          $ docker run -it --name "test1" centos /bin/cal
+          "-it" : コンソールに結果を出す
+          "--name " : コンテナ名
+          "centos" : イメージ名
+          "/bin/cal" : Linuxの標準コマンドでカレンダーを表示するコマンド
+          
+        
+        # バックグラウンドで実行する時
+          $ docker run -d centos /bin/ping localhost
+          "-d" : バックグラウンドで実行するオプション
+          "centos" : イメージ名
+          "/bin/ping localhost" : コンテナで実行するコマンド
+          
+          
+        # --restart
+          $ docker run -it --restart=always centos /bin/bash
+           "no" : 再起動しない
+           "on-failure" : 終了ステータスが0出ない時に再起動
+           "on-failure:回数n" : 終了ステータスが0出ない時にn買い再起動する
+           "always" : 常に再起動する
+        
+          
+        # コンテナのネットワーク設定
+        $ docker run [option] ImageName[:TagName] [argument]
+        
+        "--add-host=[HostName:IpAddress]" : コンテナの/etc/hostsに
+                                            ホスト名とIpAddressを定義する
+        "--dns=[IpAddress]" : DNSサーバーのIpAddress
+        "--expose=[PortNumber]" : 指定したレンジのポート番号
+        "--mac-address=[MacAddress]" : コンテナのMACアドレスを指定する
+        "-h" : コンテナ自身のホスト名を指定する
+        "-P" : ホストの任意のポートをコンテナに割り当てる
+        "-p" : ホストとコンテナのポートマッピング
+        "--link" : 他のコンテナからアクセスする時の名前
+          
+        $ docker run -d -p 8080:80 httpd
+          httpdという名前のイメージを元にして、コンテナを生成してバックグラウンドで実行する
+          その際に、ホストのポート番号8080とコンテナのポート番号80をマッピングする
+          
+      
+        $ docker run --dns=192.168.1.1 httpde
+      
+      # コンテナ起動 (docker start)
+      停止中のコンテナを起動する時に使う
+      
+      
+      # コンテナ停止(docker stop)
+      起動しているコンテナを停止するときに使う
+      
+      
+      # コンテナの削除(docker rm)
+      コンテナを削除するときに使う
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false
