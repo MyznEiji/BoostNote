@@ -1,0 +1,70 @@
+createdAt: "2018-07-12T15:22:29.796Z"
+updatedAt: "2018-07-12T15:24:14.376Z"
+type: "SNIPPET_NOTE"
+folder: "f17d0e91573b688dc1fb"
+title: "Vue-event"
+description: "Vue-event"
+snippets: [
+  {
+    name: "mousemove.html"
+    mode: "HTML"
+    content: '''
+      <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+      <script src="../js/style.js"></script>
+      <!--CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+      <!--JS -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      
+      
+      <div class="container">
+        <div class="row">
+          <div class="text-center">
+      
+            <div id="app">
+                <button v-on:click="increase">
+                  Click me
+                </button>
+                <p>{{ counter }}</p>
+                <p v-on:mousemove="updateCoordinates">Coordinates: {{ x  }} / {{ y  }}</p>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
+    '''
+  }
+  {
+    name: "mousemove.js"
+    mode: "JavaScript"
+    content: '''
+      window.onload = function(){
+        new Vue({
+          el: '#app',
+          data: {
+            counter: 0,
+            x: 0,
+            y: 0
+          },
+          methods: {
+            increase: function(){
+              this.counter++;
+            },
+            updateCoordinates: function(){
+              this.x = event.clientX;
+              this.y = event.clientY;
+            }
+          }
+      
+        })
+      }
+    '''
+  }
+]
+tags: [
+  "v-on:mousemove"
+]
+isStarred: false
+isTrashed: false

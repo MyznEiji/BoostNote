@@ -1,5 +1,5 @@
 createdAt: "2018-06-27T06:25:20.149Z"
-updatedAt: "2018-07-08T08:58:12.506Z"
+updatedAt: "2018-07-09T04:16:33.478Z"
 type: "SNIPPET_NOTE"
 folder: "65eddf1377d9280594ea"
 title: "Docker_General"
@@ -68,10 +68,6 @@ snippets: [
         "-f" =で強制削除する docker rmi -f docker/whalesay
       
       
-      # $ docker pull docker/whalesay
-        docker hub上に存在するイメージを取得することができる　
-        "pull"=イメージを取得するサブコマンド
-        "docker/whalesay"=所得したイメージ
       
       
       # $ docker build -t docker-whale .
@@ -103,9 +99,6 @@ snippets: [
         "-v"=ボリューム
         "-rm"=コンテナが終了した時点で自動的にコンテナの削除も行う
       
-      
-      # docker stop test-nginx
-        test-nginxのコンテナを停止する
       
       
       # ホストマシン上のディレクトリをコンテナにマウントする
@@ -144,34 +137,67 @@ snippets: [
       
       
       # docker ps
-      現在実行中のコンテナを確認する
-      "-a"=実行中じゃないコンテナも表示する
+        現在実行中のコンテナを確認する
+        "-a" : 実行中じゃないコンテナも表示する
+        "--before="" " : beforeで指定したコンテナん識別子より前に
+                         起動されたコンテナのみ表示
+        "-f" : 表示するコンテナのフィルタリングを行う
+        "-format" : 表示フォーマットを指定する
+        "-l" : 最後に起動されたコンテナのみ表示する
+        "--no-trunc=false" : 情報を省略しないで表示する
+        "-q" : コンテナIDのみ表示する
+        "-s" : ファイルサイズを表示する
+        "--since="" " sinceで指定したコンテナ識別子より後に起動されたコンテナのみ表示
       
-      # $ docker pause status-test
-      status-testコンテナを一時中断する
+      
+      
+      # $ docker pause container-identifier [container-identifier]
+        起動しているコンテナで動いているプロセスを全て中断させる
+        $ docker pause status-test
+        status-testコンテナを一時中断する
       
       
       # $ docker unpause status-test
-      pauseしてるstatus-testコンテナをrunningにする
+        一時中断しているプロセスを再開させる
+        pauseしてるstatus-testコンテナをrunningにする
       
       
-      # $ docker stop status-test
-      status-testのコンテナが終了した状態にする(exit)
+      
+      # $ docker stop [option] container-identifier [container-identifier]
+        $ docker stop status-test
+        status-testのコンテナが終了した状態にする(exit)
+        
+        $ docker stop -t 2 docker-identifier
+        docker-identirierを2病後に停止する
+        
+        "-t" : コンテナの停止時間を指定する
       
       
-      # $ docker start staus-test
-      staus-testのコンテナを起動する
+      # $ docker start [option] container-identifier [container-identifier]
+        $ docker start staus-test
+        staus-testのコンテナを起動する
+      
+        "-a" : 標準出力、標準エラー出力を開く
+        "-i" : コンテナの標準入力を開く
+        
+      
+      # $ docker attach
+        稼働しているコンテナに接続する時に使う
+        
+        $ docker attach <コンテナ名 or コンテナID>
+        コンテナのシェルに接続するコマンド
+        exitする時にコンテナは終了する
       
       
-      # $ docker attach <コンテナ名 or コンテナID>
-      コンテナのシェルに接続するコマンド
-      exitする時にコンテナは終了する
+      # $ docker exec [option] container-identifier Command [argument]
+        $ docker exec -it <コンテナ名 or コンテナID> /bin/bash
+        コンテナのシェルに接続するコマンド　
+        exitをする時コンテナは起動させたまま
       
-      
-      # $ docker exec -it <コンテナ名 or コンテナID> /bin/bash
-      コンテナのシェルに接続するコマンド　
-      exitをする時コンテナは起動させたまま
-      
+        "-d" : コマンドをバックグラウンドで実行する
+        "-i" : コンテナの標準入力を開く
+        "-t" : ttyを使う
+        
       
       # $ docker commit <コンテナ名 or コンテナID> <イメージ名>:<タグ名>
       コンテナの状態をイメージして保存することができる
@@ -189,6 +215,104 @@ snippets: [
         --automated : Automated Buildのみ表示
         --no-trunc : 結果をすべて表示する
         -s : お気に入りの数の指定
+          
+          
+          
+      # docker stats [コンテナ識別子]
+        Docker上で動作するコンテナの稼働状態を確認する時に使う
+        
+        # docker stats apache nginx
+        apacheとnginxの名前のコンテナの稼働状況を確認する
+        
+        "Mem Usage/Limit" : メモリ使用量 /　コンテナで使用できるメモリの制限値
+        "Mem %" : メモリ使用率
+        "NetI/O" : ネットワークI/O
+          
+          
+          
+      # docker restart [option] container-identifier [container-identifier]
+        コンテナを再起動するときに使う
+        
+        $ docker restart -t 2 container-identifier
+        container-identifierのコンテナを2秒後に再起動する
+        
+        "-t" : コンテナの再起動時間を指定する
+          
+          
+          
+      # docker rm [option] container-identifier [container-identifier]
+        起動しているコンテナを削除するときはdocker rmコマンドを使う
+        
+        "-f" : 起動中のコンテナを強制的に削除する
+        "-v" : 割り当てたボリュームを削除する
+        
+        $ docker rm container-identifier
+        container-identifierのコンテナを削除する
+        
+        
+        $ docker rm -f 'docker ps -a -q'
+        一括削除
+      
+        
+      # docker top nginx1
+        稼働しているコンテナで実行されているプロセスを確認する
+        
+        
+      # docker port nginx1
+        稼働しているコンテナで実行されているプロセスが転送されているポートを確認する時に
+        使う。
+        
+      # docker rename Name1 Name2
+        コンテナの名前をName1からName2に変更する時に使う
+        
+      # docker cp Container-identifier:コンテナ内のFile-Path Host-Directory
+        コンテナ内のファイルをホストにコピーする時に使う
+        
+        $ docker cp test:/etc/passwd /tmp/etc
+        testという名前のコンテナ内の/etc/passwdファイルをホストの/tmp/etcにコピーする
+        時に使う。
+        
+        
+        
+      # docker diff Container-identifier
+        コンテナないでなんらかの操作を行ない、コンテナがイメージから生成された時からの
+        差分を確認する時に使う。
+        
+      
+      # docker version
+        Dockerのバージョンを確認する
+        
+        
+      # docker info
+        Dcokerの詳細情報が表示される
+        
+        
+      # docker commit [option] Container-identifier [Image-Name[:Tag-Name]]
+        コンテナからイメージを作成する
+      
+        "-a" : 作成者を指定する
+        "-m" : メッセージを指定する
+        "-p" : コンテナを一時停止してコミットする
+      
+        $ docker commit -a "ASA SHIHO" nginx1 asashiho/webfront:1.0
+        nginx1という名前のコンテナを, asashiho/webfrontという名前で
+        タグ名を1.0に指定して、新しいイメージを作成する場合に使う
+        
+      
+      # docker export Container-identifier
+        動作しているコンテナのディレクトリ/ファイル群をまとめてtarファイルを作成する
+        
+        
+      # docker import Fail-or-URL - [Image-Name[:Tag-Name]]
+        LinuxのOSイメージのディレクトリ/ファイル群からDockerイメージを作成する
+        
+      
+      # docker save [option] save-file-name [image-name]
+        Dockerイメージをtarファイルに保存する
+        
+        
+      # docker load [option]
+        docker saveコマンドで保存したtarファイルからイメージを作成する
     '''
   }
 ]

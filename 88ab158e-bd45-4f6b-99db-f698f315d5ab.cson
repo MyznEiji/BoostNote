@@ -1,0 +1,43 @@
+createdAt: "2018-07-12T07:50:22.247Z"
+updatedAt: "2018-07-12T09:47:17.035Z"
+type: "SNIPPET_NOTE"
+folder: "f17d0e91573b688dc1fb"
+title: "Vue-Directive"
+description: "Vue-Directive"
+snippets: [
+  {
+    name: "directive.js"
+    mode: "JavaScript"
+    content: '''
+      # v-once
+      要素とコンポーネントを一度だけ描画します。その後再描画は、
+      要素 / コンポーネントと全てのその子は、静的コンテンツとして扱われスキップされます。
+      これは、更新性能を最適化するために使用することができます。
+      <h1 v-once>{{ title  }}</h1>
+      
+      
+      
+      # v-bind
+      1つ以上の属性またはコンポーネントのプロパティと式を動的に束縛します。
+      
+      class または style 属性と束縛する場合、配列やオブジェクトのような追加の
+      値タイプをサポートします。詳細は下記にリンクしたガイドセクションを参照してください。
+      <p><a v-bind:href="link">Google</p>
+      
+      
+      
+      # v-html
+      要素の innerHTML を更新します。コンテンツはプレーンな HTML として挿入されることに
+      注意してください。Vue テンプレートとしてコンパイルされません
+      
+      <p v-html="finishedLink"></p>
+      
+    '''
+  }
+]
+tags: [
+  "v-once"
+  "v-bind"
+]
+isStarred: false
+isTrashed: false

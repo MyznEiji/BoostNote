@@ -1,0 +1,54 @@
+createdAt: "2018-07-12T06:31:37.937Z"
+updatedAt: "2018-07-12T06:38:35.736Z"
+type: "SNIPPET_NOTE"
+folder: "f17d0e91573b688dc1fb"
+title: "Vue-Function"
+description: "Vue-Function"
+snippets: [
+  {
+    name: "index.html"
+    mode: "HTML"
+    content: '''
+      <!DOCTYPE html>
+      <html lang="ja">
+      <head>
+        <meta charset="UTF-8">
+        <title></title>
+      </head>
+      <body>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+        <script type="text/javascript" src="../js/style.js"></script>
+      
+        <div id="app">
+          <p>{{ sayHello() }}</p>
+        </div>
+      
+      </body>
+      </html>
+      
+    '''
+  }
+  {
+    name: "style.js"
+    mode: "JavaScript"
+    content: '''
+      window.onload = function(){
+        new Vue({
+          el:'#app',
+          data: {
+            title:'Hello world!'
+          },
+          methods: {
+            sayHello: function(){
+              return 'Hello!!!';
+              return this.title; #これでも可能
+            }
+          }
+        });
+      }
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

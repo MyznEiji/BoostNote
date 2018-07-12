@@ -1,0 +1,55 @@
+createdAt: "2018-07-12T06:31:49.697Z"
+updatedAt: "2018-07-12T07:05:01.151Z"
+type: "SNIPPET_NOTE"
+folder: "f17d0e91573b688dc1fb"
+title: "Vue-General"
+description: "Vue-General"
+snippets: [
+  {
+    name: "style.js"
+    mode: "JavaScript"
+    content: '''
+      window.onload = function(){
+        new Vue({
+          el:'#app',
+          data: {
+            title:'Hello world!',
+            link: 'https://google.com'
+          },
+          methods: {
+            sayHello: function(){
+              return this.title;
+            }
+          }
+        });
+      }
+    '''
+  }
+  {
+    name: "index.html"
+    mode: "HTML"
+    content: '''
+      <!DOCTYPE html>
+      <html lang="ja">
+      <head>
+        <meta charset="UTF-8">
+        <title></title>
+      </head>
+      <body>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+        <script type="text/javascript" src="../js/style.js"></script>
+      
+        <div id="app">
+          <p>{{ sayHello() }} - <a v-bind:href="link">Google</p>
+        </div>
+      
+      </body>
+      </html>
+    '''
+  }
+]
+tags: [
+  "v-bind"
+]
+isStarred: false
+isTrashed: false
