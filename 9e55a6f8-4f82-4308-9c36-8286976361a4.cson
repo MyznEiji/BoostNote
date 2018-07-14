@@ -1,5 +1,5 @@
 createdAt: "2018-07-12T15:22:29.796Z"
-updatedAt: "2018-07-12T15:24:14.376Z"
+updatedAt: "2018-07-13T07:37:36.948Z"
 type: "SNIPPET_NOTE"
 folder: "f17d0e91573b688dc1fb"
 title: "Vue-event"
@@ -62,9 +62,65 @@ snippets: [
       }
     '''
   }
+  {
+    name: "keyup.html"
+    mode: "HTML"
+    content: '''
+      <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+      <script src="../js/style.js"></script>
+      
+      
+      
+      <div id="app">
+        <button v-on:click="increase(2, $event)">Click me</button>
+        <p> {{ counter }} </p>
+        <p v-on:mousemove="updateCoordinates">
+          Coordinates: {{ x  }} / {{ y  }} - <span v-on:mousemove.stop="">DEAD STOP</span>
+        </p>
+        エンターとスペース叩くとアラートする
+        <input type="text" v-on:keyup.enter.space="alertMe">
+        
+        エンターを押すとアラートする
+        <input type="text" v-on:keyup.enter="alertMe">
+        
+        キーを入力するとアラートする
+        <input type="text" v-on:keyup="alertMe">
+      </div>
+    '''
+  }
+  {
+    name: "keyup.js"
+    mode: "JavaScript"
+    content: '''
+      window.onload = function(){
+        new Vue({
+          el: '#app',
+          data: {
+            counter: 0,
+            x: 0,
+            y: 0
+          },
+          methods: {
+            increase: function(step, event){
+              this.counter += step;
+            },
+            updateCoordinates: function(event){
+              this.x = event.clientX;
+              this.y = event.clientY;
+            },
+            alertMe: function(){
+              alert('Alert');
+            }
+          }
+        });
+      }
+    '''
+  }
 ]
 tags: [
   "v-on:mousemove"
+  "v-on:keyup"
+  "enter"
 ]
 isStarred: false
 isTrashed: false

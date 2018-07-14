@@ -1,5 +1,5 @@
 createdAt: "2018-07-12T07:50:22.247Z"
-updatedAt: "2018-07-12T09:47:17.035Z"
+updatedAt: "2018-07-14T07:34:53.629Z"
 type: "SNIPPET_NOTE"
 folder: "f17d0e91573b688dc1fb"
 title: "Vue-Directive"
@@ -32,12 +32,44 @@ snippets: [
       
       <p v-html="finishedLink"></p>
       
+      
+      # v-on
+      要素にイベントリスナをアタッチします。イベント種別は引数で示されます。
+      式はメソッド名またはインラインステートメントのいずれかを指定することができ、
+      または修飾子 (modifier) が存在するときは、単純に省略されます。
+      
+      ネイティブな DOM イベントを購読しているとき、
+      メソッドはネイティブなイベントを引数としてだけ受信します。
+      インラインステートメントで使用する場合、ステートメントでは特別な $event プロパティに 
+      v-on:click="handle('ok', $event)" のようにしてアクセスすることができます。
+      
+      <!-- メソッドハンドラ -->
+      <button v-on:click="doThis"></button>
+      
+      <!-- インラインステートメント -->
+      <button v-on:click="doThat('hello', $event)"></button>
+      
+      
+      
+      # v-model
+      v-model が指定されたとき、カスタムコンポーネントがプロパティおよびイベントを
+      カスタマイズすることを許可します。デフォルトでは、コンポーネントにおける v-model は、 
+      value をプロパティとして、 input をイベントして用います。しかし、
+      チェックボックスやラジオボタンなどの入力タイプは、value 
+      プロパティを他の目的で利用したいことがあるかもしれません。その際、 
+      model オプションを利用することで、競合を避けることが可能です。
+      
+      <my-checkbox v-model="foo" value="some value"></my-checkbox>
+      
     '''
   }
 ]
 tags: [
   "v-once"
   "v-bind"
+  "v-html"
+  "v-on"
+  "v-model"
 ]
 isStarred: false
 isTrashed: false
