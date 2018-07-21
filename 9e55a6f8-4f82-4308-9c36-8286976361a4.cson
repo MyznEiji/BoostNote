@@ -1,5 +1,5 @@
 createdAt: "2018-07-12T15:22:29.796Z"
-updatedAt: "2018-07-13T07:37:36.948Z"
+updatedAt: "2018-07-18T08:31:47.152Z"
 type: "SNIPPET_NOTE"
 folder: "f17d0e91573b688dc1fb"
 title: "Vue-event"
@@ -114,6 +114,73 @@ snippets: [
           }
         });
       }
+    '''
+  }
+  {
+    name: "click.html"
+    mode: "HTML"
+    content: '''
+      <!DOCTYPE html>
+      <html lang="ja">
+      <head>
+        <meta charset="UTF-8">
+        <title></title>
+      </head>
+      <body>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+        <script type="text/javascript" src="../js/style.js"></script>
+        <link rel="stylesheet" href="../css/style.css">
+      
+        <div id="app">
+          <div class="demo" @click="attachRed = !attachRed" :class="{red: attachRed}"></div>
+          <div class="demo" :class="{blue: attachRed}"></div>
+          <div class="demo"></div>
+        </div>
+      
+      
+      </body>
+      </html>
+    '''
+  }
+  {
+    name: "click.js"
+    mode: "JavaScript"
+    content: '''
+      window.onload = function(){
+        new Vue({
+          el:'#app',
+          data: {
+            attachRed: false
+          }
+      
+        });
+      }
+    '''
+  }
+  {
+    name: "click.css"
+    mode: "CSS"
+    content: '''
+      .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        mergin: 10px;
+      }
+      
+      .green {
+        background-color: green;
+      }
+      
+      .blue {
+        background-color: blue;
+      }
+      
+      .red {
+        background-color: red;
+      }
+      
     '''
   }
 ]

@@ -1,5 +1,5 @@
 createdAt: "2018-07-12T07:50:22.247Z"
-updatedAt: "2018-07-14T07:34:53.629Z"
+updatedAt: "2018-07-21T08:00:55.815Z"
 type: "SNIPPET_NOTE"
 folder: "f17d0e91573b688dc1fb"
 title: "Vue-Directive"
@@ -23,6 +23,7 @@ snippets: [
       class または style 属性と束縛する場合、配列やオブジェクトのような追加の
       値タイプをサポートします。詳細は下記にリンクしたガイドセクションを参照してください。
       <p><a v-bind:href="link">Google</p>
+      <p><a :href="link"></a></p>と省略できる
       
       
       
@@ -42,6 +43,7 @@ snippets: [
       メソッドはネイティブなイベントを引数としてだけ受信します。
       インラインステートメントで使用する場合、ステートメントでは特別な $event プロパティに 
       v-on:click="handle('ok', $event)" のようにしてアクセスすることができます。
+      @click="changeLink"と省略もできる
       
       <!-- メソッドハンドラ -->
       <button v-on:click="doThis"></button>
@@ -61,6 +63,44 @@ snippets: [
       
       <my-checkbox v-model="foo" value="some value"></my-checkbox>
       
+      
+      
+      
+      # v-if
+      文字列テンプレートでは、例えば Handlebars の例は、このような条件ブロックを記述します:
+      
+      <!-- Handlebars の例 -->
+      {{#if ok}}
+        <h1>Yes</h1>
+      {{/if}}
+      Vue.js では、同じことを達成するために、v-if ディレクティブを使用します:
+      
+      <h1 v-if="ok">Yes</h1>
+      これは、v-else で “else ブロック” を追加することも可能です:
+      
+      <h1 v-if="ok">Yes</h1>
+      <h1 v-else>No</h1>
+       
+       
+       
+       
+      # v-else-if
+      New in 2.1.0+
+      
+      The v-else-if, as the name suggests, serves as an “else if block” for v-if. It can also be chained multiple times:
+      
+      <div v-if="type === 'A'">
+        A
+      </div>
+      <div v-else-if="type === 'B'">
+        B
+      </div>
+      <div v-else-if="type === 'C'">
+        C
+      </div>
+      <div v-else>
+        Not A/B/C
+      </div>
     '''
   }
 ]
@@ -70,6 +110,8 @@ tags: [
   "v-html"
   "v-on"
   "v-model"
+  "v-if"
+  "v-else"
 ]
 isStarred: false
 isTrashed: false
