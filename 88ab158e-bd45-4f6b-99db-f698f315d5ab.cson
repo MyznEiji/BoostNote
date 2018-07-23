@@ -1,5 +1,5 @@
 createdAt: "2018-07-12T07:50:22.247Z"
-updatedAt: "2018-07-21T08:00:55.815Z"
+updatedAt: "2018-07-23T10:53:46.275Z"
 type: "SNIPPET_NOTE"
 folder: "f17d0e91573b688dc1fb"
 title: "Vue-Directive"
@@ -101,6 +101,31 @@ snippets: [
       <div v-else>
         Not A/B/C
       </div>
+       
+       
+       
+      # v-for
+         <ul>
+            <li v-for="(ingredient, i) in ingredients">{{ingredient}} {{ i  }}</li>
+         </ul>
+      
+      
+      # v-for(dictionary)
+      
+      <li v-for="person in persons">
+        <div v-for="(value, key, index) in person">{{key}} : {{value}} ({{index}})</div>
+      </li>
+      
+      
+      
+      # v-for(number of list)
+      <span v-for="n in 10">{{n}} </span>
+      
+      
+      
+      # クリックして配列に追加
+      <button @click="ingredients.push('spices')">Add New</button>
+      
     '''
   }
 ]
