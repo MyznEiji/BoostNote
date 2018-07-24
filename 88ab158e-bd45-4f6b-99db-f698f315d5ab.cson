@@ -1,5 +1,5 @@
 createdAt: "2018-07-12T07:50:22.247Z"
-updatedAt: "2018-07-23T10:53:46.275Z"
+updatedAt: "2018-07-24T03:18:47.889Z"
 type: "SNIPPET_NOTE"
 folder: "f17d0e91573b688dc1fb"
 title: "Vue-Directive"
@@ -125,6 +125,14 @@ snippets: [
       
       # クリックして配列に追加
       <button @click="ingredients.push('spices')">Add New</button>
+      
+      
+      # v-show
+        <p v-show="isShown" >You either see me ...</p>
+        <p v-show="!isShown">...or me</p>
+        
+        isShownがture or false で見れなくなったり見れたりする 
+      
       
     '''
   }
