@@ -1,0 +1,34 @@
+createdAt: "2018-09-13T08:42:11.014Z"
+updatedAt: "2018-09-13T08:52:12.335Z"
+type: "SNIPPET_NOTE"
+folder: "6001c6b282a5f71725ff"
+title: "C_Basic"
+description: "C_Basic"
+snippets: [
+  {
+    name: "basic.c"
+    mode: "C"
+    content: '''
+      // include <stdio.h>
+      ヘッダファイルを読み込んでいる
+      printfメソッドなどが使えるようになる。
+      
+      
+      
+      // #include
+      <>や""で囲んできに記述したヘッダファイルをその位置に挿入する
+      <>で囲まれた方は標準ディレクトリ(/usr/include/)の中に用意されたファイルを読み込む
+      ""で囲まれたヘッダファイルはユーザー定義のヘッダファイル
+      ex. #include "myheader.h"
+        
+        
+      // #define
+        マジックナンバーを避けるためにマクロ名をつけることができる(マクロ定義)
+        #define マクロ名　置換文字列
+        ex. #difine  LIMIT 100 //限界値　セミコロンはつけなくて良い
+    '''
+  }
+]
+tags: []
+isStarred: false
+isTrashed: false

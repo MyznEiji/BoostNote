@@ -244,6 +244,7 @@ snippets: [
       
       #np.loadtxt("ファイルディレクトリ", delimiter=",")
       ファイルをdelimiterで区切られた語をデータとして取得する
+      csvファイルも可能
       
       np.loadtxt("2D_example.csv", delimiter=",")
       
@@ -304,4 +305,4 @@ tags: [
 isStarred: false
 isTrashed: false
 createdAt: "2017-10-12T08:18:03.943Z"
-updatedAt: "2017-12-25T07:15:32.480Z"
+updatedAt: "2018-08-25T00:50:45.859Z"
